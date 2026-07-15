@@ -1,56 +1,59 @@
 # Deploy BoonBuy Finds
 
-## GitHub (one-time)
+## Fastest path (use now — no new repo needed)
 
-The project is pushed to branch **`boonbuyfinds`** on the litbuyfinds repo.
+Code lives on branch **`boonbuyfinds`** in your existing GitHub repo:
 
-To create a **separate repository** (recommended):
+**https://github.com/lauriszeltins132-rgb/litbuyfinds/tree/boonbuyfinds**
 
-1. Open https://github.com/new
-2. Repository name: `boonbuyfinds`
-3. Create empty repo (no README)
-4. Run locally:
+### Vercel deploy from branch
+
+1. Go to **https://vercel.com/new**
+2. Import **`lauriszeltins132-rgb/litbuyfinds`**
+3. Set **Production Branch** → `boonbuyfinds` (Settings → Git → Production Branch)
+4. Deploy
+
+This keeps LitBuy Finds on `main` and BoonBuy Finds on `boonbuyfinds` — two separate Vercel projects, same GitHub repo.
+
+---
+
+## Optional: separate GitHub repo
+
+1. Open https://github.com/new → name **`boonbuyfinds`** (empty repo)
+2. Run:
 
 ```bash
-cd /path/to/boonbuyfinds
+cd /home/ubuntu/boonbuyfinds
 git remote set-url origin https://github.com/lauriszeltins132-rgb/boonbuyfinds.git
 git push -u origin main
 ```
 
-Or use GitHub **Import repository** and point at the `boonbuyfinds` branch.
+3. Import that repo in Vercel instead
 
-## Vercel
-
-1. Go to https://vercel.com/new
-2. Import the `boonbuyfinds` GitHub repository
-3. Framework: **Next.js** (auto-detected)
-4. Build command: `npm run build` (default)
-5. Deploy
+---
 
 ## Domains
 
-In Vercel → Project → Settings → Domains, add:
+In Vercel → Project → Settings → Domains:
 
 | Domain | Role |
 |--------|------|
 | `boonbuyfinds.net` | Primary |
-| `boonbuys.com` | Redirects to boonbuyfinds.net (configured in `next.config.ts`) |
+| `boonbuys.com` | Redirects to boonbuyfinds.net (`next.config.ts`) |
 | `www.boonbuyfinds.net` | Redirects to apex |
 
-Point both domains' DNS to Vercel (A/CNAME records from Vercel dashboard).
+Add DNS records from the Vercel dashboard at your registrar.
 
-## Before launch checklist
+---
 
-- [ ] Update `BOONBUY_SIGNUP_URL` in `src/lib/constants.ts` with your real BoonBuy invite code
-- [ ] Update `SOCIAL_LINKS` with your Telegram / Discord / TikTok / Instagram
-- [ ] Replace `public/logo.svg` with BoonBuy branding
-- [ ] Set up `hello@boonbuyfinds.net` email
+## Before launch
+
+- [ ] `BOONBUY_SIGNUP_URL` in `src/lib/constants.ts` — real BoonBuy invite code
+- [ ] `SOCIAL_LINKS` — your Telegram / Discord / socials
+- [ ] `public/logo.svg` — BoonBuy branding
 
 ## Local dev
 
 ```bash
-npm install
-npm run dev
+npm install && npm run dev
 ```
-
-Open http://localhost:3000
