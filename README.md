@@ -11,7 +11,7 @@ Independent finds catalog for **BoonBuy** — cloned from the LitBuy Finds stack
 
 - Recommended agent: **BoonBuy** (https://boonbuy.com)
 - Signup / coupon invite: `src/lib/boonbuy-affiliate.ts` (`inviteCode=BOONFINDS`)
-- Social links: `SOCIAL_LINKS` in `src/lib/constants.ts` (Telegram `@BoonBuyFinds`, Discord, Instagram, TikTok)
+- Social links: `SOCIAL_LINKS` in `src/lib/constants.ts` (Telegram `@RNFinds`, Discord, Instagram, TikTok)
 
 ## Develop
 
