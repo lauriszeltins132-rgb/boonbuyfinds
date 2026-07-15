@@ -34,6 +34,9 @@ import {
 import { ADVERTISE_PAGE_PATH } from "@/lib/advertise-page";
 import { SITE_URL } from "@/lib/site";
 
+/** Keep sitemap fresh as catalog quality gates change. */
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const categories = getCategories();
   const brands = getBrandsFromProducts(getAllProducts());
