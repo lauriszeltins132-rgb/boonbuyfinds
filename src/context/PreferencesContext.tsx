@@ -63,6 +63,7 @@ export function PreferencesProvider({
   }, []);
 
   const setAgentId = useCallback((_next: AgentId) => {
+    void _next;
     setAgentIdState(DEFAULT_AGENT_ID);
   }, []);
 

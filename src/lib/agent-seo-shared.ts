@@ -1,4 +1,4 @@
-import { BUYING_AGENTS } from "./agents";
+import { ALL_AGENTS } from "./agents";
 import {
   BOONBUY_OFFER_DESCRIPTION,
   BOONBUY_OFFER_HEADLINE,
@@ -26,7 +26,7 @@ export type SeoAgentDefinition = {
 };
 
 function getAgent(id: SeoAgentId) {
-  const agent = BUYING_AGENTS.find((entry) => entry.id === id);
+  const agent = ALL_AGENTS.find((entry) => entry.id === id);
   if (!agent) {
     throw new Error(`Missing SEO agent config: ${id}`);
   }
