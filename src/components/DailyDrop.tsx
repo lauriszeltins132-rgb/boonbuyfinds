@@ -83,7 +83,7 @@ export default function DailyDrop() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href={getProductHref(product)}
-                  className="rounded-full bg-accent px-6 py-3 text-sm font-black text-background hover:bg-accent-hover"
+                  className="rounded-full bg-accent px-6 py-3 text-sm font-black text-white hover:bg-accent-hover"
                 >
                   View product
                 </Link>

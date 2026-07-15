@@ -31,7 +31,7 @@ export default function UnlockVerifiedLinksPrompt() {
         <div className="flex shrink-0 items-center gap-2">
           <RegisterLink
             location="unlock_verified_links"
-            className="inline-flex rounded-full bg-accent px-3 py-2 text-[11px] font-black text-background hover:bg-accent-hover sm:px-4 sm:text-xs"
+            className="inline-flex rounded-full bg-accent px-3 py-2 text-[11px] font-black text-white hover:bg-accent-hover sm:px-4 sm:text-xs"
           >
             {REGISTER_SAVE_CTA_LABEL}
           </RegisterLink>

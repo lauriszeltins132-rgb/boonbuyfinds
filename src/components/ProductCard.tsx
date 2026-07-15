@@ -188,7 +188,7 @@ export default function ProductCard({
             }}
             aria-label={saved ? "Remove from saved" : "Save item"}
             className={`${iconBtn} ${
-              saved ? "border-accent bg-accent text-background" : ""
+              saved ? "border-accent bg-accent text-white" : ""
             }`}
           >
             ♥

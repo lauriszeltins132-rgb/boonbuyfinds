@@ -45,8 +45,11 @@ export const PROMO_BANNER_ALT =
 
 export const PROMO_OG_IMAGE_URL = `https://boonbuyfinds.net${PROMO_BANNER_OG}`;
 
-export const BOONBUY_SIGNUP_URL =
-  "https://boonbuy.com/register?inviteCode=BOONFINDS";
+export {
+  BOONBUY_COUPON_URL,
+  BOONBUY_INVITE_CODE,
+  BOONBUY_SIGNUP_URL,
+} from "./boonbuy-affiliate";
 
 /** Benefit-driven CTAs site-wide */
 export const REGISTER_CTA_LABEL = "Register & Get Shipping Discount";
@@ -98,17 +101,17 @@ export const BOONBUY_OFFER_DESCRIPTION =
 
 export const CONTACT_EMAIL = "hello@boonbuyfinds.net";
 
-/** Update these when your BoonBuy community channels are live */
+/** Official community + social destinations for BoonBuy Finds */
 export const SOCIAL_LINKS = {
-  tiktok: "https://www.tiktok.com",
-  instagram: "https://www.instagram.com",
-  discord: "https://boonbuy.com",
-  telegram: "https://boonbuy.com",
+  telegram: "https://t.me/RNFinds",
+  discord: "https://discord.gg/G3Ryc2JE3Q",
+  instagram: "https://www.instagram.com/smukasolass/",
+  tiktok: "https://www.tiktok.com/@smks.reps",
 };
 
-export const TELEGRAM_HANDLE = "@BoonBuyFinds";
+export const TELEGRAM_HANDLE = "@RNFinds";
 
-export const TELEGRAM_CHANNEL_NAME = "BoonBuy Finds";
+export const TELEGRAM_CHANNEL_NAME = "RN Finds";
 
 export const TELEGRAM_MEMBER_LABEL = "Community";
 

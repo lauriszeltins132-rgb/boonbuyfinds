@@ -25,7 +25,7 @@ export default function OfferCallout() {
 
           <RegisterLink
             location="offer_callout"
-            className="inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-black text-background transition-transform hover:scale-[1.02] hover:bg-accent-hover"
+            className="inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-black text-white transition-transform hover:scale-[1.02] hover:bg-accent-hover"
           >
             {REGISTER_MODAL_CTA_LABEL}
           </RegisterLink>

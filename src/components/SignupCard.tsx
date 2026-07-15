@@ -47,7 +47,7 @@ export default function SignupCard({
             <div className="flex flex-col gap-2 sm:items-end">
               <RegisterLink
                 location={location}
-                className="inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-xs font-black text-background hover:bg-accent-hover sm:px-8 sm:py-3.5 sm:text-sm"
+                className="inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-xs font-black text-white hover:bg-accent-hover sm:px-8 sm:py-3.5 sm:text-sm"
               >
                 {REGISTER_MODAL_CTA_LABEL}
               </RegisterLink>
@@ -80,7 +80,7 @@ export default function SignupCard({
           <div className="flex flex-col gap-3">
             <RegisterLink
               location={location}
-              className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-black text-background hover:bg-accent-hover"
+              className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-black text-white hover:bg-accent-hover"
             >
               {REGISTER_MODAL_CTA_LABEL}
             </RegisterLink>

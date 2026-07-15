@@ -52,7 +52,11 @@ const AGENT_TELEGRAM_LINKS = [
 ];
 
 export const TELEGRAM_COMMUNITY_FOOTER_LINKS = [
-  { href: SOCIAL_LINKS.telegram, label: "Join RN Finds Telegram", external: true },
+  {
+    href: SOCIAL_LINKS.telegram,
+    label: `Join ${TELEGRAM_CHANNEL_NAME} Telegram`,
+    external: true,
+  },
   ...AGENT_TELEGRAM_LINKS.map((link) => ({ ...link, external: false })),
 ];
 

@@ -23,7 +23,7 @@ export default function BentoNav() {
             <Link
               key={tile.href}
               href={tile.href}
-              className="panel-shell group relative overflow-hidden rounded-2xl border border-border p-4 transition-all hover:-translate-y-0.5 hover:border-accent/35 hover:shadow-[0_8px_30px_rgba(212,255,60,0.06)]"
+              className="panel-shell group relative overflow-hidden rounded-2xl border border-border p-4 transition-all hover:-translate-y-0.5 hover:border-accent/35 hover:shadow-[0_8px_30px_rgba(255,128,0,0.10)]"
             >
               <span className="text-2xl">{tile.emoji}</span>
               <h3 className="mt-3 font-bold text-foreground group-hover:text-accent">

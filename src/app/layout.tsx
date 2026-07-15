@@ -41,6 +41,11 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FF8000" },
+    { media: "(prefers-color-scheme: dark)", color: "#FF8000" },
+  ],
+
   keywords: [
     "boonbuy finds",
     "weidian finds",
@@ -93,7 +98,7 @@ export const metadata: Metadata = {
       {
         rel: "mask-icon",
         url: "/icon-source.svg",
-        color: "#D4FF3C",
+        color: "#FF8000",
       },
     ],
   },

@@ -158,7 +158,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                   }}
                   className={`flex flex-1 items-center justify-center rounded-full border py-3 text-sm font-bold ${
                     saved
-                      ? "border-accent bg-accent text-background"
+                      ? "border-accent bg-accent text-white"
                       : "border-border text-foreground hover:border-accent/40"
                   }`}
                 >
@@ -177,7 +177,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                   product={product}
                   location="product_modal"
                   showAgentPicker
-                  className="flex w-full items-center justify-center rounded-full bg-accent py-4 text-sm font-black text-background hover:bg-accent-hover"
+                  className="flex w-full items-center justify-center rounded-full bg-accent py-4 text-sm font-black text-white hover:bg-accent-hover"
                 />
               ) : (
                 <p className="text-center text-sm text-muted">No buy link available</p>

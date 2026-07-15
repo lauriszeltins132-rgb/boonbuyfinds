@@ -21,8 +21,8 @@ export default async function OpenGraphImage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#0a0a0b",
-            color: "#D4FF3C",
+            background: "linear-gradient(135deg, #FF9D2E 0%, #FF8000 45%, #FFF5EA 100%)",
+            color: "#FFFFFF",
             fontSize: 48,
             fontWeight: 700,
           }}

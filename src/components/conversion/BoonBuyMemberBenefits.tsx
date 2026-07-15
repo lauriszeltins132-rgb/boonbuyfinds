@@ -35,7 +35,7 @@ export default function BoonBuyMemberBenefits({
       <div className={compact ? "" : "flex flex-wrap items-center gap-3"}>
         <RegisterLink
           location={location}
-          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-black text-background transition hover:bg-accent-hover"
+          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-black text-white transition hover:bg-accent-hover"
         >
           {REGISTER_MODAL_CTA_LABEL}
         </RegisterLink>

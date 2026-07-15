@@ -133,7 +133,7 @@ export default function RecentlyAddedPreview() {
 
                 <Link
                   href={bucket.href}
-                  className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-black text-background transition hover:bg-accent-hover"
+                  className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-black text-white transition hover:bg-accent-hover"
                 >
                   {bucket.cta}
                 </Link>
