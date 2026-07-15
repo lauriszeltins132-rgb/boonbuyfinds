@@ -57,7 +57,7 @@ export default function CouponModal() {
           <RegisterLink
             location="coupon_modal"
             onClick={closeCoupon}
-            className="inline-flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-black text-background transition hover:bg-accent-hover"
+            className="inline-flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-black text-white transition hover:bg-accent-hover"
           >
             {REGISTER_MODAL_CTA_LABEL}
           </RegisterLink>

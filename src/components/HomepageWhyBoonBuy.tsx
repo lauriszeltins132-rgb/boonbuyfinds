@@ -40,7 +40,7 @@ export default function HomepageWhyBoonBuy({
           <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-center lg:items-end">
             <RegisterLink
               location={location}
-              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-black text-background transition hover:bg-accent-hover"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-black text-white transition hover:bg-accent-hover"
             >
               {REGISTER_MODAL_CTA_LABEL}
             </RegisterLink>

@@ -40,7 +40,7 @@ export default function ProductBrowseSignupNudge() {
         <div className="mt-3 flex flex-wrap gap-2">
           <RegisterLink
             location="browse_nudge_20_products"
-            className="inline-flex rounded-full bg-accent px-4 py-2 text-xs font-black text-background hover:bg-accent-hover"
+            className="inline-flex rounded-full bg-accent px-4 py-2 text-xs font-black text-white hover:bg-accent-hover"
           >
             {REGISTER_MODAL_CTA_LABEL}
           </RegisterLink>

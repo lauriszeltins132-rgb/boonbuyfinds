@@ -36,7 +36,7 @@ export default function GuideSignupCallout({ variant = "panel" }: GuideSignupCal
       </p>
       <RegisterLink
         location="guide_panel_callout"
-        className="mt-4 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm font-black text-background hover:bg-accent-hover"
+        className="mt-4 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm font-black text-white hover:bg-accent-hover"
       >
         {REGISTER_MODAL_CTA_LABEL}
       </RegisterLink>

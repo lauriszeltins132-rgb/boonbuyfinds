@@ -71,7 +71,7 @@ export default function ExitIntentSignup() {
         </ul>
         <RegisterLink
           location="exit_intent"
-          className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-black text-background hover:bg-accent-hover"
+          className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-black text-white hover:bg-accent-hover"
           onClick={() => dismissNudge(CONVERSION_DISMISS_KEYS.exitIntent)}
         >
           {REGISTER_EXIT_CTA_LABEL}

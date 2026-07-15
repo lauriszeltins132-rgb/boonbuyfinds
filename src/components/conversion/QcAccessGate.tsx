@@ -53,7 +53,7 @@ export default function QcAccessGate({
             <div className="mt-4 space-y-2">
               <RegisterLink
                 location="qc_access_gate"
-                className="inline-flex w-full items-center justify-center rounded-full bg-accent py-3 text-sm font-black text-background hover:bg-accent-hover"
+                className="inline-flex w-full items-center justify-center rounded-full bg-accent py-3 text-sm font-black text-white hover:bg-accent-hover"
                 onClick={() => setOpen(false)}
               >
                 {REGISTER_QC_CTA_LABEL}

@@ -33,7 +33,7 @@ export default function MemberBenefitsStrip({
         </div>
         <RegisterLink
           location={location}
-          className="inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-black text-background hover:bg-accent-hover"
+          className="inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-black text-white hover:bg-accent-hover"
         >
           {REGISTER_MODAL_CTA_LABEL}
         </RegisterLink>

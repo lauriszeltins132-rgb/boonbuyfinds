@@ -46,7 +46,7 @@ export default function AdvertisePageLayout() {
 
       <article className="px-4 py-8 sm:px-6">
         <div className="mx-auto max-w-3xl">
-          <section className="overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 via-[#121214] to-[#0d1210] p-6 sm:p-8">
+          <section className="overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 via-secondary-soft to-panel-hover p-6 sm:p-8">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
               Business · Collaborate
             </p>
@@ -65,7 +65,7 @@ export default function AdvertisePageLayout() {
                 href={TELEGRAM_COLLAB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-black text-background transition hover:opacity-90"
+                className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-black text-white transition hover:opacity-90"
               >
                 Contact on Telegram {TELEGRAM_COLLAB_CONTACT}
               </a>
@@ -191,7 +191,7 @@ export default function AdvertisePageLayout() {
                 href={TELEGRAM_COLLAB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-black text-background"
+                className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-black text-white"
               >
                 Contact {TELEGRAM_COLLAB_CONTACT}
               </a>

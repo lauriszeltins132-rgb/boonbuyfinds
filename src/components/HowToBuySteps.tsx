@@ -39,7 +39,7 @@ export default function HowToBuySteps() {
       </ol>
       <RegisterLink
         location="product_signup_block"
-        className="mt-6 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-black text-background transition hover:bg-accent-hover"
+        className="mt-6 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-black text-white transition hover:bg-accent-hover"
       >
         {REGISTER_CTA_LABEL}
       </RegisterLink>

@@ -74,7 +74,7 @@ export default function SiteHeader() {
             <GlobalSearch className="hidden sm:inline-flex" />
             <RegisterLink
               location="header"
-              className="inline-flex shrink-0 rounded-full bg-accent px-2 py-1.5 text-[10px] font-black leading-none text-background sm:px-4 sm:py-2 sm:text-sm"
+              className="inline-flex shrink-0 rounded-full bg-accent px-2 py-1.5 text-[10px] font-black leading-none text-white sm:px-4 sm:py-2 sm:text-sm"
             >
               {REGISTER_HEADER_CTA_LABEL}
             </RegisterLink>

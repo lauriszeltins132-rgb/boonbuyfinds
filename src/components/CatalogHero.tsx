@@ -35,7 +35,7 @@ export default function CatalogHero({
 
         <RegisterLink
           location="catalog_hero"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-black text-background transition-transform hover:scale-[1.03] hover:bg-accent-hover"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-black text-white transition-transform hover:scale-[1.03] hover:bg-accent-hover"
         >
           {REGISTER_CTA_LABEL}
           <span aria-hidden>→</span>

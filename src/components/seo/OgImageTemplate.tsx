@@ -14,8 +14,8 @@ export function renderOgImage(title: string, subtitle: string) {
           alignItems: "center",
           justifyContent: "center",
           background:
-            "linear-gradient(135deg, #0a0a0b 0%, #141416 50%, #0f1a12 100%)",
-          color: "#f4f4f5",
+            "linear-gradient(135deg, #FF9D2E 0%, #FF8000 42%, #FFF5EA 100%)",
+          color: "#1A1410",
           fontFamily: "system-ui, sans-serif",
           padding: 60,
         }}
@@ -28,6 +28,7 @@ export function renderOgImage(title: string, subtitle: string) {
             textAlign: "center",
             lineHeight: 1.15,
             maxWidth: 1000,
+            color: "#FFFFFF",
           }}
         >
           {title}
@@ -35,7 +36,7 @@ export function renderOgImage(title: string, subtitle: string) {
         <div
           style={{
             fontSize: 28,
-            color: "#4ade80",
+            color: "#1A1410",
             fontWeight: 600,
             marginTop: 20,
             textAlign: "center",
@@ -56,10 +57,10 @@ export function renderOgImage(title: string, subtitle: string) {
               width: 10,
               height: 10,
               borderRadius: 999,
-              background: "#22c55e",
+              background: "#49D6D9",
             }}
           />
-          <div style={{ fontSize: 22, color: "#a1a1aa" }}>boonbuyfinds.net</div>
+          <div style={{ fontSize: 22, color: "#5C524A" }}>boonbuyfinds.net</div>
         </div>
       </div>
     ),

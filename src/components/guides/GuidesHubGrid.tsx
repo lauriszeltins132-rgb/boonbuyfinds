@@ -65,7 +65,7 @@ export default function GuidesHubGrid({ guides }: GuidesHubGridProps) {
                   <Link
                     key={guide.slug}
                     href={guide.path}
-                    className="panel-shell group flex flex-col rounded-2xl border border-border p-6 transition hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-[0_0_24px_rgba(34,197,94,0.08)]"
+                    className="panel-shell group flex flex-col rounded-2xl border border-border p-6 transition hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-[0_0_24px_rgba(255,128,0,0.12)]"
                   >
                     <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-accent">
                       {guide.badge}

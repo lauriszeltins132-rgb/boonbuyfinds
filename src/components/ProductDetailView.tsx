@@ -228,7 +228,7 @@ export default function ProductDetailView({
               }}
               className={`rounded-full border px-5 py-2.5 text-sm font-bold ${
                 saved
-                  ? "border-accent bg-accent text-background"
+                  ? "border-accent bg-accent text-white"
                   : "border-border text-foreground hover:border-accent/40"
               }`}
             >

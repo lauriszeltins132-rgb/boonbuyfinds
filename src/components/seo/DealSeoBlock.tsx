@@ -19,7 +19,7 @@ export default function DealSeoBlock({ products }: DealSeoBlockProps) {
   return (
     <section className="px-4 pb-6 sm:px-6">
       <div className="mx-auto max-w-7xl space-y-6">
-        <div className="rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 via-surface/40 to-surface/20 p-6">
+        <div className="rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 via-secondary-soft to-panel-hover p-6">
           <h2 className="text-lg font-black">Stack deals with shipping coupons</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
             Under-$30 finds are even better when new BoonBuy accounts claim the
@@ -29,7 +29,7 @@ export default function DealSeoBlock({ products }: DealSeoBlockProps) {
           <div className="mt-4 flex flex-wrap gap-2">
             <RegisterLink
               location="deals_coupon_cta"
-              className="rounded-full bg-accent px-4 py-2 text-xs font-black text-background transition hover:bg-accent-hover"
+              className="rounded-full bg-accent px-4 py-2 text-xs font-black text-white transition hover:bg-accent-hover"
             >
               {REGISTER_CTA_LABEL}
             </RegisterLink>
