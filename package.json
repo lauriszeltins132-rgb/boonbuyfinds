@@ -20,6 +20,7 @@
     "process:images": "node scripts/generate-bright-bg-manifest.mjs && node scripts/process-catalog-images.mjs",
     "flatten:images": "node scripts/flatten-processed-images.mjs",
     "rematte:cream": "node scripts/rematte-processed-to-cream.mjs",
+    "unify:cream": "node scripts/unify-processed-cream-bg.mjs",
     "outline:light": "node scripts/outline-light-products.mjs",
     "process:remaining": "node scripts/process-remaining-images.mjs",
     "generate:banner": "node scripts/generate-promo-banner.mjs",

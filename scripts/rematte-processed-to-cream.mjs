@@ -43,6 +43,20 @@ function isOldMattePixel(r, g, b) {
   // Flat near-black studio leftover (extremely dark + almost no chroma)
   if (max <= 22 && chroma <= 10) return true;
 
+  // Warm gray leftover matte (~229,226,223) darker than cream wallpaper
+  if (
+    chroma <= 18 &&
+    r >= 200 &&
+    r <= 245 &&
+    g >= 198 &&
+    g <= 245 &&
+    b >= 195 &&
+    b <= 242 &&
+    !(Math.abs(r - 255) <= 3 && Math.abs(g - 252) <= 3 && Math.abs(b - 248) <= 3)
+  ) {
+    return true;
+  }
+
   return false;
 }
 

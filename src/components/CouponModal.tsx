@@ -37,7 +37,7 @@ export default function CouponModal() {
           BoonBuy account
         </p>
         <h2 className="mt-2 text-xl font-black text-foreground">
-          Get 30% Off Shipping
+          Get 40% Off Shipping
         </h2>
         <ul className="mt-4 space-y-2">
           {BOONBUY_ACCOUNT_BENEFITS.map((benefit) => (

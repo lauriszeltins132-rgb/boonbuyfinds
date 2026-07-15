@@ -57,7 +57,7 @@ export default function AdvertisePageLayout() {
               Reach {TELEGRAM_MEMBER_LABEL} on Telegram with sponsored posts,
               product promotions, and seller spotlights. {TELEGRAM_CHANNEL_NAME}{" "}
               is a shopping finds community for sneakers, fashion, QC photos,
-              spreadsheets, and multi-agent links — contact for pricing on every
+              spreadsheets, and verified BoonBuy links — contact for pricing on every
               package.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">

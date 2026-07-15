@@ -238,11 +238,11 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     path: "/boonbuy-finds",
     title: "BoonBuy Finds Catalog",
     metaDescription:
-      "Browse verified sneaker, fashion and streetwear finds. BoonBuy is our recommended agent — or choose Kakobuy, OopBuy, ACBuy, MuleBuy and HipoBuy before buying.",
+      "Browse verified sneaker, fashion and streetwear finds on BoonBuy — QC photos, spreadsheet-style discovery, and trusted checkout links.",
     badge: "BoonBuy Finds",
     h1: "BoonBuy finds",
     intro:
-      "BoonBuy Finds is a curated discovery catalog for fashion and sneaker products. BoonBuy is our recommended agent, but you can choose Kakobuy, OopBuy, HipoBuy, ACBuy or MuleBuy before checkout. Search by brand or category, save favorites, and open verified links when you are ready to order.",
+      "BoonBuy Finds is a curated discovery catalog for fashion and sneaker products. Search by brand or category, save favorites, and open verified BoonBuy links when you are ready to order.",
     sections: [
       {
         heading: "What makes BoonBuy Finds different",

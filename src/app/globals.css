@@ -310,18 +310,18 @@ body::before {
 .product-float-stage--card .product-float-asset {
   max-width: 94%;
   max-height: 94%;
-  filter: brightness(1.04) contrast(1.05) saturate(1.02);
+  filter: none;
 }
 
 .product-float-stage--card .product-float-asset--processed-cutout {
-  filter: brightness(1.05) contrast(1.06) saturate(1.03)
-    drop-shadow(0 0 0.6px rgba(26, 20, 16, 0.55))
-    drop-shadow(0 0 1.2px rgba(26, 20, 16, 0.28))
-    drop-shadow(0 6px 16px rgba(26, 20, 16, 0.08));
+  filter:
+    drop-shadow(0 0 0.5px rgba(26, 20, 16, 0.35))
+    drop-shadow(0 0 1px rgba(26, 20, 16, 0.18))
+    drop-shadow(0 4px 12px rgba(26, 20, 16, 0.05));
 }
 
 .product-float-asset--processed-matte {
-  filter: brightness(1.04) contrast(1.04) saturate(1.02) !important;
+  filter: none !important;
 }
 
 .product-float-asset--dark-boost {
@@ -330,13 +330,13 @@ body::before {
 
 .product-float-asset--processed-matte.product-float-asset--dark-boost,
 .product-float-asset--processed-matte.product-float-asset--enhanced {
-  filter: brightness(1.05) contrast(1.05) saturate(1.02) !important;
+  filter: none !important;
 }
 
 .product-float-stage--card .product-float-asset--enhanced,
 .product-float-stage--card .product-float-asset--dark-boost,
 .product-float-stage--card .product-float-asset--processed-matte {
-  filter: brightness(1.05) contrast(1.05) saturate(1.02) !important;
+  filter: none !important;
 }
 
 .product-float-stage > .image-unavailable {
@@ -355,8 +355,8 @@ body::before {
   height: 100%;
   min-height: inherit;
   border-radius: 0.75rem;
-  background: linear-gradient(165deg, #fff8f1 0%, #ffffff 42%, #fff3e8 100%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  background: #fffcf8;
+  box-shadow: none;
 }
 
 .product-float-matte--card {
