@@ -2,11 +2,11 @@ import { PUBLIC_CATALOG_COUNT } from "./catalog-count-public";
 
 export const META_SCALE = PUBLIC_CATALOG_COUNT;
 
-export const META_AGENTS = "BoonBuy, MuleBuy, OopBuy, Kakobuy and ACBuy";
+export const META_AGENTS = "BoonBuy";
 
 /** Value stack used across descriptions — no weak openers (browse/explore/discover). */
 export const META_VALUE_STACK =
-  "verified shopping links, QC photos, shipping coupons, agent discounts and daily updates";
+  "verified shopping links, QC photos, shipping coupons, shipping discounts and daily updates";
 
 const DESCRIPTION_MAX = 158;
 const TITLE_MAX = 58;
@@ -47,7 +47,7 @@ export function getHomepageMetadataCopy() {
       72
     ),
     description: truncateMetaDescription(
-      `Browse ${META_SCALE} BoonBuy finds with QC photos, spreadsheet-style product discovery, Weidian and Taobao links, sneaker finds, fashion finds, coupons and multi-agent support.`
+      `Browse ${META_SCALE} BoonBuy finds with QC photos, spreadsheet-style product discovery, Weidian and Taobao links, sneaker finds, fashion finds, coupons and verified BoonBuy checkout.`
     ),
   };
 }

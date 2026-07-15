@@ -12,7 +12,6 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import AnalyticsBoot from "@/components/AnalyticsBoot";
 import JsonLd from "@/components/JsonLd";
 import { ConversionProvider } from "@/context/ConversionContext";
-import { AgentModalProvider } from "@/context/AgentModalContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { CouponProvider } from "@/context/CouponContext";
@@ -116,7 +115,6 @@ export default function RootLayout({
             <WishlistProvider>
               <RecentlyViewedProvider>
                 <ConversionProvider>
-                  <AgentModalProvider>
                   <AnimatedBackground />
                   <JsonLd />
                   <AnalyticsBoot />
@@ -129,7 +127,6 @@ export default function RootLayout({
                   <MobileDock />
                   <Analytics />
                   <DeferredSpeedInsights />
-                  </AgentModalProvider>
                 </ConversionProvider>
               </RecentlyViewedProvider>
             </WishlistProvider>

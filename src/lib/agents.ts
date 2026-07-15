@@ -27,7 +27,8 @@ export type AgentDefinition = {
   shortLabel: string;
 };
 
-export const BUYING_AGENTS: AgentDefinition[] = [
+/** Full agent registry (kept for URL builders / legacy SEO routes). */
+export const ALL_AGENTS: AgentDefinition[] = [
   {
     id: "boonbuy",
     name: "BoonBuy",
@@ -35,7 +36,7 @@ export const BUYING_AGENTS: AgentDefinition[] = [
     recommended: true,
     affiliateEnabled: true,
     signupUrl: BOONBUY_SIGNUP_URL,
-    description: "Our recommended agent with verified links and QC support.",
+    description: "Verified links, QC support, and exclusive shipping discounts.",
     shortLabel: "BoonBuy",
   },
   {
@@ -90,10 +91,15 @@ export const BUYING_AGENTS: AgentDefinition[] = [
   },
 ];
 
+/** Site is BoonBuy-only — no multi-agent picker. */
+export const BUYING_AGENTS: AgentDefinition[] = ALL_AGENTS.filter(
+  (agent) => agent.id === "boonbuy"
+);
+
 export const DEFAULT_AGENT_ID: AgentId = "boonbuy";
 
 const AGENT_BY_ID = Object.fromEntries(
-  BUYING_AGENTS.map((agent) => [agent.id, agent])
+  ALL_AGENTS.map((agent) => [agent.id, agent])
 ) as Record<AgentId, AgentDefinition>;
 
 export function isAgentId(value: string): value is AgentId {

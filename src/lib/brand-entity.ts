@@ -18,7 +18,7 @@ export const SITE_ALTERNATE_NAMES = [
 ] as const;
 
 export const SITE_ENTITY_DESCRIPTION =
-  "BoonBuy Finds is a product discovery platform for QC photos, spreadsheet finds, fashion finds, sneaker finds, and multi-agent shopping links.";
+  "BoonBuy Finds is a product discovery platform for QC photos, spreadsheet finds, fashion finds, sneaker finds, and verified BoonBuy shopping links.";
 
 const SUPPORTED_AGENT_NAMES = BUYING_AGENTS.filter((a) =>
   ["boonbuy", "mulebuy", "oopbuy", "acbuy", "kakobuy"].includes(a.id)
@@ -102,7 +102,7 @@ export function getOrganizationKnowsAbout(): string[] {
     "Taobao finds",
     "sneaker finds",
     "fashion finds",
-    "multi-agent shopping links",
+    "verified BoonBuy shopping links",
     TELEGRAM_CHANNEL_NAME,
   ];
 }

@@ -16,7 +16,7 @@ export default function TelegramDailyFindsCta() {
             </p>
             <p className="mt-1 text-xs leading-relaxed text-muted">
               {TELEGRAM_MEMBER_LABEL} sharing QC photos, spreadsheet rows, and
-              multi-agent links.{" "}
+              community shopping links.{" "}
               <Link href="/telegram" className="font-bold text-accent hover:underline">
                 Learn more
               </Link>

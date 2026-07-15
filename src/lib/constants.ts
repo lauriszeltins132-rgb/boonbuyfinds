@@ -19,7 +19,7 @@ export const HERO_HEADLINE =
   "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
 
 export const HERO_SUBHEADLINE =
-  "Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified links through BoonBuy, OopBuy, Kakobuy, MuleBuy, or ACBuy.";
+  "Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified BoonBuy links with QC references and daily catalog updates.";
 
 export const HERO_TAGLINE = HERO_SUBHEADLINE;
 
@@ -53,18 +53,18 @@ export {
 
 /** Benefit-driven CTAs site-wide */
 export const REGISTER_CTA_LABEL = "Register & Get Shipping Discount";
-export const REGISTER_HEADER_CTA_LABEL = "30% Off Shipping";
+export const REGISTER_HEADER_CTA_LABEL = "40% Off Shipping";
 export const REGISTER_MODAL_CTA_LABEL = "Start Your BoonBuy Haul";
 export const REGISTER_STICKY_CTA_LABEL = "Unlock Verified Links";
-export const MOBILE_POPUP_CTA_A = "Register & Save 30%";
+export const MOBILE_POPUP_CTA_A = "Register & Save 40%";
 export const MOBILE_POPUP_CTA_B = "Unlock Verified Links";
-export const MOBILE_POPUP_BADGE = "Save up to 30% on shipping";
+export const MOBILE_POPUP_BADGE = "Save up to 40% on shipping";
 export const MOBILE_POPUP_HEADLINE = "Unlock Your BoonBuy Account";
 export const MOBILE_POPUP_SUBTEXT =
   "Get cheaper shipping, QC photos, verified links and order tracking.";
 
 export const MOBILE_POPUP_BENEFITS = [
-  "Save up to 30% on shipping",
+  "Save up to 40% on shipping",
   "Unlock QC photos",
   "Open verified product links",
   "Track all orders",
@@ -95,7 +95,7 @@ export const BOONBUY_STICKY_BENEFITS = [
   "Save Favorites",
 ] as const;
 
-export const BOONBUY_OFFER_HEADLINE = "Get 30% Off Shipping";
+export const BOONBUY_OFFER_HEADLINE = "Get 40% Off Shipping";
 export const BOONBUY_OFFER_DESCRIPTION =
   "New BoonBuy users can claim an exclusive shipping discount.";
 

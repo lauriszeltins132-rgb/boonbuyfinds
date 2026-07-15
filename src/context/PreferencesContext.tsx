@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import type { AgentId, CurrencyCode } from "@/lib/constants";
-import { DEFAULT_AGENT_ID, isAgentId } from "@/lib/agents";
+import { DEFAULT_AGENT_ID } from "@/lib/agents";
 import { BUYING_AGENTS } from "@/lib/agents";
 
 type PreferencesContextValue = {
@@ -41,9 +41,8 @@ export function PreferencesProvider({
           agentId?: AgentId;
         };
         if (parsed.currency) setCurrencyState(parsed.currency);
-        if (parsed.agentId && isAgentId(parsed.agentId)) {
-          setAgentIdState(parsed.agentId);
-        }
+        // Site is BoonBuy-only — ignore any previously saved multi-agent preference.
+        setAgentIdState(DEFAULT_AGENT_ID);
       }
     } catch {
       // ignore
@@ -63,8 +62,8 @@ export function PreferencesProvider({
     setCurrencyState(next);
   }, []);
 
-  const setAgentId = useCallback((next: AgentId) => {
-    setAgentIdState(next);
+  const setAgentId = useCallback((_next: AgentId) => {
+    setAgentIdState(DEFAULT_AGENT_ID);
   }, []);
 
   const value = useMemo(
