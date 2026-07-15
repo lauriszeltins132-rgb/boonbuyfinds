@@ -20,7 +20,18 @@ function hashUrl(url) {
   return crypto.createHash("sha256").update(url).digest("hex").slice(0, 20);
 }
 
+/** Site wallpaper cream used for rematted product mattes (#fffcf8). */
+function isCreamMattePixel(r, g, b) {
+  return (
+    Math.abs(r - 255) <= 10 &&
+    Math.abs(g - 252) <= 10 &&
+    Math.abs(b - 248) <= 10
+  );
+}
+
 function isBrightBorderPixel(r, g, b) {
+  // Rematted cream wallpaper is intentional — not a white studio background.
+  if (isCreamMattePixel(r, g, b)) return false;
   const min = Math.min(r, g, b);
   const max = Math.max(r, g, b);
   return min >= 200 && max - min <= 55;
@@ -65,14 +76,15 @@ function analyzePixels(data, width, height) {
       if (idx % sampleStep !== 0) continue;
       const i = idx * 4;
       const alpha = data[i + 3];
-      if (alpha < 24) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      // Treat cream site-matte like transparent so product fill is measured correctly.
+      if (alpha < 24 || isCreamMattePixel(r, g, b)) {
         transparent++;
       } else {
         opaque++;
         sampledOpaque++;
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
         if (isBrightBorderPixel(r, g, b)) brightBlank++;
         minX = Math.min(minX, x);
         minY = Math.min(minY, y);

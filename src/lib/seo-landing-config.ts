@@ -327,7 +327,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       "Browse spreadsheet-style finds and open them on MuleBuy or BoonBuy — QC photos, verified links, and daily catalog updates.",
     h1: "MuleBuy spreadsheet finds",
     intro:
-      "MuleBuy shoppers often start from community spreadsheets. BoonBuy Finds indexes the same product universe — set MuleBuy as your preferred agent in the header, then browse normally.",
+      "MuleBuy shoppers often start from community spreadsheets. BoonBuy Finds indexes the same product universe with photos, QC references, and verified BoonBuy checkout links.",
     badge: "Agent spreadsheet",
     keywords: ["mulebuy spreadsheet", "mulebuy finds"],
     updateFrequency: "weekly",
@@ -368,7 +368,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       {
         question: "Can I import links to Kakobuy?",
         answer:
-          "Open any product and choose Kakobuy as your agent. Import workflows depend on Kakobuy's own tools.",
+          "Open any product and use Buy on BoonBuy for a verified checkout link. External agent workflows are not offered on this site.",
       },
     ],
     productSectionTitle: "Trending finds for Kakobuy shoppers",
@@ -450,7 +450,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
         heading: "What may differ",
         paragraphs: [
           "Coupon campaigns, payment methods, shipping routes, and support response times change over time. Compare live fees in each dashboard before a large haul.",
-          "BoonBuy Finds links and QC workflow examples on this site are BoonBuy-first. MuleBuy users can still browse the same catalog and switch agents in the header.",
+          "BoonBuy Finds links and QC workflow examples on this site are BoonBuy-only. Browse here, then checkout on BoonBuy with verified links.",
         ],
         links: [
           { href: "/mulebuy-finds", label: "MuleBuy finds" },
@@ -480,9 +480,9 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
           "Not necessarily. Promotions and shipping choices vary. Compare totals for your country and parcel weight.",
       },
       {
-        question: "Can I switch agents after browsing?",
+        question: "Can I buy on another agent from this site?",
         answer:
-          "Yes. Set your preferred agent in the site header or choose at checkout on each product.",
+          "This catalog is BoonBuy-only. Every buy button opens a verified BoonBuy product link.",
       },
     ],
     productSectionTitle: "Compare finds",
@@ -569,12 +569,12 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       {
         question: "Why does BoonBuy Finds recommend BoonBuy?",
         answer:
-          "Our buy links, QC references, and guides are tested around BoonBuy's workflow. You can still switch agents per product.",
+          "Our buy links, QC references, and guides are built around BoonBuy — this site is BoonBuy-only for checkout.",
       },
       {
-        question: "Can I use multiple agents?",
+        question: "Is this site multi-agent?",
         answer:
-          "Yes. Many experienced buyers use different agents for different hauls depending on promotions.",
+          "No. BoonBuy Finds is a BoonBuy discovery catalog. Buy buttons open BoonBuy only.",
       },
     ],
     productSectionTitle: "Editor-ranked finds to start with",
