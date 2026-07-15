@@ -244,21 +244,31 @@ async function main() {
   let poor = 0;
 
   for (const url of urls) {
-    if (dead.has(url)) {
+    const id = hashUrl(url);
+    const mapped = map[url];
+    const mappedFile = mapped
+      ? path.join(processedDir, path.basename(mapped))
+      : path.join(processedDir, `${id}.png`);
+    const file = fs.existsSync(mappedFile)
+      ? mappedFile
+      : path.join(processedDir, `${id}.png`);
+    const hasProcessedFile = fs.existsSync(file);
+
+    // Dead CDN URLs are fine when we still have a local processed matte.
+    if (dead.has(url) && !hasProcessedFile) {
       scores[url] = { score: 0, issues: ["dead_url"] };
       poor++;
       continue;
     }
 
-    const id = hashUrl(url);
-    const file = path.join(processedDir, `${id}.png`);
-    const hasProcessed = Boolean(map[url]) && fs.existsSync(file);
-
-    if (fs.existsSync(file)) {
+    if (hasProcessedFile) {
       const processed = await scoreProcessedFile(sharp, file);
       if (skip.has(url)) {
         processed.score = Math.max(0, processed.score - 20);
         processed.issues.push("damaged_cutout");
+      }
+      if (dead.has(url)) {
+        processed.issues.push("cdn_dead_processed_ok");
       }
       scores[url] = processed;
     } else {

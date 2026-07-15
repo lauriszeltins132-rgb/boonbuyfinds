@@ -101,10 +101,14 @@ export function resolveProductDisplayImage(
 export function passesCardDisplayGate(product: Product): boolean {
   if (!product.image) return false;
   const plan = getProductImagePlan(product.image);
+  // CDN may be dead — local /processed/ matte still counts as showable.
   if (isDeadImageUrl(product.image) && !plan.isProcessed) return false;
   const resolved = resolveProductDisplayImage(product);
   if (!resolved) return false;
-  return resolved.score >= 42;
+  if (resolved.score >= 42) return true;
+  // Restore catalog volume: processed local images are valid even when the
+  // quality manifest still has a legacy score:0 dead_url entry for the CDN URL.
+  return resolved.isProcessed;
 }
 
 export function getProductVisualScore(product: Product): number {
