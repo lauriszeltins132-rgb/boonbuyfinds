@@ -142,7 +142,7 @@ body::before {
 }
 
 .product-image-shell {
-  --thumb-bg: var(--color-panel);
+  --thumb-bg: var(--color-background);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -310,16 +310,18 @@ body::before {
 .product-float-stage--card .product-float-asset {
   max-width: 94%;
   max-height: 94%;
-  filter: brightness(1.18) contrast(1.08) saturate(1.04);
+  filter: brightness(1.04) contrast(1.05) saturate(1.02);
 }
 
 .product-float-stage--card .product-float-asset--processed-cutout {
-  filter: brightness(1.34) contrast(1.12) saturate(1.06)
-    drop-shadow(0 8px 20px rgba(255, 128, 0, 0.18));
+  filter: brightness(1.05) contrast(1.06) saturate(1.03)
+    drop-shadow(0 0 0.6px rgba(26, 20, 16, 0.55))
+    drop-shadow(0 0 1.2px rgba(26, 20, 16, 0.28))
+    drop-shadow(0 6px 16px rgba(26, 20, 16, 0.08));
 }
 
 .product-float-asset--processed-matte {
-  filter: brightness(1.12) contrast(1.06) saturate(1.04) !important;
+  filter: brightness(1.04) contrast(1.04) saturate(1.02) !important;
 }
 
 .product-float-asset--dark-boost {
@@ -328,13 +330,13 @@ body::before {
 
 .product-float-asset--processed-matte.product-float-asset--dark-boost,
 .product-float-asset--processed-matte.product-float-asset--enhanced {
-  filter: brightness(1.12) contrast(1.06) saturate(1.04) !important;
+  filter: brightness(1.05) contrast(1.05) saturate(1.02) !important;
 }
 
 .product-float-stage--card .product-float-asset--enhanced,
 .product-float-stage--card .product-float-asset--dark-boost,
 .product-float-stage--card .product-float-asset--processed-matte {
-  filter: brightness(1.18) contrast(1.08) saturate(1.04) !important;
+  filter: brightness(1.05) contrast(1.05) saturate(1.02) !important;
 }
 
 .product-float-stage > .image-unavailable {

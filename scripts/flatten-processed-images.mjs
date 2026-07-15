@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Flattens transparent processed PNGs onto an opaque dark matte (#141418).
+ * Flattens transparent processed PNGs onto an opaque cream matte (#fffcf8).
  * Run after process-catalog-images or to fix existing cutouts.
  */
 import fs from "fs";
@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const processedDir = path.join(__dirname, "../public/processed");
-const MATTE = { r: 20, g: 20, b: 24 };
+const MATTE = { r: 255, g: 252, b: 248 }; // cream #fffcf8
 
 function flattenPixels(data, width, height) {
   const out = Buffer.alloc(width * height * 4);

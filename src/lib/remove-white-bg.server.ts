@@ -1,5 +1,5 @@
 const MAX_DIMENSION = 900;
-const MATTE = { r: 19, g: 19, b: 26 };
+const MATTE = { r: 255, g: 252, b: 248 }; // cream #fffcf8
 
 function isBgPixel(r: number, g: number, b: number, threshold: number): boolean {
   const min = Math.min(r, g, b);

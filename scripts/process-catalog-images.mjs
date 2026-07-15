@@ -19,7 +19,7 @@ const THRESHOLD = 242;
 const MIN_REMOVED = 0.02;
 const MAX_REMOVED = 0.94;
 const TRIM_PAD = 0.03;
-const MATTE = { r: 20, g: 20, b: 24 };
+const MATTE = { r: 255, g: 252, b: 248 }; // cream #fffcf8
 
 function flattenOntoMatte(data, width, height) {
   const out = Buffer.alloc(width * height * 4);
