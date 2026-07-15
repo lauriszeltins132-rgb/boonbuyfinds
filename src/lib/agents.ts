@@ -1,8 +1,9 @@
+import {
+  BOONBUY_INVITE_CODE,
+  BOONBUY_SIGNUP_URL,
+} from "./boonbuy-affiliate";
 import { extractMarketplaceListingId } from "./product-title-quality";
 import type { Product } from "./types";
-
-const BOONBUY_SIGNUP_URL = "https://boonbuy.com/register?inviteCode=BOONFINDS";
-const BOONBUY_INVITE_CODE = "BOONFINDS";
 
 export type AgentId =
   | "boonbuy"

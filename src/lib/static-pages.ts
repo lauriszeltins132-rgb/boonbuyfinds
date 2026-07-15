@@ -1,3 +1,9 @@
+import {
+  BOONBUY_SIGNUP_URL,
+  SOCIAL_LINKS,
+  TELEGRAM_HANDLE,
+} from "./constants";
+
 export type StaticPageSection = {
   heading: string;
   level?: 2 | 3;
@@ -181,8 +187,11 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
           "These are community spaces — not official BoonBuy support — but they are often the quickest place to get a second opinion before you ship a haul.",
         ],
         links: [
-          { href: "https://discord.gg/G3Ryc2JE3Q", label: "Join Discord" },
-          { href: "https://t.me/RNFinds", label: "Join Telegram @RNFinds" },
+          { href: SOCIAL_LINKS.discord, label: "Join Discord" },
+          {
+            href: SOCIAL_LINKS.telegram,
+            label: `Join Telegram ${TELEGRAM_HANDLE}`,
+          },
         ],
       },
       {
@@ -192,11 +201,11 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         ],
         links: [
           {
-            href: "https://www.instagram.com/smukasolass?igsh=bmFrMGlubmZpcXVy&utm_source=qr",
+            href: SOCIAL_LINKS.instagram,
             label: "Instagram",
           },
           {
-            href: "https://www.tiktok.com/@smks.reps?_r=1&_t=ZN-974SmdjFxFG",
+            href: SOCIAL_LINKS.tiktok,
             label: "TikTok",
           },
         ],
@@ -332,9 +341,11 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         ],
         links: [
           {
-            href: "https://boonbuy.com/register?inviteCode=BOONFINDS",
+            href: BOONBUY_SIGNUP_URL,
             label: "Claim 30% Coupon",
           },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons guide" },
+          { href: "/deals", label: "Deals under $30" },
         ],
       },
       {
@@ -420,8 +431,8 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
           "Discord and Telegram are where buyers share recent QCs, batch advice, and shipping line recommendations for specific countries.",
         ],
         links: [
-          { href: "https://discord.gg/G3Ryc2JE3Q", label: "Discord" },
-          { href: "https://t.me/RNFinds", label: "Telegram" },
+          { href: SOCIAL_LINKS.discord, label: "Discord" },
+          { href: SOCIAL_LINKS.telegram, label: "Telegram" },
         ],
       },
     ],
@@ -548,9 +559,11 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         ],
         links: [
           {
-            href: "https://boonbuy.com/register?inviteCode=BOONFINDS",
+            href: BOONBUY_SIGNUP_URL,
             label: "Claim 30% Coupon",
           },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+          { href: "/deals", label: "Deals under $30" },
           { href: "/new-user-guide", label: "New user guide" },
         ],
       },
@@ -588,9 +601,11 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         ],
         links: [
           {
-            href: "https://boonbuy.com/register?inviteCode=BOONFINDS",
+            href: BOONBUY_SIGNUP_URL,
             label: "Register on BoonBuy",
           },
+          { href: "/boonbuy-coupons", label: "Claim BoonBuy coupons" },
+          { href: "/deals", label: "Deals under $30" },
           { href: "/boonbuy-finds", label: "Browse BoonBuy finds" },
         ],
       },

@@ -3,6 +3,7 @@ import {
   type SeoAgentDefinition,
   buildCouponFooterLinks,
 } from "./agent-seo-shared";
+import { BOONBUY_COUPON_URL } from "./boonbuy-affiliate";
 
 export type AgentCouponLandingConfig = {
   slug: string;
@@ -113,7 +114,8 @@ function buildPageConfig(
     intro: variant.intro,
     keywordLine: variant.keywordLine,
     ctaLabel: `Claim ${agent.name} Coupon ✅`,
-    couponUrl: agent.signupUrl,
+    couponUrl:
+      agent.slug === "boonbuy" ? BOONBUY_COUPON_URL : agent.signupUrl,
     offerHeadline: agent.offerHeadline,
     offerDescription: agent.offerDescription,
     keywords: buildKeywords(agent),
@@ -126,7 +128,8 @@ function buildPageConfig(
       }))
     ),
     relatedDeals: [
-      { href: "/deals", label: "Best deals" },
+      { href: "/deals", label: "Deals under $30" },
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/recently-added", label: "Recently added finds" },
       { href: agent.findsPath, label: `${agent.name} finds catalog` },
       { href: `/telegram-${agent.slug}`, label: `${agent.name} Telegram` },

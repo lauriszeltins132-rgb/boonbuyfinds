@@ -1,4 +1,6 @@
 import Link from "next/link";
+import RegisterLink from "@/components/RegisterLink";
+import { REGISTER_CTA_LABEL } from "@/lib/constants";
 import { formatProductPrice, hasExactPrice } from "@/lib/pricing";
 import type { Product } from "@/lib/types";
 import { getProductHref } from "@/lib/slugs";
@@ -17,6 +19,29 @@ export default function DealSeoBlock({ products }: DealSeoBlockProps) {
   return (
     <section className="px-4 pb-6 sm:px-6">
       <div className="mx-auto max-w-7xl space-y-6">
+        <div className="rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 via-surface/40 to-surface/20 p-6">
+          <h2 className="text-lg font-black">Stack deals with shipping coupons</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            Under-$30 finds are even better when new BoonBuy accounts claim the
+            shipping discount. Register once, then fill your cart from this deals
+            lane.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <RegisterLink
+              location="deals_coupon_cta"
+              className="rounded-full bg-accent px-4 py-2 text-xs font-black text-background transition hover:bg-accent-hover"
+            >
+              {REGISTER_CTA_LABEL}
+            </RegisterLink>
+            <Link
+              href="/boonbuy-coupons"
+              className="rounded-full border border-border px-4 py-2 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              BoonBuy coupons guide
+            </Link>
+          </div>
+        </div>
+
         <div className="rounded-2xl border border-border bg-surface/40 p-6">
           <h2 className="text-lg font-black">Why these deals stand out</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -57,6 +82,14 @@ export default function DealSeoBlock({ products }: DealSeoBlockProps) {
               highlight for a balanced cart.
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">
+              <li>
+                <Link
+                  href="/boonbuy-coupons"
+                  className="rounded-full border border-border px-3 py-1 text-xs font-bold hover:border-accent/40 hover:text-accent"
+                >
+                  BoonBuy coupons
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/hidden-gems"

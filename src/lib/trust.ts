@@ -33,7 +33,7 @@ export const TRUST_CONTACT_CHANNELS = [
   {
     label: "Telegram",
     href: SOCIAL_LINKS.telegram,
-    description: "@RNFinds — quick questions and updates",
+    description: "@BoonBuyFinds — quick questions and updates",
   },
   {
     label: "Instagram",

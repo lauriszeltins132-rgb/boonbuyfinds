@@ -6,6 +6,7 @@ import {
   REGISTER_CTA_LABEL,
   SITE_NAME,
   SOCIAL_LINKS,
+  TELEGRAM_HANDLE,
 } from "@/lib/constants";
 import { TELEGRAM_COMMUNITY_FOOTER_LINKS } from "@/lib/telegram-seo-pages";
 import RegisterLink from "./RegisterLink";
@@ -242,7 +243,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="font-bold text-accent hover:underline"
             >
-              Join RN Finds Telegram
+              Join Telegram {TELEGRAM_HANDLE}
             </a>
           </p>
           <p className="shrink-0 text-foreground/50">
