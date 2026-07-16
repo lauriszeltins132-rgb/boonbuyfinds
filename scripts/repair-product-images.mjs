@@ -43,9 +43,9 @@ function normalizeLitbuyLink(url) {
   if (!/^https?:\/\//i.test(value)) value = `https://${value}`;
   if (!value.includes("boonbuy.com/product/")) return "";
   if (!value.includes("inviteCode=")) {
-    value += value.includes("?") ? "&inviteCode=BOONFINDS" : "?inviteCode=BOONFINDS";
+    value += value.includes("?") ? "&inviteCode=32IJIHM6P" : "?inviteCode=32IJIHM6P";
   }
-  return value.replace(/inviteCode=[^&]+/, "inviteCode=BOONFINDS");
+  return value.replace(/inviteCode=[^&]+/, "inviteCode=32IJIHM6P");
 }
 
 function isUsableImage(url) {
@@ -110,7 +110,7 @@ function parseRowAlignedSheetHtml(html) {
 
     const weidianId = html.slice(start + needle.length, end);
     const affiliate_link = normalizeLitbuyLink(
-      `https://boonbuy.com/product/weidian/${weidianId}?inviteCode=BOONFINDS`
+      `https://boonbuy.com/product/weidian/${weidianId}?inviteCode=32IJIHM6P`
     );
     const after = html.slice(start, start + 1500);
     const imgMatch = after.match(/postimg\.cc\/([^\\"]+\.(?:png|jpg|jpeg|webp))/i);
@@ -143,7 +143,7 @@ function parseLinkImagePairsFromHtml(html) {
     }
 
     const affiliate_link = normalizeLitbuyLink(
-      `https://boonbuy.com/product/${platformMatch[1]}/${platformMatch[2]}?inviteCode=BOONFINDS`
+      `https://boonbuy.com/product/${platformMatch[1]}/${platformMatch[2]}?inviteCode=32IJIHM6P`
     );
     const image = extractImageNear(html, start);
 

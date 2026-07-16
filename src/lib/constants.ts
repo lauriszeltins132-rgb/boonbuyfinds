@@ -1,5 +1,10 @@
 import { PUBLIC_CATALOG_COUNT } from "./catalog-count-public";
 import { getHomepageMetadataCopy } from "./metadata-copy";
+import {
+  BOONBUY_SHIPPING_DISCOUNT_LABEL,
+  BOONBUY_SHIPPING_DISCOUNT_PERCENT,
+  BOONBUY_SHIPPING_DISCOUNT_SAVE_LABEL,
+} from "./boonbuy-affiliate";
 
 export const SITE_NAME = "BoonBuy Finds";
 
@@ -15,10 +20,10 @@ export const SITE_OG_TITLE = HOMEPAGE_TITLE;
 
 export const SITE_OG_DESCRIPTION = SITE_DESCRIPTION;
 
-export const HERO_HEADLINE = "BoonBuy Finds";
+export const HERO_HEADLINE =
+  "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
 
-export const HERO_SUBHEADLINE =
-  "Discover verified BoonBuy items & best deals — QC photos, spreadsheet finds, coupons, Telegram and Discord updates.";
+export const HERO_SUBHEADLINE = `Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified links through BoonBuy with a ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% shipping coupon.`;
 
 export const HERO_TAGLINE = HERO_SUBHEADLINE;
 
@@ -48,22 +53,26 @@ export {
   BOONBUY_COUPON_URL,
   BOONBUY_INVITE_CODE,
   BOONBUY_SIGNUP_URL,
+  BOONBUY_SHIPPING_COUPON_CTA,
+  BOONBUY_SHIPPING_DISCOUNT_LABEL,
+  BOONBUY_SHIPPING_DISCOUNT_PERCENT,
+  BOONBUY_SHIPPING_DISCOUNT_SAVE_LABEL,
 } from "./boonbuy-affiliate";
 
 /** Benefit-driven CTAs site-wide */
 export const REGISTER_CTA_LABEL = "Register & Get Shipping Discount";
-export const REGISTER_HEADER_CTA_LABEL = "40% Off Shipping";
+export const REGISTER_HEADER_CTA_LABEL = BOONBUY_SHIPPING_DISCOUNT_LABEL;
 export const REGISTER_MODAL_CTA_LABEL = "Start Your BoonBuy Haul";
 export const REGISTER_STICKY_CTA_LABEL = "Unlock Verified Links";
-export const MOBILE_POPUP_CTA_A = "Register & Save 40%";
+export const MOBILE_POPUP_CTA_A = `Register & Save ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}%`;
 export const MOBILE_POPUP_CTA_B = "Unlock Verified Links";
-export const MOBILE_POPUP_BADGE = "Save up to 40% on shipping";
+export const MOBILE_POPUP_BADGE = BOONBUY_SHIPPING_DISCOUNT_SAVE_LABEL;
 export const MOBILE_POPUP_HEADLINE = "Unlock Your BoonBuy Account";
 export const MOBILE_POPUP_SUBTEXT =
   "Get cheaper shipping, QC photos, verified links and order tracking.";
 
 export const MOBILE_POPUP_BENEFITS = [
-  "Save up to 40% on shipping",
+  BOONBUY_SHIPPING_DISCOUNT_SAVE_LABEL,
   "Unlock QC photos",
   "Open verified product links",
   "Track all orders",
@@ -82,7 +91,7 @@ export const BOONBUY_ACCOUNT_BENEFITS = [
   "Track warehouse orders",
   "Save favorite finds",
   "Compare sellers",
-  "Get shipping discounts",
+  `Get up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping`,
   "Faster checkout process",
 ] as const;
 
@@ -90,13 +99,12 @@ export const BOONBUY_STICKY_BENEFITS = [
   "QC Photos",
   "Verified Links",
   "Order Tracking",
-  "Shipping Discounts",
+  `${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Off`,
   "Save Favorites",
 ] as const;
 
-export const BOONBUY_OFFER_HEADLINE = "Get 40% Off Shipping";
-export const BOONBUY_OFFER_DESCRIPTION =
-  "New BoonBuy users can claim an exclusive shipping discount.";
+export const BOONBUY_OFFER_HEADLINE = `Get ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`;
+export const BOONBUY_OFFER_DESCRIPTION = `New BoonBuy users can claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with our invite link — one of the highest shipping discounts BoonBuy pays for new accounts.`;
 
 export const CONTACT_EMAIL = "hello@boonbuyfinds.net";
 

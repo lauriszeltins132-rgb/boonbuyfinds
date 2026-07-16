@@ -47,7 +47,7 @@ export function getHomepageMetadataCopy() {
       72
     ),
     description: truncateMetaDescription(
-      `BoonBuy Finds — verified BoonBuy items & best deals. QC photos, BoonBuy spreadsheet, coupons, Telegram & Discord. Search ${META_SCALE} finds with trusted checkout.`
+      `BoonBuy Finds – ${META_SCALE} QC photos, spreadsheet finds & best reps. Verified BoonBuy links, 45% shipping coupon, Telegram & Discord. Search trusted checkout.`
     ),
   };
 }
@@ -105,7 +105,7 @@ export function getSpreadsheetMetadataCopy() {
       `BoonBuy Spreadsheet | ${META_SCALE} QC Photos & Agent Links`
     ),
     description: truncateMetaDescription(
-      `Searchable BoonBuy spreadsheet with ${META_SCALE} curated finds, QC photos, ${META_VALUE_STACK}. ${META_AGENTS}.`
+      `Searchable BoonBuy spreadsheet with ${META_SCALE} curated finds, QC photos, 45% shipping coupons, ${META_VALUE_STACK}. ${META_AGENTS}.`
     ),
   };
 }

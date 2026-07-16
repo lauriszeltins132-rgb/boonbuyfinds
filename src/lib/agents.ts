@@ -204,7 +204,7 @@ export function buildAgentProductUrl(
   if (!affiliateLink) return null;
 
   if (agent.affiliateEnabled && /boonbuy\.com/i.test(affiliateLink)) {
-    return affiliateLink;
+    return withCurrentBoonBuyInvite(affiliateLink);
   }
 
   const listing = extractListingFromAffiliateLink(affiliateLink);
@@ -218,6 +218,16 @@ export function buildAgentProductUrl(
   }
 
   return AGENT_URL_BUILDERS[agentId].search(product.product_name);
+}
+
+/** Keep stored catalog links on the current invite even if JSON still has an old code. */
+function withCurrentBoonBuyInvite(url: string): string {
+  if (/inviteCode=/i.test(url)) {
+    return url.replace(/inviteCode=[^&]+/i, `inviteCode=${BOONBUY_INVITE_CODE}`);
+  }
+  return url.includes("?")
+    ? `${url}&inviteCode=${BOONBUY_INVITE_CODE}`
+    : `${url}?inviteCode=${BOONBUY_INVITE_CODE}`;
 }
 
 export function buildAgentSearchUrl(agentId: AgentId, query: string): string {

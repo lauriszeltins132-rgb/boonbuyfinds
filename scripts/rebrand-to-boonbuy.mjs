@@ -46,7 +46,7 @@ const CONTENT_REPLACEMENTS = [
   ["BoonBuy", "BoonBuy"],
   ["https://boonbuy.com", "https://boonbuy.com"],
   ["boonbuy.com", "boonbuy.com"],
-  ["inviteCode=BOONFINDS", "inviteCode=BOONFINDS"],
+  ["inviteCode=BOONFINDS", "inviteCode=32IJIHM6P"],
   ["boonbuyfinds", "boonbuyfinds"],
   ["boonbuy", "boonbuy"],
 ];
