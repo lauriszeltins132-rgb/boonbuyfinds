@@ -229,9 +229,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-qc": {
     slug: "boonbuy-qc",
     path: "/boonbuy-qc",
-    title: "BoonBuy QC Photos Guide",
+    title: "BoonBuy QC Photos 2026 | How to Check Before Shipping",
     metaDescription:
-      "BoonBuy QC explained — reference photos, warehouse QC, what to check before shipping, and where to find QC-approved finds on BoonBuy Finds.",
+      "BoonBuy QC photos guide — warehouse QC, what to check before shipping, and where to find QC-approved finds on BoonBuy Finds.",
     badge: "BoonBuy QC",
     h1: "BoonBuy QC photos",
     intro:
@@ -317,9 +317,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-finds": {
     slug: "boonbuy-finds",
     path: "/boonbuy-finds",
-    title: "BoonBuy Finds Catalog",
+    title: "BoonBuy Finds 2026 | QC Catalog & Verified Links",
     metaDescription:
-      "Browse verified sneaker, fashion and streetwear finds on BoonBuy — QC photos, spreadsheet-style discovery, and trusted checkout links.",
+      "Browse BoonBuy finds — sneakers, fashion and streetwear with QC photos, spreadsheet-style discovery, 45% shipping coupon, and verified checkout links.",
     badge: "BoonBuy Finds",
     h1: "BoonBuy finds",
     intro:
@@ -626,9 +626,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-guide": {
     slug: "boonbuy-guide",
     path: "/boonbuy-guide",
-    title: "BoonBuy Guide Hub",
+    title: "BoonBuy Guide 2026 | Spreadsheet, QC & How to Buy",
     metaDescription:
-      "Complete BoonBuy guide — spreadsheets, QC photos, Weidian, Taobao, sneakers, jackets, and how to buy through BoonBuy Finds.",
+      "BoonBuy guide hub — spreadsheets, QC photos, Weidian, Taobao, sneakers, jackets, coupons, and how to buy through BoonBuy Finds.",
     badge: "BoonBuy guide",
     h1: "BoonBuy guide",
     intro:
