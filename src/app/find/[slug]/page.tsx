@@ -41,7 +41,7 @@ type ProductPageProps = {
 
 export const dynamicParams = true;
 
-/** Pre-render catalog PDPs at build time (LitBuy-parity sitemap density). */
+/** Pre-render top PDPs; remaining pages generate on demand (full catalog stays browsable). */
 export async function generateStaticParams() {
   const priority = [
     ...getTrendingProducts(),
@@ -55,15 +55,15 @@ export async function generateStaticParams() {
     if (seen.has(slug)) continue;
     seen.add(slug);
     slugs.push(slug);
-    if (slugs.length >= 2000) break;
+    if (slugs.length >= 250) break;
   }
 
-  if (slugs.length < 2000) {
+  if (slugs.length < 250) {
     for (const slug of getAllProductSlugs()) {
       if (seen.has(slug)) continue;
       seen.add(slug);
       slugs.push(slug);
-      if (slugs.length >= 2000) break;
+      if (slugs.length >= 250) break;
     }
   }
 
