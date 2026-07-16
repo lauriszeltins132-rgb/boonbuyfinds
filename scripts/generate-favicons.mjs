@@ -33,7 +33,7 @@ for (const { name, size } of sizes) {
   const buffer = await sharp(svg)
     .resize(size, size, {
       fit: "contain",
-      background: { r: 255, g: 252, b: 248, alpha: 1 },
+      background: { r: 255, g: 128, b: 0, alpha: 1 },
     })
     .png()
     .toBuffer();
@@ -57,7 +57,7 @@ console.log("created favicon.ico (public + src/app)");
 await sharp(svg)
   .resize(32, 32, {
     fit: "contain",
-    background: { r: 255, g: 252, b: 248, alpha: 1 },
+    background: { r: 255, g: 128, b: 0, alpha: 1 },
   })
   .png()
   .toFile(join(appDir, "icon.png"));
@@ -66,7 +66,7 @@ console.log("created src/app/icon.png");
 await sharp(svg)
   .resize(180, 180, {
     fit: "contain",
-    background: { r: 255, g: 252, b: 248, alpha: 1 },
+    background: { r: 255, g: 128, b: 0, alpha: 1 },
   })
   .png()
   .toFile(join(appDir, "apple-icon.png"));
