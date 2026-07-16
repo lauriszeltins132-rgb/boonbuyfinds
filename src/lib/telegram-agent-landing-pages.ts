@@ -66,3 +66,23 @@ export function getTelegramAgentLandingPage(
 ): TelegramAgentLandingConfig | undefined {
   return TELEGRAM_AGENT_LANDING_PAGES[slug];
 }
+
+
+/** BoonBuy primary Telegram SEO landing — keyword-optimized override */
+TELEGRAM_AGENT_LANDING_PAGES["telegram-boonbuy"] = {
+  ...TELEGRAM_AGENT_LANDING_PAGES["telegram-boonbuy"],
+  title: "BoonBuy Telegram | Join BoonBuy Finds Channel 2026",
+  metaDescription:
+    "Join BoonBuy Telegram for daily BoonBuy finds, QC photos, spreadsheet updates, and verified links. Official BoonBuy Finds community channel for 2026.",
+  h1: "BoonBuy Telegram",
+  intro:
+    "Looking for BoonBuy Telegram? Join the BoonBuy Finds community channel for daily verified finds, QC photo drops, coupon alerts, and spreadsheet-style product links. This page is the official gateway from BoonBuy Finds — tap the button below to open Telegram.",
+  ctaLabel: "Join BoonBuy Telegram ✅",
+  keywords: [
+    "boonbuy telegram",
+    "telegram boonbuy",
+    "boonbuy finds telegram",
+    "boonbuy telegram 2026",
+    "boonbuy qc telegram",
+  ],
+};

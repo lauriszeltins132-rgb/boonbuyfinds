@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import HomepageCatalogSection from "@/components/HomepageCatalogSection";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
+import HomepageSeoLanding from "@/components/HomepageSeoLanding";
 import DiscoveryRail from "@/components/DiscoveryRail";
 import HomepageBrands from "@/components/HomepageBrands";
 import HomepageCategories from "@/components/HomepageCategories";
@@ -45,6 +46,8 @@ export default async function HomePage({
       />
 
       <DiscoveryHero />
+
+      <HomepageSeoLanding products={rails.editorsPicks.length ? rails.editorsPicks : rails.popularToday.length ? rails.popularToday : rails.latestFinds} />
 
       <DiscoveryRail
         title="Trending Today"

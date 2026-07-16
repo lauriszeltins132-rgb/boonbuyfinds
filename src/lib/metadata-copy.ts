@@ -47,7 +47,7 @@ export function getHomepageMetadataCopy() {
       72
     ),
     description: truncateMetaDescription(
-      `Browse ${META_SCALE} BoonBuy finds with QC photos, spreadsheet-style product discovery, Weidian and Taobao links, sneaker finds, fashion finds, coupons and verified BoonBuy checkout.`
+      `BoonBuy Finds — verified BoonBuy items & best deals. QC photos, BoonBuy spreadsheet, coupons, Telegram & Discord. Search ${META_SCALE} finds with trusted checkout.`
     ),
   };
 }

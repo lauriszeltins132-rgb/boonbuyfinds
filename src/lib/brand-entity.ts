@@ -1,5 +1,5 @@
 import { SOCIAL_LINKS, TELEGRAM_CHANNEL_NAME } from "./constants";
-import { BUYING_AGENTS } from "./agents";
+import { SITE_ALT_URL, SITE_URL } from "./site";
 
 /** Entity names and common search variants — used in schema, not as visible keyword blocks. */
 export const SITE_ALTERNATE_NAMES = [
@@ -20,11 +20,6 @@ export const SITE_ALTERNATE_NAMES = [
 export const SITE_ENTITY_DESCRIPTION =
   "BoonBuy Finds is a product discovery platform for QC photos, spreadsheet finds, fashion finds, sneaker finds, and verified BoonBuy shopping links.";
 
-const SUPPORTED_AGENT_NAMES = BUYING_AGENTS.filter((a) =>
-  ["boonbuy", "mulebuy", "oopbuy", "acbuy", "kakobuy"].includes(a.id)
-)
-  .map((a) => a.name)
-  .join(", ");
 
 export const HERO_ENTITY_LINE =
   "Verified listings from Weidian and Taobao — searchable like a boonbuy spreadsheet catalog, with boonbuy QC finds updated daily.";
@@ -63,8 +58,9 @@ export const HOMEPAGE_ENTITY_FAQS = [
       "Yes. BoonBuy and the other supported agents ship to most countries via lines like EMS, DHL, and economy options. Shipping cost depends on weight, dimensions, and your destination — use rehearsal packing when available to avoid surprises.",
   },
   {
-    question: "Can I use other agents besides BoonBuy?",
-    answer: `Yes. Every product page supports ${SUPPORTED_AGENT_NAMES}. BoonBuy is recommended for shipping coupons and a smooth checkout, but you can switch agents before opening a link if you already have an account elsewhere.`,
+    question: "Is BoonBuy Finds only for BoonBuy?",
+    answer:
+      "Yes. BoonBuy Finds is a BoonBuy-only catalog — every buy button opens a verified BoonBuy product link with QC workflow support and shipping coupons.",
   },
   {
     question: "How often are new finds added?",
@@ -77,13 +73,16 @@ export const HOMEPAGE_ENTITY_FAQS = [
       "Trending Today and Editor's Picks on the homepage highlight what buyers are clicking now. For brand-specific hauls, open collections like Best Nike Finds, Best Jordan Finds, or Best QC Approved Finds — each page is updated as the catalog syncs.",
   },
   {
-    question: "Does BoonBuy Finds support multiple agents?",
-    answer: `Yes. Choose your preferred buying agent — ${SUPPORTED_AGENT_NAMES} — and open marketplace listings through that agent. BoonBuy is recommended; you can switch anytime.`,
+    question: "Where do I find BoonBuy Telegram, Discord, coupons, and spreadsheet pages?",
+    answer:
+      "Use the homepage CTAs or these hub pages: /telegram-boonbuy, /discord-boonbuy, /boonbuy-coupons, and /boonbuy-spreadsheet. Each page has a direct join or claim button for the matching destination.",
   },
 ] as const;
 
 export function getOrganizationSameAsLinks(): string[] {
   return [
+    SITE_URL,
+    SITE_ALT_URL,
     SOCIAL_LINKS.telegram,
     SOCIAL_LINKS.discord,
     SOCIAL_LINKS.instagram,

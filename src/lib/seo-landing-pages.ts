@@ -47,12 +47,13 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-spreadsheet": {
     slug: "boonbuy-spreadsheet",
     path: "/boonbuy-spreadsheet",
-    title: getSpreadsheetMetadataCopy().title,
-    metaDescription: getSpreadsheetMetadataCopy().description,
-    badge: "BoonBuy resource",
-    h1: "BoonBuy spreadsheet guide",
+    title: "BoonBuy Spreadsheet 2026 | Searchable Finds Catalog",
+    metaDescription:
+      "Browse the BoonBuy spreadsheet alternative — searchable QC finds, verified BoonBuy links, brands, and daily updates for 2026. Faster than a raw Google Sheet.",
+    badge: "BoonBuy spreadsheet",
+    h1: "BoonBuy Spreadsheet",
     intro:
-      "BoonBuy spreadsheets are how many buyers first discover products — rows of Weidian and Taobao links, prices, and QC notes. BoonBuy Finds turns that same catalog into searchable pages with photos, filters, and verified agent links so you spend less time hunting and more time buying.",
+      "Looking for a BoonBuy spreadsheet? BoonBuy Finds is the searchable spreadsheet alternative for Weidian and Taobao finds — photos, QC references, filters, and verified BoonBuy checkout links so you spend less time hunting rows and more time buying.",
     sections: [
       {
         heading: "What a BoonBuy spreadsheet contains",
@@ -63,6 +64,8 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         links: [
           { href: "/collections/boonbuy-spreadsheet-alternative", label: "Spreadsheet alternative" },
           { href: "/boonbuy-products", label: "Browse products" },
+          { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
+          { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
         ],
       },
       {
