@@ -38,7 +38,7 @@ function buildAgentConfig(
     metaDescription: `Join the official ${agentName} Telegram to get verified finds, QC photos, and spreadsheet updates instantly.`,
     h1: `Join ${agentName} Telegram`,
     intro: `Stay updated with ${agentName} verified finds, QC photos, and spreadsheet links. Click below to join the official Telegram.`,
-    ctaLabel: `Join ${agentName} Telegram ✅`,
+    ctaLabel: `Join ${agentName} Telegram`,
     telegramUrl: SOCIAL_LINKS.telegram,
     keywords: [
       `telegram ${agentLower}`,
@@ -77,7 +77,7 @@ TELEGRAM_AGENT_LANDING_PAGES["telegram-boonbuy"] = {
   h1: "BoonBuy Telegram",
   intro:
     "Looking for BoonBuy Telegram? Join the BoonBuy Finds community channel for daily verified finds, QC photo drops, coupon alerts, and spreadsheet-style product links. This page is the official gateway from BoonBuy Finds — tap the button below to open Telegram.",
-  ctaLabel: "Join BoonBuy Telegram ✅",
+  ctaLabel: "Join BoonBuy Telegram",
   keywords: [
     "boonbuy telegram",
     "telegram boonbuy",

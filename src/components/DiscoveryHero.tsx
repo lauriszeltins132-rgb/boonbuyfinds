@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HeroLandingCtas from "@/components/HeroLandingCtas";
 import HeroSearch from "@/components/HeroSearch";
 import LiveSiteSignals from "@/components/LiveSiteSignals";
 import TrustStrip from "@/components/TrustStrip";
@@ -9,7 +10,6 @@ import {
   SITE_NAME,
 } from "@/lib/constants";
 import {
-  HERO_LANDING_CTAS,
   HERO_LANDING_SUBTITLE,
   HERO_LANDING_TITLE,
 } from "@/lib/boonbuy-seo-hub";
@@ -58,22 +58,7 @@ export default function DiscoveryHero() {
           {HERO_ENTITY_LINE}
         </p>
 
-        <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-          {HERO_LANDING_CTAS.map((cta) => {
-            const className =
-              cta.variant === "primary"
-                ? "inline-flex items-center justify-center rounded-full bg-accent px-4 py-2.5 text-sm font-black text-white hover:bg-accent-hover"
-                : cta.variant === "secondary"
-                  ? "inline-flex items-center justify-center rounded-full border border-accent/35 bg-accent/10 px-4 py-2.5 text-sm font-bold text-accent hover:bg-accent/15"
-                  : "inline-flex items-center justify-center rounded-full border border-border px-4 py-2.5 text-sm font-bold text-foreground hover:border-accent/40 hover:text-accent";
-
-            return (
-              <Link key={cta.href} href={cta.href} className={className}>
-                {cta.label}
-              </Link>
-            );
-          })}
-        </div>
+        <HeroLandingCtas />
 
         <LiveSiteSignals />
 
