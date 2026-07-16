@@ -12,13 +12,13 @@ export const BOONBUY_SEO_HUB = {
     href: "/telegram-boonbuy",
     label: "BoonBuy Telegram",
     externalUrl: SOCIAL_LINKS.telegram,
-    cta: "Join BoonBuy Telegram ✅",
+    cta: "Join BoonBuy Telegram",
   },
   discord: {
     href: "/discord-boonbuy",
     label: "BoonBuy Discord",
     externalUrl: SOCIAL_LINKS.discord,
-    cta: "Join BoonBuy Discord ✅",
+    cta: "Join BoonBuy Discord",
   },
   coupons: {
     href: "/boonbuy-coupons",
@@ -67,21 +67,25 @@ export const HERO_LANDING_CTAS = [
     href: BOONBUY_SEO_HUB.coupons.href,
     label: BOONBUY_SEO_HUB.coupons.cta,
     variant: "primary" as const,
+    icon: "coupon" as const,
   },
   {
     href: BOONBUY_SEO_HUB.telegram.href,
     label: BOONBUY_SEO_HUB.telegram.cta,
     variant: "secondary" as const,
+    icon: "telegram" as const,
   },
   {
     href: BOONBUY_SEO_HUB.discord.href,
     label: BOONBUY_SEO_HUB.discord.cta,
     variant: "secondary" as const,
+    icon: "discord" as const,
   },
   {
     href: BOONBUY_SEO_HUB.spreadsheet.href,
     label: BOONBUY_SEO_HUB.spreadsheet.cta,
     variant: "ghost" as const,
+    icon: "spreadsheet" as const,
   },
 ] as const;
 

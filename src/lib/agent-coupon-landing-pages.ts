@@ -141,7 +141,7 @@ function buildPageConfig(
     h1: `${agent.name} Coupons & Promo Codes`,
     intro: variant.intro,
     keywordLine: variant.keywordLine,
-    ctaLabel: `Claim ${agent.name} Coupon ✅`,
+    ctaLabel: `Claim ${agent.name} Coupon`,
     couponUrl:
       agent.slug === "boonbuy" ? BOONBUY_COUPON_URL : agent.signupUrl,
     offerHeadline: agent.offerHeadline,
