@@ -1,5 +1,6 @@
 import { track } from "@vercel/analytics";
 import { extractBrand } from "./brands";
+import { readSessionStorage, writeSessionStorage } from "./safe-storage";
 import type { Product } from "./types";
 
 export type ConversionEvent =
@@ -83,8 +84,8 @@ export function trackRegisterClick(location: string) {
 
 export function trackRegisterImpression(location: string) {
   const key = `reg-imp-${location}`;
-  if (typeof sessionStorage !== "undefined" && sessionStorage.getItem(key)) return;
-  sessionStorage?.setItem(key, "1");
+  if (readSessionStorage(key)) return;
+  writeSessionStorage(key, "1");
   trackConversion("register_impression", { location });
 }
 
@@ -114,8 +115,8 @@ export function trackCollectionClick(href: string, location: string) {
 
 export function trackPopupImpression(location: string, variant: string) {
   const key = `popup-imp-${location}-${variant}`;
-  if (typeof sessionStorage !== "undefined" && sessionStorage.getItem(key)) return;
-  sessionStorage?.setItem(key, "1");
+  if (readSessionStorage(key)) return;
+  writeSessionStorage(key, "1");
   trackConversion("popup_impression", { location, variant });
 }
 
@@ -124,11 +125,10 @@ export function trackPopupClose(location: string, variant: string) {
 }
 
 export function getMobilePopupCtaVariant(): "a" | "b" {
-  if (typeof sessionStorage === "undefined") return "a";
-  const stored = sessionStorage.getItem("boonbuy-mobile-popup-cta");
+  const stored = readSessionStorage("boonbuy-mobile-popup-cta");
   if (stored === "a" || stored === "b") return stored;
   const variant = Math.random() < 0.5 ? "a" : "b";
-  sessionStorage.setItem("boonbuy-mobile-popup-cta", variant);
+  writeSessionStorage("boonbuy-mobile-popup-cta", variant);
   return variant;
 }
 

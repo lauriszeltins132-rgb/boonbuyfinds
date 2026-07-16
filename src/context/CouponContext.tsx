@@ -7,6 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { readLocalStorage, writeLocalStorage } from "@/lib/safe-storage";
 
 type CouponContextValue = {
   isOpen: boolean;
@@ -19,15 +20,11 @@ const DISMISS_KEY = "boonbuy-finds-offer-dismissed";
 const DISMISS_MS = 14 * 24 * 60 * 60 * 1000;
 
 function isDismissedRecently(): boolean {
-  try {
-    const dismissed = localStorage.getItem(DISMISS_KEY);
-    if (!dismissed) return false;
-    const dismissedAt = Number(dismissed);
-    if (!Number.isFinite(dismissedAt)) return false;
-    return Date.now() - dismissedAt < DISMISS_MS;
-  } catch {
-    return false;
-  }
+  const dismissed = readLocalStorage(DISMISS_KEY);
+  if (!dismissed) return false;
+  const dismissedAt = Number(dismissed);
+  if (!Number.isFinite(dismissedAt)) return false;
+  return Date.now() - dismissedAt < DISMISS_MS;
 }
 
 export function CouponProvider({ children }: { children: React.ReactNode }) {
@@ -40,11 +37,7 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
 
   const closeCoupon = useCallback(() => {
     setIsOpen(false);
-    try {
-      localStorage.setItem(DISMISS_KEY, String(Date.now()));
-    } catch {
-      // ignore storage errors
-    }
+    writeLocalStorage(DISMISS_KEY, String(Date.now()));
   }, []);
 
   const value = useMemo(
