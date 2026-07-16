@@ -75,7 +75,7 @@ export const HOMEPAGE_ENTITY_FAQS = [
   {
     question: "Where do I find BoonBuy Telegram, Discord, coupons, and spreadsheet pages?",
     answer:
-      "Use the homepage CTAs or these hub pages: /telegram-boonbuy, /discord-boonbuy, /boonbuy-coupons, and /boonbuy-spreadsheet. Each page has a direct join or claim button for the matching destination.",
+      "Use the homepage CTAs or these hub pages: /telegram-boonbuy, /discord-boonbuy, /boonbuy-coupons, /boonbuy-shipping-coupon, /best-boonbuy-spreadsheet, and /boonbuy-spreadsheet. Claim up to 45% off shipping, then shop verified finds.",
   },
 ] as const;
 

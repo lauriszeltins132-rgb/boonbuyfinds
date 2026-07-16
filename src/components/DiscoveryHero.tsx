@@ -3,7 +3,11 @@ import Link from "next/link";
 import HeroSearch from "@/components/HeroSearch";
 import LiveSiteSignals from "@/components/LiveSiteSignals";
 import TrustStrip from "@/components/TrustStrip";
-import { SITE_NAME } from "@/lib/constants";
+import { HERO_ENTITY_LINE } from "@/lib/brand-entity";
+import {
+  BOONBUY_SHIPPING_DISCOUNT_PERCENT,
+  SITE_NAME,
+} from "@/lib/constants";
 import {
   HERO_LANDING_CTAS,
   HERO_LANDING_SUBTITLE,
@@ -38,15 +42,20 @@ export default function DiscoveryHero() {
         </Link>
 
         <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-accent">
-          Verified BoonBuy finds · QC · Coupons
+          Verified BoonBuy finds · QC · {BOONBUY_SHIPPING_DISCOUNT_PERCENT}%
+          shipping coupon
         </p>
 
-        <h1 className="mt-3 text-[1.75rem] font-black leading-[1.08] tracking-tight sm:text-[2.35rem] lg:text-[2.75rem]">
+        <h1 className="mt-3 text-[1.35rem] font-black leading-[1.12] tracking-tight sm:text-[1.85rem] lg:text-[2.35rem]">
           {HERO_LANDING_TITLE}
         </h1>
 
-        <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
           {HERO_LANDING_SUBTITLE}
+        </p>
+
+        <p className="mx-auto mt-2 max-w-2xl text-xs leading-relaxed text-muted/80 sm:text-sm">
+          {HERO_ENTITY_LINE}
         </p>
 
         <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2.5 sm:gap-3">
