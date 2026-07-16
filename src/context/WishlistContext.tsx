@@ -8,6 +8,11 @@ import {
   useMemo,
   useState,
 } from "react";
+import {
+  parseJsonArray,
+  readLocalStorage,
+  writeLocalStorage,
+} from "@/lib/safe-storage";
 
 type WishlistContextValue = {
   wishlist: string[];
@@ -19,41 +24,48 @@ const WishlistContext = createContext<WishlistContextValue | null>(null);
 
 const STORAGE_KEY = "boonbuyfinds-wishlist";
 
+function normalizeWishlist(ids: unknown[]): string[] {
+  return ids.filter((id): id is string => typeof id === "string" && id.length > 0);
+}
+
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setWishlist(JSON.parse(stored));
-    } catch {
-      // ignore corrupt storage
-    }
+    setWishlist(normalizeWishlist(parseJsonArray(readLocalStorage(STORAGE_KEY))));
     setHydrated(true);
   }, []);
 
   useEffect(() => {
     if (!hydrated) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(wishlist));
+    writeLocalStorage(STORAGE_KEY, JSON.stringify(wishlist));
   }, [wishlist, hydrated]);
 
   const toggleWishlist = useCallback((productId: string) => {
-    setWishlist((prev) =>
-      prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
-    );
+    setWishlist((prev) => {
+      const list = Array.isArray(prev) ? prev : [];
+      return list.includes(productId)
+        ? list.filter((id) => id !== productId)
+        : [...list, productId];
+    });
   }, []);
 
   const isInWishlist = useCallback(
-    (productId: string) => wishlist.includes(productId),
+    (productId: string) =>
+      Array.isArray(wishlist) ? wishlist.includes(productId) : false,
     [wishlist]
   );
 
+  const safeWishlist = Array.isArray(wishlist) ? wishlist : [];
+
   const value = useMemo(
-    () => ({ wishlist, toggleWishlist, isInWishlist }),
-    [wishlist, toggleWishlist, isInWishlist]
+    () => ({
+      wishlist: safeWishlist,
+      toggleWishlist,
+      isInWishlist,
+    }),
+    [safeWishlist, toggleWishlist, isInWishlist]
   );
 
   return (

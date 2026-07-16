@@ -115,13 +115,13 @@ export default function CatalogPanel({
 
   const serverFiltersMatch =
     !serverCatalog ||
-    (serverCatalog.appliedSearch === search &&
-      serverCatalog.appliedBrand === brand &&
-      serverCatalog.appliedMin === minPrice &&
-      serverCatalog.appliedMax === maxPrice &&
-      serverCatalog.appliedSort === sort &&
-      serverCatalog.appliedQc === qcOnly &&
-      serverCatalog.page === page);
+    ((serverCatalog.appliedSearch ?? "") === search &&
+      (serverCatalog.appliedBrand ?? "") === brand &&
+      (serverCatalog.appliedMin ?? "") === minPrice &&
+      (serverCatalog.appliedMax ?? "") === maxPrice &&
+      (serverCatalog.appliedSort ?? "featured") === sort &&
+      Boolean(serverCatalog.appliedQc) === qcOnly &&
+      (serverCatalog.page ?? 1) === page);
 
   /** URL can update before the server catalog payload arrives — avoid showing the previous query. */
   const showLoading = isPending || (Boolean(serverCatalog) && !serverFiltersMatch);
@@ -140,7 +140,10 @@ export default function CatalogPanel({
     setMaxInput(maxPrice);
   }, [minPrice, maxPrice]);
 
-  const savedIds = useMemo(() => new Set(wishlist), [wishlist]);
+  const savedIds = useMemo(
+    () => new Set(Array.isArray(wishlist) ? wishlist : []),
+    [wishlist]
+  );
 
   const filtered = useMemo(
     () =>
