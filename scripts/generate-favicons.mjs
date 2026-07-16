@@ -22,8 +22,8 @@ const source = existsSync(pngSource)
   : readFileSync(svgSource);
 
 const transparent = { r: 0, g: 0, b: 0, alpha: 0 };
-/** Apple touch prefers an opaque tile — match BoonBuy charcoal chrome. */
-const appleBg = { r: 6, g: 6, b: 8, alpha: 1 };
+/** Apple touch prefers an opaque tile — match BoonBuy cream chrome. */
+const appleBg = { r: 255, g: 252, b: 248, alpha: 1 };
 
 const sizes = [
   { name: "favicon-16x16.png", size: 16, background: transparent },
