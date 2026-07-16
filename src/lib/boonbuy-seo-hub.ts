@@ -30,10 +30,11 @@ export const BOONBUY_SEO_HUB = {
   },
 } as const;
 
-export const HERO_LANDING_TITLE = "BoonBuy Finds";
+export const HERO_LANDING_TITLE =
+  "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
 
 export const HERO_LANDING_SUBTITLE =
-  "Discover verified BoonBuy items & best deals";
+  "Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified BoonBuy links with coupons, Telegram drops, and Discord updates.";
 
 export const HERO_LANDING_CTAS = [
   {

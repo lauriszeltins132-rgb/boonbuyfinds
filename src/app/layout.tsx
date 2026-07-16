@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FF8000" },
-    { media: "(prefers-color-scheme: dark)", color: "#FF8000" },
+    { media: "(prefers-color-scheme: light)", color: "#060608" },
+    { media: "(prefers-color-scheme: dark)", color: "#060608" },
   ],
 
   keywords: [
@@ -84,19 +84,19 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico?v=20260716", sizes: "any" },
-      { url: "/favicon-16x16.png?v=20260716", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png?v=20260716", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-48x48.png?v=20260716", sizes: "48x48", type: "image/png" },
-      { url: "/favicon-192x192.png?v=20260716", sizes: "192x192", type: "image/png" },
-      { url: "/favicon-512x512.png?v=20260716", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico?v=20260716b", sizes: "any" },
+      { url: "/favicon-16x16.png?v=20260716b", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png?v=20260716b", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png?v=20260716b", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-192x192.png?v=20260716b", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512x512.png?v=20260716b", sizes: "512x512", type: "image/png" },
     ],
-    shortcut: "/favicon.ico?v=20260716",
-    apple: [{ url: "/apple-touch-icon.png?v=20260716", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico?v=20260716b",
+    apple: [{ url: "/apple-touch-icon.png?v=20260716b", sizes: "180x180", type: "image/png" }],
     other: [
       {
         rel: "mask-icon",
-        url: "/icon-source.svg?v=20260716",
+        url: "/icon-source.svg?v=20260716b",
         color: "#FF8000",
       },
     ],
