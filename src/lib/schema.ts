@@ -65,7 +65,7 @@ export function buildArticleSchema({
       name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo.svg`,
+        url: `${SITE_URL}/logo.png`,
       },
     },
     isPartOf: { "@id": WEBSITE_SCHEMA_ID },

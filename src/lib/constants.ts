@@ -15,10 +15,11 @@ export const SITE_OG_TITLE = HOMEPAGE_TITLE;
 
 export const SITE_OG_DESCRIPTION = SITE_DESCRIPTION;
 
-export const HERO_HEADLINE = "BoonBuy Finds";
+export const HERO_HEADLINE =
+  "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
 
 export const HERO_SUBHEADLINE =
-  "Discover verified BoonBuy items & best deals — QC photos, spreadsheet finds, coupons, Telegram and Discord updates.";
+  "Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified BoonBuy links with coupons, Telegram drops, and Discord updates.";
 
 export const HERO_TAGLINE = HERO_SUBHEADLINE;
 

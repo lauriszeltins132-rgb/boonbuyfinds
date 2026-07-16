@@ -30,7 +30,7 @@ export default function SiteHeader() {
         <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-2 sm:h-16">
           <Link href="/" rel="home" className="flex shrink-0 items-center gap-2">
             <Image
-              src="/logo.svg?v=20260716"
+              src="/logo.png?v=20260716b"
               alt={SITE_NAME}
               width={28}
               height={28}
