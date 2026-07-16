@@ -47,7 +47,7 @@ export function getHomepageMetadataCopy() {
       72
     ),
     description: truncateMetaDescription(
-      `BoonBuy Finds – ${META_SCALE} QC photos, spreadsheet finds & best reps. Verified BoonBuy links, 45% shipping coupon, Telegram & Discord. Search trusted checkout.`
+      `BoonBuy Finds — ${META_SCALE} QC photos & spreadsheet finds. Verified BoonBuy links, 45% shipping coupon, Telegram & Discord updates.`
     ),
   };
 }
