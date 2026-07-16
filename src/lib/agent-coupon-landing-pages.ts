@@ -155,3 +155,34 @@ export function getAgentCouponLandingPage(
 ): AgentCouponLandingConfig | undefined {
   return AGENT_COUPON_LANDING_PAGES[slug];
 }
+
+
+for (const slug of ["boonbuy-coupons", "best-boonbuy-coupons", "boonbuy-coupons-2026"] as const) {
+  if (!AGENT_COUPON_LANDING_PAGES[slug]) continue;
+  const base = AGENT_COUPON_LANDING_PAGES[slug];
+  AGENT_COUPON_LANDING_PAGES[slug] = {
+    ...base,
+    title:
+      slug === "boonbuy-coupons-2026"
+        ? "BoonBuy Coupons 2026 | Claim Shipping Discount"
+        : slug === "best-boonbuy-coupons"
+          ? "Best BoonBuy Coupons | Shipping Discount Codes"
+          : "BoonBuy Coupons | Claim BoonBuy Shipping Coupon",
+    metaDescription:
+      "Claim BoonBuy coupons for shipping discounts on your next haul. Official BoonBuy Finds coupon pages with verified signup links for 2026.",
+    h1:
+      slug === "boonbuy-coupons-2026"
+        ? "BoonBuy Coupons 2026"
+        : slug === "best-boonbuy-coupons"
+          ? "Best BoonBuy Coupons"
+          : "BoonBuy Coupons",
+    ctaLabel: "Claim BoonBuy Coupon ✅",
+    keywords: [
+      "boonbuy coupons",
+      "boonbuy coupon",
+      "boonbuy coupons 2026",
+      "best boonbuy coupons",
+      "boonbuy shipping coupon",
+    ],
+  };
+}

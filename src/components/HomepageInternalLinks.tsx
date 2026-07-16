@@ -35,6 +35,17 @@ const SECTIONS = [
     ],
   },
   {
+    title: "BoonBuy SEO hub",
+    links: [
+      { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
+      { href: "/discord-boonbuy", label: "BoonBuy Discord" },
+      { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
+      { href: "/best-boonbuy-coupons", label: "Best BoonBuy Coupons" },
+      { href: "/boonbuy-coupons-2026", label: "BoonBuy Coupons 2026" },
+      { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+    ],
+  },
+  {
     title: "Guides & fresh finds",
     links: [
       { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
@@ -55,7 +66,7 @@ export default function HomepageInternalLinks() {
         <p className="mt-1 text-sm text-muted">
           Jump to collections, brands, categories, and guides — all indexable landing pages.
         </p>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {SECTIONS.map((section) => (
             <div key={section.title}>
               <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
