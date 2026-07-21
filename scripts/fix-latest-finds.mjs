@@ -44,9 +44,9 @@ function normalizeLitbuyLink(url) {
   if (!/^https?:\/\//i.test(value)) value = `https://${value}`;
   if (!value.includes("boonbuy.com/product/")) return "";
   if (!value.includes("inviteCode=")) {
-    value += value.includes("?") ? "&inviteCode=BOONFINDS" : "?inviteCode=BOONFINDS";
+    value += value.includes("?") ? "&inviteCode=32IJIHM6P" : "?inviteCode=32IJIHM6P";
   }
-  return value.replace(/inviteCode=[^&]+/, "inviteCode=BOONFINDS");
+  return value.replace(/inviteCode=[^&]+/, "inviteCode=32IJIHM6P");
 }
 
 function isSocialAsset(image = "", name = "") {
@@ -133,7 +133,7 @@ function parseLatestFindsSheetHtml(html) {
 
     const weidianId = html.slice(start + needle.length, end);
     const affiliate_link = normalizeLitbuyLink(
-      `https://boonbuy.com/product/weidian/${weidianId}?inviteCode=BOONFINDS`
+      `https://boonbuy.com/product/weidian/${weidianId}?inviteCode=32IJIHM6P`
     );
     const before = html.slice(Math.max(0, start - 1800), start);
     const after = html.slice(start, start + 1500);

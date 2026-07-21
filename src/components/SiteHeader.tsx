@@ -8,7 +8,6 @@ import { REGISTER_HEADER_CTA_LABEL, SITE_NAME } from "@/lib/constants";
 import CommunityLinks from "./CommunityLinks";
 import RegisterLink from "./RegisterLink";
 import GlobalSearch from "./GlobalSearch";
-import AgentSelector from "./agents/AgentSelector";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -31,7 +30,7 @@ export default function SiteHeader() {
         <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-2 sm:h-16">
           <Link href="/" rel="home" className="flex shrink-0 items-center gap-2">
             <Image
-              src="/logo.svg"
+              src="/logo.png?v=20260716c"
               alt={SITE_NAME}
               width={28}
               height={28}
@@ -69,8 +68,6 @@ export default function SiteHeader() {
 
           <div className="flex min-w-0 flex-1 items-center justify-end gap-0.5 sm:gap-2">
             <CommunityLinks variant="header" location="header" />
-            <AgentSelector variant="mobile" className="sm:hidden" />
-            <AgentSelector variant="header" className="hidden sm:block" />
             <GlobalSearch className="hidden sm:inline-flex" />
             <RegisterLink
               location="header"

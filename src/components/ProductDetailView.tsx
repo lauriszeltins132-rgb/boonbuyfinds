@@ -23,9 +23,7 @@ import { trackProductContext, trackSaveClick } from "@/lib/analytics-events";
 import { resolveProductDisplayImage } from "@/lib/product-image-presentation";
 import HowToBuySteps from "./HowToBuySteps";
 import ProductImage from "./ProductImage";
-import BuyWithAgentButton, {
-  BuyingAgentPanel,
-} from "./agents/BuyWithAgentButton";
+import BuyWithAgentButton from "./agents/BuyWithAgentButton";
 
 type ProductDetailViewProps = {
   product: Product;
@@ -190,10 +188,6 @@ export default function ProductDetailView({
               </li>
             ))}
           </ul>
-
-          <div className="mt-6">
-            <BuyingAgentPanel product={product} />
-          </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {product.affiliate_link && (

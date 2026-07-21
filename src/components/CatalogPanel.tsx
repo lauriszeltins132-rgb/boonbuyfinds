@@ -38,6 +38,13 @@ type CatalogPanelProps = {
     totalCount: number;
     page: number;
     pageSize: number;
+    /** Filters used to produce `products` — detect stale RSC payloads. */
+    appliedSearch: string;
+    appliedBrand: string;
+    appliedMin: string;
+    appliedMax: string;
+    appliedSort: string;
+    appliedQc: boolean;
   };
 };
 
@@ -106,6 +113,19 @@ export default function CatalogPanel({
   const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10) || 1);
   const prevPageRef = useRef(page);
 
+  const serverFiltersMatch =
+    !serverCatalog ||
+    ((serverCatalog.appliedSearch ?? "") === search &&
+      (serverCatalog.appliedBrand ?? "") === brand &&
+      (serverCatalog.appliedMin ?? "") === minPrice &&
+      (serverCatalog.appliedMax ?? "") === maxPrice &&
+      (serverCatalog.appliedSort ?? "featured") === sort &&
+      Boolean(serverCatalog.appliedQc) === qcOnly &&
+      (serverCatalog.page ?? 1) === page);
+
+  /** URL can update before the server catalog payload arrives — avoid showing the previous query. */
+  const showLoading = isPending || (Boolean(serverCatalog) && !serverFiltersMatch);
+
   const [query, setQuery] = useState(search);
   const [minInput, setMinInput] = useState(minPrice);
   const [maxInput, setMaxInput] = useState(maxPrice);
@@ -115,7 +135,15 @@ export default function CatalogPanel({
     setQuery(search);
   }, [search]);
 
-  const savedIds = useMemo(() => new Set(wishlist), [wishlist]);
+  useEffect(() => {
+    setMinInput(minPrice);
+    setMaxInput(maxPrice);
+  }, [minPrice, maxPrice]);
+
+  const savedIds = useMemo(
+    () => new Set(Array.isArray(wishlist) ? wishlist : []),
+    [wishlist]
+  );
 
   const filtered = useMemo(
     () =>
@@ -332,20 +360,38 @@ export default function CatalogPanel({
 
         <div className="mt-6 flex items-center justify-between gap-4">
           <p className="text-sm text-muted">
-            Showing{" "}
-            <span className="font-semibold text-foreground">
-              {paginated.length.toLocaleString()}
-            </span>{" "}
-            of{" "}
-            <span className="font-semibold text-foreground">
-              {filtered.length.toLocaleString()}
-            </span>{" "}
-            finds
+            {showLoading ? (
+              "Updating results…"
+            ) : (
+              <>
+                Showing{" "}
+                <span className="font-semibold text-foreground">
+                  {paginated.length.toLocaleString()}
+                </span>{" "}
+                of{" "}
+                <span className="font-semibold text-foreground">
+                  {(serverCatalog
+                    ? serverCatalog.totalCount
+                    : filtered.length
+                  ).toLocaleString()}
+                </span>{" "}
+                finds
+                {search ? (
+                  <>
+                    {" "}
+                    for{" "}
+                    <span className="font-semibold text-foreground">
+                      &ldquo;{search}&rdquo;
+                    </span>
+                  </>
+                ) : null}
+              </>
+            )}
           </p>
         </div>
 
         <div id="catalog-product-grid" className="catalog-product-grid mt-6 scroll-mt-24">
-          {isPending ? (
+          {showLoading ? (
             <ProductGridSkeleton count={8} />
           ) : paginated.length > 0 ? (
             <ProductGrid products={paginated} />

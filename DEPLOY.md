@@ -52,6 +52,10 @@ Add DNS records from the Vercel dashboard at your registrar.
 - [x] `SOCIAL_LINKS` — Telegram `@RNFinds`, Discord, Instagram, TikTok in `src/lib/constants.ts`
 - [ ] `public/logo.svg` — BoonBuy branding
 
+## SEO
+
+See **`SEO-SEARCH-CONSOLE.md`** for the Search Console priority URL checklist, target queries, and 30-day ranking plan.
+
 ## Local dev
 
 ```bash

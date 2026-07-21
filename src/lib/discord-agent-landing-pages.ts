@@ -38,7 +38,7 @@ function buildAgentConfig(
     metaDescription: `Join the official ${agentName} Discord to get verified finds, QC photos, spreadsheet updates, and community discussion.`,
     h1: `Join ${agentName} Discord`,
     intro: `Stay updated with ${agentName} verified finds, QC photos, spreadsheet links, and chat with the community. Click below to join the official Discord.`,
-    ctaLabel: `Join ${agentName} Discord ✅`,
+    ctaLabel: `Join ${agentName} Discord`,
     discordUrl: SOCIAL_LINKS.discord,
     keywords: [
       `discord ${agentLower}`,
@@ -66,3 +66,21 @@ export function getDiscordAgentLandingPage(
 ): DiscordAgentLandingConfig | undefined {
   return DISCORD_AGENT_LANDING_PAGES[slug];
 }
+
+
+DISCORD_AGENT_LANDING_PAGES["discord-boonbuy"] = {
+  ...DISCORD_AGENT_LANDING_PAGES["discord-boonbuy"],
+  title: "BoonBuy Discord | Join BoonBuy Finds Server 2026",
+  metaDescription:
+    "Join BoonBuy Discord for QC help, haul advice, coupon shares, and daily BoonBuy finds. Official BoonBuy Finds community server for 2026.",
+  h1: "BoonBuy Discord",
+  intro:
+    "Looking for BoonBuy Discord? Join the BoonBuy Finds server for QC checks, shipping tips, coupon drops, and daily verified finds. Use the button below to open Discord and start chatting with other BoonBuy buyers.",
+  ctaLabel: "Join BoonBuy Discord",
+  keywords: [
+    "boonbuy discord",
+    "discord boonbuy",
+    "boonbuy finds discord",
+    "boonbuy discord 2026",
+  ],
+};

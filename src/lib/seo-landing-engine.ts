@@ -95,10 +95,17 @@ export function resolveFreshnessProducts(
   const rails = getHomepageRails(Math.max(limit, 12));
 
   switch (kind) {
-    case "popularToday":
-      return rails.popularToday.slice(0, limit);
-    case "popularWeek":
-      return rails.popularWeek.slice(0, limit);
+    case "popularToday": {
+      const picks = rails.popularToday.slice(0, limit);
+      if (picks.length >= SEO_LANDING_MIN_PRODUCTS) return picks;
+      // Fall back to catalog trending so the daily SEO URL stays published (LitBuy parity).
+      return filterQualityProducts(getTrendingProducts()).slice(0, limit);
+    }
+    case "popularWeek": {
+      const picks = rails.popularWeek.slice(0, limit);
+      if (picks.length >= SEO_LANDING_MIN_PRODUCTS) return picks;
+      return filterQualityProducts(getTrendingProducts()).slice(0, limit);
+    }
     case "addedToday":
       return rails.addedToday.slice(0, limit);
     case "editorsPicks":

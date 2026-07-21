@@ -57,7 +57,6 @@ export const TELEGRAM_COMMUNITY_FOOTER_LINKS = [
     label: `Join ${TELEGRAM_CHANNEL_NAME} Telegram`,
     external: true,
   },
-  ...AGENT_TELEGRAM_LINKS.map((link) => ({ ...link, external: false })),
 ];
 
 function baseFaqs(agentName?: string): { question: string; answer: string }[] {

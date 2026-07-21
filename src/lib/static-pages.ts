@@ -335,14 +335,14 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       "Found something on BoonBuy Finds? Here is the usual flow from discovery to delivery. Exact steps can vary by seller and shipping line, but this covers what most new buyers need.",
     sections: [
       {
-        heading: "1. Claim your 30% shipping coupon",
+        heading: "1. Claim your 45% shipping coupon",
         paragraphs: [
           "Create a BoonBuy account using a referral link if you want shipping discounts for new users. Registration is free and takes a few minutes.",
         ],
         links: [
           {
             href: BOONBUY_SIGNUP_URL,
-            label: "Claim 30% Coupon",
+            label: "Claim 45% Coupon",
           },
           { href: "/boonbuy-coupons", label: "BoonBuy coupons guide" },
           { href: "/deals", label: "Deals under $30" },
@@ -560,7 +560,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         links: [
           {
             href: BOONBUY_SIGNUP_URL,
-            label: "Claim 30% Coupon",
+            label: "Claim 45% Coupon",
           },
           { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
           { href: "/deals", label: "Deals under $30" },
@@ -612,7 +612,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       {
         heading: "BoonBuy Finds — your discovery layer",
         paragraphs: [
-          "Search thousands of QC-approved fashion and sneaker finds. Every product opens a verified BoonBuy link. Switch to MuleBuy, OopBuy, Kakobuy, or HipoBuy if you prefer another agent.",
+          "Search thousands of QC-approved fashion and sneaker finds. Every product opens a verified BoonBuy link with QC references and trusted checkout.",
         ],
         links: [
           { href: "/boonbuy-coupons", label: "BoonBuy coupons" },

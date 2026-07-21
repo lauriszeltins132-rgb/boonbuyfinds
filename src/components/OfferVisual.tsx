@@ -1,3 +1,5 @@
+import { BOONBUY_SHIPPING_DISCOUNT_PERCENT } from "@/lib/constants";
+
 type OfferVisualProps = {
   className?: string;
   compact?: boolean;
@@ -15,7 +17,9 @@ export default function OfferVisual({
       <div className="offer-visual__glow" />
       <div className="offer-visual__grid" />
 
-      <div className="offer-visual__badge">40% Shipping</div>
+      <div className="offer-visual__badge">
+        {BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping
+      </div>
 
       <svg
         className="offer-visual__box"

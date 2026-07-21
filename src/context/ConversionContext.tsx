@@ -8,6 +8,11 @@ import {
   useMemo,
   useState,
 } from "react";
+import {
+  parseJsonArray,
+  readSessionStorage,
+  writeSessionStorage,
+} from "@/lib/safe-storage";
 
 type ConversionContextValue = {
   uniqueProductViews: number;
@@ -21,17 +26,13 @@ const ConversionContext = createContext<ConversionContextValue | null>(null);
 const SESSION_VIEWS_KEY = "boonbuy-session-product-views";
 
 function readViewedIds(): string[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = sessionStorage.getItem(SESSION_VIEWS_KEY);
-    return raw ? (JSON.parse(raw) as string[]) : [];
-  } catch {
-    return [];
-  }
+  return parseJsonArray<string>(readSessionStorage(SESSION_VIEWS_KEY)).filter(
+    (id) => typeof id === "string" && id.length > 0
+  );
 }
 
 function writeViewedIds(ids: string[]) {
-  sessionStorage.setItem(SESSION_VIEWS_KEY, JSON.stringify(ids));
+  writeSessionStorage(SESSION_VIEWS_KEY, JSON.stringify(ids));
 }
 
 export function ConversionProvider({ children }: { children: React.ReactNode }) {
@@ -46,8 +47,9 @@ export function ConversionProvider({ children }: { children: React.ReactNode }) 
 
   const recordProductView = useCallback((productId: string) => {
     setViewedIds((prev) => {
-      if (prev.includes(productId)) return prev;
-      const next = [...prev, productId];
+      const list = Array.isArray(prev) ? prev : [];
+      if (list.includes(productId)) return list;
+      const next = [...list, productId];
       writeViewedIds(next);
       return next;
     });
@@ -55,18 +57,13 @@ export function ConversionProvider({ children }: { children: React.ReactNode }) 
 
   const dismissNudge = useCallback((key: string) => {
     setDismissed((prev) => ({ ...prev, [key]: true }));
-    try {
-      sessionStorage.setItem(key, "1");
-    } catch {
-      // ignore
-    }
+    writeSessionStorage(key, "1");
   }, []);
 
   const isNudgeDismissed = useCallback(
     (key: string) => {
       if (dismissed[key]) return true;
-      if (typeof window === "undefined") return false;
-      return sessionStorage.getItem(key) === "1";
+      return readSessionStorage(key) === "1";
     },
     [dismissed]
   );

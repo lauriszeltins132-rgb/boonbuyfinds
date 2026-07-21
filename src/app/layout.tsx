@@ -12,7 +12,6 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import AnalyticsBoot from "@/components/AnalyticsBoot";
 import JsonLd from "@/components/JsonLd";
 import { ConversionProvider } from "@/context/ConversionContext";
-import { AgentModalProvider } from "@/context/AgentModalContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { CouponProvider } from "@/context/CouponContext";
@@ -85,19 +84,19 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
-      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon-512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico?v=20260716c", sizes: "any" },
+      { url: "/favicon-16x16.png?v=20260716c", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png?v=20260716c", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png?v=20260716c", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-192x192.png?v=20260716c", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512x512.png?v=20260716c", sizes: "512x512", type: "image/png" },
     ],
-    shortcut: "/favicon.ico",
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico?v=20260716c",
+    apple: [{ url: "/apple-touch-icon.png?v=20260716c", sizes: "180x180", type: "image/png" }],
     other: [
       {
         rel: "mask-icon",
-        url: "/icon-source.svg",
+        url: "/icon-source.svg?v=20260716c",
         color: "#FF8000",
       },
     ],
@@ -116,7 +115,6 @@ export default function RootLayout({
             <WishlistProvider>
               <RecentlyViewedProvider>
                 <ConversionProvider>
-                  <AgentModalProvider>
                   <AnimatedBackground />
                   <JsonLd />
                   <AnalyticsBoot />
@@ -129,7 +127,6 @@ export default function RootLayout({
                   <MobileDock />
                   <Analytics />
                   <DeferredSpeedInsights />
-                  </AgentModalProvider>
                 </ConversionProvider>
               </RecentlyViewedProvider>
             </WishlistProvider>

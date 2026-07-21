@@ -15,7 +15,7 @@ const mapPath = path.join(__dirname, "../src/data/processed-image-map.json");
 
 const CONCURRENCY = 12;
 const MAX_DIMENSION = 900;
-const MATTE = { r: 20, g: 20, b: 24 };
+const MATTE = { r: 255, g: 252, b: 248 };
 
 function hashUrl(url) {
   return crypto.createHash("sha256").update(url).digest("hex").slice(0, 20);

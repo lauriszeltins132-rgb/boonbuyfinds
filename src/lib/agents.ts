@@ -27,7 +27,8 @@ export type AgentDefinition = {
   shortLabel: string;
 };
 
-export const BUYING_AGENTS: AgentDefinition[] = [
+/** Full agent registry (kept for URL builders / legacy SEO routes). */
+export const ALL_AGENTS: AgentDefinition[] = [
   {
     id: "boonbuy",
     name: "BoonBuy",
@@ -35,7 +36,7 @@ export const BUYING_AGENTS: AgentDefinition[] = [
     recommended: true,
     affiliateEnabled: true,
     signupUrl: BOONBUY_SIGNUP_URL,
-    description: "Our recommended agent with verified links and QC support.",
+    description: "Verified links, QC support, and exclusive shipping discounts.",
     shortLabel: "BoonBuy",
   },
   {
@@ -90,10 +91,15 @@ export const BUYING_AGENTS: AgentDefinition[] = [
   },
 ];
 
+/** Site is BoonBuy-only — no multi-agent picker. */
+export const BUYING_AGENTS: AgentDefinition[] = ALL_AGENTS.filter(
+  (agent) => agent.id === "boonbuy"
+);
+
 export const DEFAULT_AGENT_ID: AgentId = "boonbuy";
 
 const AGENT_BY_ID = Object.fromEntries(
-  BUYING_AGENTS.map((agent) => [agent.id, agent])
+  ALL_AGENTS.map((agent) => [agent.id, agent])
 ) as Record<AgentId, AgentDefinition>;
 
 export function isAgentId(value: string): value is AgentId {
@@ -198,7 +204,7 @@ export function buildAgentProductUrl(
   if (!affiliateLink) return null;
 
   if (agent.affiliateEnabled && /boonbuy\.com/i.test(affiliateLink)) {
-    return affiliateLink;
+    return withCurrentBoonBuyInvite(affiliateLink);
   }
 
   const listing = extractListingFromAffiliateLink(affiliateLink);
@@ -212,6 +218,16 @@ export function buildAgentProductUrl(
   }
 
   return AGENT_URL_BUILDERS[agentId].search(product.product_name);
+}
+
+/** Keep stored catalog links on the current invite even if JSON still has an old code. */
+function withCurrentBoonBuyInvite(url: string): string {
+  if (/inviteCode=/i.test(url)) {
+    return url.replace(/inviteCode=[^&]+/i, `inviteCode=${BOONBUY_INVITE_CODE}`);
+  }
+  return url.includes("?")
+    ? `${url}&inviteCode=${BOONBUY_INVITE_CODE}`
+    : `${url}?inviteCode=${BOONBUY_INVITE_CODE}`;
 }
 
 export function buildAgentSearchUrl(agentId: AgentId, query: string): string {

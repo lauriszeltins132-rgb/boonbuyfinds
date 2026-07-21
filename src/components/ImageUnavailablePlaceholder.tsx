@@ -29,7 +29,7 @@ export default function ImageUnavailablePlaceholder({
       <div className="image-unavailable__content">
         <div className="image-unavailable__logo">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt=""
             width={logoSize}
             height={logoSize}

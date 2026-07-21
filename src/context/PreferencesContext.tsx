@@ -9,8 +9,9 @@ import {
   useState,
 } from "react";
 import type { AgentId, CurrencyCode } from "@/lib/constants";
-import { DEFAULT_AGENT_ID, isAgentId } from "@/lib/agents";
+import { DEFAULT_AGENT_ID } from "@/lib/agents";
 import { BUYING_AGENTS } from "@/lib/agents";
+import { readLocalStorage, writeLocalStorage } from "@/lib/safe-storage";
 
 type PreferencesContextValue = {
   currency: CurrencyCode;
@@ -34,16 +35,17 @@ export function PreferencesProvider({
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = readLocalStorage(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored) as {
           currency?: CurrencyCode;
           agentId?: AgentId;
         };
-        if (parsed.currency) setCurrencyState(parsed.currency);
-        if (parsed.agentId && isAgentId(parsed.agentId)) {
-          setAgentIdState(parsed.agentId);
+        if (parsed && typeof parsed === "object" && parsed.currency) {
+          setCurrencyState(parsed.currency);
         }
+        // Site is BoonBuy-only — ignore any previously saved multi-agent preference.
+        setAgentIdState(DEFAULT_AGENT_ID);
       }
     } catch {
       // ignore
@@ -53,7 +55,7 @@ export function PreferencesProvider({
 
   useEffect(() => {
     if (!hydrated) return;
-    localStorage.setItem(
+    writeLocalStorage(
       STORAGE_KEY,
       JSON.stringify({ currency, agentId })
     );
@@ -63,8 +65,9 @@ export function PreferencesProvider({
     setCurrencyState(next);
   }, []);
 
-  const setAgentId = useCallback((next: AgentId) => {
-    setAgentIdState(next);
+  const setAgentId = useCallback((_next: AgentId) => {
+    void _next;
+    setAgentIdState(DEFAULT_AGENT_ID);
   }, []);
 
   const value = useMemo(

@@ -38,6 +38,9 @@ import {
 } from "@/lib/seo-architecture/registry";
 import { SITE_URL } from "@/lib/site";
 
+/** Keep sitemap fresh as catalog quality gates change. */
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const categories = getCategories();
   const brands = getBrandsFromProducts(getAllProducts());

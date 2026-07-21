@@ -47,12 +47,13 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-spreadsheet": {
     slug: "boonbuy-spreadsheet",
     path: "/boonbuy-spreadsheet",
-    title: getSpreadsheetMetadataCopy().title,
-    metaDescription: getSpreadsheetMetadataCopy().description,
-    badge: "BoonBuy resource",
-    h1: "BoonBuy spreadsheet guide",
+    title: "BoonBuy Spreadsheet 2026 | Searchable Finds Catalog",
+    metaDescription:
+      "Browse the BoonBuy spreadsheet alternative — searchable QC finds, verified BoonBuy links, 45% shipping coupons, brands, and daily updates for 2026.",
+    badge: "BoonBuy spreadsheet",
+    h1: "BoonBuy Spreadsheet",
     intro:
-      "BoonBuy spreadsheets are how many buyers first discover products — rows of Weidian and Taobao links, prices, and QC notes. BoonBuy Finds turns that same catalog into searchable pages with photos, filters, and verified agent links so you spend less time hunting and more time buying.",
+      "Looking for a BoonBuy spreadsheet? BoonBuy Finds is the searchable spreadsheet alternative for Weidian and Taobao finds — photos, QC references, filters, verified BoonBuy checkout links, and a 45% shipping coupon invite so you spend less time hunting rows and more time buying.",
     sections: [
       {
         heading: "What a BoonBuy spreadsheet contains",
@@ -63,6 +64,21 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         links: [
           { href: "/collections/boonbuy-spreadsheet-alternative", label: "Spreadsheet alternative" },
           { href: "/boonbuy-products", label: "Browse products" },
+          { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
+          { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
+          { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
+        ],
+      },
+      {
+        heading: "Claim 45% off BoonBuy shipping before you haul",
+        paragraphs: [
+          "Shipping is usually the biggest cost after products. New BoonBuy accounts can unlock up to 45% off shipping with our invite coupon — one of the highest paid invite rewards BoonBuy offers. Register once, then open finds from this spreadsheet catalog with verified checkout links.",
+          "Pair the coupon with QC photos and filters on BoonBuy Finds so you only ship items you have already checked.",
+        ],
+        links: [
+          { href: "/boonbuy-shipping-coupon", label: "BoonBuy shipping coupon" },
+          { href: "/boonbuy-coupons", label: "All BoonBuy coupons" },
+          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
         ],
       },
       {
@@ -131,12 +147,19 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
           "Yes. Many buyers use both — spreadsheets for raw data and BoonBuy Finds for faster discovery and sharing.",
       },
       {
+        question: "How do I get 45% off BoonBuy shipping?",
+        answer:
+          "Register through the BoonBuy Finds invite coupon link. New users can unlock up to 45% off shipping — then return here to shop verified spreadsheet finds.",
+      },
+      {
         question: "How often is the catalog updated?",
         answer:
           "The dataset syncs daily. New finds appear in Recently Added and collection pages after each sync.",
       },
     ],
     relatedLinks: [
+      { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/boonbuy-guide", label: "BoonBuy guide hub" },
       ...RESOURCE_LINKS,
@@ -145,12 +168,70 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     productSectionTitle: "Featured BoonBuy spreadsheet picks",
   },
 
+  "best-boonbuy-spreadsheet": {
+    slug: "best-boonbuy-spreadsheet",
+    path: "/best-boonbuy-spreadsheet",
+    title: "Best BoonBuy Spreadsheet 2026 | QC Finds & 45% Shipping Coupon",
+    metaDescription:
+      "Best BoonBuy spreadsheet alternative for 2026 — searchable QC finds, verified links, and up to 45% off BoonBuy shipping with our invite coupon.",
+    badge: "Best spreadsheet",
+    h1: "Best BoonBuy Spreadsheet",
+    intro:
+      "Looking for the best BoonBuy spreadsheet? BoonBuy Finds is the searchable alternative buyers use instead of raw Google Sheets — QC photos, filters, verified BoonBuy links, and a 45% shipping coupon for new accounts.",
+    sections: [
+      {
+        heading: "Why this beats a raw BoonBuy spreadsheet",
+        paragraphs: [
+          "The best BoonBuy spreadsheet experience is not a 10,000-row file — it is a catalog you can search on mobile, filter by brand, and share one product at a time. BoonBuy Finds indexes spreadsheet-style finds into product pages with photos and QC references.",
+          "Pair it with the 45% BoonBuy shipping coupon so freight does not wipe out your haul savings.",
+        ],
+        links: [
+          { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet hub" },
+          { href: "/boonbuy-shipping-coupon", label: "45% shipping coupon" },
+          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+        ],
+      },
+      {
+        heading: "How to shop the best spreadsheet finds",
+        paragraphs: [
+          "Start with Popular Today and Editor's Picks, then narrow by Nike, Jordan, Moncler, bags, or jackets. Open QC when available, claim your shipping coupon, and checkout on BoonBuy with a verified link.",
+        ],
+        links: [
+          { href: "/most-popular-finds-now", label: "Popular today" },
+          { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
+          { href: "/boonbuy-coupon", label: "BoonBuy coupon" },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the best BoonBuy spreadsheet in 2026?",
+        answer:
+          "Most buyers now prefer a searchable catalog like BoonBuy Finds over downloading a new Google Sheet every week. You get the same Weidian and Taobao product universe with better mobile search and shareable links.",
+      },
+      {
+        question: "Does the best BoonBuy spreadsheet include coupons?",
+        answer:
+          "Yes — BoonBuy Finds promotes a verified invite for up to 45% off shipping, plus dedicated BoonBuy coupon pages so you can claim savings before you haul.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+      { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+      { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
+      ...RESOURCE_LINKS,
+    ],
+    getProducts: () => getEditorsPicks(48),
+    productSectionTitle: "Best BoonBuy spreadsheet picks",
+  },
+
   "boonbuy-qc": {
     slug: "boonbuy-qc",
     path: "/boonbuy-qc",
-    title: "BoonBuy QC Photos Guide",
+    title: "BoonBuy QC Photos 2026 | How to Check Before Shipping",
     metaDescription:
-      "BoonBuy QC explained — reference photos, warehouse QC, what to check before shipping, and where to find QC-approved finds on BoonBuy Finds.",
+      "BoonBuy QC photos guide — warehouse QC, what to check before shipping, and where to find QC-approved finds on BoonBuy Finds.",
     badge: "BoonBuy QC",
     h1: "BoonBuy QC photos",
     intro:
@@ -236,13 +317,13 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-finds": {
     slug: "boonbuy-finds",
     path: "/boonbuy-finds",
-    title: "BoonBuy Finds Catalog",
+    title: "BoonBuy Finds 2026 | QC Catalog & Verified Links",
     metaDescription:
-      "Browse verified sneaker, fashion and streetwear finds. BoonBuy is our recommended agent — or choose Kakobuy, OopBuy, ACBuy, MuleBuy and HipoBuy before buying.",
+      "Browse BoonBuy finds — sneakers, fashion and streetwear with QC photos, spreadsheet-style discovery, 45% shipping coupon, and verified checkout links.",
     badge: "BoonBuy Finds",
     h1: "BoonBuy finds",
     intro:
-      "BoonBuy Finds is a curated discovery catalog for fashion and sneaker products. BoonBuy is our recommended agent, but you can choose Kakobuy, OopBuy, HipoBuy, ACBuy or MuleBuy before checkout. Search by brand or category, save favorites, and open verified links when you are ready to order.",
+      "BoonBuy Finds is a curated discovery catalog for fashion and sneaker products. Search by brand or category, save favorites, and open verified BoonBuy links when you are ready to order.",
     sections: [
       {
         heading: "What makes BoonBuy Finds different",
@@ -545,9 +626,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-guide": {
     slug: "boonbuy-guide",
     path: "/boonbuy-guide",
-    title: "BoonBuy Guide Hub",
+    title: "BoonBuy Guide 2026 | Spreadsheet, QC & How to Buy",
     metaDescription:
-      "Complete BoonBuy guide — spreadsheets, QC photos, Weidian, Taobao, sneakers, jackets, and how to buy through BoonBuy Finds.",
+      "BoonBuy guide hub — spreadsheets, QC photos, Weidian, Taobao, sneakers, jackets, coupons, and how to buy through BoonBuy Finds.",
     badge: "BoonBuy guide",
     h1: "BoonBuy guide",
     intro:

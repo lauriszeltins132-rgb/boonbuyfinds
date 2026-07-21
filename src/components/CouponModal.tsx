@@ -5,6 +5,7 @@ import { useCoupon } from "@/context/CouponContext";
 import {
   BROWSE_FINDS_CTA_LABEL,
   BOONBUY_ACCOUNT_BENEFITS,
+  BOONBUY_OFFER_HEADLINE,
   REGISTER_MODAL_CTA_LABEL,
 } from "@/lib/constants";
 import RegisterLink from "./RegisterLink";
@@ -37,7 +38,7 @@ export default function CouponModal() {
           BoonBuy account
         </p>
         <h2 className="mt-2 text-xl font-black text-foreground">
-          Get 30% Off Shipping
+          {BOONBUY_OFFER_HEADLINE}
         </h2>
         <ul className="mt-4 space-y-2">
           {BOONBUY_ACCOUNT_BENEFITS.map((benefit) => (

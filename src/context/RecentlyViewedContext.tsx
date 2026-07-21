@@ -9,6 +9,11 @@ import {
   useState,
 } from "react";
 import type { Product } from "@/lib/types";
+import {
+  parseJsonArray,
+  readLocalStorage,
+  writeLocalStorage,
+} from "@/lib/safe-storage";
 
 const STORAGE_KEY = "boonbuyfinds-recently-viewed";
 const MAX_ITEMS = 12;
@@ -59,25 +64,28 @@ export function RecentlyViewedProvider({
   const [items, setItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const snapshots = JSON.parse(raw) as RecentlyViewedSnapshot[];
-      setItems(
-        snapshots
-          .map(snapshotToProduct)
-          .filter((product) => Boolean(product.id && product.image))
-      );
-    } catch {
-      // ignore
-    }
+    const snapshots = parseJsonArray<RecentlyViewedSnapshot>(
+      readLocalStorage(STORAGE_KEY)
+    );
+    setItems(
+      snapshots
+        .filter(
+          (snapshot) =>
+            snapshot &&
+            typeof snapshot === "object" &&
+            typeof snapshot.id === "string" &&
+            typeof snapshot.image === "string"
+        )
+        .map(snapshotToProduct)
+    );
   }, []);
 
   const addViewed = useCallback((product: RecentlyViewedSnapshot) => {
     setItems((current) => {
+      const list = Array.isArray(current) ? current : [];
       const nextSnapshots = [
         product,
-        ...current
+        ...list
           .filter((item) => item.id !== product.id)
           .map(
             (item): RecentlyViewedSnapshot => ({
@@ -95,11 +103,7 @@ export function RecentlyViewedProvider({
           ),
       ].slice(0, MAX_ITEMS);
 
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSnapshots));
-      } catch {
-        // ignore
-      }
+      writeLocalStorage(STORAGE_KEY, JSON.stringify(nextSnapshots));
 
       return nextSnapshots.map(snapshotToProduct);
     });

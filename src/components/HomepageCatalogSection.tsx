@@ -29,15 +29,22 @@ export default async function HomepageCatalogSection({
     );
   }
 
+  const search = String(params.q ?? "");
+  const brand = String(params.brand ?? "");
+  const minPrice = String(params.min ?? "");
+  const maxPrice = String(params.max ?? "");
+  const sort = String(params.sort ?? "featured");
+  const qcOnly = params.qc === "1";
   const page = Math.max(1, parseInt(String(params.page ?? "1"), 10) || 1);
+
   const filtered = filterProducts(allProducts, {
-    search: String(params.q ?? ""),
+    search,
     category: "",
-    brand: String(params.brand ?? ""),
-    minPrice: String(params.min ?? ""),
-    maxPrice: String(params.max ?? ""),
-    sort: String(params.sort ?? "featured"),
-    qcOnly: params.qc === "1",
+    brand,
+    minPrice,
+    maxPrice,
+    sort,
+    qcOnly,
     savedOnly: false,
   });
 
@@ -58,6 +65,12 @@ export default async function HomepageCatalogSection({
         totalCount: filtered.length,
         page: currentPage,
         pageSize: PAGE_SIZE,
+        appliedSearch: search,
+        appliedBrand: brand,
+        appliedMin: minPrice,
+        appliedMax: maxPrice,
+        appliedSort: sort,
+        appliedQc: qcOnly,
       }}
     />
   );

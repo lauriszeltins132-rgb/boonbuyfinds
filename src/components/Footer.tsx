@@ -41,11 +41,11 @@ const TRUST_LINKS = [
 
 const AGENT_FINDS_LINKS = [
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
-  { href: "/kakobuy-finds", label: "Kakobuy finds" },
-  { href: "/oopbuy-finds", label: "OopBuy finds" },
-  { href: "/hipobuy-finds", label: "HipoBuy finds" },
-  { href: "/acbuy-finds", label: "ACBuy finds" },
-  { href: "/mulebuy-finds", label: "MuleBuy finds" },
+  { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
+  { href: "/discord-boonbuy", label: "BoonBuy Discord" },
+  { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
+  { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+  { href: "/how-to-buy", label: "How to buy on BoonBuy" },
 ];
 
 export default function Footer() {
