@@ -988,7 +988,8 @@ body::before {
   right: max(0.4rem, env(safe-area-inset-right, 0px));
   bottom: max(0.28rem, env(safe-area-inset-bottom, 0px));
   z-index: 80;
-  display: flex;
+  /* Only show on small screens — do not override Tailwind sm:hidden */
+  display: none;
   align-items: stretch;
   justify-content: space-between;
   gap: 0;
@@ -1001,6 +1002,12 @@ body::before {
   box-shadow:
     0 8px 28px rgba(26, 20, 16, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 639px) {
+  .mobile-dock {
+    display: flex;
+  }
 }
 
 .mobile-dock__search,
