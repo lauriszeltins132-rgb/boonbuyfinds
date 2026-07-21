@@ -32,6 +32,10 @@ import {
   TELEGRAM_SEO_SLUGS,
 } from "@/lib/telegram-seo-pages";
 import { ADVERTISE_PAGE_PATH } from "@/lib/advertise-page";
+import {
+  SEO_ARCHITECTURE_PAGES,
+  SEO_ARCHITECTURE_SLUGS,
+} from "@/lib/seo-architecture/registry";
 import { SITE_URL } from "@/lib/site";
 
 /** Keep sitemap fresh as catalog quality gates change. */
@@ -222,6 +226,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     });
   }
+
+  for (const slug of SEO_ARCHITECTURE_SLUGS) {
+    const page = SEO_ARCHITECTURE_PAGES[slug];
+    routes.push({
+      url: `${SITE_URL}${page.path}`,
+      changeFrequency: "weekly",
+      priority: page.category === "comparison" ? 0.88 : 0.86,
+    });
+  }
+
+  routes.push({
+    url: `${SITE_URL}/feed.xml`,
+    changeFrequency: "daily",
+    priority: 0.5,
+  });
 
   return routes;
 }

@@ -1,6 +1,7 @@
-import { createSeoLandingPage } from "@/lib/seo-landing-page";
+import { createSeoArchitecturePage } from "@/lib/seo-architecture/create-page";
 
-const { generateMetadata, Page } = createSeoLandingPage("best-boonbuy-spreadsheet");
+export const revalidate = 86400;
 
+const { generateMetadata, Page } = createSeoArchitecturePage("best-boonbuy-spreadsheet");
 export { generateMetadata };
 export default Page;
