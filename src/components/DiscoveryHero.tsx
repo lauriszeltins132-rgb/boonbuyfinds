@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroLandingCtas from "@/components/HeroLandingCtas";
 import HeroSearch from "@/components/HeroSearch";
+import AiHeroEntry from "@/components/ai/AiHeroEntry";
 import LiveSiteSignals from "@/components/LiveSiteSignals";
 import TrustStrip from "@/components/TrustStrip";
 import { HERO_ENTITY_LINE } from "@/lib/brand-entity";
@@ -65,6 +66,8 @@ export default function DiscoveryHero() {
         <div className="mx-auto mt-6 max-w-[700px] sm:mt-7">
           <HeroSearch searchIndex={searchIndex} />
         </div>
+
+        <AiHeroEntry />
       </div>
 
       <div className="mx-auto mt-5 max-w-7xl sm:mt-6">

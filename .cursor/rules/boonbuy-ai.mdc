@@ -1,0 +1,17 @@
+---
+description: BoonBuy AI and product catalog safety rules
+globs:
+  - src/lib/ai/**
+  - src/components/ai/**
+  - src/app/api/ai/**
+  - src/app/ai/**
+---
+
+- Preserve the current website design and branding.
+- Never invent product records, prices, URLs, ratings, or stock.
+- Reuse existing ProductCard / ProductGrid / affiliate helpers.
+- Use strict TypeScript; validate API input with Zod.
+- Keep provider API keys server-side only.
+- Do not silently alter affiliate URLs or invite codes.
+- Prefer modular, reviewable changes over broad refactors.
+- Maintain mobile responsiveness and accessibility for AI UI.

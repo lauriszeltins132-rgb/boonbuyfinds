@@ -221,7 +221,7 @@ export function buildAgentProductUrl(
 }
 
 /** Keep stored catalog links on the current invite even if JSON still has an old code. */
-function withCurrentBoonBuyInvite(url: string): string {
+export function withCurrentBoonBuyInvite(url: string): string {
   if (/inviteCode=/i.test(url)) {
     return url.replace(/inviteCode=[^&]+/i, `inviteCode=${BOONBUY_INVITE_CODE}`);
   }
