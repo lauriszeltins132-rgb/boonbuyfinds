@@ -13,29 +13,56 @@ function readInt(name: string, fallback: number): number {
   return Number.isFinite(n) && n > 0 ? n : fallback;
 }
 
+/** Documented safe default when AI_PRIMARY_MODEL is unset. */
+export const DEFAULT_PRIMARY_MODEL = "openai/gpt-4o-mini";
+export const DEFAULT_FALLBACK_MODEL = "openai/gpt-4o";
+
+const MODEL_ID_PATTERN = /^[a-z0-9][a-z0-9._/-]{0,127}$/i;
+
+function readModelId(name: string, fallback: string): string {
+  const raw = readEnv(name, fallback);
+  if (!MODEL_ID_PATTERN.test(raw)) return fallback;
+  return raw;
+}
+
 export const aiConfig = {
   gatewayApiKey: readEnv("AI_GATEWAY_API_KEY"),
-  primaryModel: readEnv("AI_PRIMARY_MODEL", "openai/gpt-4o-mini"),
-  fallbackModel: readEnv("AI_FALLBACK_MODEL", "openai/gpt-4o"),
-  embeddingModel: readEnv("AI_EMBEDDING_MODEL", ""),
-  maxOutputTokens: readInt("AI_MAX_OUTPUT_TOKENS", 1200),
+  primaryModel: readModelId("AI_PRIMARY_MODEL", DEFAULT_PRIMARY_MODEL),
+  fallbackModel: readModelId("AI_FALLBACK_MODEL", DEFAULT_FALLBACK_MODEL),
+  embeddingModel: readEnv("AI_EMBEDDING_MODEL"),
+  maxOutputTokens: Math.min(readInt("AI_MAX_OUTPUT_TOKENS", 1200), 4000),
   dailyRequestLimit: readInt("AI_DAILY_REQUEST_LIMIT", 800),
   perIpPerMinute: readInt("AI_RATE_LIMIT_PER_MINUTE", 12),
   perIpPerDay: readInt("AI_RATE_LIMIT_PER_DAY", 80),
-  maxHistoryMessages: readInt("AI_MAX_HISTORY_MESSAGES", 16),
-  maxPromptChars: readInt("AI_MAX_PROMPT_CHARS", 1200),
-  maxToolCalls: readInt("AI_MAX_TOOL_CALLS", 6),
-  maxProductsReturned: readInt("AI_MAX_PRODUCTS", 12),
+  maxHistoryMessages: Math.min(readInt("AI_MAX_HISTORY_MESSAGES", 16), 24),
+  maxPromptChars: Math.min(readInt("AI_MAX_PROMPT_CHARS", 1200), 4000),
+  maxToolCalls: Math.min(readInt("AI_MAX_TOOL_CALLS", 6), 8),
+  maxProductsReturned: Math.min(readInt("AI_MAX_PRODUCTS", 12), 24),
+  maxRequestBodyBytes: 100_000,
   cronSecret: readEnv("CRON_SECRET"),
   siteUrl: readEnv("NEXT_PUBLIC_SITE_URL", "https://boonbuyfinds.net"),
+  isProduction: process.env.NODE_ENV === "production" || process.env.VERCEL_ENV === "production",
 };
 
 export function isAiChatConfigured(): boolean {
   return Boolean(aiConfig.gatewayApiKey);
 }
 
+const uiMessageSchema = z
+  .object({
+    id: z.string().max(128).optional(),
+    role: z.enum(["user", "assistant", "system"]),
+    parts: z.array(z.unknown()).max(40).optional(),
+    content: z.unknown().optional(),
+  })
+  .passthrough();
+
+/**
+ * Chat body — clients cannot choose model, tools, or provider.
+ * Unknown transport keys are ignored; only messages + entryPoint are used.
+ */
 export const chatRequestSchema = z.object({
-  messages: z.array(z.unknown()).min(1).max(40),
+  messages: z.array(uiMessageSchema).min(1).max(aiConfig.maxHistoryMessages),
   entryPoint: z
     .enum(["homepage", "floating", "ai-page", "product", "collection", "other"])
     .optional()

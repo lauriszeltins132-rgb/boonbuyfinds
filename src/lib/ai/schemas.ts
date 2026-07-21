@@ -22,22 +22,22 @@ export const publicProductSchema = z.object({
 export type PublicProduct = z.infer<typeof publicProductSchema>;
 
 export const searchIntentSchema = z.object({
-  query: z.string().default(""),
-  categories: z.array(z.string()).default([]),
-  brands: z.array(z.string()).default([]),
-  colors: z.array(z.string()).default([]),
-  minPrice: z.number().nonnegative().nullable().default(null),
-  maxPrice: z.number().nonnegative().nullable().default(null),
-  tags: z.array(z.string()).default([]),
+  query: z.string().max(200).default(""),
+  categories: z.array(z.string().max(64)).max(8).default([]),
+  brands: z.array(z.string().max(64)).max(8).default([]),
+  colors: z.array(z.string().max(32)).max(8).default([]),
+  minPrice: z.number().nonnegative().max(10000).nullable().default(null),
+  maxPrice: z.number().nonnegative().max(10000).nullable().default(null),
+  tags: z.array(z.string().max(48)).max(12).default([]),
   requireQc: z.boolean().default(false),
   sort: z
     .enum(["relevance", "price-asc", "price-desc", "popular", "newest"])
     .default("relevance"),
   limit: z.number().int().min(1).max(24).default(8),
-  excludeProductIds: z.array(z.string()).default([]),
-  useCase: z.string().optional(),
-  season: z.string().optional(),
-  style: z.string().optional(),
+  excludeProductIds: z.array(z.string().max(64)).max(48).default([]),
+  useCase: z.string().max(64).optional(),
+  season: z.string().max(32).optional(),
+  style: z.string().max(64).optional(),
 });
 
 export type SearchIntent = z.infer<typeof searchIntentSchema>;
@@ -64,13 +64,13 @@ export const compareProductsInputSchema = z.object({
 
 export const buildHaulInputSchema = z.object({
   budget: z.number().positive().max(5000),
-  requestedCategories: z.array(z.string()).default([]),
-  style: z.string().optional(),
-  colors: z.array(z.string()).default([]),
-  season: z.string().optional(),
-  useCase: z.string().optional(),
-  maximumItems: z.number().int().min(1).max(10).default(5),
-  query: z.string().optional(),
+  requestedCategories: z.array(z.string().max(64)).max(8).default([]),
+  style: z.string().max(64).optional(),
+  colors: z.array(z.string().max(32)).max(8).default([]),
+  season: z.string().max(32).optional(),
+  useCase: z.string().max(64).optional(),
+  maximumItems: z.number().int().min(1).max(8).default(5),
+  query: z.string().max(200).optional(),
 });
 
 export const getTrendingInputSchema = z.object({
@@ -96,8 +96,8 @@ export const feedbackSchema = z.object({
       "other",
     ])
     .optional(),
-  responseId: z.string().optional(),
-  productIds: z.array(z.string()).max(24).optional(),
-  entryPoint: z.string().optional(),
-  toolPath: z.string().optional(),
+  responseId: z.string().max(128).optional(),
+  productIds: z.array(z.string().max(64)).max(24).optional(),
+  entryPoint: z.string().max(40).optional(),
+  toolPath: z.string().max(40).optional(),
 });

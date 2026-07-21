@@ -1,8 +1,9 @@
-import { chatRequestSchema } from "@/lib/ai/config";
+import { aiConfig, chatRequestSchema } from "@/lib/ai/config";
 import { createAiChatResponse } from "@/lib/ai/chat";
 import {
   checkAiRateLimit,
   getClientKeyFromRequest,
+  readJsonBodyLimited,
 } from "@/lib/ai/rate-limit";
 import { latencyBucket, trackAiEventServer } from "@/lib/ai/telemetry";
 import type { UIMessage } from "ai";
@@ -32,14 +33,24 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return Response.json({ error: "Invalid JSON body" }, { status: 400 });
+  const bodyResult = await readJsonBodyLimited(request);
+  if (!bodyResult.ok) {
+    return Response.json({ error: bodyResult.error }, { status: 400 });
   }
 
-  const parsed = chatRequestSchema.safeParse(body);
+  // Clients must not select models/tools/providers
+  if (
+    bodyResult.body &&
+    typeof bodyResult.body === "object" &&
+    ("model" in bodyResult.body ||
+      "tools" in bodyResult.body ||
+      "provider" in bodyResult.body ||
+      "system" in bodyResult.body)
+  ) {
+    return Response.json({ error: "Invalid chat payload" }, { status: 400 });
+  }
+
+  const parsed = chatRequestSchema.safeParse(bodyResult.body);
   if (!parsed.success) {
     return Response.json({ error: "Invalid chat payload" }, { status: 400 });
   }
@@ -55,6 +66,11 @@ export async function POST(request: Request) {
       entryPoint: parsed.data.entryPoint,
       latencyBucket: latencyBucket(Date.now() - started),
     });
+    // Hint for UI: whether LLM mode is active (no secrets)
+    response.headers.set(
+      "X-BoonBuy-AI-Mode",
+      aiConfig.gatewayApiKey ? "llm" : "catalogue"
+    );
     return response;
   } catch {
     await trackAiEventServer("ai_error", {

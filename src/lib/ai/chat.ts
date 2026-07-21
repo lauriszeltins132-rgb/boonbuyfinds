@@ -13,10 +13,11 @@ import {
   buildHaulFromCatalog,
   searchCatalog,
 } from "@/lib/ai/product-search";
+import { recalculateHaulTotals, rehydratePublicProducts } from "@/lib/ai/grounding";
 import { BOONBUY_AI_SYSTEM_PROMPT } from "@/lib/ai/system-prompt";
 import { createBoonBuyAiTools } from "@/lib/ai/tools";
 
-function lastUserText(messages: UIMessage[]): string {
+export function lastUserText(messages: UIMessage[]): string {
   for (let i = messages.length - 1; i >= 0; i--) {
     const m = messages[i];
     if (m.role !== "user") continue;
@@ -26,12 +27,18 @@ function lastUserText(messages: UIMessage[]): string {
       .map((p) => p.text)
       .join("\n")
       .trim();
-    if (text) return text;
+    if (text) return text.slice(0, aiConfig.maxPromptChars);
   }
   return "";
 }
 
-/** Deterministic fallback when AI Gateway is not configured or budget is hit. */
+function catalogueModeDisclaimer(): string {
+  return isAiChatConfigured()
+    ? ""
+    : " (Catalogue search mode — conversational LLM is offline; results still use the live product database.)";
+}
+
+/** Deterministic fallback when AI Gateway is not configured or provider fails. */
 export function createSearchOnlyStreamResponse(userText: string) {
   const stream = createUIMessageStream({
     execute: async ({ writer }) => {
@@ -41,30 +48,34 @@ export function createSearchOnlyStreamResponse(userText: string) {
       writer.write({ type: "text-start", id: `${id}_t` });
 
       let summary: string;
-      let products;
+      let products = rehydratePublicProducts([]);
 
-      if (isHaulRequest(userText)) {
-        const budget = extractBudget(userText) ?? 100;
+      const clipped = userText.slice(0, aiConfig.maxPromptChars);
+
+      if (isHaulRequest(clipped)) {
+        const budget = Math.min(extractBudget(clipped) ?? 100, 5000);
         const haul = buildHaulFromCatalog({
           budget,
-          query: userText,
+          query: clipped,
           maximumItems: 5,
         });
-        products = haul.products;
-        summary = `${haul.explanation} Prices and availability may change at BoonBuy checkout. Shipping is not included.`;
+        const money = recalculateHaulTotals(haul.products, budget);
+        products = money.products;
+        summary = `${haul.explanation} Prices and availability may change at BoonBuy checkout. Shipping is not included.${catalogueModeDisclaimer()}`;
       } else {
-        const intent = parseSearchIntent(userText, 8);
+        const intent = parseSearchIntent(clipped, 8);
         const result = searchCatalog(intent);
-        products = result.products;
-        if (result.total === 0) {
+        products = rehydratePublicProducts(result.products);
+        if (products.length === 0) {
           summary =
-            "I couldn’t find a strong match in the BoonBuy Finds catalogue. Try a broader category, a higher budget, or fewer color constraints.";
+            "I couldn’t find a strong match in the BoonBuy Finds catalogue. Try a broader category, a higher budget, or fewer color constraints." +
+            catalogueModeDisclaimer();
         } else if (result.relaxedFilters.length > 0) {
           summary = `No exact match for every constraint — relaxed ${result.relaxedFilters.join(
             ", "
-          )}. Showing ${Math.min(result.products.length, result.total)} of ${result.total} real catalogue finds. Prices may change at checkout.`;
+          )}. Showing ${products.length} of ${result.total} real catalogue finds. Prices may change at checkout.${catalogueModeDisclaimer()}`;
         } else {
-          summary = `I found ${result.total} matching finds. Here are the top ${result.products.length} based on your request. Prices and availability may change on BoonBuy.`;
+          summary = `I found ${result.total} matching finds. Here are the top ${products.length} based on your request. Prices and availability may change on BoonBuy.${catalogueModeDisclaimer()}`;
         }
       }
 
@@ -90,6 +101,10 @@ export async function createAiChatResponse(messages: UIMessage[]) {
   const clipped = messages.slice(-aiConfig.maxHistoryMessages);
   const userText = lastUserText(clipped);
 
+  if (!userText) {
+    return createSearchOnlyStreamResponse("");
+  }
+
   if (!isAiChatConfigured()) {
     return createSearchOnlyStreamResponse(userText);
   }
@@ -103,15 +118,18 @@ export async function createAiChatResponse(messages: UIMessage[]) {
       stopWhen: stepCountIs(aiConfig.maxToolCalls),
       maxOutputTokens: aiConfig.maxOutputTokens,
       temperature: 0.3,
+      // Provider/stream failures fall back without leaking internals
+      onError: () => {
+        // Swallow — UI message stream onError below returns safe copy
+      },
     });
 
     return result.toUIMessageStreamResponse({
       originalMessages: clipped,
       onError: () =>
-        "BoonBuy AI is temporarily unavailable. Try catalogue search on the homepage.",
+        "BoonBuy AI is temporarily unavailable. Try catalogue search on the homepage, or ask again in a moment.",
     });
   } catch {
-    // Provider failure → deterministic search fallback
     return createSearchOnlyStreamResponse(userText);
   }
 }

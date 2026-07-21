@@ -160,21 +160,33 @@ export function searchCatalog(intent: SearchIntent): SearchResult {
   const relaxedFilters: string[] = [];
 
   let filtered = applyHardFilters(pool, intent);
-  if (intent.query) {
+  if (intent.query.trim()) {
     const withText = filtered.filter(
       (p) => tokenScore(buildSearchableText(p), intent.query) > 0
     );
-    if (withText.length > 0) filtered = withText;
+    // Keep brand/category hard filters when the leftover query is too weak
+    // (e.g. "jordan 4" → brand jordan + query "4").
+    if (
+      withText.length > 0 ||
+      (intent.brands.length === 0 && intent.categories.length === 0)
+    ) {
+      filtered = withText;
+    }
   }
 
   if (filtered.length === 0 && intent.colors.length > 0) {
     relaxedFilters.push("color");
     filtered = applyHardFilters(pool, intent, { ignoreColors: true });
-    if (intent.query) {
+    if (intent.query.trim()) {
       const withText = filtered.filter(
         (p) => tokenScore(buildSearchableText(p), intent.query) > 0
       );
-      if (withText.length > 0) filtered = withText;
+      if (
+        withText.length > 0 ||
+        (intent.brands.length === 0 && intent.categories.length === 0)
+      ) {
+        filtered = withText;
+      }
     }
   }
 
@@ -184,25 +196,27 @@ export function searchCatalog(intent: SearchIntent): SearchResult {
       ignoreColors: true,
       ignoreCategories: true,
     });
-    if (intent.query) {
+    if (intent.query.trim()) {
       const withText = filtered.filter(
         (p) => tokenScore(buildSearchableText(p), intent.query) > 0
       );
-      if (withText.length > 0) filtered = withText;
+      if (withText.length > 0 || intent.brands.length === 0) {
+        filtered = withText;
+      }
     }
   }
 
-  if (filtered.length === 0 && intent.query) {
+  if (filtered.length === 0 && intent.query.trim()) {
     relaxedFilters.push("structured filters");
-    filtered = pool.filter(
-      (p) => tokenScore(buildSearchableText(p), intent.query) > 0
+    filtered = applyHardFilters(
+      pool.filter((p) => tokenScore(buildSearchableText(p), intent.query) > 0),
+      {
+        ...intent,
+        categories: [],
+        colors: [],
+        brands: intent.brands,
+      }
     );
-    filtered = applyHardFilters(filtered, {
-      ...intent,
-      categories: [],
-      colors: [],
-      brands: intent.brands,
-    });
   }
 
   const ranked = rankProducts(filtered, intent);

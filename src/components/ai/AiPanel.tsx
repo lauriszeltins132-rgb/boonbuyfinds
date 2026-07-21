@@ -18,6 +18,7 @@ type AiPanelProps = {
   onClose: () => void;
   entryPoint?: "floating" | "homepage" | "product" | "collection";
   initialPrompt?: string;
+  returnFocusRef?: React.RefObject<HTMLElement | null>;
 };
 
 export default function AiPanel({
@@ -25,20 +26,46 @@ export default function AiPanel({
   onClose,
   entryPoint = "floating",
   initialPrompt,
+  returnFocusRef,
 }: AiPanelProps) {
   const titleId = useId();
+  const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
     track("ai_opened", { entryPoint });
+    const previous = document.activeElement as HTMLElement | null;
+    const restoreTarget = returnFocusRef?.current ?? previous;
     closeRef.current?.focus();
+
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose, entryPoint]);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      restoreTarget?.focus?.();
+    };
+  }, [open, onClose, entryPoint, returnFocusRef]);
 
   if (!open) return null;
 
@@ -50,7 +77,10 @@ export default function AiPanel({
         aria-label="Close BoonBuy AI"
         onClick={onClose}
       />
-      <div className="absolute inset-x-0 bottom-0 max-h-[90vh] overflow-hidden rounded-t-3xl border border-border bg-background shadow-2xl sm:inset-y-0 sm:right-0 sm:left-auto sm:h-full sm:w-[min(100%,420px)] sm:rounded-none sm:border-l">
+      <div
+        ref={panelRef}
+        className="absolute inset-x-0 bottom-0 max-h-[90vh] overflow-hidden rounded-t-3xl border border-border bg-background shadow-2xl motion-safe:animate-none sm:inset-y-0 sm:right-0 sm:left-auto sm:h-full sm:w-[min(100%,420px)] sm:rounded-none sm:border-l"
+      >
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <div>
             <p id={titleId} className="text-sm font-black text-foreground">
@@ -62,12 +92,12 @@ export default function AiPanel({
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="rounded-full border border-border px-3 py-1.5 text-xs font-bold"
+            className="min-h-11 min-w-11 rounded-full border border-border px-3 py-1.5 text-xs font-bold"
           >
             Close
           </button>
         </div>
-        <div className="px-3 pb-4 pt-2">
+        <div className="max-h-[calc(90vh-3.5rem)] overflow-y-auto px-3 pb-4 pt-2 sm:max-h-[calc(100vh-3.5rem)]">
           <AiChat entryPoint={entryPoint} initialPrompt={initialPrompt} compact />
         </div>
       </div>

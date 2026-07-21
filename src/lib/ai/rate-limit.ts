@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import { createHash } from "node:crypto";
 import { aiConfig } from "@/lib/ai/config";
 
@@ -38,7 +39,18 @@ export type RateLimitResult =
   | { ok: true; remainingMinute: number; remainingDay: number }
   | { ok: false; reason: "minute" | "day" | "budget"; retryAfterSec: number };
 
+/**
+ * In-memory rate limiter (per serverless instance).
+ *
+ * TODO(distributed-rate-limit): Replace with Redis / Vercel KV for globally
+ * consistent limits across Vercel instances. Current limits still blunt
+ * obvious abuse within a single warm instance.
+ */
 export function checkAiRateLimit(clientKey: string): RateLimitResult {
+  if (!clientKey || clientKey.length > 64) {
+    return { ok: false, reason: "minute", retryAfterSec: 60 };
+  }
+
   const minuteCount = touch(minuteBuckets, clientKey, 60_000);
   const dayCount = touch(dayBuckets, `d:${clientKey}`, 86_400_000);
 
@@ -66,9 +78,45 @@ export function checkAiRateLimit(clientKey: string): RateLimitResult {
   };
 }
 
+function safeEqualString(a: string, b: string): boolean {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return timingSafeEqual(bufA, bufB);
+}
+
+/**
+ * Cron auth. In production, CRON_SECRET is mandatory.
+ * Local/dev without a secret: allow only when not production (documented).
+ */
 export function assertCronAuthorized(request: Request): boolean {
   const secret = aiConfig.cronSecret;
-  if (!secret) return false;
-  const header = request.headers.get("authorization");
-  return header === `Bearer ${secret}`;
+  if (!secret) {
+    return !aiConfig.isProduction;
+  }
+  const header = request.headers.get("authorization") ?? "";
+  const expected = `Bearer ${secret}`;
+  return safeEqualString(header, expected);
+}
+
+/** Reject oversized request bodies early. */
+export async function readJsonBodyLimited(
+  request: Request,
+  maxBytes = aiConfig.maxRequestBodyBytes
+): Promise<{ ok: true; body: unknown } | { ok: false; error: string }> {
+  const contentLength = request.headers.get("content-length");
+  if (contentLength && Number(contentLength) > maxBytes) {
+    return { ok: false, error: "Payload too large" };
+  }
+
+  const text = await request.text();
+  if (text.length > maxBytes) {
+    return { ok: false, error: "Payload too large" };
+  }
+
+  try {
+    return { ok: true, body: text ? JSON.parse(text) : {} };
+  } catch {
+    return { ok: false, error: "Invalid JSON body" };
+  }
 }

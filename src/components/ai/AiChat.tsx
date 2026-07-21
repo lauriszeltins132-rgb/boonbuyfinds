@@ -98,9 +98,14 @@ export default function AiChat({
   const busy = status === "submitted" || status === "streaming";
 
   useEffect(() => {
-    scrollerRef.current?.scrollTo({
-      top: scrollerRef.current.scrollHeight,
-      behavior: "smooth",
+    const node = scrollerRef.current;
+    if (!node) return;
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    node.scrollTo({
+      top: node.scrollHeight,
+      behavior: reduce ? "auto" : "smooth",
     });
   }, [messages, status]);
 
@@ -144,6 +149,10 @@ export default function AiChat({
             <p className="mt-2 text-sm text-muted">
               Describe a product, budget, color, or haul. Results come only from
               the live BoonBuy Finds catalogue — never invented listings.
+            </p>
+            <p className="mt-2 text-xs text-muted">
+              If conversational AI is offline, catalogue search mode still returns
+              real products from the same database.
             </p>
             <div className="mt-4">
               <AiPromptChips
@@ -235,14 +244,14 @@ export default function AiChat({
             <button
               type="button"
               onClick={() => stop()}
-              className="rounded-full border border-border px-4 py-2 text-sm font-bold"
+              className="min-h-11 rounded-full border border-border px-4 py-2 text-sm font-bold"
             >
               Stop
             </button>
           ) : (
             <button
               type="submit"
-              className="rounded-full bg-accent px-4 py-2 text-sm font-bold text-white hover:opacity-90 disabled:opacity-50"
+              className="min-h-11 rounded-full bg-accent px-4 py-2 text-sm font-bold text-white hover:opacity-90 disabled:opacity-50"
               disabled={!input.trim()}
             >
               Ask

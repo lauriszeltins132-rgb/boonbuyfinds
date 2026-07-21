@@ -2,10 +2,12 @@ import { feedbackSchema } from "@/lib/ai/schemas";
 import {
   checkAiRateLimit,
   getClientKeyFromRequest,
+  readJsonBodyLimited,
 } from "@/lib/ai/rate-limit";
 import { trackAiEventServer } from "@/lib/ai/telemetry";
 
 export const runtime = "nodejs";
+export const maxDuration = 15;
 
 export async function POST(request: Request) {
   const limit = checkAiRateLimit(getClientKeyFromRequest(request));
@@ -13,14 +15,12 @@ export async function POST(request: Request) {
     return Response.json({ error: "Rate limited" }, { status: 429 });
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return Response.json({ error: "Invalid JSON" }, { status: 400 });
+  const bodyResult = await readJsonBodyLimited(request, 8_000);
+  if (!bodyResult.ok) {
+    return Response.json({ error: bodyResult.error }, { status: 400 });
   }
 
-  const parsed = feedbackSchema.safeParse(body);
+  const parsed = feedbackSchema.safeParse(bodyResult.body);
   if (!parsed.success) {
     return Response.json({ error: "Invalid feedback" }, { status: 400 });
   }
@@ -29,8 +29,8 @@ export async function POST(request: Request) {
     parsed.data.helpful ? "ai_feedback_positive" : "ai_feedback_negative",
     {
       reason: parsed.data.reason,
-      entryPoint: parsed.data.entryPoint,
-      tool: parsed.data.toolPath,
+      entryPoint: parsed.data.entryPoint?.slice(0, 40),
+      tool: parsed.data.toolPath?.slice(0, 40),
       resultCount: parsed.data.productIds?.length,
     }
   );

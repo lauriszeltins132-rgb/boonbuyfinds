@@ -27,40 +27,53 @@
 2. **Hybrid search v1 = deterministic + lexical + synonym expansion + ranking** over the JSON catalog.  
    Vector/pgvector deferred — requires Postgres we do not have. Embedding hooks left optional via env.
 3. **Vercel AI SDK + AI Gateway** for chat/tool-calling when `AI_GATEWAY_API_KEY` is set.
-4. **Graceful degradation:** if no AI key / budget exceeded, `/api/ai/search` and rule-based chat fallback still return real products.
-5. **In-memory rate limits** (per hashed IP). Optional Redis later via `RATE_LIMIT_REDIS_URL`.
+4. **Graceful degradation:** if no AI key / provider failure, chat falls back to deterministic catalogue search with real product cards.
+5. **In-memory rate limits** (per hashed IP, **per serverless instance**).  
+   **TODO(distributed-rate-limit):** Redis / Vercel KV for globally consistent limits across Vercel instances.
 6. **No automatic SEO doorway pages** from user queries. Indexable `/ai` hub only.
-7. **Admin queue / full auth admin** scoped as Phase-2 follow-up (no auth layer today). Cron endpoints protected by `CRON_SECRET`.
+7. **Cron:** `CRON_SECRET` required in production; timing-safe bearer compare. Local/dev without secret is allowed only when not production.
 
-## 3) Database changes
+## 3) Product grounding guarantees
 
-**None required for v1.** No migration.
-
-Optional later: Postgres + pgvector for embeddings if catalog grows past in-memory ranking comfort.
+- Tool outputs and search/haul responses pass through `rehydratePublicProducts()` → `getProductById()` only.
+- Invalid / invented IDs are discarded.
+- Prices, product URLs, and affiliate URLs always come from catalogue records (`withCurrentBoonBuyInvite` for invite rewrite only).
+- Haul subtotals are recalculated server-side (`recalculateHaulTotals`).
+- Clients cannot select `model`, `tools`, `provider`, or `system` on `/api/ai/chat`.
 
 ## 4) Environment variables
 
-See `.env.example`. Required for LLM chat: `AI_GATEWAY_API_KEY`, `AI_PRIMARY_MODEL`. Search tools work without them.
+See `.env.example`.
+
+| Variable | Required | Notes |
+|----------|----------|-------|
+| `AI_GATEWAY_API_KEY` | For LLM chat | Without it, catalogue search mode still works |
+| `AI_PRIMARY_MODEL` | Optional | Default `openai/gpt-4o-mini` (validated) |
+| `AI_FALLBACK_MODEL` | Optional | Default `openai/gpt-4o` |
+| `AI_MAX_OUTPUT_TOKENS` | Optional | Capped |
+| `AI_DAILY_REQUEST_LIMIT` | Optional | Per-instance global budget |
+| `AI_RATE_LIMIT_PER_MINUTE` / `_PER_DAY` | Optional | Per hashed client key |
+| `CRON_SECRET` | **Required in production** | Bearer for `/api/ai/cron/*` |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Defaults to `https://boonbuyfinds.net` |
+
+Preview vs production: set the same keys in both Vercel environments; use separate Gateway keys if you want spend isolation.
 
 ## 5) Package additions
 
-- `ai` (Vercel AI SDK)
-- `@ai-sdk/gateway`
-- `@ai-sdk/react`
-- `zod`
+- `ai`, `@ai-sdk/gateway`, `@ai-sdk/react`, `zod`, `tsx` (dev)
 
 ## 6) Risks
 
 | Risk | Mitigation |
 |------|------------|
-| AI cost abuse | Rate limits, daily budget, max tokens, tool-call caps |
-| Invented products | Tools return only catalog IDs; system prompt forbids invention |
-| Affiliate URL mutation | Tools pass through existing `affiliate_link` unchanged |
-| Homepage JS weight | Dynamic import floating AI; `/ai` page owns heavy chat |
-| Prompt injection via product text | Treat product fields as data; tools use fixed queries |
-| No API key in prod | Search-only fallback stays useful |
+| AI cost abuse | Rate limits, daily budget, max tokens, tool-call caps, body size limits |
+| Invented products | `rehydratePublicProducts` + tool wrappers |
+| Affiliate URL mutation | Catalogue `affiliate_link` + invite rewrite only |
+| Homepage JS weight | Dynamic import floating AI / panel chat |
+| Prompt injection via product text | System prompt marks catalogue fields as untrusted data |
+| Per-instance rate limits | Documented TODO for Redis |
 
-## 8) Local testing
+## 7) Local testing
 
 ```bash
 cp .env.example .env.local
@@ -68,30 +81,33 @@ cp .env.example .env.local
 npm run dev
 # Open http://localhost:3000/ai
 npm run test:ai
+npx tsc --noEmit
+npm run lint
 npm run build
+npx tsx --tsconfig tsconfig.json scripts/smoke-ai-search.mjs
 ```
 
 Without `AI_GATEWAY_API_KEY`, chat uses deterministic catalogue search (still real products).
 
-## 9) Vercel production checklist
+## 8) Vercel production checklist
 
-1. Set env vars in Vercel project settings (AI_GATEWAY_API_KEY, models, CRON_SECRET).
-2. Deploy `main` after merge.
-3. Verify `https://boonbuyfinds.net/ai` returns 200.
-4. Verify `POST /api/ai/search` with `{ "query": "black shoes under 50" }`.
-5. Verify floating AI button on homepage (does not block mobile dock).
-6. Confirm Speed Insights / Analytics still load.
-7. Cron: `GET /api/ai/cron/index-health` with `Authorization: Bearer $CRON_SECRET`.
+1. Set env vars (Gateway key, models, **CRON_SECRET**).
+2. Deploy after merge.
+3. `GET /ai` → 200, unique title, H1, internal links.
+4. `POST /api/ai/search` with `{ "query": "black shoes under 50" }`.
+5. Chat with Gateway key unset → catalogue mode disclaimer + product cards.
+6. Floating AI button does not cover mobile dock.
+7. Cron: `Authorization: Bearer $CRON_SECRET` on `/api/ai/cron/index-health`.
+8. Cron without secret in production → 401.
 
-## 10) Rollback
+## 9) Rollback
 
-Revert the merge commit for `cursor/boonbuy-ai-assistant-158a` or remove `AiLauncher` / `AiHeroEntry` imports and `/ai` route if needed. Catalogue and existing pages are unchanged.
+Revert the merge commit for this branch or remove `AiLauncher` / `AiHeroEntry` / `/ai` if needed. Catalogue pages remain intact.
 
-## Remaining optional improvements
+## 10) Deferred (non-blocking)
 
 - Postgres + pgvector embeddings
-- Redis rate limits
-- Admin SEO draft queue + auth
-- Collection-page “Refine with AI” chip strip
-- E2E Playwright suite with mocked model
+- Distributed Redis rate limits
+- Auth-gated admin SEO draft queue
+- E2E Playwright with mocked model
 - Conversation persistence with consent

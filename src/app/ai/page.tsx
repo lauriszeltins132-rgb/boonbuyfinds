@@ -129,7 +129,10 @@ export default async function AiPage({ searchParams }: AiPageProps) {
             <h2 className="text-xl font-black text-foreground">Explore more</h2>
             <ul className="mt-4 flex flex-wrap gap-2">
               {[
+                { href: "/", label: "Homepage" },
                 { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+                { href: "/boonbuy-finds", label: "Finds" },
+                { href: "/categories", label: "Categories" },
                 { href: "/trending", label: "Trending" },
                 { href: "/best-shoes", label: "Best shoes" },
                 { href: "/guides", label: "Guides" },
