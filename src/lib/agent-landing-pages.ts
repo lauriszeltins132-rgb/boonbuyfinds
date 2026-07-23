@@ -5,6 +5,7 @@ import { getAllProducts, getTrendingProducts } from "./products";
 
 const AGENT_LINKS = [
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
+  { href: "/litbuy-finds", label: "LitBuy finds" },
   { href: "/kakobuy-finds", label: "Kakobuy finds" },
   { href: "/oopbuy-finds", label: "OopBuy finds" },
   { href: "/hipobuy-finds", label: "HipoBuy finds" },
@@ -89,6 +90,19 @@ function buildAgentLandingConfig(seed: AgentLandingSeed): SeoLandingConfig {
 }
 
 export const AGENT_LANDING_PAGES: Record<string, SeoLandingConfig> = {
+  "litbuy-finds": buildAgentLandingConfig({
+    slug: "litbuy-finds",
+    agentName: "LitBuy",
+    title: "LitBuy Finds & Spreadsheet Alternative",
+    metaDescription:
+      "Looking for LitBuy finds? Browse QC-curated sneakers, streetwear and fashion finds on BoonBuy Finds — BoonBuy recommended, with LitBuy and other agents available at checkout.",
+    badge: "LitBuy finds",
+    h1: "LitBuy Finds & Spreadsheet Alternative",
+    intro:
+      "Search LitBuy-style finds without digging through static spreadsheets. BoonBuy Finds indexes verified Weidian and Taobao products with photos, QC references where available, and agent choice at checkout. BoonBuy is recommended — LitBuy shoppers can still browse the same catalog.",
+    extraParagraph:
+      "LitBuy shoppers often start from community spreadsheets and Discord QC threads. This LitBuy finds hub gives you a searchable catalog alternative: filter by brand or category, open product pages, then buy with BoonBuy or keep exploring before you switch agents.",
+  }),
   "kakobuy-finds": buildAgentLandingConfig({
     slug: "kakobuy-finds",
     agentName: "Kakobuy",
