@@ -45,6 +45,8 @@ const COMPARISON_HUB: HubBlock = {
   title: "Agent comparisons",
   links: [
     { href: "/boonbuy-vs-litbuy", label: "BoonBuy vs LitBuy" },
+    { href: "/litbuy-finds", label: "LitBuy finds" },
+    { href: "/litbuy-spreadsheet", label: "LitBuy spreadsheet" },
     { href: "/boonbuy-vs-kakobuy", label: "BoonBuy vs Kakobuy" },
     { href: "/boonbuy-vs-mulebuy", label: "BoonBuy vs MuleBuy" },
     { href: "/boonbuy-vs-cnfans", label: "BoonBuy vs CNFans" },

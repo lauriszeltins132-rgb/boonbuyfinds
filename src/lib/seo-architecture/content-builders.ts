@@ -30,6 +30,25 @@ function coreLinks(): { href: string; label: string }[] {
   ];
 }
 
+const OPPONENT_FINDS_LINKS: Record<string, { href: string; label: string }[]> = {
+  litbuy: [
+    { href: "/litbuy-finds", label: "LitBuy finds" },
+    { href: "/litbuy-spreadsheet", label: "LitBuy spreadsheet" },
+  ],
+  kakobuy: [
+    { href: "/kakobuy-finds", label: "Kakobuy finds" },
+    { href: "/kakobuy-spreadsheet", label: "Kakobuy spreadsheet" },
+  ],
+  mulebuy: [
+    { href: "/mulebuy-finds", label: "MuleBuy finds" },
+    { href: "/mulebuy-spreadsheet", label: "MuleBuy spreadsheet" },
+  ],
+  oopbuy: [
+    { href: "/oopbuy-finds", label: "OopBuy finds" },
+    { href: "/oopbuy-spreadsheet", label: "OopBuy spreadsheet" },
+  ],
+};
+
 export function buildComparisonPage(
   slug: string,
   opponent: ComparisonOpponent,
@@ -51,6 +70,7 @@ export function buildComparisonPage(
         { href: "/boonbuy", label: "What is BoonBuy" },
         { href: "/boonbuy-review", label: "BoonBuy review" },
         { href: "/best-shopping-agent", label: "Best shopping agent" },
+        ...(OPPONENT_FINDS_LINKS[opponent.slug] ?? []),
       ],
     },
     {
@@ -163,7 +183,10 @@ export function buildComparisonPage(
     ],
     sections,
     faqs,
-    relatedLinks: coreLinks(),
+    relatedLinks: [
+      ...coreLinks(),
+      ...(OPPONENT_FINDS_LINKS[opponent.slug] ?? []),
+    ],
     relatedArticleSlugs: relatedSlugs,
     spreadsheetHref: "/boonbuy-spreadsheet",
     heroImage: {

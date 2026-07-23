@@ -319,6 +319,40 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
     productSectionTitle: "Streetwear spreadsheet picks",
   },
 
+  "litbuy-spreadsheet": {
+    slug: "litbuy-spreadsheet",
+    type: "spreadsheet",
+    title: "LitBuy Spreadsheet Finds Alternative",
+    description:
+      "LitBuy spreadsheet alternative on BoonBuy Finds — searchable QC-curated finds with photos, filters, and BoonBuy checkout links.",
+    h1: "LitBuy spreadsheet finds alternative",
+    intro:
+      "LitBuy communities lean on shared Google Sheets and Discord QC. Use this page as a LitBuy spreadsheet alternative: curated product rows become searchable cards with photos, pricing, and verified links.",
+    badge: "Agent spreadsheet",
+    keywords: ["litbuy spreadsheet", "litbuy finds", "litbuy finds spreadsheet"],
+    updateFrequency: "weekly",
+    filter: { trending: true },
+    relatedLinks: [
+      { href: "/litbuy-finds", label: "LitBuy finds hub" },
+      { href: "/boonbuy-vs-litbuy", label: "BoonBuy vs LitBuy" },
+      { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+      { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
+    ],
+    faqs: [
+      {
+        question: "Is this an official LitBuy spreadsheet?",
+        answer:
+          "No. This is an independent BoonBuy Finds catalog that LitBuy shoppers can use as a searchable spreadsheet-style alternative. BoonBuy is the recommended agent on this site.",
+      },
+      {
+        question: "Can I still compare LitBuy and BoonBuy?",
+        answer:
+          "Yes. Read our BoonBuy vs LitBuy comparison, then browse finds here and checkout with BoonBuy when you are ready.",
+      },
+    ],
+    productSectionTitle: "Trending finds for LitBuy shoppers",
+  },
+
   "mulebuy-spreadsheet": {
     slug: "mulebuy-spreadsheet",
     type: "spreadsheet",
