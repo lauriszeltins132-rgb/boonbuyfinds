@@ -4,28 +4,32 @@ import { SITE_ALT_URL, SITE_URL } from "./site";
 /** Entity names and common search variants — used in schema, not as visible keyword blocks. */
 export const SITE_ALTERNATE_NAMES = [
   "BoonBuy Finds",
+  "BoonBuy",
+  "boonbuy",
   "boonbuyfinds",
+  "boonbuy finds",
   "BoonBuy Spreadsheet",
   "boonbuy spreadsheet",
   "boonbuy finds spreadsheet",
+  "boonbuy coupons",
+  "boonbuy coupon",
   "RN Finds",
   "RN Finds Telegram",
   "boonbuyfids",
   "boonbuy find",
   "boonbuyfind",
-  "boonbuy finds",
   "boonbuy qc finds",
 ] as const;
 
 export const SITE_ENTITY_DESCRIPTION =
-  "BoonBuy Finds is a product discovery platform for QC photos, spreadsheet finds, fashion finds, sneaker finds, and verified BoonBuy shopping links.";
+  "BoonBuy Finds (boonbuyfinds.net) is the searchable catalog for BoonBuy finds, QC photos, spreadsheet finds, BoonBuy coupons, and verified BoonBuy shopping links.";
 
 
 export const HERO_ENTITY_LINE =
   "Verified listings from Weidian and Taobao — searchable like a boonbuy spreadsheet catalog, with boonbuy QC finds updated daily.";
 
 /** One muted homepage line — natural phrasing for common misspellings, not a keyword list. */
-export const HOMEPAGE_AKA_LINE = `Also known as ${TELEGRAM_CHANNEL_NAME} on Telegram and often searched as boonbuy finds, boonbuyfinds, or boonbuy spreadsheet.`;
+export const HOMEPAGE_AKA_LINE = `Also known as ${TELEGRAM_CHANNEL_NAME} on Telegram and often searched as boonbuy, boonbuy finds, boonbuyfinds, or boonbuy spreadsheet.`;
 
 export const HOMEPAGE_ENTITY_FAQS = [
   {
@@ -92,9 +96,15 @@ export function getOrganizationSameAsLinks(): string[] {
 
 export function getOrganizationKnowsAbout(): string[] {
   return [
+    "BoonBuy",
+    "BoonBuy Finds",
+    "boonbuyfinds",
     "BoonBuy product discovery",
     "boonbuy spreadsheet finds",
     "boonbuy QC finds",
+    "boonbuy coupons",
+    "boonbuy coupon",
+    "boonbuy shipping coupon",
     "shopping agents",
     "QC photos",
     "Weidian finds",

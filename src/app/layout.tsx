@@ -46,11 +46,16 @@ export const metadata: Metadata = {
   ],
 
   keywords: [
+    "boonbuy",
     "boonbuy finds",
+    "boonbuyfinds",
+    "boonbuy coupons",
+    "boonbuy coupon",
+    "best boonbuy coupons",
+    "boonbuy spreadsheet",
     "weidian finds",
     "taobao finds",
     "qc approved finds",
-    "boonbuy spreadsheet",
     "sneaker finds",
     "fashion finds",
   ],

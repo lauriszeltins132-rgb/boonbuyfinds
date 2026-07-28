@@ -393,11 +393,87 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     ],
     relatedLinks: [
       { href: "/best-boonbuy-finds", label: "Best finds" },
+      { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
       { href: "/boonbuy-products", label: "All products" },
       ...RESOURCE_LINKS,
     ],
     getProducts: () => getEditorsPicks(72),
     productSectionTitle: "Top BoonBuy finds right now",
+  },
+
+  boonbuyfinds: {
+    slug: "boonbuyfinds",
+    path: "/boonbuyfinds",
+    title: "Boonbuyfinds | Official BoonBuy Finds Catalog 2026",
+    metaDescription:
+      "Boonbuyfinds (BoonBuy Finds) — searchable BoonBuy spreadsheet finds, QC photos, 45% shipping coupon, Telegram & Discord. The catalog at boonbuyfinds.net.",
+    badge: "Boonbuyfinds",
+    h1: "Boonbuyfinds — BoonBuy Finds catalog",
+    intro:
+      "Boonbuyfinds is BoonBuy Finds: the searchable catalog people mean when they search boonbuyfinds, boonbuy finds, or boonbuy spreadsheet. Browse QC photos, claim the shipping coupon, and open verified BoonBuy checkout links.",
+    sections: [
+      {
+        heading: "What is boonbuyfinds?",
+        paragraphs: [
+          "Boonbuyfinds.net is an independent product discovery site for the BoonBuy shopping-agent ecosystem. It turns spreadsheet-style Weidian and Taobao finds into searchable pages with photos, categories, and QC references.",
+          "If you typed boonbuyfinds, boonbuy finds, or boonbuyfind into Google, you are in the right place — start on the homepage catalog or jump to coupons and guides below.",
+        ],
+        links: [
+          { href: "/", label: "BoonBuy Finds homepage" },
+          { href: "/boonbuy-finds", label: "BoonBuy finds hub" },
+          { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+        ],
+      },
+      {
+        heading: "Coupons, spreadsheet & community",
+        paragraphs: [
+          "New BoonBuy accounts can unlock up to 45% off shipping through our invite coupon pages. Pair that with the BoonBuy spreadsheet alternative and daily Telegram/Discord drops.",
+        ],
+        links: [
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+          { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+          { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
+        ],
+      },
+      {
+        heading: "How boonbuyfinds relates to BoonBuy",
+        paragraphs: [
+          "BoonBuy (boonbuy.com) is the shopping agent for checkout, warehouse QC, and international shipping. Boonbuyfinds is the discovery layer — browse first, then buy on BoonBuy with verified links.",
+        ],
+        links: [
+          { href: "/boonbuy", label: "BoonBuy agent hub" },
+          { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
+          { href: "/boonbuy-review", label: "BoonBuy review" },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is boonbuyfinds the same as BoonBuy Finds?",
+        answer:
+          "Yes. Boonbuyfinds, BoonBuy Finds, and boonbuyfinds.net all refer to this catalog. The official domain is boonbuyfinds.net.",
+      },
+      {
+        question: "Is this the official BoonBuy website?",
+        answer:
+          "No. BoonBuy Finds is an independent discovery catalog. Official agent signup and checkout happen on boonbuy.com — we link there with verified invite coupons.",
+      },
+      {
+        question: "Where do I claim BoonBuy coupons?",
+        answer:
+          "Start at /boonbuy-coupons or /best-boonbuy-coupons for the current shipping discount, then browse finds on the homepage.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/", label: "Homepage" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds" },
+      { href: "/boonbuy-coupons", label: "Coupons" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+      { href: "/boonbuy", label: "BoonBuy hub" },
+    ],
+    getProducts: () => getEditorsPicks(48),
+    productSectionTitle: "Popular finds on boonbuyfinds",
   },
 
   "boonbuy-sneakers": {
