@@ -37,11 +37,13 @@ const SECTIONS = [
   {
     title: "BoonBuy SEO hub",
     links: [
-      { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
-      { href: "/discord-boonbuy", label: "BoonBuy Discord" },
+      { href: "/boonbuy", label: "BoonBuy" },
+      { href: "/boonbuyfinds", label: "Boonbuyfinds" },
+      { href: "/boonbuy-finds", label: "BoonBuy Finds" },
       { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
       { href: "/best-boonbuy-coupons", label: "Best BoonBuy Coupons" },
-      { href: "/boonbuy-coupons-2026", label: "BoonBuy Coupons 2026" },
+      { href: "/boonbuy-coupon-code", label: "BoonBuy Coupon Code" },
+      { href: "/boonbuy-invite-code", label: "BoonBuy Invite Code" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
     ],
   },

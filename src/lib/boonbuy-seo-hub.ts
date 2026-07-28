@@ -42,9 +42,37 @@ export const BOONBUY_SEO_HUB = {
     href: "/best-boonbuy-coupon",
     label: "Best BoonBuy Coupon",
   },
+  couponCode: {
+    href: "/boonbuy-coupon-code",
+    label: "BoonBuy Coupon Code",
+  },
+  promoCode: {
+    href: "/boonbuy-promo-code",
+    label: "BoonBuy Promo Code",
+  },
+  inviteCode: {
+    href: "/boonbuy-invite-code",
+    label: "BoonBuy Invite Code",
+  },
   shippingCoupon: {
     href: "/boonbuy-shipping-coupon",
     label: "BoonBuy Shipping Coupon",
+  },
+  deals: {
+    href: "/boonbuy-deals",
+    label: "BoonBuy Deals",
+  },
+  brandHub: {
+    href: "/boonbuy",
+    label: "BoonBuy",
+  },
+  findsHub: {
+    href: "/boonbuy-finds",
+    label: "BoonBuy Finds",
+  },
+  boonbuyfinds: {
+    href: "/boonbuyfinds",
+    label: "Boonbuyfinds",
   },
   spreadsheet: {
     href: "/boonbuy-spreadsheet",
@@ -91,14 +119,21 @@ export const HERO_LANDING_CTAS = [
 
 export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.home,
+  BOONBUY_SEO_HUB.brandHub,
+  BOONBUY_SEO_HUB.findsHub,
+  BOONBUY_SEO_HUB.boonbuyfinds,
   BOONBUY_SEO_HUB.telegram,
   BOONBUY_SEO_HUB.discord,
   BOONBUY_SEO_HUB.coupons,
   BOONBUY_SEO_HUB.couponSingular,
   BOONBUY_SEO_HUB.couponsBest,
   BOONBUY_SEO_HUB.couponsBestSingular,
+  BOONBUY_SEO_HUB.couponCode,
+  BOONBUY_SEO_HUB.promoCode,
+  BOONBUY_SEO_HUB.inviteCode,
   BOONBUY_SEO_HUB.coupons2026,
   BOONBUY_SEO_HUB.shippingCoupon,
+  BOONBUY_SEO_HUB.deals,
   BOONBUY_SEO_HUB.spreadsheet,
   BOONBUY_SEO_HUB.spreadsheetBest,
 ] as const;

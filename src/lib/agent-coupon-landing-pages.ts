@@ -80,6 +80,54 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     keywordLine:
       "Searching for a BoonBuy promo, BoonBuy promo code, or daily BoonBuy coupon? Claim the verified offer below.",
   },
+  {
+    slug: "boonbuy-promo-code",
+    titleSuffix: `BoonBuy Promo Code 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`,
+    metaDescription: `Use a verified BoonBuy promo code path for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping in 2026. Claim via invite signup on BoonBuy Finds.`,
+    intro: `Need a BoonBuy promo code? New accounts unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping through our verified invite — then shop QC finds on BoonBuy Finds.`,
+    keywordLine:
+      "Searching for a BoonBuy promo code, BoonBuy coupon code, or BoonBuy discount code? Claim the offer below.",
+  },
+  {
+    slug: "boonbuy-coupon-code",
+    titleSuffix: `BoonBuy Coupon Code 2026 | Verified ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Offer`,
+    metaDescription: `BoonBuy coupon code alternative for 2026 — claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with a verified BoonBuy Finds invite link.`,
+    intro: `Looking for a BoonBuy coupon code? Our invite unlocks the current shipping coupon (up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off) without hunting expired influencer codes.`,
+    keywordLine:
+      "Want a BoonBuy coupon code, BoonBuy voucher code, or working BoonBuy discount code? Start with the verified claim button.",
+  },
+  {
+    slug: "boonbuy-invite",
+    titleSuffix: `BoonBuy Invite 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Coupon Link`,
+    metaDescription: `Use the BoonBuy invite link from BoonBuy Finds to unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. Verified signup for new BoonBuy accounts.`,
+    intro: `This is the BoonBuy invite used across BoonBuy Finds. Register with it to claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, then browse spreadsheet finds with QC references.`,
+    keywordLine:
+      "Looking for a BoonBuy invite, BoonBuy referral link, or BoonBuy invite coupon? Claim it below.",
+  },
+  {
+    slug: "boonbuy-invite-code",
+    titleSuffix: `BoonBuy Invite Code 2026 | Claim ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`,
+    metaDescription: `BoonBuy invite code via BoonBuy Finds — unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping and shop verified Weidian & Taobao finds.`,
+    intro: `Enter BoonBuy through our invite code link to unlock the new-user shipping coupon (up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off). Then use BoonBuy Finds to pick QC-backed products.`,
+    keywordLine:
+      "Searching for a BoonBuy invite code, BoonBuy referral code, or BoonBuy signup code? Use the verified link below.",
+  },
+  {
+    slug: "boonbuy-voucher",
+    titleSuffix: `BoonBuy Voucher 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Savings`,
+    metaDescription: `Claim a BoonBuy voucher-style shipping discount — up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off freight for new accounts via BoonBuy Finds.`,
+    intro: `BoonBuy vouchers usually mean shipping savings. Our current offer unlocks up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when you register with the BoonBuy Finds invite.`,
+    keywordLine:
+      "Looking for a BoonBuy voucher, BoonBuy shipping voucher, or BoonBuy coupon voucher? Claim the verified offer below.",
+  },
+  {
+    slug: "boonbuy-deals",
+    titleSuffix: `BoonBuy Deals 2026 | Coupons, Finds & ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Off`,
+    metaDescription: `BoonBuy deals for 2026 — claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, then shop budget finds, QC picks, and spreadsheet deals on BoonBuy Finds.`,
+    intro: `Stack BoonBuy deals the smart way: claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping first, then browse under-$30 finds and trending spreadsheet picks on BoonBuy Finds.`,
+    keywordLine:
+      "Searching for BoonBuy deals, BoonBuy coupons, or cheap BoonBuy finds? Claim shipping savings below, then open deals.",
+  },
 ];
 
 function buildVariants(agent: SeoAgentDefinition): CouponPageVariant[] {
@@ -242,6 +290,84 @@ const BOONBUY_COUPON_SEO_OVERRIDES: Record<
     ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
     offerHeadline: BOONBUY_OFFER_HEADLINE,
     offerDescription: BOONBUY_OFFER_DESCRIPTION,
+  },
+  "boonbuy-promo-code": {
+    h1: "BoonBuy Promo Code",
+    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
+    offerHeadline: BOONBUY_OFFER_HEADLINE,
+    offerDescription: BOONBUY_OFFER_DESCRIPTION,
+    keywords: [
+      "boonbuy promo code",
+      "boonbuy coupon code",
+      "boonbuy discount code",
+      "boonbuy coupons",
+      `${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping boonbuy`,
+    ],
+  },
+  "boonbuy-coupon-code": {
+    h1: "BoonBuy Coupon Code",
+    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
+    offerHeadline: BOONBUY_OFFER_HEADLINE,
+    offerDescription: BOONBUY_OFFER_DESCRIPTION,
+    keywords: [
+      "boonbuy coupon code",
+      "boonbuy coupon",
+      "boonbuy coupons",
+      "boonbuy promo code",
+      "best boonbuy coupons",
+    ],
+  },
+  "boonbuy-invite": {
+    h1: "BoonBuy Invite",
+    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
+    offerHeadline: BOONBUY_OFFER_HEADLINE,
+    offerDescription: BOONBUY_OFFER_DESCRIPTION,
+    keywords: [
+      "boonbuy invite",
+      "boonbuy invite code",
+      "boonbuy referral",
+      "boonbuy coupons",
+      "boonbuy shipping coupon",
+    ],
+  },
+  "boonbuy-invite-code": {
+    h1: "BoonBuy Invite Code",
+    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
+    offerHeadline: BOONBUY_OFFER_HEADLINE,
+    offerDescription: BOONBUY_OFFER_DESCRIPTION,
+    keywords: [
+      "boonbuy invite code",
+      "boonbuy invite",
+      "boonbuy discount code",
+      "boonbuy coupon",
+      "boonbuy referral code",
+    ],
+  },
+  "boonbuy-voucher": {
+    h1: "BoonBuy Voucher",
+    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
+    offerHeadline: BOONBUY_OFFER_HEADLINE,
+    offerDescription: BOONBUY_OFFER_DESCRIPTION,
+    keywords: [
+      "boonbuy voucher",
+      "boonbuy coupon",
+      "boonbuy shipping voucher",
+      "boonbuy discount",
+      "boonbuy coupons",
+    ],
+  },
+  "boonbuy-deals": {
+    h1: "BoonBuy Deals",
+    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
+    offerHeadline: BOONBUY_OFFER_HEADLINE,
+    offerDescription: BOONBUY_OFFER_DESCRIPTION,
+    keywords: [
+      "boonbuy deals",
+      "boonbuy coupons",
+      "cheap boonbuy finds",
+      "boonbuy discount",
+      "best boonbuy coupons",
+    ],
   },
 };
 
