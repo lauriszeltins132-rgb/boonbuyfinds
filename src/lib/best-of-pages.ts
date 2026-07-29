@@ -360,6 +360,76 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     faqs: [],
   },
 
+  "best-jerseys": {
+    slug: "best-jerseys",
+    path: "/best-jerseys",
+    title: "Best BoonBuy Jerseys 2026 | Football & Sports Finds",
+    metaDescription:
+      "Best BoonBuy jerseys — football, soccer and sports jersey finds with QC tips, price filters, and verified BoonBuy checkout links.",
+    badge: "Jerseys",
+    h1: "Best BoonBuy jerseys",
+    intro:
+      "Football and sports jersey finds for international buyers — compare prices, check name/number printing quality in QC references, then open verified BoonBuy links.",
+    getProducts: () =>
+      filterFeaturedEligible(
+        priced(
+          getAllProducts().filter((p) =>
+            /jersey|football|soccer|nba|nfl/i.test(p.product_name)
+          )
+        )
+      ).slice(0, 96),
+    relatedBrandSlugs: ["nike", "adidas"],
+    relatedCategorySlugs: ["tshirts-and-shorts", "accessories"],
+    relatedGuideHrefs: [
+      ...GUIDE_CLUSTER,
+      { href: "/boonbuy-qc", label: "QC guide" },
+    ],
+    relatedBestOfHrefs: [
+      { href: "/best-t-shirts", label: "Best t-shirts" },
+      { href: "/best-under-30", label: "Under $30" },
+      { href: "/best-accessories", label: "Accessories" },
+    ],
+    faqs: [
+      {
+        question: "How do I QC a jersey?",
+        answer:
+          "Check crest embroidery, sponsor logos, name-set spacing, and fabric thickness in warehouse photos before shipping.",
+      },
+    ],
+  },
+
+  "best-boonbuy-tech": {
+    slug: "best-boonbuy-tech",
+    path: "/best-boonbuy-tech",
+    title: "Best BoonBuy Tech 2026 | Electronics Finds",
+    metaDescription:
+      "Best BoonBuy tech and electronics finds — earbuds, gadgets and accessories with verified links, QC tips, and shipping advice.",
+    badge: "Tech",
+    h1: "Best BoonBuy tech",
+    intro:
+      "Electronics and gadget finds from the BoonBuy Finds catalog. Confirm battery/shipping restrictions, request QC when relevant, and consolidate carefully before international freight.",
+    getProducts: () => byCategory("electronics"),
+    relatedBrandSlugs: ["apple", "sony"],
+    relatedCategorySlugs: ["electronics", "accessories"],
+    relatedGuideHrefs: [
+      { href: "/boonbuy-shipping", label: "Shipping guide" },
+      { href: "/boonbuy-warehouse", label: "Warehouse guide" },
+      { href: "/how-to-buy", label: "How to buy" },
+    ],
+    relatedBestOfHrefs: [
+      { href: "/best-accessories", label: "Accessories" },
+      { href: "/categories/electronics", label: "Electronics category" },
+      { href: "/deals", label: "Deals" },
+    ],
+    faqs: [
+      {
+        question: "Can I ship electronics with BoonBuy?",
+        answer:
+          "Often yes, but battery and brand-box rules vary by line. Check the live shipping form before you consolidate a tech-heavy parcel.",
+      },
+    ],
+  },
+
   "best-qc-items": {
     slug: "best-qc-items",
     path: "/best-qc-items",

@@ -42,9 +42,10 @@ const SECTIONS = [
       { href: "/boonbuy-finds", label: "BoonBuy Finds" },
       { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
       { href: "/best-boonbuy-coupons", label: "Best BoonBuy Coupons" },
-      { href: "/boonbuy-coupon-code", label: "BoonBuy Coupon Code" },
-      { href: "/boonbuy-invite-code", label: "BoonBuy Invite Code" },
+      { href: "/boonbuy-referral-code", label: "Referral code" },
+      { href: "/boonbuy-warehouse", label: "Warehouse guide" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+      { href: "/ai", label: "BoonBuy AI" },
     ],
   },
   {

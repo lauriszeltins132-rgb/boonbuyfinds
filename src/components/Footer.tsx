@@ -17,10 +17,10 @@ import siteNavigation from "@/data/site-navigation.json";
 
 const GUIDE_LINKS = [
   { href: "/guides", label: "All guides" },
-  { href: "/guides/boonbuy-finds", label: "BoonBuy finds" },
-  { href: "/guides/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
-  { href: "/guides/boonbuy-qc-photos", label: "BoonBuy QC photos" },
-  { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
+  { href: "/boonbuy-finds", label: "BoonBuy finds" },
+  { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+  { href: "/boonbuy-qc", label: "BoonBuy QC" },
+  { href: "/boonbuy-warehouse", label: "Warehouse" },
   { href: "/how-to-buy", label: "How to buy" },
 ];
 
@@ -34,6 +34,7 @@ const COLLECTION_LINKS = [
 
 const TRUST_LINKS = [
   { href: "/about", label: "About" },
+  { href: "/editorial-policy", label: "Editorial policy" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy policy" },
   { href: "/terms", label: "Terms" },

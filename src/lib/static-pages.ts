@@ -583,6 +583,73 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
     relatedLinks: GUIDE_LINKS,
   },
 
+  "editorial-policy": {
+    path: "/editorial-policy",
+    title: "Editorial Policy | BoonBuy Finds",
+    metaDescription:
+      "BoonBuy Finds editorial policy — how we curate finds, update guides, handle affiliate links, and review corrections.",
+    badge: "Trust",
+    h1: "Editorial policy",
+    intro:
+      "BoonBuy Finds is an independent discovery catalog. This policy explains how we research content, update pages, disclose affiliate relationships, and handle corrections.",
+    sections: [
+      {
+        heading: "Independence",
+        paragraphs: [
+          "We are not owned by BoonBuy. Product grids and guides are written to help buyers research Weidian and Taobao finds before checkout.",
+          "Affiliate commissions may apply when you register or buy through outbound BoonBuy links. Commissions do not change the price you pay.",
+        ],
+      },
+      {
+        heading: "How pages are updated",
+        paragraphs: [
+          "Catalog pages refresh as spreadsheet imports and QC references sync. Guides and architecture articles show last-updated dates and are revised when agent workflows change.",
+          "Coupon and invite pages always defer to live promo terms at registration — screenshots expire.",
+        ],
+        links: [
+          { href: "/about", label: "About BoonBuy Finds" },
+          { href: "/boonbuy-coupons", label: "Coupons hub" },
+        ],
+      },
+      {
+        heading: "Community-tested indicators",
+        paragraphs: [
+          "QC badges and reference albums come from community or seller documentation. They are research aids — not a guarantee of your warehouse photos.",
+          "Always request warehouse QC on BoonBuy for items you plan to ship internationally.",
+        ],
+        links: [
+          { href: "/boonbuy-qc", label: "QC guide" },
+          { href: "/boonbuy-warehouse", label: "Warehouse guide" },
+        ],
+      },
+      {
+        heading: "Corrections",
+        paragraphs: [
+          "Email hello@boonbuyfinds.net with a page URL and what should change. Listing and guide corrections are prioritized when evidence is included.",
+        ],
+        links: [{ href: "/contact", label: "Contact" }],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you sell products?",
+        answer:
+          "No. Checkout happens on BoonBuy. BoonBuy Finds organizes discovery, guides, and verified outbound links.",
+      },
+      {
+        question: "Can brands pay for rankings?",
+        answer:
+          "We do not sell placement in editorial lists. Product grids are driven by catalog filters, quality signals, and engagement — not paid ranking slots.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/about", label: "About" },
+      { href: "/privacy-policy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
+      { href: "/boonbuy", label: "BoonBuy hub" },
+    ],
+  },
+
   boonbuy: {
     path: "/boonbuy",
     title: "BoonBuy | Shopping Agent, Finds, Coupons & Spreadsheet 2026",

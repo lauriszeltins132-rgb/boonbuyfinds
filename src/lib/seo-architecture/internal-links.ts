@@ -10,9 +10,11 @@ const CORE_HUB: HubBlock[] = [
     title: "Home & catalog",
     links: [
       { href: "/", label: "Homepage" },
+      { href: "/ai", label: "BoonBuy AI" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
       { href: "/collections", label: "Collections" },
       { href: "/trending", label: "Trending finds" },
+      { href: "/latest", label: "Latest finds" },
     ],
   },
   {
@@ -28,9 +30,9 @@ const CORE_HUB: HubBlock[] = [
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+      { href: "/boonbuy-referral-code", label: "Referral code" },
       { href: "/boonbuy-coupon-code", label: "Coupon code" },
       { href: "/boonbuy-invite-code", label: "Invite code" },
-      { href: "/boonbuy-promo-code", label: "Promo code" },
       { href: "/boonbuy-shipping", label: "BoonBuy shipping" },
       { href: "/boonbuy-discount-code", label: "Discount code" },
     ],
@@ -42,7 +44,11 @@ const CORE_HUB: HubBlock[] = [
       { href: "/boonbuy", label: "BoonBuy hub" },
       { href: "/boonbuyfinds", label: "Boonbuyfinds" },
       { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
+      { href: "/boonbuy-warehouse", label: "Warehouse guide" },
+      { href: "/boonbuy-returns", label: "Returns guide" },
+      { href: "/boonbuy-payment", label: "Payment guide" },
       { href: "/best-shopping-agent", label: "Best shopping agent" },
+      { href: "/editorial-policy", label: "Editorial policy" },
     ],
   },
 ];
@@ -81,6 +87,10 @@ const CATEGORY_HUB: HubBlock = {
     { href: "/best-sneakers", label: "Best sneakers" },
     { href: "/best-hoodies", label: "Best hoodies" },
     { href: "/best-jackets", label: "Best jackets" },
+    { href: "/best-jerseys", label: "Best jerseys" },
+    { href: "/best-boonbuy-tech", label: "Best tech" },
+    { href: "/best-watches", label: "Best watches" },
+    { href: "/best-accessories", label: "Best accessories" },
     { href: "/best-budget-finds", label: "Best budget finds" },
     { href: "/trending-finds", label: "Trending finds" },
   ],
@@ -102,9 +112,14 @@ export function getSeoArchitectureInternalLinks(page: SeoArchitecturePage): HubB
         { href: "/how-to-buy-from-taobao", label: "Buy from Taobao" },
         { href: "/how-to-buy-from-weidian", label: "Buy from Weidian" },
         { href: "/how-shipping-works", label: "How shipping works" },
+        { href: "/boonbuy-warehouse", label: "Warehouse" },
+        { href: "/boonbuy-returns", label: "Returns" },
+        { href: "/boonbuy-payment", label: "Payment" },
         { href: "/how-to-find-best-reps", label: "Find best reps" },
+        { href: "/boonbuy-qc", label: "QC guide" },
       ],
     });
+    hubs.push(CATEGORY_HUB);
   } else if (page.category === "review") {
     hubs.push({
       title: "Agent reviews",

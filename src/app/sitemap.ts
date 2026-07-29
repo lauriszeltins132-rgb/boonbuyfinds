@@ -112,7 +112,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push({
       url: `${SITE_URL}${page.path}`,
       changeFrequency: "weekly",
-      priority: slug.endsWith("-coupons") && !slug.startsWith("best-") ? 0.92 : 0.9,
+      priority: slug.endsWith("-coupons") && !slug.startsWith("best-") ? 0.86 : 0.84,
     });
   }
 
@@ -243,5 +243,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   });
 
-  return routes;
+  // Deduplicate by URL (architecture + landing registries can overlap).
+  const seen = new Set<string>();
+  return routes.filter((route) => {
+    if (seen.has(route.url)) return false;
+    seen.add(route.url);
+    return true;
+  });
 }

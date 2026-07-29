@@ -569,46 +569,68 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
 
   "best-shopping-agent": {
     slug: "best-shopping-agent",
-    type: "comparison",
+    type: "collection",
     title: "Best Shopping Agent for BoonBuy Finds",
     description:
-      "How to choose a shopping agent for Weidian and Taobao finds — BoonBuy, MuleBuy, OopBuy, Kakobuy, and ACBuy compared at a high level.",
+      "How to choose a shopping agent for Weidian and Taobao finds — BoonBuy recommended, with comparisons to MuleBuy, OopBuy, Kakobuy, LitBuy, and CNFans.",
     h1: "Best shopping agent for these finds",
     intro:
-      "There is no single best agent for every buyer. BoonBuy is our recommended default because this catalog and QC examples are BoonBuy-first. MuleBuy, OopBuy, Kakobuy, and ACBuy are supported alternatives when their fees or shipping lines fit your country better.",
+      "There is no single best agent for every buyer. BoonBuy is our recommended default because this catalog and QC examples are BoonBuy-first. Use the comparisons below when fees or shipping lines to your country favor another agent.",
     badge: "Agent guide",
-    keywords: ["best shopping agent", "boonbuy agent comparison"],
+    keywords: [
+      "best shopping agent",
+      "best boonbuy agent",
+      "boonbuy agent comparison",
+      "best china shopping agent",
+    ],
     updateFrequency: "monthly",
     sections: [
       {
         heading: "What to compare",
         paragraphs: [
           "Look at warehouse QC options, storage time, international lines to your country, payment methods, and current coupons — not just hype in a Discord poll.",
+          "BoonBuy Finds is built around BoonBuy discovery and checkout. Other agents remain useful for quote shopping; this catalog’s buy buttons open BoonBuy.",
         ],
         links: [
-          { href: "/guides/what-is-a-shopping-agent", label: "What is an agent?" },
-          { href: "/guides/how-shipping-works-with-agents", label: "Shipping basics" },
+          { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+          { href: "/boonbuy-vs-litbuy", label: "BoonBuy vs LitBuy" },
+          { href: "/boonbuy-vs-cnfans", label: "BoonBuy vs CNFans" },
+          { href: "/how-shipping-works", label: "Shipping basics" },
+        ],
+      },
+      {
+        heading: "Quick agent map",
+        paragraphs: [
+          "Start with BoonBuy if you shop this catalog. Compare LitBuy, Kakobuy, MuleBuy, OopBuy, and CNFans when your circle already standardizes on those wallets or when a live freight quote wins clearly.",
+        ],
+        links: [
+          { href: "/boonbuy-vs-kakobuy", label: "vs Kakobuy" },
+          { href: "/boonbuy-vs-mulebuy", label: "vs MuleBuy" },
+          { href: "/boonbuy-vs-oopbuy", label: "vs OopBuy" },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
         ],
       },
     ],
     filter: { freshness: "editorsPicks" },
     relatedLinks: [
+      { href: "/boonbuy", label: "BoonBuy hub" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/mulebuy-finds", label: "MuleBuy finds" },
       { href: "/kakobuy-finds", label: "Kakobuy finds" },
       { href: "/oopbuy-finds", label: "OopBuy finds" },
+      { href: "/litbuy-finds", label: "LitBuy finds" },
       { href: "/acbuy-finds", label: "ACBuy finds" },
     ],
     faqs: [
       {
         question: "Why does BoonBuy Finds recommend BoonBuy?",
         answer:
-          "Our buy links, QC references, and guides are built around BoonBuy — this site is BoonBuy-only for checkout.",
+          "Our buy links, QC references, and guides are built around BoonBuy — this site is BoonBuy-first for checkout while still publishing honest agent comparisons.",
       },
       {
-        question: "Is this site multi-agent?",
+        question: "Should I use more than one agent?",
         answer:
-          "No. BoonBuy Finds is a BoonBuy discovery catalog. Buy buttons open BoonBuy only.",
+          "Many buyers keep a primary agent for discovery habit and a backup for shipping quotes. Do not split one haul across agents — warehouse inventory does not transfer.",
       },
     ],
     productSectionTitle: "Editor-ranked finds to start with",

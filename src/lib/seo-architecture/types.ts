@@ -37,4 +37,8 @@ export type SeoArchitecturePage = {
   parentCrumb?: { label: string; href: string };
   heroImage?: SeoArticleImage;
   publishedIso?: string;
+  /** One-sentence answer optimized for AI Overviews / featured snippets. */
+  directAnswer?: string;
+  /** Bullet facts shown in a summary box under the intro. */
+  keyFacts?: string[];
 };

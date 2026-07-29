@@ -22,14 +22,27 @@ import {
   buildArticleSchema,
   buildBreadcrumbSchema,
   buildFaqSchema,
+  buildHowToSchema,
   buildWebPageSchema,
 } from "@/lib/schema";
 import { BOONBUY_COUPON_URL } from "@/lib/boonbuy-affiliate";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import { CONTENT_REVIEW_NOTE } from "@/lib/trust";
 
 type SeoArticleLayoutProps = {
   page: SeoArchitecturePage;
 };
+
+const AUTHORITY_CLUSTER_LINKS = [
+  { href: "/ai", label: "BoonBuy AI" },
+  { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+  { href: "/boonbuy-coupons", label: "Coupons" },
+  { href: "/latest", label: "Latest finds" },
+  { href: "/categories", label: "Categories" },
+  { href: "/collections", label: "Collections" },
+  { href: "/trending", label: "Trending" },
+  { href: "/guides", label: "Guides" },
+] as const;
 
 function RelatedArticles({
   slugs,
@@ -130,7 +143,22 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
     buildFaqSchema(page.faqs),
   ];
 
+  if (page.category === "guide" && page.sections.length > 0) {
+    const howTo = buildHowToSchema({
+      name: page.h1,
+      description: page.directAnswer ?? page.metaDescription,
+      path: page.path,
+      steps: page.sections.slice(0, 6).map((section) => ({
+        name: section.heading,
+        text: section.paragraphs[0] ?? section.heading,
+      })),
+    });
+    if (howTo) schema.push(howTo);
+  }
+
   const spreadsheetHref = page.spreadsheetHref ?? "/boonbuy-spreadsheet";
+  const directAnswer = page.directAnswer ?? page.intro;
+  const keyFacts = page.keyFacts ?? [];
 
   return (
     <>
@@ -148,12 +176,41 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted">{page.intro}</p>
 
+          <aside className="mt-6 rounded-2xl border border-border bg-surface/35 p-5">
+            <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
+              Quick answer
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-foreground">{directAnswer}</p>
+            {keyFacts.length > 0 ? (
+              <ul className="mt-4 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
+                {keyFacts.map((fact) => (
+                  <li key={fact}>{fact}</li>
+                ))}
+              </ul>
+            ) : null}
+          </aside>
+
           <SeoArticleReadingMeta
             publishedIso={dates.publishedIso}
             updatedIso={dates.updatedIso}
             readingTimeMinutes={readingTimeMinutes}
             wordCount={wordCount}
           />
+
+          <nav
+            aria-label="Authority cluster"
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            {AUTHORITY_CLUSTER_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent hover:text-accent"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
           {page.heroImage ? (
             <figure className="mt-8 overflow-hidden rounded-2xl border border-border">
@@ -311,7 +368,11 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
           ) : null}
 
           <p className="mt-10 text-sm text-muted">
-            Join the community on{" "}
+            {CONTENT_REVIEW_NOTE}{" "}
+            <Link href="/editorial-policy" className="font-bold text-accent hover:underline">
+              Editorial policy
+            </Link>
+            . Join the community on{" "}
             <a
               href={SOCIAL_LINKS.telegram}
               className="font-bold text-accent hover:underline"
