@@ -15,6 +15,10 @@ export type SeoLandingConfig = {
   badge: string;
   h1: string;
   intro: string;
+  /** One-sentence answer optimized for AI Overviews / featured snippets. */
+  directAnswer?: string;
+  /** Bullet facts shown in a summary box under the intro. */
+  keyFacts?: string[];
   sections: StaticPageSection[];
   faqs: { question: string; answer: string }[];
   relatedLinks: { href: string; label: string }[];
@@ -54,6 +58,15 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     h1: "BoonBuy Spreadsheet",
     intro:
       "Looking for a BoonBuy spreadsheet? BoonBuy Finds is the searchable spreadsheet alternative for Weidian and Taobao finds — photos, QC references, filters, verified BoonBuy checkout links, and a 45% shipping coupon invite so you spend less time hunting rows and more time buying.",
+    directAnswer:
+      "A BoonBuy spreadsheet is a community product list (links, prices, QC notes); BoonBuy Finds is the searchable catalog alternative with photos, filters, and verified BoonBuy checkout links.",
+    keyFacts: [
+      "Same product universe as popular community sheets — structured into product pages",
+      "QC references and category/brand filters beat raw mobile spreadsheet scrolling",
+      "Verified BoonBuy buy links — discovery here, checkout and warehouse on BoonBuy",
+      "Pair with a shipping coupon before funding a haul",
+      "Keep your sheet for personal notes; use this catalog for daily search and sharing",
+    ],
     sections: [
       {
         heading: "What a BoonBuy spreadsheet contains",
@@ -236,6 +249,15 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     h1: "BoonBuy QC photos",
     intro:
       "QC (quality control) photos are the safety net of agent buying. BoonBuy Finds links to QC references where available, and BoonBuy lets you request warehouse photos of your exact item before you ship your haul.",
+    directAnswer:
+      "BoonBuy QC means warehouse photos of your exact item before international shipping; BoonBuy Finds also shows reference QC from other buyers to shortlist products earlier.",
+    keyFacts: [
+      "Reference QC helps compare batches before you order",
+      "Warehouse QC is taken after purchase on your specific item",
+      "Approve or reject before the parcel leaves the warehouse",
+      "Highest impact categories: sneakers, bags, and outerwear",
+      "Use QC-approved collections to start with fewer unknowns",
+    ],
     sections: [
       {
         heading: "Reference QC vs warehouse QC",
@@ -324,6 +346,15 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     h1: "BoonBuy finds",
     intro:
       "BoonBuy Finds is a curated discovery catalog for fashion and sneaker products. Search by brand or category, save favorites, and open verified BoonBuy links when you are ready to order.",
+    directAnswer:
+      "BoonBuy Finds is a curated Weidian/Taobao discovery catalog with QC context and verified BoonBuy checkout links — not a marketplace checkout itself.",
+    keyFacts: [
+      "Browse by brand, category, collections, and trending rails",
+      "Product pages include images, pricing context, and QC signals where available",
+      "Outbound buy buttons open tested BoonBuy listings",
+      "Updated as spreadsheet and catalog imports sync",
+      "Use coupons and shipping guides before you consolidate a haul",
+    ],
     sections: [
       {
         heading: "What makes BoonBuy Finds different",

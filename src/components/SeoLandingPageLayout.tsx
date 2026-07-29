@@ -128,6 +128,33 @@ export default function SeoLandingPageLayout({ entry }: SeoLandingPageLayoutProp
             </p>
           ) : null}
 
+          {entry.directAnswer || (entry.keyFacts && entry.keyFacts.length > 0) ? (
+            <aside className="mt-6 rounded-2xl border border-border bg-surface/35 p-5">
+              <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
+                Quick answer
+              </h2>
+              {entry.directAnswer ? (
+                <p className="mt-2 text-sm leading-relaxed text-foreground">
+                  {entry.directAnswer}
+                </p>
+              ) : null}
+              {entry.keyFacts && entry.keyFacts.length > 0 ? (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
+                  {entry.keyFacts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+              ) : null}
+              <p className="mt-3 text-xs text-muted">
+                See our{" "}
+                <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+                  editorial policy
+                </Link>{" "}
+                for how guides are reviewed.
+              </p>
+            </aside>
+          ) : null}
+
           {sections.length > 0 ? (
             <div className="mt-10 space-y-10">
               {sections.map((section) => {
