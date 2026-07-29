@@ -41,6 +41,10 @@ export type SeoLandingPageEntry = {
   description: string;
   h1: string;
   intro: string;
+  /** One-sentence answer optimized for AI Overviews / featured snippets. */
+  directAnswer?: string;
+  /** Bullet facts shown in a summary box under the intro. */
+  keyFacts?: string[];
   badge: string;
   keywords: string[];
   updateFrequency: SeoLandingUpdateFrequency;
@@ -470,6 +474,15 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
     h1: "BoonBuy vs MuleBuy",
     intro:
       "Both agents can purchase from Chinese marketplaces. BoonBuy is our recommended default on this site, but MuleBuy is a supported alternative. The right choice depends on your coupons, shipping line, and personal preference — not a single universal winner.",
+    directAnswer:
+      "BoonBuy and MuleBuy both buy from Weidian/Taobao with warehouse QC and international shipping — pick by live fees, coupons, and shipping lines, not a permanent universal winner.",
+    keyFacts: [
+      "Both support marketplace paste-links, warehouse storage, and QC photos",
+      "BoonBuy Finds catalog and buy buttons are BoonBuy-only",
+      "Compare shipping quotes to your country before consolidating",
+      "Coupon campaigns change — verify live promo terms in each dashboard",
+      "Use this page with fee guides, not screenshots alone",
+    ],
     badge: "Comparison",
     keywords: ["boonbuy vs mulebuy", "mulebuy or boonbuy"],
     updateFrequency: "monthly",
@@ -531,6 +544,15 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
     h1: "BoonBuy vs OopBuy",
     intro:
       "OopBuy is a supported alternative to BoonBuy on this site. We recommend BoonBuy for the QC workflow this catalog is built around, but many buyers stick with OopBuy for habit, coupons, or regional shipping — that is a personal call.",
+    directAnswer:
+      "BoonBuy and OopBuy are both shopping agents for Chinese marketplaces; BoonBuy Finds is built around BoonBuy checkout links, while OopBuy remains a valid alternative when coupons or shipping fit better.",
+    keyFacts: [
+      "Same core loop: find link → agent buys → warehouse QC → ship",
+      "This site's verified buy buttons open BoonBuy listings",
+      "Fee and shipping differences matter more than brand loyalty",
+      "Re-check live quotes before large hauls",
+      "Pair comparisons with coupon and shipping guides",
+    ],
     badge: "Comparison",
     keywords: ["boonbuy vs oopbuy", "oopbuy or boonbuy"],
     updateFrequency: "monthly",

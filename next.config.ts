@@ -129,6 +129,10 @@ const nextConfig: NextConfig = {
       { source: "/boonbuy-tech", destination: "/best-boonbuy-tech", permanent: true },
       { source: "/jerseys", destination: "/best-jerseys", permanent: true },
       { source: "/best-boonbuy-jerseys", destination: "/best-jerseys", permanent: true },
+      { source: "/best-boonbuy-shoes", destination: "/best-shoes", permanent: true },
+      { source: "/best-boonbuy-watches", destination: "/best-watches", permanent: true },
+      { source: "/referral-code", destination: "/boonbuy-referral-code", permanent: true },
+      { source: "/boonbuy-referral", destination: "/boonbuy-referral-code", permanent: true },
     ];
   },
   images: {

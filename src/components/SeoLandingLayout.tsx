@@ -44,6 +44,57 @@ export default function SeoLandingLayout({ config }: SeoLandingLayoutProps) {
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted">{config.intro}</p>
 
+          {config.directAnswer || (config.keyFacts && config.keyFacts.length > 0) ? (
+            <aside className="mt-6 rounded-2xl border border-border bg-surface/35 p-5">
+              <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
+                Quick answer
+              </h2>
+              {config.directAnswer ? (
+                <p className="mt-2 text-sm leading-relaxed text-foreground">
+                  {config.directAnswer}
+                </p>
+              ) : null}
+              {config.keyFacts && config.keyFacts.length > 0 ? (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
+                  {config.keyFacts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+              ) : null}
+              <p className="mt-3 text-xs text-muted">
+                See our{" "}
+                <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+                  editorial policy
+                </Link>{" "}
+                for how guides are reviewed.
+              </p>
+            </aside>
+          ) : null}
+
+          <nav
+            aria-label="Authority resources"
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            {[
+              { href: "/ai", label: "AI" },
+              { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+              { href: "/boonbuy-coupons", label: "Coupons" },
+              { href: "/latest", label: "Latest" },
+              { href: "/categories", label: "Categories" },
+              { href: "/collections", label: "Collections" },
+              { href: "/trending", label: "Trending" },
+              { href: "/guides", label: "Guides" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold text-foreground/80 hover:border-accent/40 hover:text-accent"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
           <div className="mt-10 space-y-10">
             {config.sections.map((section) => {
               const Heading = section.level === 3 ? "h3" : "h2";

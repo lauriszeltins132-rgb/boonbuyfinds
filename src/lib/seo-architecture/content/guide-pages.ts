@@ -25,6 +25,15 @@ export const GUIDE_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "How to buy from Taobao",
     intro:
       "Taobao is Alibaba's consumer marketplace — huge catalog, Chinese-only checkout for domestic buyers. International shoppers use BoonBuy agent links from find pages to purchase without a Chinese bank card.",
+    directAnswer:
+      "International buyers cannot check out on Taobao directly — use a BoonBuy agent link from BoonBuy Finds, confirm SKU size and color on the agent screen, then pay and request warehouse QC before shipping.",
+    keyFacts: [
+      "Taobao targets domestic buyers with local payment and shipping.",
+      "BoonBuy Finds highlights Taobao-sourced rows with verified agent links.",
+      "Size charts vary by factory — compare centimeter measurements to a garment you own.",
+      "Domestic shipping to the BoonBuy warehouse is usually quick after payment.",
+      "Warehouse QC before international freight is especially important on sneakers and jackets.",
+    ],
     keywords: ["how to buy from taobao", "taobao agent", "taobao boonbuy"],
     sections: [
       {
@@ -83,6 +92,15 @@ export const GUIDE_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "How to buy from Weidian",
     intro:
       "Weidian is mobile-first marketplace infrastructure for small sellers — a huge share of streetwear and sneaker batches list here first. You buy through BoonBuy, not with a foreign card on Weidian itself.",
+    directAnswer:
+      "Weidian sellers list streetwear and sneaker batches first — international buyers purchase through BoonBuy agent links from BoonBuy Finds, not with a foreign card on Weidian itself.",
+    keyFacts: [
+      "Weidian is mobile-first; shops rotate inventory and prices quickly.",
+      "Trust live BoonBuy totals at payment — spreadsheet rows can show stale prices.",
+      "Use BoonBuy URLs from BoonBuy Finds cards or verified friend links.",
+      "QC references from other buyers fill gaps when seller photos are minimal.",
+      "Read multiple QC posts before spending on grail batches at the same price tier.",
+    ],
     keywords: ["how to buy from weidian", "weidian agent", "weidian boonbuy"],
     sections: [
       {
@@ -168,6 +186,15 @@ export const GUIDE_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "How shipping works with agents",
     intro:
       "Agent shipping is a two-leg journey: domestic seller to warehouse, warehouse to your country. You only control the second invoice directly — but you influence cost through consolidation, packaging, and line choice.",
+    directAnswer:
+      "Agent shipping is a two-leg journey: seller to warehouse, then warehouse to your country. You control cost through consolidation, packaging choices, shipping line selection, and honest customs declarations.",
+    keyFacts: [
+      "Domestic seller delivery to the warehouse happens before you pay international freight.",
+      "Free storage windows vary — check BoonBuy policy before items sit for months.",
+      "Economy vs express lines trade money for speed and tracking detail.",
+      "Carriers charge the higher of actual weight vs volumetric weight.",
+      "Honest customs declarations reduce seizure risk compared to extreme under-declaring.",
+    ],
     keywords: ["how shipping works", "agent shipping", "haul shipping"],
     sections: [
       {

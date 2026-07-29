@@ -245,6 +245,14 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "BoonBuy discount code",
     intro:
       "BoonBuy discount codes usually arrive as registration invite codes and shipping coupons — not random strings in YouTube comments. Use the current invite on our coupon hub; confirm the live percentage on BoonBuy before you fund a haul.",
+    directAnswer: `BoonBuy discount codes are usually registration invite codes and shipping coupons — not item markdowns. Use invite code ${BOONBUY_INVITE_CODE} at signup and confirm live promo terms on BoonBuy before funding a haul.`,
+    keyFacts: [
+      `Primary registration invite: ${BOONBUY_INVITE_CODE} via the official coupon URL.`,
+      "Coupons adjust service fees or international freight — rarely listing prices on Taobao.",
+      "Enter the invite during BoonBuy signup, not on individual Weidian listings.",
+      "Expired influencer codes circulate on Reddit — use verified hub links instead.",
+      "Combine promos with smart parcel consolidation for the biggest savings.",
+    ],
     keywords: ["boonbuy discount code", "boonbuy coupon", "boonbuy invite code"],
     sections: [
       {
@@ -307,6 +315,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "BoonBuy shipping",
     intro:
       "Item prices are only half the haul math. BoonBuy shipping covers warehouse storage, line selection, customs declaration, and last-mile delivery to your country. Quote freight before you buy more cart lines than your budget can ship.",
+    directAnswer:
+      "BoonBuy shipping is the international freight stage after QC — build a parcel, choose a line, declare contents, and pay freight. Quote dimensional weight and consolidation before adding more cart items.",
+    keyFacts: [
+      "Item prices are only part of haul cost; freight is paid separately after QC approval.",
+      "Economy, express, and tax-inclusive lines differ in speed, tracking, and price per kilo.",
+      "New registration promos often discount international freight, not domestic seller delivery.",
+      "Carriers bill volumetric weight on bulky packages — jackets can price like multiple tees.",
+      "Consolidating multiple items into one parcel beats shipping single-item boxes.",
+    ],
     keywords: ["boonbuy shipping", "boonbuy shipping coupon", "agent shipping"],
     sections: [
       {
@@ -379,6 +396,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "BoonBuy review",
     intro:
       "BoonBuy is a Chinese shopping agent — not a retailer. This review covers how it handles purchases, warehouse QC, international shipping, and how BoonBuy Finds fits in as a discovery layer. Independent opinion for overseas streetwear and sneaker buyers.",
+    directAnswer:
+      "BoonBuy is a top-tier Chinese shopping agent in 2026 for paste-link ordering, warehouse QC, and parcel building — especially when paired with BoonBuy Finds for discovery. Budget 15–25% above listing prices for realistic all-in costs.",
+    keyFacts: [
+      "Strong paste-link ordering across Taobao, Weidian, and 1688.",
+      "Pairs with BoonBuy Finds for searchable catalog and coupon pages.",
+      "Support queues spike during holidays; listing prices on find sites can drift from live totals.",
+      "Warehouse QC helps but does not replace community batch research.",
+      "Compare live shipping quotes against alternative agents before committing long term.",
+    ],
     keywords: ["boonbuy review", "is boonbuy good", "boonbuy agent review"],
     sections: [
       {
@@ -446,6 +472,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "How to use BoonBuy",
     intro:
       "Using BoonBuy means registering an account, funding a wallet, opening agent links from find pages, confirming variants, paying for items, reviewing warehouse QC, and shipping a parcel internationally. Here is that loop with the details beginners miss.",
+    directAnswer:
+      "Register on BoonBuy, fund your wallet, open agent links from BoonBuy Finds, confirm variants, pay for items, review warehouse QC photos, then build and ship an international parcel.",
+    keyFacts: [
+      `Register with invite code ${BOONBUY_INVITE_CODE} for new-user shipping promos when available.`,
+      "Discover products on BoonBuy Finds — use verified agent links, not random marketplace search.",
+      "Match size and color on the BoonBuy screen before paying.",
+      "Domestic seller shipping to the warehouse is the first wait after payment.",
+      "Approve warehouse QC before international freight; bundle approved items into one parcel.",
+    ],
     keywords: ["how to use boonbuy", "boonbuy guide", "boonbuy tutorial"],
     sections: [
       {
@@ -501,6 +536,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "What is BoonBuy?",
     intro:
       "BoonBuy is a shopping agent that buys from Chinese marketplaces on your behalf, stores goods at a warehouse, photographs them for QC, and ships internationally. It is not a store inventory — every item comes from a third-party seller link you provide or open through an agent URL.",
+    directAnswer:
+      "BoonBuy is a Chinese shopping agent — not a retailer — that buys from Taobao, Weidian, and 1688 on your behalf, warehouses items for QC, and ships internationally.",
+    keyFacts: [
+      "Buys from third-party marketplace sellers; BoonBuy does not hold store inventory.",
+      "Bridges overseas payment and shipping that Chinese marketplaces block for foreign buyers.",
+      "Typical flow: product link → pay → warehouse QC → international parcel.",
+      "Service fees and freight sit on top of listing prices.",
+      "BoonBuy Finds is an independent discovery catalog with outbound BoonBuy checkout links.",
+    ],
     keywords: ["what is boonbuy", "boonbuy agent", "boonbuy shopping agent"],
     sections: [
       {
@@ -539,6 +583,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "Is BoonBuy legit?",
     intro:
       "BoonBuy is a widely used shopping agent with real warehouse operations and international shipping volume. Legitimacy questions usually mean: am I on the real site, is my money safe, and will I get my parcel — not whether agents are morally approved.",
+    directAnswer:
+      "BoonBuy is a widely used shopping agent with real warehouse operations and international shipping volume. Verify you are on boonbuy.com, use warehouse QC before shipping, and expect normal agent risks like delays and batch variance.",
+    keyFacts: [
+      "Legitimacy questions usually mean site verification, payment safety, and parcel delivery.",
+      "Bookmark boonbuy.com from official coupon pages; phishing clones exist.",
+      "Warehouse QC is your inspection window — dispute before international freight.",
+      "Agents buy from third-party sellers; batch quality varies by listing.",
+      "BoonBuy Finds is independent from the BoonBuy agent company.",
+    ],
     keywords: ["is boonbuy legit", "boonbuy legit", "boonbuy scam"],
     sections: [
       {
