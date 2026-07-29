@@ -174,6 +174,14 @@ export function buildComparisonPage(
     badge: "Agent comparison",
     h1,
     intro: `Choosing between BoonBuy and ${opponent.name} in 2026 comes down to shipping quotes to your country, how you discover links, and whether you want BoonBuy Finds' curated catalog on the BoonBuy checkout path. Below is a practical breakdown — not affiliate hype.`,
+    directAnswer: `BoonBuy and ${opponent.name} both paste marketplace links, warehouse QC, and ship internationally — compare live fees, shipping quotes to your country, and discovery workflow before funding a haul.`,
+    keyFacts: [
+      "Both agents buy from Taobao, Weidian, and 1688; checkout loops are similar.",
+      "Fees, payment surcharges, and shipping lines change with campaigns — always quote live.",
+      "BoonBuy Finds indexes spreadsheet-style discovery with BoonBuy checkout links.",
+      "Warehouse QC is mandatory protection on both platforms before international freight.",
+      `Many buyers test both agents and fund whichever quotes better freight today.`,
+    ],
     keywords: [
       `boonbuy vs ${opponent.slug}`,
       "boonbuy",
