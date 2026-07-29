@@ -326,3 +326,33 @@ export function buildAgentCouponWebPageSchema({
     publisher: { "@id": ORGANIZATION_SCHEMA_ID },
   };
 }
+
+/** HowTo for guide pages — steps derived from section headings. */
+export function buildHowToSchema({
+  name,
+  description,
+  path,
+  steps,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  steps: { name: string; text: string }[];
+}) {
+  if (steps.length === 0) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    url: `${SITE_URL}${path}`,
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+    publisher: { "@id": ORGANIZATION_SCHEMA_ID },
+  };
+}

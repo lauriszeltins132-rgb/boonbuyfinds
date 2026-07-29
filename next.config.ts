@@ -121,6 +121,14 @@ const nextConfig: NextConfig = {
       { source: "/mulebuy-telegram", destination: "/telegram-mulebuy", permanent: true },
       { source: "/oopbuy-telegram", destination: "/telegram-oopbuy", permanent: true },
       { source: "/kakobuy-telegram", destination: "/telegram-kakobuy", permanent: true },
+      { source: "/boonbuy-ai", destination: "/ai", permanent: true },
+      { source: "/warehouse", destination: "/boonbuy-warehouse", permanent: true },
+      { source: "/returns", destination: "/boonbuy-returns", permanent: true },
+      { source: "/payment", destination: "/boonbuy-payment", permanent: true },
+      { source: "/best-tech", destination: "/best-boonbuy-tech", permanent: true },
+      { source: "/boonbuy-tech", destination: "/best-boonbuy-tech", permanent: true },
+      { source: "/jerseys", destination: "/best-jerseys", permanent: true },
+      { source: "/best-boonbuy-jerseys", destination: "/best-jerseys", permanent: true },
     ];
   },
   images: {

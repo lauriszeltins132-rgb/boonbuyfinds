@@ -479,9 +479,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-sneakers": {
     slug: "boonbuy-sneakers",
     path: "/boonbuy-sneakers",
-    title: "Best BoonBuy Sneakers 2026",
+    title: "BoonBuy Sneakers Hub 2026 | Nike, Jordan & More",
     metaDescription:
-      "Best BoonBuy sneakers in 2026 — Nike, Jordan, Adidas, New Balance picks with QC links and verified agent buy buttons.",
+      "BoonBuy sneakers hub — Nike, Jordan, Adidas, New Balance picks with QC links and verified agent buy buttons.",
     badge: "BoonBuy sneakers",
     h1: "BoonBuy sneakers",
     intro:
@@ -548,9 +548,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
   "boonbuy-jackets": {
     slug: "boonbuy-jackets",
     path: "/boonbuy-jackets",
-    title: "Best BoonBuy Jackets 2026",
+    title: "BoonBuy Jackets Hub 2026 | Outerwear Finds",
     metaDescription:
-      "Best BoonBuy jackets and outerwear — Moncler, Arc'teryx, Stone Island, puffers and shells with verified links.",
+      "BoonBuy jackets and outerwear hub — Moncler, Arc'teryx, Stone Island, puffers and shells with verified links.",
     badge: "BoonBuy jackets",
     h1: "BoonBuy jackets",
     intro:
