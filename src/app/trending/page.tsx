@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CatalogPanel from "@/components/CatalogPanel";
+import RelatedSearches from "@/components/RelatedSearches";
 import SignupCard from "@/components/SignupCard";
 import { getBrandsFromProducts } from "@/lib/brands";
 import { getCategories, getTrendingProducts } from "@/lib/products";
@@ -49,6 +50,7 @@ export default function TrendingPage() {
           basePath="/trending"
         />
       </Suspense>
+      <RelatedSearches title="Related searches" />
     </>
   );
 }

@@ -20,17 +20,21 @@ function buildAgentCouponPageMetadata(
   config: ReturnType<typeof requireAgentCouponLandingPage>
 ): Metadata {
   const url = `${SITE_URL}${config.path}`;
+  const canonical = `${SITE_URL}${config.canonicalPath ?? config.path}`;
+  const isPrimary = (config.canonicalPath ?? config.path) === config.path;
 
   return {
     title: { absolute: config.title },
     description: config.metaDescription,
-    alternates: { canonical: url },
-    robots: { index: true, follow: true },
+    alternates: { canonical },
+    robots: isPrimary
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     keywords: config.keywords,
     openGraph: {
       title: config.title,
       description: config.metaDescription,
-      url,
+      url: canonical,
       siteName: SITE_NAME,
       type: "website",
       locale: "en_US",

@@ -1,5 +1,5 @@
 import { extractBrand, getBrandsFromProducts } from "./brands";
-import { getEditorsPicks } from "./discovery";
+import { getEditorsPicks, getMostSavedPicks } from "./discovery";
 import { getEngagementPicks } from "./engagement-picks";
 import { getMonthlyHighlights } from "./popular-picks";
 import { filterFeaturedEligible } from "./product-media";
@@ -15,6 +15,8 @@ export type BestOfPageConfig = {
   badge: string;
   h1: string;
   intro: string;
+  directAnswer?: string;
+  keyFacts?: string[];
   getProducts: () => Product[];
   relatedBrandSlugs: string[];
   relatedCategorySlugs: string[];
@@ -456,6 +458,175 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
         question: "Does QC-approved mean warehouse photos?",
         answer:
           "Reference QC on find pages is from community examples. Request warehouse QC on BoonBuy after purchase.",
+      },
+    ],
+  },
+
+  "most-saved-finds": {
+    slug: "most-saved-finds",
+    path: "/most-saved-finds",
+    title: "Most Saved BoonBuy Finds",
+    metaDescription:
+      "Most saved BoonBuy finds — wishlist-worthy sneakers, jackets, and streetwear ranked by engagement and catalog quality signals.",
+    badge: "Most saved",
+    h1: "Most saved finds",
+    intro:
+      "Community-favored picks from the BoonBuy Finds catalog — ranked by engagement and quality signals, refreshed as wishlist and browse activity updates.",
+    directAnswer:
+      "Most saved finds are high-engagement BoonBuy catalog picks that shoppers bookmark and revisit — a shortlist for haul planning before warehouse QC.",
+    keyFacts: [
+      "Ranked from engagement and quality scores, not paid placements",
+      "Updated as catalog and analytics signals refresh",
+      "Pair with QC guides before approving international shipping",
+      "Cross-link to coupons and spreadsheet hubs when building a haul",
+    ],
+    getProducts: () => getMostSavedPicks(96),
+    relatedBrandSlugs: ["nike", "jordan", "moncler", "stussy"],
+    relatedCategorySlugs: ["shoes", "coats-and-jackets", "hoodies-and-pants"],
+    relatedGuideHrefs: GUIDE_CLUSTER,
+    relatedBestOfHrefs: [
+      { href: "/most-viewed-finds", label: "Most viewed" },
+      { href: "/editors-picks", label: "Editor's picks" },
+      { href: "/best-finds", label: "Best finds" },
+    ],
+    faqs: [
+      {
+        question: "Is most saved the same as trending?",
+        answer:
+          "Not always. Trending emphasizes recent velocity; most saved emphasizes lasting wishlist interest and quality signals.",
+      },
+    ],
+  },
+
+  "most-viewed-finds": {
+    slug: "most-viewed-finds",
+    path: "/most-viewed-finds",
+    title: "Most Viewed BoonBuy Finds",
+    metaDescription:
+      "Most viewed BoonBuy finds right now — popular sneakers, fashion, and accessories based on browse and engagement signals.",
+    badge: "Most viewed",
+    h1: "Most viewed finds",
+    intro:
+      "What shoppers are opening most on BoonBuy Finds — engagement-ranked products with photos, pricing context, and verified BoonBuy links.",
+    directAnswer:
+      "Most viewed finds surface the catalog items with the strongest recent browse and engagement signals on BoonBuy Finds.",
+    keyFacts: [
+      "Based on engagement picks with quality fallbacks",
+      "Useful for spotting seasonal demand spikes",
+      "Always confirm live BoonBuy price and size before paying",
+      "Use warehouse QC before shipping anything international",
+    ],
+    getProducts: () => getEngagementPicks(96),
+    relatedBrandSlugs: ["nike", "jordan", "adidas", "chrome-hearts"],
+    relatedCategorySlugs: ["shoes", "accessories", "hoodies-and-pants"],
+    relatedGuideHrefs: GUIDE_CLUSTER,
+    relatedBestOfHrefs: [
+      { href: "/most-saved-finds", label: "Most saved" },
+      { href: "/trending", label: "Trending" },
+      { href: "/best-finds-this-week", label: "This week" },
+    ],
+    faqs: [
+      {
+        question: "Does most viewed mean best quality?",
+        answer:
+          "Views show interest, not guaranteed batch quality. Still review QC photos and seller notes before shipping.",
+      },
+    ],
+  },
+
+  "summer-finds": {
+    slug: "summer-finds",
+    path: "/summer-finds",
+    title: "Best Summer BoonBuy Finds",
+    metaDescription:
+      "Best summer BoonBuy finds — tees, shorts, sneakers, and light accessories with QC references and verified checkout links.",
+    badge: "Seasonal",
+    h1: "Summer finds",
+    intro:
+      "Warm-weather picks from the BoonBuy Finds catalog — lighter layers, shorts, tees, and sneakers for summer hauls, with QC-friendly shortlists.",
+    directAnswer:
+      "Summer finds on BoonBuy Finds focus on lighter categories — tees, shorts, sneakers, and accessories — curated for warmer-weather hauls.",
+    keyFacts: [
+      "Prioritizes t-shirts, shorts, sneakers, and accessories",
+      "Budget lanes under $30/$50 pair well with summer hauls",
+      "Still request warehouse QC on sneakers and branded tees",
+      "Shipping weight is usually lower than winter outerwear",
+    ],
+    getProducts: () =>
+      filterFeaturedEligible(
+        priced(
+          getAllProducts().filter((p) =>
+            ["tshirts-and-shorts", "shoes", "accessories", "hoodies-and-pants"].includes(
+              p.category_slug
+            )
+          )
+        )
+      ).slice(0, 96),
+    relatedBrandSlugs: ["nike", "stussy", "corteiz", "adidas"],
+    relatedCategorySlugs: ["tshirts-and-shorts", "shoes", "accessories"],
+    relatedGuideHrefs: [
+      { href: "/guides/best-summer-finds", label: "Summer guide" },
+      ...GUIDE_CLUSTER,
+    ],
+    relatedBestOfHrefs: [
+      { href: "/winter-finds", label: "Winter finds" },
+      { href: "/best-under-30", label: "Under $30" },
+      { href: "/best-shorts", label: "Best shorts" },
+    ],
+    faqs: [
+      {
+        question: "Is this updated for the current summer?",
+        answer:
+          "Yes — the product grid refreshes from the live catalog. Seasonal guides explain styling and haul tips.",
+      },
+    ],
+  },
+
+  "winter-finds": {
+    slug: "winter-finds",
+    path: "/winter-finds",
+    title: "Best Winter BoonBuy Finds",
+    metaDescription:
+      "Best winter BoonBuy finds — jackets, hoodies, sneakers, and cold-weather accessories with QC tips and verified links.",
+    badge: "Seasonal",
+    h1: "Winter finds",
+    intro:
+      "Cold-weather BoonBuy Finds picks — jackets, hoodies, and sneakers where QC matter most before you pay international shipping on heavier parcels.",
+    directAnswer:
+      "Winter finds prioritize outerwear and heavier layers on BoonBuy Finds — categories where warehouse QC and shipping weight planning matter most.",
+    keyFacts: [
+      "Jackets and hoodies dominate winter haul volume",
+      "Heavier parcels — compare shipping lines early",
+      "QC stitching, logos, and fill quality before approving",
+      "Pair with shipping coupon before consolidating",
+    ],
+    getProducts: () =>
+      filterFeaturedEligible(
+        priced(
+          getAllProducts().filter((p) =>
+            ["coats-and-jackets", "hoodies-and-pants", "shoes", "accessories"].includes(
+              p.category_slug
+            )
+          )
+        )
+      ).slice(0, 96),
+    relatedBrandSlugs: ["moncler", "canada-goose", "nike", "stone-island"],
+    relatedCategorySlugs: ["coats-and-jackets", "hoodies-and-pants", "shoes"],
+    relatedGuideHrefs: [
+      { href: "/guides/best-winter-finds", label: "Winter guide" },
+      { href: "/boonbuy-shipping", label: "Shipping guide" },
+      ...GUIDE_CLUSTER,
+    ],
+    relatedBestOfHrefs: [
+      { href: "/summer-finds", label: "Summer finds" },
+      { href: "/best-jackets", label: "Best jackets" },
+      { href: "/best-hoodies", label: "Best hoodies" },
+    ],
+    faqs: [
+      {
+        question: "Why does winter shipping cost more?",
+        answer:
+          "Outerwear adds volumetric weight. Use warehouse storage, compare lines, and claim a shipping coupon before you ship.",
       },
     ],
   },

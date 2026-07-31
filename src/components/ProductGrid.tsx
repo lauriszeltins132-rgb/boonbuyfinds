@@ -32,7 +32,7 @@ export default function ProductGrid({
             Trending
           </Link>
           <Link
-            href="/new-finds"
+            href="/latest"
             className="rounded-full border border-border px-4 py-2 text-sm font-bold hover:border-accent/40 hover:text-accent"
           >
             New finds

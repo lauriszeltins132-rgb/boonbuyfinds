@@ -60,9 +60,16 @@ export function buildPageMetadata({
             ...(modifiedTime
               ? { "article:modified_time": modifiedTime }
               : {}),
+            "og:image:alt": pageTitle,
+            "pinterest-rich-pin": "true",
           },
         }
-      : {}),
+      : {
+          other: {
+            "og:image:alt": pageTitle,
+            "pinterest-rich-pin": "true",
+          },
+        }),
     openGraph: {
       title: pageTitle,
       description,

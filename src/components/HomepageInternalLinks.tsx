@@ -53,9 +53,11 @@ const SECTIONS = [
     links: [
       { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
       { href: "/guides/how-to-check-qc-photos", label: "QC photos guide" },
-      { href: "/guides/boonbuy-spreadsheet", label: "Spreadsheet guide" },
       { href: "/latest", label: "Latest finds" },
       { href: "/trending", label: "Trending" },
+      { href: "/most-saved-finds", label: "Most saved" },
+      { href: "/summer-finds", label: "Summer finds" },
+      { href: "/winter-finds", label: "Winter finds" },
       { href: "/guides", label: "All guides" },
     ],
   },
