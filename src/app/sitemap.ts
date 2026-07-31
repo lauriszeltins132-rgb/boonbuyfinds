@@ -22,6 +22,7 @@ import {
 import {
   AGENT_COUPON_LANDING_PAGES,
   AGENT_COUPON_LANDING_SLUGS,
+  isPrimaryCouponLandingSlug,
 } from "@/lib/agent-coupon-landing-pages";
 import {
   TELEGRAM_AGENT_LANDING_PAGES,
@@ -36,126 +37,99 @@ import {
   SEO_ARCHITECTURE_PAGES,
   SEO_ARCHITECTURE_SLUGS,
 } from "@/lib/seo-architecture/registry";
+import { getDatasetSyncedAt } from "@/lib/catalog-meta";
 import { SITE_URL } from "@/lib/site";
 
 /** Keep sitemap fresh as catalog quality gates change. */
 export const revalidate = 3600;
 
+function entry(
+  pathOrUrl: string,
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
+  priority: number,
+  lastModified: Date = getDatasetSyncedAt()
+): MetadataRoute.Sitemap[number] {
+  const url = pathOrUrl.startsWith("http") ? pathOrUrl : `${SITE_URL}${pathOrUrl}`;
+  return { url, lastModified, changeFrequency, priority };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const categories = getCategories();
   const brands = getBrandsFromProducts(getAllProducts());
   const productSlugs = getAllProductSlugs();
+  const synced = getDatasetSyncedAt();
 
   const routes: MetadataRoute.Sitemap = [
-    { url: SITE_URL, changeFrequency: "daily", priority: 1 },
-    { url: `${SITE_URL}/ai`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/trending`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${SITE_URL}/latest`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${SITE_URL}/deals`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${SITE_URL}/recently-added`, changeFrequency: "daily", priority: 0.92 },
-    { url: `${SITE_URL}/brands`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${SITE_URL}/categories`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${SITE_URL}/collections`, changeFrequency: "weekly", priority: 0.88 },
-    {
-      url: `${SITE_URL}/best-finds-by-category`,
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
-    { url: `${SITE_URL}${GUIDES_HUB.path}`, changeFrequency: "weekly", priority: 0.9 },
+    entry("/", "daily", 1, synced),
+    entry("/ai", "weekly", 0.9, synced),
+    entry("/trending", "daily", 0.9, synced),
+    entry("/latest", "daily", 0.9, synced),
+    entry("/deals", "daily", 0.9, synced),
+    entry("/recently-added", "daily", 0.92, synced),
+    entry("/brands", "weekly", 0.8, synced),
+    entry("/categories", "weekly", 0.8, synced),
+    entry("/collections", "weekly", 0.88, synced),
+    entry("/best-finds-by-category", "weekly", 0.85, synced),
+    entry(GUIDES_HUB.path, "weekly", 0.9, synced),
   ];
 
   for (const slug of GUIDE_SLUGS) {
     const guide = GUIDE_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${guide.path}`,
-      changeFrequency: "monthly",
-      priority: 0.86,
-    });
+    routes.push(entry(guide.path, "monthly", 0.86, synced));
   }
 
   for (const slug of SEO_LIST_SLUGS) {
     const list = SEO_LIST_ROUTES[slug];
-    routes.push({
-      url: `${SITE_URL}${list.path}`,
-      changeFrequency: "weekly",
-      priority: 0.84,
-    });
+    routes.push(entry(list.path, "weekly", 0.84, synced));
   }
 
   for (const slug of SEO_LANDING_SLUGS) {
     const page = SEO_LANDING_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "weekly",
-      priority: 0.88,
-    });
+    routes.push(entry(page.path, "weekly", 0.88, synced));
   }
 
-  for (const entry of getPublishedSeoLandingConfigs()) {
-    routes.push({
-      url: `${SITE_URL}/${entry.slug}`,
-      changeFrequency: getSitemapChangeFrequency(entry),
-      priority: entry.type === "freshness" ? 0.9 : 0.87,
-    });
+  for (const configEntry of getPublishedSeoLandingConfigs()) {
+    routes.push(
+      entry(
+        `/${configEntry.slug}`,
+        getSitemapChangeFrequency(configEntry),
+        configEntry.type === "freshness" ? 0.9 : 0.87,
+        synced
+      )
+    );
   }
 
   for (const slug of AGENT_LANDING_SLUGS) {
-    routes.push({
-      url: `${SITE_URL}/${slug}`,
-      changeFrequency: "weekly",
-      priority: 0.86,
-    });
+    routes.push(entry(`/${slug}`, "weekly", 0.86, synced));
   }
 
+  // Only primary coupon hubs — variants canonicalize elsewhere (doorway mitigation).
   for (const slug of AGENT_COUPON_LANDING_SLUGS) {
+    if (!isPrimaryCouponLandingSlug(slug)) continue;
     const page = AGENT_COUPON_LANDING_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "weekly",
-      priority: slug.endsWith("-coupons") && !slug.startsWith("best-") ? 0.86 : 0.84,
-    });
+    routes.push(entry(page.path, "weekly", 0.86, synced));
   }
 
   for (const slug of DISCORD_AGENT_LANDING_SLUGS) {
     const page = DISCORD_AGENT_LANDING_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    });
+    routes.push(entry(page.path, "weekly", 0.9, synced));
   }
 
   for (const slug of TELEGRAM_AGENT_LANDING_SLUGS) {
     const page = TELEGRAM_AGENT_LANDING_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    });
+    routes.push(entry(page.path, "weekly", 0.9, synced));
   }
 
   for (const slug of TELEGRAM_SEO_SLUGS) {
     const page = TELEGRAM_SEO_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "weekly",
-      priority: 0.82,
-    });
+    routes.push(entry(page.path, "weekly", 0.82, synced));
   }
 
-  routes.push({
-    url: `${SITE_URL}${ADVERTISE_PAGE_PATH}`,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  });
+  routes.push(entry(ADVERTISE_PAGE_PATH, "monthly", 0.7, synced));
 
   for (const slug of BEST_OF_SLUGS) {
     const page = BEST_OF_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "daily",
-      priority: 0.9,
-    });
+    routes.push(entry(page.path, "daily", 0.9, synced));
   }
 
   const highPriorityGuides = new Set([
@@ -167,83 +141,56 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]);
 
   for (const page of Object.values(STATIC_PAGES)) {
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "monthly",
-      priority: highPriorityGuides.has(page.path) ? 0.85 : 0.75,
-    });
+    routes.push(
+      entry(page.path, "monthly", highPriorityGuides.has(page.path) ? 0.85 : 0.75, synced)
+    );
   }
 
   for (const slug of COLLECTION_SLUGS) {
     const collection = COLLECTIONS[slug];
-    if (collection.href !== "/trending" && collection.href !== "/deals") {
-      routes.push({
-        url: `${SITE_URL}${collection.href}`,
-        changeFrequency: "daily",
-        priority: 0.88,
-      });
+    // /new-finds redirects to /latest — skip duplicate sitemap URL.
+    if (
+      collection.href === "/trending" ||
+      collection.href === "/deals" ||
+      collection.href === "/new-finds"
+    ) {
+      continue;
     }
+    routes.push(entry(collection.href, "daily", 0.88, synced));
   }
 
   for (const category of categories) {
     if (category.group === "category") {
-      routes.push({
-        url: `${SITE_URL}/categories/${category.slug}`,
-        changeFrequency: "weekly",
-        priority: 0.8,
-      });
+      routes.push(entry(`/categories/${category.slug}`, "weekly", 0.8, synced));
     }
   }
 
   for (const slug of CATEGORY_ALIAS_SLUGS) {
-    routes.push({
-      url: `${SITE_URL}/categories/${slug}`,
-      changeFrequency: "weekly",
-      priority: 0.82,
-    });
+    routes.push(entry(`/categories/${slug}`, "weekly", 0.82, synced));
   }
 
   for (const brand of brands) {
-    routes.push({
-      url: `${SITE_URL}/brands/${brand.slug}`,
-      changeFrequency: "weekly",
-      priority: 0.75,
-    });
+    routes.push(entry(`/brands/${brand.slug}`, "weekly", 0.75, synced));
   }
 
   for (const slug of SHARE_COLLECTION_SLUGS) {
     const collection = SHARE_COLLECTIONS[slug];
-    routes.push({
-      url: `${SITE_URL}${collection.path}`,
-      changeFrequency: "weekly",
-      priority: 0.87,
-    });
+    routes.push(entry(collection.path, "weekly", 0.87, synced));
   }
 
   for (const slug of productSlugs) {
-    routes.push({
-      url: `${SITE_URL}/find/${slug}`,
-      changeFrequency: "weekly",
-      priority: 0.6,
-    });
+    routes.push(entry(`/find/${slug}`, "weekly", 0.6, synced));
   }
 
   for (const slug of SEO_ARCHITECTURE_SLUGS) {
     const page = SEO_ARCHITECTURE_PAGES[slug];
-    routes.push({
-      url: `${SITE_URL}${page.path}`,
-      changeFrequency: "weekly",
-      priority: page.category === "comparison" ? 0.88 : 0.86,
-    });
+    routes.push(
+      entry(page.path, "weekly", page.category === "comparison" ? 0.88 : 0.86, synced)
+    );
   }
 
-  routes.push({
-    url: `${SITE_URL}/feed.xml`,
-    changeFrequency: "daily",
-    priority: 0.5,
-  });
+  routes.push(entry("/feed.xml", "daily", 0.5, synced));
 
-  // Deduplicate by URL (architecture + landing registries can overlap).
   const seen = new Set<string>();
   return routes.filter((route) => {
     if (seen.has(route.url)) return false;

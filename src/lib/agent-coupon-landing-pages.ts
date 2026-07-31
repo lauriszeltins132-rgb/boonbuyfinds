@@ -29,6 +29,8 @@ export type AgentCouponLandingConfig = {
   keywords: string[];
   footerLinks: { href: string; label: string }[];
   relatedDeals: { href: string; label: string }[];
+  /** When set, variants consolidate link equity onto the primary hub. */
+  canonicalPath?: string;
 };
 
 type CouponPageVariant = {
@@ -377,4 +379,22 @@ for (const [slug, override] of Object.entries(BOONBUY_COUPON_SEO_OVERRIDES)) {
     ...AGENT_COUPON_LANDING_PAGES[slug],
     ...override,
   };
+}
+
+/** Primary coupon hubs keep self-canonicals; extras consolidate to the agent hub. */
+const PRIMARY_COUPON_SLUGS = new Set([
+  ...SEO_AGENTS.map((agent) => `${agent.slug}-coupons`),
+  "boonbuy-shipping-coupon",
+]);
+
+for (const page of Object.values(AGENT_COUPON_LANDING_PAGES)) {
+  if (PRIMARY_COUPON_SLUGS.has(page.slug)) {
+    page.canonicalPath = page.path;
+    continue;
+  }
+  page.canonicalPath = `/${page.agent.slug}-coupons`;
+}
+
+export function isPrimaryCouponLandingSlug(slug: string): boolean {
+  return PRIMARY_COUPON_SLUGS.has(slug);
 }

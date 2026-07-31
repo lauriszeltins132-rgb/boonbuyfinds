@@ -23,6 +23,7 @@ import {
   buildBreadcrumbSchema,
   buildFaqSchema,
   buildHowToSchema,
+  buildImageObjectSchema,
   buildWebPageSchema,
 } from "@/lib/schema";
 import { BOONBUY_COUPON_URL } from "@/lib/boonbuy-affiliate";
@@ -156,9 +157,27 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
     if (howTo) schema.push(howTo);
   }
 
+  if (page.heroImage) {
+    schema.push(
+      buildImageObjectSchema({
+        url: page.heroImage.src,
+        name: page.heroImage.alt || page.h1,
+        caption: page.heroImage.caption,
+        width: page.heroImage.width,
+        height: page.heroImage.height,
+      })
+    );
+  }
+
   const spreadsheetHref = page.spreadsheetHref ?? "/boonbuy-spreadsheet";
   const directAnswer = page.directAnswer ?? page.intro;
   const keyFacts = page.keyFacts ?? [];
+  const summary =
+    page.directAnswer && page.directAnswer.length >= 40
+      ? page.directAnswer
+      : page.intro.length > 320
+        ? `${page.intro.slice(0, 280).trim()}…`
+        : page.intro;
 
   return (
     <>
@@ -181,13 +200,30 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
               Quick answer
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-foreground">{directAnswer}</p>
-            {keyFacts.length > 0 ? (
-              <ul className="mt-4 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
-                {keyFacts.map((fact) => (
-                  <li key={fact}>{fact}</li>
-                ))}
-              </ul>
+            {summary !== directAnswer ? (
+              <p className="mt-3 text-sm leading-relaxed text-muted">{summary}</p>
             ) : null}
+            {keyFacts.length > 0 ? (
+              <>
+                <h3 className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-muted">
+                  Key facts
+                </h3>
+                <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
+                  {keyFacts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+            <p className="mt-4 rounded-xl border border-border/70 bg-background/40 px-3 py-2 text-xs leading-relaxed text-muted">
+              <span className="font-bold text-foreground">Important: </span>
+              Confirm live fees, shipping quotes, and warehouse QC on BoonBuy before
+              you pay. Catalog prices can lag.{" "}
+              <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+                Editorial policy
+              </Link>
+              .
+            </p>
           </aside>
 
           <SeoArticleReadingMeta
@@ -217,6 +253,7 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
               <Image
                 src={page.heroImage.src}
                 alt={page.heroImage.alt}
+                title={page.heroImage.alt}
                 width={page.heroImage.width ?? 1200}
                 height={page.heroImage.height ?? 630}
                 className="h-auto w-full"

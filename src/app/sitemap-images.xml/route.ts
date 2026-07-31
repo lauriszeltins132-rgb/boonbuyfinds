@@ -1,9 +1,13 @@
 import { getAllProducts } from "@/lib/products";
 import { resolveProductDisplayImage } from "@/lib/product-image-presentation";
 import { getProductHref } from "@/lib/slugs";
+import { getProductImageAlt } from "@/lib/product-details";
 import { SEO_ARCHITECTURE_PAGES, SEO_ARCHITECTURE_SLUGS } from "@/lib/seo-architecture/registry";
 import { PROMO_OG_IMAGE_URL } from "@/lib/constants";
 import { SITE_URL } from "@/lib/site";
+
+/** Cover most catalog imagery without exceeding sitemap size limits. */
+const MAX_PRODUCT_IMAGES = 2000;
 
 function escapeXml(value: string): string {
   return value
@@ -27,8 +31,8 @@ export async function GET() {
       urls.push({
         loc: `${SITE_URL}${page.path}`,
         image: imageUrl,
-        title: page.h1,
-        caption: page.heroImage.caption,
+        title: page.heroImage.alt || page.h1,
+        caption: page.heroImage.caption || page.metaDescription,
       });
     }
   }
@@ -37,20 +41,21 @@ export async function GET() {
     loc: SITE_URL,
     image: PROMO_OG_IMAGE_URL,
     title: "BoonBuy Finds",
-    caption: "BoonBuy Finds promotional image",
+    caption: "BoonBuy Finds — QC catalog and verified shopping-agent links",
   });
 
-  const products = getAllProducts().slice(0, 500);
+  const products = getAllProducts().slice(0, MAX_PRODUCT_IMAGES);
   for (const product of products) {
     const resolved = resolveProductDisplayImage(product);
     const src = resolved?.displaySrc;
     if (!src) continue;
     const imageUrl = src.startsWith("http") ? src : `${SITE_URL}${src}`;
+    const alt = getProductImageAlt(product);
     urls.push({
       loc: `${SITE_URL}${getProductHref(product)}`,
       image: imageUrl,
-      title: product.product_name,
-      caption: `${product.product_name} — BoonBuy find`,
+      title: alt,
+      caption: alt,
     });
   }
 

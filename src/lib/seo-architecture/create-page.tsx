@@ -4,6 +4,7 @@ import SeoArticleLayout from "@/components/SeoArticleLayout";
 import { getSeoArchitectureContentDates } from "@/lib/seo-architecture/dates";
 import { getSeoArchitecturePage } from "@/lib/seo-architecture/registry";
 import { buildArticlePageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 
 export function createSeoArchitecturePage(slug: string) {
   async function generateMetadata(): Promise<Metadata> {
@@ -11,6 +12,12 @@ export function createSeoArchitecturePage(slug: string) {
     if (!page) return { title: "Not found" };
 
     const dates = getSeoArchitectureContentDates(slug);
+    const hero = page.heroImage?.src;
+    const image = hero
+      ? hero.startsWith("http")
+        ? hero
+        : `${SITE_URL}${hero}`
+      : undefined;
 
     return buildArticlePageMetadata({
       title: page.title,
@@ -18,6 +25,7 @@ export function createSeoArchitecturePage(slug: string) {
       path: page.path,
       publishedTime: dates.publishedIso,
       modifiedTime: dates.updatedIso,
+      image,
     });
   }
 

@@ -54,6 +54,32 @@ export default function BestOfLanding({ config }: BestOfLandingProps) {
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">
             {config.intro}
           </p>
+          {config.directAnswer || (config.keyFacts && config.keyFacts.length > 0) ? (
+            <aside className="mt-6 max-w-3xl rounded-2xl border border-border bg-surface/35 p-5">
+              <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
+                Quick answer
+              </h2>
+              {config.directAnswer ? (
+                <p className="mt-2 text-sm leading-relaxed text-foreground">
+                  {config.directAnswer}
+                </p>
+              ) : null}
+              {config.keyFacts && config.keyFacts.length > 0 ? (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
+                  {config.keyFacts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+              ) : null}
+              <p className="mt-3 text-xs text-muted">
+                Manually reviewed catalog signals · See{" "}
+                <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+                  editorial policy
+                </Link>
+                .
+              </p>
+            </aside>
+          ) : null}
           <p className="mt-3 text-sm text-muted">
             {products.length.toLocaleString()} products · Updated {formatDatasetAge()}
           </p>

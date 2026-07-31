@@ -8,6 +8,7 @@ import ImageUnavailablePlaceholder from "./ImageUnavailablePlaceholder";
 type ProductCardImageProps = {
   src: string;
   alt: string;
+  title?: string;
   className?: string;
   priority?: boolean;
   productHref?: string;
@@ -20,6 +21,7 @@ type ProductCardImageProps = {
 export default function ProductCardImage({
   src,
   alt,
+  title,
   className = "",
   priority = false,
   productHref,
@@ -153,6 +155,7 @@ export default function ProductCardImage({
         key={displaySrc}
         src={displaySrc}
         alt={alt}
+        title={title ?? alt}
         width={400}
         height={400}
         loading={priority ? "eager" : "lazy"}

@@ -21,6 +21,7 @@ const GUIDE_LINKS = [
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
   { href: "/boonbuy-warehouse", label: "Warehouse" },
+  { href: "/boonbuy-shipping", label: "Shipping" },
   { href: "/how-to-buy", label: "How to buy" },
 ];
 
@@ -29,6 +30,9 @@ const COLLECTION_LINKS = [
   { href: "/collections/best-nike-finds", label: "Best Nike finds" },
   { href: "/collections/best-qc-approved-finds", label: "QC finds" },
   { href: "/collections/best-budget-finds", label: "Budget finds" },
+  { href: "/most-saved-finds", label: "Most saved" },
+  { href: "/summer-finds", label: "Summer finds" },
+  { href: "/winter-finds", label: "Winter finds" },
   { href: "/collections/boonbuy-spreadsheet-alternative", label: "Sheet alternative" },
 ];
 

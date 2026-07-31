@@ -356,3 +356,30 @@ export function buildHowToSchema({
     publisher: { "@id": ORGANIZATION_SCHEMA_ID },
   };
 }
+
+/** Standalone ImageObject for product / hero / OG assets. */
+export function buildImageObjectSchema({
+  url,
+  caption,
+  name,
+  width,
+  height,
+}: {
+  url: string;
+  caption?: string;
+  name?: string;
+  width?: number;
+  height?: number;
+}) {
+  const imageUrl = url.startsWith("http") ? url : `${SITE_URL}${url}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    contentUrl: imageUrl,
+    url: imageUrl,
+    ...(name ? { name } : {}),
+    ...(caption ? { caption, description: caption } : {}),
+    ...(width ? { width } : {}),
+    ...(height ? { height } : {}),
+  };
+}

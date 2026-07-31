@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/guides/how-to-find-products",
-        destination: "/guides/how-to-use-boonbuy-finds",
+        destination: "/how-to-use-boonbuy",
         permanent: true,
       },
       {
@@ -65,7 +65,9 @@ const nextConfig: NextConfig = {
       { source: "/best-boonbuy-bags", destination: "/best-boonbuy-bags-2026", permanent: true },
       { source: "/best-boonbuy-under-50", destination: "/best-under-50", permanent: true },
       { source: "/best-qc-finds", destination: "/top-qc-finds", permanent: true },
-      { source: "/guides/how-to-use-boonbuy", destination: "/guides/how-to-use-boonbuy-finds", permanent: true },
+      // Single-hop to the live architecture guide (avoid /guides/how-to-use-boonbuy-finds chain).
+      { source: "/guides/how-to-use-boonbuy", destination: "/how-to-use-boonbuy", permanent: true },
+      { source: "/guides/how-to-use-boonbuy-finds", destination: "/how-to-use-boonbuy", permanent: true },
       {
         source: "/guides/how-to-qc-photos-work",
         destination: "/guides/how-to-check-qc-photos",
@@ -95,7 +97,6 @@ const nextConfig: NextConfig = {
       { source: "/guides/how-to-buy-from-taobao", destination: "/how-to-buy-from-taobao", permanent: true },
       { source: "/guides/how-to-buy-from-weidian", destination: "/how-to-buy-from-weidian", permanent: true },
       { source: "/guides/what-is-boonbuy", destination: "/what-is-boonbuy", permanent: true },
-      { source: "/guides/how-to-use-boonbuy-finds", destination: "/how-to-use-boonbuy", permanent: true },
       { source: "/boonbuyfids", destination: "/", permanent: true },
       { source: "/boonbuyfind", destination: "/", permanent: true },
       { source: "/boonbuy-find", destination: "/", permanent: true },
@@ -133,6 +134,13 @@ const nextConfig: NextConfig = {
       { source: "/best-boonbuy-watches", destination: "/best-watches", permanent: true },
       { source: "/referral-code", destination: "/boonbuy-referral-code", permanent: true },
       { source: "/boonbuy-referral", destination: "/boonbuy-referral-code", permanent: true },
+      // Consolidate parallel freshness / engagement URLs onto canonical hubs.
+      { source: "/new-finds", destination: "/latest", permanent: true },
+      { source: "/most-saved", destination: "/most-saved-finds", permanent: true },
+      { source: "/most-viewed", destination: "/most-viewed-finds", permanent: true },
+      { source: "/summer", destination: "/summer-finds", permanent: true },
+      { source: "/winter", destination: "/winter-finds", permanent: true },
+      { source: "/monthly-highlights", destination: "/best-finds-this-month", permanent: true },
     ];
   },
   images: {

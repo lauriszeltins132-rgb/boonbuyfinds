@@ -105,6 +105,7 @@ export default function ProductCard({
             fillClass={cardProps?.fillClass}
             isProcessedCutout={cardProps?.isProcessedCutout}
             alt={imageAlt}
+            title={imageAlt}
             productHref={productHref}
             priority={priority}
           />

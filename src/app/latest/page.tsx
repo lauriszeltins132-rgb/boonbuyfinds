@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CatalogPanel from "@/components/CatalogPanel";
+import RelatedSearches from "@/components/RelatedSearches";
 import { getBrandsFromProducts } from "@/lib/brands";
 import { getCategories, getLatestProducts } from "@/lib/products";
 import { buildPageMetadata } from "@/lib/seo";
@@ -35,6 +37,13 @@ export default function LatestPage() {
             The newest additions from the BoonBuy Finds catalog — updated from the
             latest spreadsheet drops with photos, pricing, and verified purchase links.
           </p>
+          <p className="mt-3 text-sm text-muted">
+            Manually curated catalog sync · See{" "}
+            <Link href="/editorial-policy" className="font-semibold text-accent hover:underline">
+              editorial policy
+            </Link>
+            .
+          </p>
         </div>
       </section>
       <Suspense fallback={<div className="py-24 text-center text-muted">Loading...</div>}>
@@ -45,6 +54,7 @@ export default function LatestPage() {
           basePath="/latest"
         />
       </Suspense>
+      <RelatedSearches title="Popular & related searches" />
     </>
   );
 }

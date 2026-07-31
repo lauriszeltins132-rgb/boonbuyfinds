@@ -15,6 +15,9 @@ const CORE_HUB: HubBlock[] = [
       { href: "/collections", label: "Collections" },
       { href: "/trending", label: "Trending finds" },
       { href: "/latest", label: "Latest finds" },
+      { href: "/most-saved-finds", label: "Most saved" },
+      { href: "/summer-finds", label: "Summer finds" },
+      { href: "/winter-finds", label: "Winter finds" },
     ],
   },
   {
@@ -29,10 +32,8 @@ const CORE_HUB: HubBlock[] = [
     title: "Coupons & shipping",
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+      { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       { href: "/boonbuy-referral-code", label: "Referral code" },
-      { href: "/boonbuy-coupon-code", label: "Coupon code" },
-      { href: "/boonbuy-invite-code", label: "Invite code" },
       { href: "/boonbuy-shipping", label: "BoonBuy shipping" },
       { href: "/boonbuy-discount-code", label: "Discount code" },
     ],
