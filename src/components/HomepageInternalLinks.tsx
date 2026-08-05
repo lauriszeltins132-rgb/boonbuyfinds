@@ -6,10 +6,23 @@ const SECTIONS = [
     links: [
       { href: "/collections/best-nike-finds", label: "Best Nike finds" },
       { href: "/collections/best-jordan-finds", label: "Best Jordan finds" },
-      { href: "/collections/best-sneakers", label: "Best sneakers" },
+      { href: "/sneaker-finds", label: "Sneaker finds" },
       { href: "/collections/best-qc-approved-finds", label: "QC approved" },
       { href: "/collections/trending-this-week", label: "Trending this week" },
       { href: "/collections/best-under-50", label: "Under $50" },
+    ],
+  },
+  {
+    title: "Finds hubs",
+    links: [
+      { href: "/latest-finds", label: "Latest finds" },
+      { href: "/sneaker-finds", label: "Sneaker finds" },
+      { href: "/clothing-finds", label: "Clothing finds" },
+      { href: "/streetwear-finds", label: "Streetwear finds" },
+      { href: "/hoodie-finds", label: "Hoodie finds" },
+      { href: "/jacket-finds", label: "Jacket finds" },
+      { href: "/bag-finds", label: "Bag finds" },
+      { href: "/best-rep-finds", label: "Best rep finds" },
     ],
   },
   {
@@ -24,41 +37,30 @@ const SECTIONS = [
     ],
   },
   {
-    title: "Categories",
-    links: [
-      { href: "/categories/shoes", label: "Sneakers" },
-      { href: "/categories/hoodies", label: "Hoodies" },
-      { href: "/categories/coats-and-jackets", label: "Jackets" },
-      { href: "/categories/accessories", label: "Accessories" },
-      { href: "/categories/tshirts-and-shorts", label: "T-shirts" },
-      { href: "/categories/electronics", label: "Electronics" },
-    ],
-  },
-  {
     title: "BoonBuy SEO hub",
     links: [
       { href: "/boonbuy", label: "BoonBuy" },
-      { href: "/boonbuyfinds", label: "Boonbuyfinds" },
+      { href: "/boonbuy-review", label: "BoonBuy review" },
       { href: "/boonbuy-finds", label: "BoonBuy Finds" },
       { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
-      { href: "/best-boonbuy-coupons", label: "Best BoonBuy Coupons" },
-      { href: "/boonbuy-referral-code", label: "Referral code" },
-      { href: "/boonbuy-warehouse", label: "Warehouse guide" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+      { href: "/boonbuy-discord", label: "BoonBuy Discord" },
+      { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
+      { href: "/boonbuy-qc", label: "BoonBuy QC" },
       { href: "/ai", label: "BoonBuy AI" },
     ],
   },
   {
     title: "Guides & fresh finds",
     links: [
+      { href: "/guides", label: "All guides" },
       { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
       { href: "/guides/how-to-check-qc-photos", label: "QC photos guide" },
-      { href: "/latest", label: "Latest finds" },
+      { href: "/latest-finds", label: "Latest finds" },
       { href: "/trending", label: "Trending" },
-      { href: "/most-saved-finds", label: "Most saved" },
-      { href: "/summer-finds", label: "Summer finds" },
-      { href: "/winter-finds", label: "Winter finds" },
-      { href: "/guides", label: "All guides" },
+      { href: "/boonbuy-warehouse", label: "Warehouse" },
+      { href: "/boonbuy-shipping", label: "Shipping" },
+      { href: "/categories", label: "Categories" },
     ],
   },
 ] as const;
@@ -69,7 +71,7 @@ export default function HomepageInternalLinks() {
       <div className="mx-auto max-w-7xl rounded-2xl border border-border/80 bg-surface/20 p-5 sm:p-6">
         <h2 className="text-lg font-black sm:text-xl">Explore the catalog</h2>
         <p className="mt-1 text-sm text-muted">
-          Jump to collections, brands, categories, and guides — all indexable landing pages.
+          Jump to finds hubs, brands, categories, and guides — the same authority path as a full discovery platform.
         </p>
         <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {SECTIONS.map((section) => (
@@ -82,7 +84,7 @@ export default function HomepageInternalLinks() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm font-semibold text-muted hover:text-accent"
+                      className="text-sm font-semibold text-foreground/85 hover:text-accent"
                     >
                       {link.label}
                     </Link>

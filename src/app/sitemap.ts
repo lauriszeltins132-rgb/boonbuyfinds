@@ -9,6 +9,7 @@ import { SEO_LIST_SLUGS, SEO_LIST_ROUTES } from "@/lib/seo-list-routes";
 import { STATIC_PAGES } from "@/lib/static-pages";
 import { SHARE_COLLECTION_SLUGS, SHARE_COLLECTIONS } from "@/lib/share-collections";
 import { BEST_OF_PAGES, BEST_OF_SLUGS } from "@/lib/best-of-pages";
+import { FINDS_HUB_PAGES, FINDS_HUB_SLUGS } from "@/lib/finds-hub-pages";
 import { SEO_LANDING_PAGES, SEO_LANDING_SLUGS } from "@/lib/seo-landing-pages";
 import {
   getPublishedSeoLandingConfigs,
@@ -63,7 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/", "daily", 1, synced),
     entry("/ai", "weekly", 0.9, synced),
     entry("/trending", "daily", 0.9, synced),
-    entry("/latest", "daily", 0.9, synced),
+    entry("/latest-finds", "daily", 0.95, synced),
     entry("/deals", "daily", 0.9, synced),
     entry("/recently-added", "daily", 0.92, synced),
     entry("/brands", "weekly", 0.8, synced),
@@ -130,6 +131,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const slug of BEST_OF_SLUGS) {
     const page = BEST_OF_PAGES[slug];
     routes.push(entry(page.path, "daily", 0.9, synced));
+  }
+
+  for (const slug of FINDS_HUB_SLUGS) {
+    const page = FINDS_HUB_PAGES[slug];
+    routes.push(
+      entry(page.path, "daily", slug === "latest-finds" ? 0.95 : 0.92, synced)
+    );
   }
 
   const highPriorityGuides = new Set([

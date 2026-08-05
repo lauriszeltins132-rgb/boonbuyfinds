@@ -75,10 +75,16 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
         </div>
 
         <div className="mt-8 rounded-2xl border border-border/80 bg-surface/20 p-5 sm:p-6">
-          <h2 className="text-lg font-black">BoonBuy Finds hub</h2>
+          <h2 className="text-lg font-black">What is BoonBuy Finds?</h2>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">
             {HOMEPAGE_SEO_INDEX_BLURB}
           </p>
+          <ul className="mt-4 grid gap-2 text-sm text-muted sm:grid-cols-2">
+            <li>Product discovery platform for BoonBuy finds</li>
+            <li>Searchable database with QC photo references</li>
+            <li>Spreadsheet alternative with filters and product pages</li>
+            <li>Coupon, Discord, and Telegram resource hub</li>
+          </ul>
           <ul className="mt-4 flex flex-wrap gap-2">
             {SEO_HUB_FOOTER_LINKS.map((link) => (
               <li key={link.href}>

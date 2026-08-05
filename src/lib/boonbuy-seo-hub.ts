@@ -9,13 +9,13 @@ import {
 export const BOONBUY_SEO_HUB = {
   home: { href: "/", label: "BoonBuy Finds" },
   telegram: {
-    href: "/telegram-boonbuy",
+    href: "/boonbuy-telegram",
     label: "BoonBuy Telegram",
     externalUrl: SOCIAL_LINKS.telegram,
     cta: "Join BoonBuy Telegram",
   },
   discord: {
-    href: "/discord-boonbuy",
+    href: "/boonbuy-discord",
     label: "BoonBuy Discord",
     externalUrl: SOCIAL_LINKS.discord,
     cta: "Join BoonBuy Discord",
@@ -26,62 +26,38 @@ export const BOONBUY_SEO_HUB = {
     externalUrl: BOONBUY_COUPON_URL,
     cta: BOONBUY_SHIPPING_COUPON_CTA,
   },
-  couponsBest: {
-    href: "/best-boonbuy-coupons",
-    label: "Best BoonBuy Coupons",
-  },
-  coupons2026: {
-    href: "/boonbuy-coupons-2026",
-    label: "BoonBuy Coupons 2026",
-  },
-  couponSingular: {
-    href: "/boonbuy-coupon",
-    label: "BoonBuy Coupon",
-  },
-  couponsBestSingular: {
-    href: "/best-boonbuy-coupon",
-    label: "Best BoonBuy Coupon",
-  },
-  couponCode: {
-    href: "/boonbuy-coupon-code",
-    label: "BoonBuy Coupon Code",
-  },
-  promoCode: {
-    href: "/boonbuy-promo-code",
-    label: "BoonBuy Promo Code",
-  },
-  inviteCode: {
-    href: "/boonbuy-invite-code",
-    label: "BoonBuy Invite Code",
-  },
   shippingCoupon: {
     href: "/boonbuy-shipping-coupon",
     label: "BoonBuy Shipping Coupon",
-  },
-  deals: {
-    href: "/boonbuy-deals",
-    label: "BoonBuy Deals",
   },
   brandHub: {
     href: "/boonbuy",
     label: "BoonBuy",
   },
+  review: {
+    href: "/boonbuy-review",
+    label: "BoonBuy Review",
+  },
   findsHub: {
     href: "/boonbuy-finds",
     label: "BoonBuy Finds",
   },
-  boonbuyfinds: {
-    href: "/boonbuyfinds",
-    label: "Boonbuyfinds",
+  latestFinds: {
+    href: "/latest-finds",
+    label: "Latest Finds",
   },
   spreadsheet: {
     href: "/boonbuy-spreadsheet",
     label: "BoonBuy Spreadsheet",
     cta: "View BoonBuy Spreadsheet",
   },
-  spreadsheetBest: {
-    href: "/best-boonbuy-spreadsheet",
-    label: "Best BoonBuy Spreadsheet",
+  guides: {
+    href: "/guides",
+    label: "Guides",
+  },
+  qc: {
+    href: "/boonbuy-qc",
+    label: "BoonBuy QC",
   },
 } as const;
 
@@ -117,25 +93,20 @@ export const HERO_LANDING_CTAS = [
   },
 ] as const;
 
+/** Primary authority links only — avoid doorway coupon variant spam. */
 export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.home,
   BOONBUY_SEO_HUB.brandHub,
   BOONBUY_SEO_HUB.findsHub,
-  BOONBUY_SEO_HUB.boonbuyfinds,
-  BOONBUY_SEO_HUB.telegram,
-  BOONBUY_SEO_HUB.discord,
-  BOONBUY_SEO_HUB.coupons,
-  BOONBUY_SEO_HUB.couponSingular,
-  BOONBUY_SEO_HUB.couponsBest,
-  BOONBUY_SEO_HUB.couponsBestSingular,
-  BOONBUY_SEO_HUB.couponCode,
-  BOONBUY_SEO_HUB.promoCode,
-  BOONBUY_SEO_HUB.inviteCode,
-  BOONBUY_SEO_HUB.coupons2026,
-  BOONBUY_SEO_HUB.shippingCoupon,
-  BOONBUY_SEO_HUB.deals,
+  BOONBUY_SEO_HUB.latestFinds,
   BOONBUY_SEO_HUB.spreadsheet,
-  BOONBUY_SEO_HUB.spreadsheetBest,
+  BOONBUY_SEO_HUB.coupons,
+  BOONBUY_SEO_HUB.shippingCoupon,
+  BOONBUY_SEO_HUB.qc,
+  BOONBUY_SEO_HUB.discord,
+  BOONBUY_SEO_HUB.telegram,
+  BOONBUY_SEO_HUB.review,
+  BOONBUY_SEO_HUB.guides,
 ] as const;
 
-export const HOMEPAGE_SEO_INDEX_BLURB = `BoonBuy Finds is the searchable catalog for BoonBuy spreadsheet finds, QC photos, and verified checkout links. Claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off BoonBuy shipping with our invite coupon, join the BoonBuy Telegram and BoonBuy Discord for daily drops, and browse the BoonBuy spreadsheet alternative with filters, brands, and shareable product pages — updated for 2026.`;
+export const HOMEPAGE_SEO_INDEX_BLURB = `BoonBuy Finds is a product discovery platform and searchable database for BoonBuy spreadsheet finds, QC photos, coupons, and community updates. Use it to browse verified BoonBuy checkout links, claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, join Discord and Telegram for daily drops, and explore category finds hubs — without copying rows from a raw Google Sheet.`;

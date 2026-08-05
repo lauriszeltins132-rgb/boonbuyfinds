@@ -88,7 +88,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
       { href: "/boonbuy-payment", label: "Payment guide" },
       { href: "/boonbuy-shipping", label: "Shipping guide" },
       { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-      { href: "/latest", label: "Latest finds" },
+      { href: "/latest-finds", label: "Latest finds" },
     ],
     relatedArticleSlugs: [
       "boonbuy-shipping",
@@ -327,7 +327,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
           { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
           { href: "/boonbuy-finds", label: "Finds hub" },
           { href: "/ai", label: "BoonBuy AI" },
-          { href: "/latest", label: "Latest finds" },
+          { href: "/latest-finds", label: "Latest finds" },
         ],
       },
     ],

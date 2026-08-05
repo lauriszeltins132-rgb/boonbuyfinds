@@ -106,7 +106,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     product.group === "featured"
       ? product.category_slug === "trending-now"
         ? "/trending"
-        : "/latest"
+        : "/latest-finds"
       : `/categories/${product.category_slug}`;
   const facts = getProductFacts(product, categoryHref);
   const engagement = getProductEngagementStats(product.id);

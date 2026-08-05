@@ -26,13 +26,13 @@ const GUIDE_LINKS = [
 ];
 
 const COLLECTION_LINKS = [
-  { href: "/collections/best-boonbuy-finds-2026", label: "Best finds 2026" },
+  { href: "/latest-finds", label: "Latest finds" },
+  { href: "/sneaker-finds", label: "Sneaker finds" },
   { href: "/collections/best-nike-finds", label: "Best Nike finds" },
   { href: "/collections/best-qc-approved-finds", label: "QC finds" },
-  { href: "/collections/best-budget-finds", label: "Budget finds" },
-  { href: "/most-saved-finds", label: "Most saved" },
-  { href: "/summer-finds", label: "Summer finds" },
-  { href: "/winter-finds", label: "Winter finds" },
+  { href: "/hoodie-finds", label: "Hoodie finds" },
+  { href: "/jacket-finds", label: "Jacket finds" },
+  { href: "/best-rep-finds", label: "Best rep finds" },
   { href: "/collections/boonbuy-spreadsheet-alternative", label: "Sheet alternative" },
 ];
 

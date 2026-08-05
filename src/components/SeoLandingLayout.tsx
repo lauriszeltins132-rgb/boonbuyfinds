@@ -79,7 +79,7 @@ export default function SeoLandingLayout({ config }: SeoLandingLayoutProps) {
               { href: "/ai", label: "AI" },
               { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
               { href: "/boonbuy-coupons", label: "Coupons" },
-              { href: "/latest", label: "Latest" },
+              { href: "/latest-finds", label: "Latest" },
               { href: "/categories", label: "Categories" },
               { href: "/collections", label: "Collections" },
               { href: "/trending", label: "Trending" },

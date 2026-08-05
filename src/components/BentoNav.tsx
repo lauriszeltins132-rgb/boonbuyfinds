@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const tiles = [
   { href: "/trending", title: "Trending", desc: "What's hot right now", emoji: "🔥" },
-  { href: "/latest", title: "Fresh Drops", desc: "Just added", emoji: "✨" },
+  { href: "/latest-finds", title: "Fresh Drops", desc: "Just added", emoji: "✨" },
   { href: "/deals", title: "Under $30", desc: "Budget picks", emoji: "💸" },
   { href: "/categories/shoes", title: "Shoes", desc: "Sneakers & more", emoji: "👟" },
   { href: "/categories/hoodies-and-pants", title: "Streetwear", desc: "Hoodies & pants", emoji: "🧥" },

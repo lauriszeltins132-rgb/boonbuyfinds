@@ -112,7 +112,7 @@ export const COMPARISON_PAGES: Record<string, ComparisonConfig> = {
     ],
     relatedLinks: [
       { href: "/trending", label: "Trending page" },
-      { href: "/latest", label: "Latest finds" },
+      { href: "/latest-finds", label: "Latest finds" },
       { href: "/recently-added", label: "Recently added" },
     ],
     clusterLinks: [

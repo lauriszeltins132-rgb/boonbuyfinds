@@ -61,7 +61,7 @@ export default async function HomePage({
       <DiscoveryRail
         title="Latest Finds"
         subtitle="Newest drops from the BoonBuy spreadsheet sync"
-        href="/latest"
+        href="/latest-finds"
         products={rails.latestFinds}
       />
 

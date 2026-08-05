@@ -1,6 +1,6 @@
 import {
   buildProductMetaDescription,
-  buildProductMetaTitle,
+  buildProductMetaTitleDetailed,
 } from "./metadata-copy";
 import type { Product } from "./types";
 import { formatPrice } from "./currency";
@@ -99,7 +99,11 @@ export function getProductHighlights(product: Product): string[] {
 }
 
 export function getProductSeoTitle(product: Product): string {
-  return buildProductMetaTitle(getDisplayProductName(product));
+  return buildProductMetaTitleDetailed({
+    name: getDisplayProductName(product),
+    brand: getDisplayBrand(product),
+    category: product.category,
+  });
 }
 
 export function getProductImageAlt(product: Product): string {

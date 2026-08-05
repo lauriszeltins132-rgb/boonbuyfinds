@@ -1,5 +1,6 @@
 import { POPULAR_SEARCHES } from "@/lib/constants";
 import { BEST_OF_PAGES, BEST_OF_SLUGS } from "@/lib/best-of-pages";
+import { FINDS_HUB_PAGES, FINDS_HUB_SLUGS } from "@/lib/finds-hub-pages";
 
 export type RelatedSearchLink = {
   label: string;
@@ -10,22 +11,22 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "BoonBuy spreadsheet", href: "/boonbuy-spreadsheet" },
   { label: "BoonBuy coupons", href: "/boonbuy-coupons" },
   { label: "BoonBuy QC", href: "/boonbuy-qc" },
+  { label: "BoonBuy review", href: "/boonbuy-review" },
+  { label: "BoonBuy Discord", href: "/boonbuy-discord" },
+  { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy shipping", href: "/boonbuy-shipping" },
   { label: "BoonBuy warehouse", href: "/boonbuy-warehouse" },
   { label: "How to use BoonBuy", href: "/how-to-use-boonbuy" },
   { label: "Is BoonBuy legit", href: "/is-boonbuy-legit" },
-  { label: "BoonBuy vs CNFans", href: "/boonbuy-vs-cnfans" },
+  { label: "Guides", href: "/guides" },
+  { label: "Latest finds", href: "/latest-finds" },
+  { label: "Sneaker finds", href: "/sneaker-finds" },
+  { label: "Clothing finds", href: "/clothing-finds" },
+  { label: "Best rep finds", href: "/best-rep-finds" },
   { label: "Trending finds", href: "/trending" },
-  { label: "Latest finds", href: "/latest" },
   { label: "Most saved", href: "/most-saved-finds" },
-  { label: "Most viewed", href: "/most-viewed-finds" },
-  { label: "Summer finds", href: "/summer-finds" },
-  { label: "Winter finds", href: "/winter-finds" },
   { label: "Under $50", href: "/best-under-50" },
-  { label: "Editor's picks", href: "/editors-picks" },
   { label: "BoonBuy AI", href: "/ai" },
-  { label: "Best jerseys", href: "/best-jerseys" },
-  { label: "Best tech", href: "/best-boonbuy-tech" },
 ];
 
 const BRAND_HREF: Record<string, string> = {
@@ -48,16 +49,23 @@ export function getRelatedSearches(limit = 16): RelatedSearchLink[] {
     href: BRAND_HREF[term] ?? `/?q=${encodeURIComponent(term)}#browse`,
   }));
 
-  const bestOfLinks: RelatedSearchLink[] = BEST_OF_SLUGS.slice(0, 8).map((slug) => {
+  const findsLinks: RelatedSearchLink[] = FINDS_HUB_SLUGS.map((slug) => {
+    const page = FINDS_HUB_PAGES[slug];
+    return { label: page.h1, href: page.path };
+  });
+
+  const bestOfLinks: RelatedSearchLink[] = BEST_OF_SLUGS.slice(0, 6).map((slug) => {
     const page = BEST_OF_PAGES[slug];
     return { label: page.h1, href: page.path };
   });
 
-  const merged = [...AUTHORITY_SEARCHES, ...brandLinks, ...bestOfLinks];
+  const merged = [...AUTHORITY_SEARCHES, ...findsLinks, ...brandLinks, ...bestOfLinks];
   const seen = new Set<string>();
-  return merged.filter((link) => {
-    if (seen.has(link.href)) return false;
-    seen.add(link.href);
-    return true;
-  }).slice(0, limit);
+  return merged
+    .filter((link) => {
+      if (seen.has(link.href)) return false;
+      seen.add(link.href);
+      return true;
+    })
+    .slice(0, limit);
 }
