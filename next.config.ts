@@ -135,12 +135,20 @@ const nextConfig: NextConfig = {
       { source: "/referral-code", destination: "/boonbuy-referral-code", permanent: true },
       { source: "/boonbuy-referral", destination: "/boonbuy-referral-code", permanent: true },
       // Consolidate parallel freshness / engagement URLs onto canonical hubs.
-      { source: "/new-finds", destination: "/latest", permanent: true },
+      { source: "/new-finds", destination: "/latest-finds", permanent: true },
+      { source: "/latest", destination: "/latest-finds", permanent: true },
       { source: "/most-saved", destination: "/most-saved-finds", permanent: true },
       { source: "/most-viewed", destination: "/most-viewed-finds", permanent: true },
       { source: "/summer", destination: "/summer-finds", permanent: true },
       { source: "/winter", destination: "/winter-finds", permanent: true },
       { source: "/monthly-highlights", destination: "/best-finds-this-month", permanent: true },
+      // LitBuy-style vocabulary aliases for adjacent best-of routes (optional equity).
+      { source: "/best-sneaker-finds", destination: "/sneaker-finds", permanent: true },
+      { source: "/best-hoodie-finds", destination: "/hoodie-finds", permanent: true },
+      { source: "/best-jacket-finds", destination: "/jacket-finds", permanent: true },
+      { source: "/best-bag-finds", destination: "/bag-finds", permanent: true },
+      { source: "/nike-finds", destination: "/brands/nike", permanent: true },
+      { source: "/jordan-finds", destination: "/brands/jordan", permanent: true },
     ];
   },
   images: {

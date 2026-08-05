@@ -43,28 +43,40 @@ export default function HomepageSeoContent() {
 
             <div className="flex flex-wrap gap-2 pt-2">
               <Link
-                href="/guides/boonbuy-finds"
+                href="/latest-finds"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                BoonBuy finds guide
+                Latest finds
               </Link>
               <Link
-                href="/guides/boonbuy-spreadsheet"
+                href="/boonbuy-spreadsheet"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Spreadsheet guide
+                Spreadsheet
               </Link>
               <Link
-                href="/collections"
+                href="/boonbuy-coupons"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                All collections
+                Coupons
               </Link>
               <Link
-                href="/brands"
+                href="/sneaker-finds"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Brand directory
+                Sneaker finds
+              </Link>
+              <Link
+                href="/guides"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Guides
+              </Link>
+              <Link
+                href="/boonbuy-discord"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Discord
               </Link>
             </div>
           </div>

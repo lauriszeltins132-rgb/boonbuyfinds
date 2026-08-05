@@ -122,7 +122,7 @@ export function getCategories(): CategoryInfo[] {
           product.group === "featured"
             ? product.category_slug === "trending-now"
               ? "/trending"
-              : "/latest"
+              : "/latest-finds"
             : `/categories/${product.category_slug}`,
         group: product.group,
       });

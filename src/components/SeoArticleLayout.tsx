@@ -38,7 +38,7 @@ const AUTHORITY_CLUSTER_LINKS = [
   { href: "/ai", label: "BoonBuy AI" },
   { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
   { href: "/boonbuy-coupons", label: "Coupons" },
-  { href: "/latest", label: "Latest finds" },
+  { href: "/latest-finds", label: "Latest finds" },
   { href: "/categories", label: "Categories" },
   { href: "/collections", label: "Collections" },
   { href: "/trending", label: "Trending" },

@@ -13,6 +13,49 @@ export const metadata: Metadata = buildPageMetadata({
   path: GUIDES_HUB.path,
 });
 
+const GUIDE_CLUSTERS = [
+  {
+    title: "Beginner",
+    links: [
+      { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+      { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
+      { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
+      { href: "/guides/how-to-check-qc-photos", label: "How QC photos work" },
+      { href: "/boonbuy-shipping", label: "Shipping guide" },
+    ],
+  },
+  {
+    title: "Money saving",
+    links: [
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+      { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
+      { href: "/guides/how-shipping-works-with-agents", label: "Shipping tips" },
+      { href: "/boonbuy-referral-code", label: "Referral code" },
+    ],
+  },
+  {
+    title: "Find guides",
+    links: [
+      { href: "/sneaker-finds", label: "Sneaker finds" },
+      { href: "/clothing-finds", label: "Clothing finds" },
+      { href: "/best-rep-finds", label: "Best rep finds" },
+      { href: "/latest-finds", label: "Latest finds" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+    ],
+  },
+  {
+    title: "Agent guides",
+    links: [
+      { href: "/boonbuy-warehouse", label: "Warehouse" },
+      { href: "/boonbuy-payment", label: "Payment" },
+      { href: "/boonbuy-returns", label: "Returns" },
+      { href: "/boonbuy-review", label: "BoonBuy review" },
+      { href: "/boonbuy-discord", label: "Discord" },
+      { href: "/boonbuy-telegram", label: "Telegram" },
+    ],
+  },
+] as const;
+
 export default function GuidesHubPage() {
   const guides = getAllGuides();
 
@@ -49,7 +92,39 @@ export default function GuidesHubPage() {
             <Link href="/about" className="font-bold text-accent hover:underline">
               Our mission
             </Link>
+            {" · "}
+            <Link
+              href="/editorial-policy"
+              className="font-bold text-accent hover:underline"
+            >
+              Editorial policy
+            </Link>
           </p>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {GUIDE_CLUSTERS.map((cluster) => (
+              <div
+                key={cluster.title}
+                className="rounded-2xl border border-border bg-surface/30 p-4"
+              >
+                <h2 className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
+                  {cluster.title}
+                </h2>
+                <ul className="mt-3 space-y-2">
+                  {cluster.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm font-semibold text-foreground hover:text-accent"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

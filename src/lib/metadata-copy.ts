@@ -47,7 +47,7 @@ export function getHomepageMetadataCopy() {
       72
     ),
     description: truncateMetaDescription(
-      `BoonBuy Finds (boonbuyfinds.net) — search BoonBuy finds, QC photos & spreadsheet picks. Claim 45% BoonBuy shipping coupon. Telegram & Discord updates.`
+      `BoonBuy Finds is a product discovery platform and QC/spreadsheet database for BoonBuy — coupons, Discord, Telegram, and verified checkout links. Updated daily.`
     ),
   };
 }
@@ -175,7 +175,7 @@ export function buildBrandMetaDescription(
 
 export function buildProductMetaTitle(productName: string): string {
   return truncateMetaTitle(
-    `${productName} | QC Photos, Price & Verified Agent Links`
+    `${productName} | QC Photos & BoonBuy Link`
   );
 }
 
@@ -191,6 +191,18 @@ export function buildProductMetaDescription(options: {
   const qcBit = hasQc ? "QC photos, " : "";
 
   return truncateMetaDescription(
-    `${lead}${priceBit} — ${qcBit}verified shopping links, shipping coupons, agent discounts and ${META_AGENTS} checkout.`
+    `${lead}${priceBit} — ${qcBit}streetwear find with verified BoonBuy checkout, shipping coupons and agent discounts.`
   );
+}
+
+/** Richer PDP title when brand + category are known. */
+export function buildProductMetaTitleDetailed(options: {
+  name: string;
+  brand: string | null;
+  category: string;
+}): string {
+  const { name, brand, category } = options;
+  const lead = brand ? `${brand} ${name}` : name;
+  const cat = category ? ` ${category}` : "";
+  return truncateMetaTitle(`${lead}${cat} Find — QC Photos & BoonBuy Link`, 70);
 }

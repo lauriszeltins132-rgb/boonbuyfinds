@@ -223,7 +223,7 @@ export default function CatalogPanel({
   const topBrands = brands.slice(0, 18);
   const onCategoryPage =
     pathname.startsWith("/category/") || pathname.startsWith("/categories/");
-  const onFeaturedPage = pathname === "/trending" || pathname === "/latest";
+  const onFeaturedPage = pathname === "/trending" || pathname === "/latest" || pathname === "/latest-finds";
 
   const filterControls = (
     <>

@@ -12,7 +12,7 @@ import GlobalSearch from "./GlobalSearch";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/trending", label: "Trending" },
-  { href: "/latest", label: "New Finds" },
+  { href: "/latest-finds", label: "New Finds" },
   { href: "/guides", label: "Guides" },
   { href: "/brands", label: "Brands" },
   { href: "/categories", label: "Categories" },
