@@ -34,6 +34,7 @@ const SLUGS = [
   "what-is-boonbuy",
   "is-boonbuy-legit",
   "is-boonbuy-safe",
+  "what-is-boonbuy-finds",
   "boonbuy-vs-litbuy",
   "boonbuy-vs-kakobuy",
   "boonbuy-vs-cnfans",
