@@ -44,6 +44,7 @@ const RESOURCE_LINKS = [
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
+  { href: "/boonbuy-questions", label: "BoonBuy questions" },
   { href: "/guides", label: "All guides" },
 ];
 

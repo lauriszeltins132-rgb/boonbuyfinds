@@ -65,6 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/ai", "weekly", 0.9, synced),
     entry("/trending", "daily", 0.9, synced),
     entry("/latest-finds", "daily", 0.95, synced),
+    entry("/boonbuy-questions", "weekly", 0.94, synced),
     entry("/deals", "daily", 0.9, synced),
     entry("/recently-added", "daily", 0.92, synced),
     entry("/brands", "weekly", 0.8, synced),

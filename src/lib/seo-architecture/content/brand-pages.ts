@@ -345,6 +345,29 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         ],
       },
       {
+        heading: "How much does BoonBuy shipping cost?",
+        paragraphs: [
+          "There is no single published price. Freight depends on parcel weight, volumetric size, shipping line, destination country, and any active coupon. Quotes appear in your BoonBuy account when you build a parcel — use that number, not a blog estimate.",
+          "Item listing prices on BoonBuy Finds do not include international freight. Budget freight separately before you add more cart lines.",
+        ],
+        links: [
+          { href: "/boonbuy-coupons", label: "Shipping coupons" },
+          { href: "/how-to-save-on-shipping", label: "Save on shipping" },
+        ],
+      },
+      {
+        heading: "How long does shipping take?",
+        paragraphs: [
+          "Delivery time varies by line and country. Economy options can take multiple weeks; express options are usually faster and more expensive. Tracking updates also vary by carrier. BoonBuy Finds cannot publish a fixed global ETA without guessing.",
+        ],
+      },
+      {
+        heading: "Does BoonBuy ship worldwide?",
+        paragraphs: [
+          "BoonBuy offers international shipping lines to many countries, but availability and restricted items depend on the line and destination. Confirm that your country and product type are supported inside your BoonBuy shipping quote before you pay freight.",
+        ],
+      },
+      {
         heading: "Dimensional weight",
         paragraphs: [
           "Carriers bill volumetric weight on bulky packages. A puffer jacket can cost like two tees in a small box. Vacuum seal when appropriate; do not crush structured shoes.",
@@ -366,21 +389,37 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         paragraphs: [
           "Wait until you have a full box unless you need one item urgently. Single-item international parcels are the most expensive per gram. Balance storage fees at the warehouse against waiting too long during promo expirations.",
         ],
-        links: [{ href: "/how-to-save-on-shipping", label: "Save on shipping" }],
+        links: [
+          { href: "/how-to-save-on-shipping", label: "Save on shipping" },
+          { href: "/boonbuy-questions", label: "More shipping questions" },
+        ],
       },
     ],
     faqs: buildGuideFaqs("BoonBuy shipping", [
       {
         question: "How long does BoonBuy shipping take?",
-        answer: "Depends on line and country — economy can take weeks; express often lands sooner. Tracking updates vary by carrier.",
+        answer:
+          "It depends on the shipping line and your country. Economy can take weeks; express often arrives sooner. Check the live quote and tracking in your BoonBuy account — we do not invent fixed delivery days.",
+      },
+      {
+        question: "How much is BoonBuy shipping?",
+        answer:
+          "Freight is quoted per parcel from weight, volume, line, and destination. Use the BoonBuy shipping calculator after QC; catalog item prices exclude international freight.",
+      },
+      {
+        question: "Does BoonBuy ship worldwide?",
+        answer:
+          "Many countries are supported, but lines and restricted goods vary. Confirm your destination in BoonBuy before paying freight.",
       },
       {
         question: "Can I ship shoes and clothes together?",
-        answer: "Yes in one parcel if line rules allow. Use reinforcement for shoe boxes and check weight estimates before paying.",
+        answer:
+          "Yes in one parcel if line rules allow. Use reinforcement for shoe boxes and check weight estimates before paying.",
       },
     ]),
     relatedLinks: [
       { href: "/boonbuy-coupons", label: "Shipping coupons" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/guides/how-shipping-works-with-agents", label: "Agent shipping guide" },
     ],
     relatedArticleSlugs: ["how-shipping-works", "how-to-save-on-shipping", "boonbuy-discount-code"],
@@ -464,7 +503,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
 
   "how-to-use-boonbuy": page({
     slug: "how-to-use-boonbuy",
-    category: "brand",
+    category: "guide",
     title: "How to Use BoonBuy (2026) | Step-by-Step Guide",
     metaDescription:
       "How to use BoonBuy — register, paste links, pay, review QC photos, build parcels, and ship internationally. Beginner-friendly 2026 walkthrough.",
@@ -517,10 +556,23 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         ],
       },
     ],
-    faqs: buildGuideFaqs("using BoonBuy"),
+    faqs: buildGuideFaqs("using BoonBuy", [
+      {
+        question: "How does BoonBuy work?",
+        answer:
+          "You open a product link, pay on BoonBuy, wait for warehouse arrival, review QC photos, then build and ship an international parcel. See How BoonBuy works for the full loop.",
+      },
+      {
+        question: "Do I check out on BoonBuy Finds?",
+        answer:
+          "No. Browse and compare on BoonBuy Finds, then complete payment, QC, and shipping on BoonBuy.",
+      },
+    ]),
     relatedLinks: [
       { href: "/boonbuy-guide", label: "BoonBuy guide" },
       { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
+      { href: "/guides/how-boonbuy-works", label: "How BoonBuy works" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
     ],
     relatedArticleSlugs: ["what-is-boonbuy", "boonbuy-review", "how-shipping-works"],
     parentCrumb: { label: "Guides", href: "/guides" },
@@ -568,8 +620,23 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         links: [{ href: "/how-to-use-boonbuy", label: "How to use BoonBuy" }],
       },
     ],
-    faqs: buildGuideFaqs("BoonBuy as an agent"),
-    relatedLinks: [{ href: "/boonbuy", label: "BoonBuy hub" }],
+    faqs: buildGuideFaqs("BoonBuy as an agent", [
+      {
+        question: "Is BoonBuy a shopping agent?",
+        answer:
+          "Yes. BoonBuy buys from Chinese marketplaces on your behalf, warehouses items for QC, and ships internationally. It is not a retail store with its own inventory.",
+      },
+      {
+        question: "Is BoonBuy Finds the same as BoonBuy?",
+        answer:
+          "No. BoonBuy Finds is an independent discovery catalog. Checkout happens on BoonBuy.",
+      },
+    ]),
+    relatedLinks: [
+      { href: "/boonbuy", label: "BoonBuy hub" },
+      { href: "/what-is-boonbuy-finds", label: "What is BoonBuy Finds?" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
+    ],
     relatedArticleSlugs: ["how-to-use-boonbuy", "is-boonbuy-legit", "boonbuy-review"],
   }),
 
@@ -620,7 +687,10 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         answer: "No. We are an independent discovery catalog with outbound BoonBuy links.",
       },
     ]),
-    relatedLinks: [{ href: "/is-boonbuy-safe", label: "Is BoonBuy safe" }],
+    relatedLinks: [
+      { href: "/is-boonbuy-safe", label: "Is BoonBuy safe" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
+    ],
     relatedArticleSlugs: ["is-boonbuy-safe", "boonbuy-review", "what-is-boonbuy"],
   }),
 
@@ -634,6 +704,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "Is BoonBuy safe?",
     intro:
       "Safety with BoonBuy means account security, smart payment habits, mandatory QC, and honest customs declarations — not zero risk. Treat it like any cross-border purchase with a middleman you trust after a test order.",
+    directAnswer:
+      "BoonBuy can be used safely with normal agent precautions: verify boonbuy.com, protect your account, review warehouse QC before shipping, and declare honestly. No agent eliminates marketplace or customs risk.",
+    keyFacts: [
+      "Safety is about habits — passwords, QC, and declarations — not a guarantee.",
+      "Phishing clones exist; bookmark the real site from trusted coupon/guide links.",
+      "Warehouse QC is your inspection window before international freight.",
+      "BoonBuy Finds does not process payments; checkout happens on BoonBuy.",
+      "Start with a small test order before funding a large haul.",
+    ],
     keywords: ["is boonbuy safe", "boonbuy safe", "boonbuy security"],
     sections: [
       {
@@ -645,25 +724,161 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       {
         heading: "Payments",
         paragraphs: [
-          "Top up what you plan to spend. Understand refund policies before large wallet loads. Card chargebacks do not map cleanly to agent workflows — read terms.",
+          "Top up what you plan to spend. Understand refund policies before large wallet loads. Available payment methods change — confirm on the live BoonBuy payment screen. Card chargebacks do not map cleanly to agent workflows — read BoonBuy’s terms.",
         ],
+        links: [{ href: "/boonbuy-payment", label: "Payment guide" }],
       },
       {
         heading: "QC discipline",
         paragraphs: [
-          "Approve warehouse photos only when you would keep the item in hand. Shipping flawed goods internationally is how safety feels like loss.",
+          "Approve warehouse photos only when you would keep the item in hand. Shipping flawed goods internationally is how “safe checkout” still becomes a loss. Reference QC on BoonBuy Finds helps shortlist; warehouse QC is what covers your order.",
         ],
+        links: [{ href: "/boonbuy-qc", label: "QC guide" }],
       },
       {
         heading: "Customs honesty",
         paragraphs: [
-          "Declare plausibly. Extreme under-declaration is a seizure strategy, not a savings hack.",
+          "Declare plausibly. Extreme under-declaration is a seizure strategy, not a savings hack. Rules differ by country — check your local guidance.",
         ],
         links: [{ href: "/how-to-declare-parcels", label: "Declarations" }],
       },
+      {
+        heading: "What we cannot promise",
+        paragraphs: [
+          "We cannot promise that every seller batch is good, that every parcel clears customs, or that every ETA will match a quote. Those outcomes depend on sellers, carriers, and destination rules outside BoonBuy Finds.",
+        ],
+        links: [
+          { href: "/is-boonbuy-legit", label: "Is BoonBuy legit?" },
+          { href: "/boonbuy-questions", label: "More BoonBuy questions" },
+        ],
+      },
     ],
-    faqs: buildGuideFaqs("BoonBuy safety"),
-    relatedLinks: [{ href: "/is-boonbuy-legit", label: "Is BoonBuy legit" }],
+    faqs: buildGuideFaqs("BoonBuy safety", [
+      {
+        question: "Is BoonBuy safer than buying direct from Weidian?",
+        answer:
+          "For most overseas buyers, an agent is the practical path because marketplaces often block foreign checkout. Safety still depends on QC and declarations — not on skipping the agent.",
+      },
+      {
+        question: "Does BoonBuy Finds store my card details?",
+        answer:
+          "No. Purchases and wallet top-ups happen on BoonBuy. BoonBuy Finds is a discovery catalog with outbound links.",
+      },
+    ]),
+    relatedLinks: [
+      { href: "/is-boonbuy-legit", label: "Is BoonBuy legit" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions hub" },
+    ],
     relatedArticleSlugs: ["is-boonbuy-legit", "boonbuy-review", "how-to-avoid-customs"],
+  }),
+
+  "what-is-boonbuy-finds": page({
+    slug: "what-is-boonbuy-finds",
+    category: "brand",
+    title: "What Is BoonBuy Finds? Catalog Explained",
+    metaDescription:
+      "What is BoonBuy Finds — independent searchable catalog for BoonBuy spreadsheet finds, QC photos, coupons, and verified BoonBuy checkout links.",
+    badge: "Explainer",
+    h1: "What is BoonBuy Finds?",
+    intro:
+      "BoonBuy Finds (boonbuyfinds.net) is an independent product discovery catalog for fashion and sneaker finds commonly shared in BoonBuy spreadsheets. It is not the BoonBuy agent company and does not process checkout — it organizes photos, filters, QC references, and verified outbound BoonBuy links.",
+    directAnswer:
+      "BoonBuy Finds is an independent searchable catalog of BoonBuy-related finds — spreadsheet-style products with photos, QC context, coupons, and verified BoonBuy checkout links. It is not BoonBuy.com and does not sell inventory.",
+    keyFacts: [
+      "Independent from the BoonBuy shopping agent company.",
+      "Turns spreadsheet-style lists into searchable product and brand pages.",
+      "Outbound buy buttons open verified BoonBuy listings.",
+      "Also covers coupons, Discord/Telegram community links, guides, and BoonBuy AI.",
+      "Catalog prices and stock can change — confirm live totals on BoonBuy.",
+    ],
+    keywords: [
+      "what is boonbuy finds",
+      "boonbuy finds",
+      "boonbuyfinds",
+      "boonbuy finds explained",
+    ],
+    sections: [
+      {
+        heading: "BoonBuy Finds vs BoonBuy",
+        paragraphs: [
+          "BoonBuy is the shopping agent where you register, pay, request warehouse QC, and ship. BoonBuy Finds is the discovery layer: browse finds, open a product page, then continue on BoonBuy. Confusing the two leads people to look for checkout on this site — payment happens on BoonBuy.",
+        ],
+        links: [
+          { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+          { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
+        ],
+      },
+      {
+        heading: "What you can do here",
+        paragraphs: [
+          "Search brands and categories, open latest and trending finds, read QC and shipping guides, claim coupon pages when eligible, and ask BoonBuy AI to search the catalog. Collection and finds hubs organize popular intents such as sneakers, jackets, and budget picks.",
+        ],
+        links: [
+          { href: "/latest-finds", label: "Latest finds" },
+          { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
+          { href: "/ai", label: "BoonBuy AI" },
+          { href: "/boonbuy-coupons", label: "Coupons" },
+        ],
+      },
+      {
+        heading: "How to browse finds on this site",
+        paragraphs: [
+          "Start from trending, recently added, a category, or a brand page when you already know the lane. Each product page shows price, marketplace source when we have it, and a verified BoonBuy agent link. QC references on some listings are browsing aids — not a promise about your warehouse photos.",
+          "Compare a few similar finds before you buy. Then open the BoonBuy link, confirm size and live price on BoonBuy, and pay there — checkout does not happen on BoonBuy Finds.",
+        ],
+        links: [
+          { href: "/trending", label: "Trending" },
+          { href: "/recently-added", label: "Recently added" },
+          { href: "/how-to-buy", label: "How to buy" },
+        ],
+      },
+      {
+        heading: "How to use BoonBuy Finds with the agent",
+        paragraphs: [
+          "Find a product, review photos and any QC references, open the BoonBuy link, confirm size and live price, pay, wait for warehouse photos, then ship. Pair that flow with a shipping coupon when your account is eligible.",
+        ],
+        links: [
+          { href: "/boonbuy-finds", label: "Browse BoonBuy finds" },
+          { href: "/boonbuy-qc", label: "QC photos" },
+          { href: "/boonbuy-questions", label: "More questions" },
+        ],
+      },
+      {
+        heading: "Limitations",
+        paragraphs: [
+          "We do not guarantee seller quality, authenticity, or customs clearance. Listings can go out of stock. Spreadsheet imports and community data can lag live BoonBuy prices. Always verify on BoonBuy before paying.",
+        ],
+        links: [{ href: "/editorial-policy", label: "Editorial policy" }],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is BoonBuy Finds free to browse?",
+        answer:
+          "Yes. Browsing the catalog and guides is free. You only pay when you purchase and ship through BoonBuy.",
+      },
+      {
+        question: "Is this the same as a BoonBuy spreadsheet?",
+        answer:
+          "It covers the same product universe many community spreadsheets track, but as searchable pages with filters and product URLs instead of raw rows.",
+      },
+      {
+        question: "Can I check out on BoonBuy Finds?",
+        answer:
+          "No. We only host discovery and links. Checkout, warehouse QC, and shipping happen on BoonBuy after you follow an agent link.",
+      },
+      {
+        question: "Do you sell products directly?",
+        answer:
+          "No. Checkout happens on BoonBuy via verified outbound links.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/boonbuy-finds", label: "BoonBuy finds" },
+      { href: "/boonbuy-questions", label: "Questions hub" },
+      { href: "/about", label: "About" },
+    ],
+    relatedArticleSlugs: ["what-is-boonbuy", "how-to-use-boonbuy", "boonbuy-review"],
+    parentCrumb: { label: "Questions", href: "/boonbuy-questions" },
   }),
 };

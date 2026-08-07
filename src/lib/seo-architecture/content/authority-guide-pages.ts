@@ -87,6 +87,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
       { href: "/boonbuy-returns", label: "Returns & exchanges" },
       { href: "/boonbuy-payment", label: "Payment guide" },
       { href: "/boonbuy-shipping", label: "Shipping guide" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
       { href: "/latest-finds", label: "Latest finds" },
     ],
@@ -175,6 +176,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
       { href: "/boonbuy-warehouse", label: "Warehouse guide" },
       { href: "/boonbuy-payment", label: "Payment guide" },
       { href: "/is-boonbuy-safe", label: "Is BoonBuy safe?" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/boonbuy-coupons", label: "Coupons" },
       { href: "/ai", label: "BoonBuy AI" },
     ],
@@ -259,6 +261,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
     relatedLinks: [
       { href: "/boonbuy-referral-code", label: "Referral code" },
       { href: "/boonbuy-discount-code", label: "Discount code" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/boonbuy-warehouse", label: "Warehouse" },
       { href: "/boonbuy-returns", label: "Returns" },
       { href: "/deals", label: "Deals under $30" },

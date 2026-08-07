@@ -23,6 +23,7 @@ function pathFor(slug: string): string {
 function coreLinks(): { href: string; label: string }[] {
   return [
     { href: "/", label: "Homepage" },
+    { href: "/boonbuy-questions", label: "BoonBuy questions" },
     { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
     { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
     { href: "/boonbuy-telegram", label: "Telegram" },

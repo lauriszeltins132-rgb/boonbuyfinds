@@ -1,5 +1,6 @@
 export const CORE_LINKS = [
   { href: "/guides", label: "All guides" },
+  { href: "/boonbuy-questions", label: "BoonBuy questions" },
   { href: "/about", label: "About BoonBuy Finds" },
   { href: "/contact", label: "Contact" },
   { href: "/trending", label: "Trending finds" },

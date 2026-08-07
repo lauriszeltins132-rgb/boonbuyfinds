@@ -45,7 +45,7 @@ export default function HomepageConversion() {
             Every buy button uses the stored Weidian or Taobao URL — no mystery redirects.
           </p>
           <Link
-            href="/guides/how-to-use-boonbuy-finds"
+            href="/what-is-boonbuy-finds"
             className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
           >
             How BoonBuy Finds works →

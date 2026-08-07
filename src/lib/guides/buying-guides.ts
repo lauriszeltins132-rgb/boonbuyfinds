@@ -267,7 +267,7 @@ export const BUYING_GUIDES: Record<string, GuidePage> = {
         ],
         links: [
           { href: "/trending", label: "Trending finds" },
-          { href: "/guides/how-to-use-boonbuy-finds", label: "Browse the site" },
+          { href: "/what-is-boonbuy-finds", label: "Browse the site" },
         ],
       },
       {
@@ -396,7 +396,7 @@ export const BUYING_GUIDES: Record<string, GuidePage> = {
           "Each product listing on this site includes a button or link to BoonBuy. That is the agent link for that row. It should match the price, photo, and title you were browsing — if it does not, go back and try another find.",
         ],
         links: [
-          { href: "/guides/how-to-use-boonbuy-finds", label: "Using BoonBuy Finds" },
+          { href: "/what-is-boonbuy-finds", label: "Using BoonBuy Finds" },
           { href: "/trending", label: "Example listings" },
         ],
       },

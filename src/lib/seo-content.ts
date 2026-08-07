@@ -271,7 +271,7 @@ const CATEGORY_GUIDES: Record<string, { href: string; label: string }[]> = {
     { href: "/guides/best-bag-finds", label: "Bag finds guide" },
   ],
   electronics: [
-    { href: "/guides/how-to-use-boonbuy-finds", label: "How to use BoonBuy Finds" },
+    { href: "/what-is-boonbuy-finds", label: "How to use BoonBuy Finds" },
   ],
   default: [
     { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },

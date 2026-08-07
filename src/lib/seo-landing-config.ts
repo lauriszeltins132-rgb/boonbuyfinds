@@ -66,7 +66,7 @@ function pathFor(slug: string): string {
 }
 
 const BUYING_LINKS = [
-  { href: "/guides/how-to-use-boonbuy-finds", label: "How to use BoonBuy Finds" },
+  { href: "/what-is-boonbuy-finds", label: "How to use BoonBuy Finds" },
   { href: "/guides/how-to-check-qc-photos", label: "QC photo guide" },
   { href: "/how-to-buy", label: "How to buy" },
 ];
@@ -519,6 +519,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       { href: "/guides/what-is-a-shopping-agent", label: "Shopping agent guide" },
       { href: "/boonbuy-vs-other-agents", label: "More comparisons" },
       { href: "/best-shopping-agent", label: "Best shopping agent" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
     ],
     faqs: [
       {
@@ -578,6 +579,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       { href: "/oopbuy-finds", label: "OopBuy finds" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/best-shopping-agent", label: "Agent overview" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
     ],
     faqs: [
       {
@@ -637,6 +639,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
     relatedLinks: [
       { href: "/boonbuy", label: "BoonBuy hub" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/mulebuy-finds", label: "MuleBuy finds" },
       { href: "/kakobuy-finds", label: "Kakobuy finds" },
       { href: "/oopbuy-finds", label: "OopBuy finds" },
