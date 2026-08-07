@@ -38,6 +38,10 @@ export const BOONBUY_SEO_HUB = {
     href: "/boonbuy-review",
     label: "BoonBuy Review",
   },
+  questions: {
+    href: "/boonbuy-questions",
+    label: "BoonBuy Questions",
+  },
   findsHub: {
     href: "/boonbuy-finds",
     label: "BoonBuy Finds",
@@ -97,6 +101,7 @@ export const HERO_LANDING_CTAS = [
 export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.home,
   BOONBUY_SEO_HUB.brandHub,
+  BOONBUY_SEO_HUB.questions,
   BOONBUY_SEO_HUB.findsHub,
   BOONBUY_SEO_HUB.latestFinds,
   BOONBUY_SEO_HUB.spreadsheet,

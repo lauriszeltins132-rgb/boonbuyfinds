@@ -50,7 +50,7 @@ export const FASHION_GUIDES: Record<string, GuidePage> = {
           "Streetwear sizing varies by batch. Keep two or three options in your wishlist, open each product page, and read size notes before you buy through BoonBuy.",
           "When QC references exist on a listing, use them to compare logo placement and fabric weight — especially on branded graphic pieces.",
         ],
-        links: [{ href: "/guides/how-to-use-boonbuy-finds", label: "How to find products" }],
+        links: [{ href: "/what-is-boonbuy-finds", label: "How to find products" }],
       },
     ],
     faqs: [

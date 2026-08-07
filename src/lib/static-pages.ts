@@ -25,6 +25,7 @@ export type StaticPage = {
 
 const GUIDE_LINKS = [
   { href: "/guides", label: "All guides" },
+  { href: "/boonbuy-questions", label: "BoonBuy questions" },
   { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
   { href: "/guides/how-boonbuy-works", label: "How BoonBuy works" },
   { href: "/how-to-buy", label: "How to buy" },
@@ -332,7 +333,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
     badge: "Buying guide",
     h1: "How to buy through BoonBuy",
     intro:
-      "Found something on BoonBuy Finds? Here is the usual flow from discovery to delivery. Exact steps can vary by seller and shipping line, but this covers what most new buyers need.",
+      "To buy through BoonBuy: claim a coupon if eligible, open a find on BoonBuy Finds, follow the verified BoonBuy link, confirm size and price, pay, review warehouse QC photos, then ship. Exact screens can change on BoonBuy — use the live dashboard for payment and freight quotes.",
     sections: [
       {
         heading: "1. Claim your 45% shipping coupon",
@@ -369,7 +370,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       {
         heading: "5. Declare and receive",
         paragraphs: [
-          "Follow customs rules in your country. Keep tracking handy and be patient — international parcels can take one to three weeks depending on the line.",
+          "Follow customs rules in your country. Keep tracking handy — international delivery time depends on the shipping line and destination, so use the live estimate in your BoonBuy account rather than a fixed blog ETA.",
         ],
       },
     ],
@@ -377,12 +378,17 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       {
         question: "How long does shipping take?",
         answer:
-          "It depends on the line you choose and your country. Budget lines are slower; express costs more but arrives faster.",
+          "It depends on the line you choose and your country. Quote freight and ETA inside BoonBuy before you pay — we do not invent fixed delivery days.",
       },
       {
         question: "What if the item is wrong?",
         answer:
-          "Contact BoonBuy support with photos. Policies vary by seller — QC before shipping home saves headaches.",
+          "Contact BoonBuy support with photos. Policies vary by seller — review warehouse QC before shipping home.",
+      },
+      {
+        question: "Where can I find more BoonBuy answers?",
+        answer:
+          "Use the BoonBuy questions hub for legitimacy, shipping, warehouse, coupons, spreadsheet, QC, and AI pages.",
       },
     ],
     relatedLinks: GUIDE_LINKS,

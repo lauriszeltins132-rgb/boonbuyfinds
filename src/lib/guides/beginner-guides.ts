@@ -32,7 +32,7 @@ export const BEGINNER_GUIDES: Record<string, GuidePage> = {
           "You browse here first. When something looks worth a closer look, you follow the agent link and finish checkout on BoonBuy.",
         ],
         links: [
-          { href: "/guides/how-to-use-boonbuy-finds", label: "How to use BoonBuy Finds" },
+          { href: "/what-is-boonbuy-finds", label: "How to use BoonBuy Finds" },
           { href: "/trending", label: "Trending finds" },
         ],
       },
@@ -277,7 +277,7 @@ export const BEGINNER_GUIDES: Record<string, GuidePage> = {
         ],
         links: [
           { href: "/categories", label: "All categories" },
-          { href: "/guides/how-to-use-boonbuy-finds", label: "Using this site" },
+          { href: "/what-is-boonbuy-finds", label: "Using this site" },
         ],
       },
       {
@@ -350,7 +350,7 @@ export const BEGINNER_GUIDES: Record<string, GuidePage> = {
         ],
         links: [
           { href: "/recently-added", label: "Recently added imports" },
-          { href: "/guides/how-to-use-boonbuy-finds", label: "Site browsing tips" },
+          { href: "/what-is-boonbuy-finds", label: "Site browsing tips" },
         ],
       },
       {
@@ -380,76 +380,6 @@ export const BEGINNER_GUIDES: Record<string, GuidePage> = {
         question: "Who maintains the spreadsheets?",
         answer:
           "Community curators and catalog maintainers. BoonBuy Finds indexes the feeds we are given; we do not control seller inventory on Weidian or Taobao.",
-      },
-    ],
-    relatedLinks: [...CORE_LINKS],
-  }),
-
-  "how-to-use-boonbuy-finds": buildGuide("how-to-use-boonbuy-finds", "beginner", {
-    title: "How to Use BoonBuy Finds",
-    metaDescription:
-      "How to browse BoonBuy Finds — categories, brands, trending, QC references on listings, and opening agent links when you are ready to buy.",
-    badge: "Discovery guide",
-    h1: "How to use BoonBuy Finds",
-    intro:
-      "BoonBuy Finds is for browsing product listings before you buy. Use it to narrow thousands of finds down to a short list, then hand off to BoonBuy through agent links.",
-    cardDescription:
-      "Browse finds, read listings, and open agent links with confidence.",
-    sections: [
-      {
-        heading: "Pick an entry point",
-        paragraphs: [
-          "Trending and recently added are good when you want what people are clicking now. Category and brand pages help when you already know the lane — shoes, jackets, a specific label.",
-        ],
-        links: [
-          { href: "/trending", label: "Trending" },
-          { href: "/recently-added", label: "Recently added" },
-          { href: "/categories/shoes", label: "Shoe category" },
-        ],
-      },
-      {
-        heading: "Read the product listing",
-        paragraphs: [
-          "Each page shows price, source marketplace when we have it, and an agent link to BoonBuy. Some listings include QC references — photos or threads from other buyers. They are guides, not a promise about your pair.",
-        ],
-        links: [{ href: "/guides/boonbuy-spreadsheet-guide", label: "Where listings come from" }],
-      },
-      {
-        heading: "Compare before you click buy",
-        paragraphs: [
-          "Open a few similar finds across brands or categories. Check whether QC references exist, whether the price moved, and whether sizing notes in comments match what you need.",
-        ],
-        links: [
-          { href: "/brands/nike", label: "Example: Nike finds" },
-          { href: "/categories", label: "All categories" },
-        ],
-      },
-      {
-        heading: "Hand off to BoonBuy",
-        paragraphs: [
-          "When a listing looks right, use the agent link on the product page. BoonBuy opens with that product context. Confirm variant and pay there — not on BoonBuy Finds.",
-        ],
-        links: [
-          { href: "/how-to-buy", label: "How to buy hub" },
-          { href: "/guides/how-to-use-boonbuy-agent-links", label: "Agent link guide" },
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Can I check out on BoonBuy Finds?",
-        answer:
-          "No. We only host discovery and links. Checkout, QC in the warehouse, and shipping all happen on BoonBuy after you follow an agent link.",
-      },
-      {
-        question: "What if search returns too many results?",
-        answer:
-          "Tighten with a brand page or category filter first, then search inside that slice. Names in spreadsheets are not always consistent spelling.",
-      },
-      {
-        question: "Are QC references required to buy?",
-        answer:
-          "No. They help you browse before buying, especially on popular batches. Items without references can still be fine — you rely more on warehouse QC after purchase.",
       },
     ],
     relatedLinks: [...CORE_LINKS],

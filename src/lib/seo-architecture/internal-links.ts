@@ -46,6 +46,7 @@ const CORE_HUB: HubBlock[] = [
       { href: "/boonbuyfinds", label: "Boonbuyfinds" },
       { href: "/latest-finds", label: "Latest finds" },
       { href: "/sneaker-finds", label: "Sneaker finds" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
       { href: "/boonbuy-warehouse", label: "Warehouse guide" },
       { href: "/boonbuy-returns", label: "Returns guide" },

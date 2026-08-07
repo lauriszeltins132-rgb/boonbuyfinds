@@ -130,6 +130,7 @@ export function buildCouponFooterLinks(
 
   return [
     { href: "/", label: "BoonBuy Finds homepage" },
+    { href: "/boonbuy-questions", label: "BoonBuy questions" },
     { href: "/recently-added", label: "New finds" },
     { href: paths.finds, label: `${agent.name} finds` },
     { href: paths.telegram, label: `${agent.name} Telegram` },

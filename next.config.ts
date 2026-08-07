@@ -67,7 +67,7 @@ const nextConfig: NextConfig = {
       { source: "/best-qc-finds", destination: "/top-qc-finds", permanent: true },
       // Single-hop to the live architecture guide (avoid /guides/how-to-use-boonbuy-finds chain).
       { source: "/guides/how-to-use-boonbuy", destination: "/how-to-use-boonbuy", permanent: true },
-      { source: "/guides/how-to-use-boonbuy-finds", destination: "/how-to-use-boonbuy", permanent: true },
+      { source: "/guides/how-to-use-boonbuy-finds", destination: "/what-is-boonbuy-finds", permanent: true },
       {
         source: "/guides/how-to-qc-photos-work",
         destination: "/guides/how-to-check-qc-photos",
@@ -149,6 +149,16 @@ const nextConfig: NextConfig = {
       { source: "/best-bag-finds", destination: "/bag-finds", permanent: true },
       { source: "/nike-finds", destination: "/brands/nike", permanent: true },
       { source: "/jordan-finds", destination: "/brands/jordan", permanent: true },
+      // Q&A intent aliases — consolidate onto strong canons.
+      { source: "/is-boonbuy-trustworthy", destination: "/is-boonbuy-legit", permanent: true },
+      { source: "/boonbuy-alternatives", destination: "/best-shopping-agent", permanent: true },
+      { source: "/boonbuy-faq", destination: "/boonbuy-questions", permanent: true },
+      { source: "/boonbuy-q-and-a", destination: "/boonbuy-questions", permanent: true },
+      { source: "/is-boonbuy-a-shopping-agent", destination: "/what-is-boonbuy", permanent: true },
+      { source: "/how-does-boonbuy-work", destination: "/guides/how-boonbuy-works", permanent: true },
+      { source: "/how-to-find-products-on-boonbuy", destination: "/boonbuy-finds", permanent: true },
+      { source: "/how-to-find-cheaper-products", destination: "/ai", permanent: true },
+      { source: "/how-to-compare-boonbuy-products", destination: "/ai", permanent: true },
     ];
   },
   images: {

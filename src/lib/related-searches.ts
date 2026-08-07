@@ -8,24 +8,23 @@ export type RelatedSearchLink = {
 };
 
 const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
+  { label: "BoonBuy questions", href: "/boonbuy-questions" },
+  { label: "What is BoonBuy?", href: "/what-is-boonbuy" },
+  { label: "What is BoonBuy Finds?", href: "/what-is-boonbuy-finds" },
   { label: "BoonBuy spreadsheet", href: "/boonbuy-spreadsheet" },
   { label: "BoonBuy coupons", href: "/boonbuy-coupons" },
   { label: "BoonBuy QC", href: "/boonbuy-qc" },
   { label: "BoonBuy review", href: "/boonbuy-review" },
+  { label: "Is BoonBuy legit?", href: "/is-boonbuy-legit" },
+  { label: "Is BoonBuy safe?", href: "/is-boonbuy-safe" },
   { label: "BoonBuy Discord", href: "/boonbuy-discord" },
-  { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy shipping", href: "/boonbuy-shipping" },
   { label: "BoonBuy warehouse", href: "/boonbuy-warehouse" },
   { label: "How to use BoonBuy", href: "/how-to-use-boonbuy" },
-  { label: "Is BoonBuy legit", href: "/is-boonbuy-legit" },
   { label: "Guides", href: "/guides" },
   { label: "Latest finds", href: "/latest-finds" },
   { label: "Sneaker finds", href: "/sneaker-finds" },
-  { label: "Clothing finds", href: "/clothing-finds" },
   { label: "Best rep finds", href: "/best-rep-finds" },
-  { label: "Trending finds", href: "/trending" },
-  { label: "Most saved", href: "/most-saved-finds" },
-  { label: "Under $50", href: "/best-under-50" },
   { label: "BoonBuy AI", href: "/ai" },
 ];
 

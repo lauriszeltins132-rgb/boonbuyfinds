@@ -13,9 +13,9 @@ const CATEGORY_GUIDES: Record<string, string[]> = {
   "coats-and-jackets": ["best-jacket-finds", "best-winter-finds"],
   "tshirts-and-shorts": ["best-tshirt-finds", "best-summer-finds"],
   accessories: ["best-accessory-finds", "best-bag-finds", "qc-checklist-for-bags"],
-  electronics: ["how-to-use-boonbuy-finds", "beginner-guide-to-boonbuy"],
+  electronics: ["beginner-guide-to-boonbuy", "how-to-order-from-boonbuy"],
   "trending-now": ["best-rep-sneakers", "best-streetwear-finds"],
-  "latest-finds": ["how-to-use-boonbuy-finds", "best-budget-finds"],
+  "latest-finds": ["beginner-guide-to-boonbuy", "best-budget-finds"],
 };
 
 const BRAND_GUIDES: Record<string, string[]> = {

@@ -209,6 +209,7 @@ function buildPageConfig(
       { href: "/deals", label: "Deals under $30" },
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/boonbuy-shipping-coupon", label: "BoonBuy shipping coupon" },
+      { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
       { href: "/recently-added", label: "Recently added finds" },
       { href: agent.findsPath, label: `${agent.name} finds catalog` },

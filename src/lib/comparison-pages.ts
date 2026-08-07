@@ -53,7 +53,7 @@ export const COMPARISON_PAGES: Record<string, ComparisonConfig> = {
       { href: "/top-rep-sneakers", label: "Top sneakers" },
     ],
     clusterLinks: [
-      { href: "/guides/how-to-use-boonbuy-finds", label: "How to use BoonBuy Finds" },
+      { href: "/what-is-boonbuy-finds", label: "How to use BoonBuy Finds" },
       { href: "/trending", label: "Trending" },
     ],
   },
@@ -117,7 +117,7 @@ export const COMPARISON_PAGES: Record<string, ComparisonConfig> = {
     ],
     clusterLinks: [
       { href: "/guides/boonbuy-spreadsheet-guide", label: "Spreadsheet guide" },
-      { href: "/guides/how-to-use-boonbuy-finds", label: "How to use BoonBuy Finds" },
+      { href: "/what-is-boonbuy-finds", label: "How to use BoonBuy Finds" },
     ],
   },
 };

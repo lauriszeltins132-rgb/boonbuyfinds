@@ -29,7 +29,7 @@ const FEATURED_CATEGORY_SLUGS = [
 
 const FEATURED_GUIDE_PATHS = [
   "/guides/beginner-guide-to-boonbuy",
-  "/guides/how-to-use-boonbuy-finds",
+  "/what-is-boonbuy-finds",
   "/boonbuy-qc",
   "/boonbuy-spreadsheet",
   "/guides/how-to-buy-from-weidian",
@@ -38,7 +38,7 @@ const FEATURED_GUIDE_PATHS = [
   "/guides/boonbuy-vs-sugargoo",
   "/guides/boonbuy-vs-pandabuy-alternatives",
   "/guides/beginner-guide-to-boonbuy",
-  "/guides/how-to-use-boonbuy-finds",
+  "/what-is-boonbuy-finds",
   "/guides/how-to-check-qc-photos",
   "/guides/how-to-buy-from-weidian",
   "/guides/how-shipping-works-with-agents",
