@@ -102,6 +102,24 @@ export default function BrandsPage() {
               Best Moncler finds
             </Link>
             <Link
+              href="/finds"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Browse finds
+            </Link>
+            <Link
+              href="/boonbuy-spreadsheet"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Spreadsheet
+            </Link>
+            <Link
+              href="/boonbuy-qc"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              QC photos
+            </Link>
+            <Link
               href="/collections/best-qc-approved-finds"
               className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
             >
