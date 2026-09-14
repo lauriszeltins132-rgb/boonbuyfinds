@@ -9,7 +9,6 @@ const appDir = path.join(root, "src/app");
 
 const SLUGS = [
   "boonbuy-spreadsheet",
-  "best-boonbuy-spreadsheet",
   "boonbuy-qc",
   "boonbuy-finds",
   "boonbuy-sneakers",
