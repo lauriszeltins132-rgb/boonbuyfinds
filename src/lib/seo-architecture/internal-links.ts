@@ -10,14 +10,16 @@ const CORE_HUB: HubBlock[] = [
     title: "Home & catalog",
     links: [
       { href: "/", label: "Homepage" },
+      { href: "/finds", label: "Browse finds" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/ai", label: "BoonBuy AI" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+      { href: "/boonbuy-qc", label: "BoonBuy QC" },
       { href: "/collections", label: "Collections" },
       { href: "/trending", label: "Trending finds" },
       { href: "/latest-finds", label: "Latest finds" },
+      { href: "/rep-finds", label: "Rep finds" },
       { href: "/most-saved-finds", label: "Most saved" },
-      { href: "/summer-finds", label: "Summer finds" },
-      { href: "/winter-finds", label: "Winter finds" },
     ],
   },
   {

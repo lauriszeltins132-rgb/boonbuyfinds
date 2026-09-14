@@ -18,6 +18,7 @@ import siteNavigation from "@/data/site-navigation.json";
 const GUIDE_LINKS = [
   { href: "/guides", label: "All guides" },
   { href: "/boonbuy-questions", label: "BoonBuy questions" },
+  { href: "/finds", label: "Browse finds" },
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
@@ -27,14 +28,14 @@ const GUIDE_LINKS = [
 ];
 
 const COLLECTION_LINKS = [
+  { href: "/finds", label: "Browse finds" },
   { href: "/latest-finds", label: "Latest finds" },
+  { href: "/rep-finds", label: "Rep finds" },
   { href: "/sneaker-finds", label: "Sneaker finds" },
   { href: "/collections/best-nike-finds", label: "Best Nike finds" },
   { href: "/collections/best-qc-approved-finds", label: "QC finds" },
   { href: "/hoodie-finds", label: "Hoodie finds" },
-  { href: "/jacket-finds", label: "Jacket finds" },
   { href: "/best-rep-finds", label: "Best rep finds" },
-  { href: "/collections/boonbuy-spreadsheet-alternative", label: "Sheet alternative" },
 ];
 
 const TRUST_LINKS = [
@@ -47,8 +48,8 @@ const TRUST_LINKS = [
 
 const AGENT_FINDS_LINKS = [
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
-  { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
-  { href: "/discord-boonbuy", label: "BoonBuy Discord" },
+  { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
+  { href: "/boonbuy-discord", label: "BoonBuy Discord" },
   { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
   { href: "/how-to-buy", label: "How to buy on BoonBuy" },

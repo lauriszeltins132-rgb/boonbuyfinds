@@ -62,14 +62,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes: MetadataRoute.Sitemap = [
     entry("/", "daily", 1, synced),
+    entry("/finds", "daily", 0.98, synced),
+    entry("/boonbuy-finds", "daily", 0.97, synced),
+    entry("/latest-finds", "daily", 0.95, synced),
+    entry("/rep-finds", "daily", 0.94, synced),
+    entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
+    entry("/boonbuy-coupons", "weekly", 0.95, synced),
+    entry("/boonbuy-qc", "weekly", 0.93, synced),
+    entry("/boonbuy-telegram", "weekly", 0.92, synced),
+    entry("/boonbuy-discord", "weekly", 0.92, synced),
+    entry("/boonbuy-questions", "weekly", 0.94, synced),
     entry("/ai", "weekly", 0.9, synced),
     entry("/trending", "daily", 0.9, synced),
-    entry("/latest-finds", "daily", 0.95, synced),
-    entry("/boonbuy-questions", "weekly", 0.94, synced),
     entry("/deals", "daily", 0.9, synced),
     entry("/recently-added", "daily", 0.92, synced),
-    entry("/brands", "weekly", 0.8, synced),
-    entry("/categories", "weekly", 0.8, synced),
+    entry("/brands", "weekly", 0.85, synced),
+    entry("/categories", "weekly", 0.85, synced),
     entry("/collections", "weekly", 0.88, synced),
     entry("/best-finds-by-category", "weekly", 0.85, synced),
     entry(GUIDES_HUB.path, "weekly", 0.9, synced),
@@ -87,6 +95,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_LANDING_SLUGS) {
     const page = SEO_LANDING_PAGES[slug];
+    // Authority hubs already listed above with higher priority.
+    if (
+      page.path === "/boonbuy-finds" ||
+      page.path === "/boonbuy-spreadsheet" ||
+      page.path === "/boonbuy-qc"
+    ) {
+      continue;
+    }
     routes.push(entry(page.path, "weekly", 0.88, synced));
   }
 
@@ -106,18 +122,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // Only primary coupon hubs — variants canonicalize elsewhere (doorway mitigation).
+  // BoonBuy coupons already listed above at authority priority.
   for (const slug of AGENT_COUPON_LANDING_SLUGS) {
     if (!isPrimaryCouponLandingSlug(slug)) continue;
+    if (slug === "boonbuy-coupons") continue;
     const page = AGENT_COUPON_LANDING_PAGES[slug];
-    routes.push(entry(page.path, "weekly", 0.86, synced));
+    routes.push(entry(page.path, "weekly", 0.9, synced));
   }
 
+  // Skip BoonBuy telegram/discord agent-landing aliases — they 301 to architecture canons.
+  const REDIRECTED_COMMUNITY_LANDINGS = new Set([
+    "telegram-boonbuy",
+    "discord-boonbuy",
+  ]);
+
   for (const slug of DISCORD_AGENT_LANDING_SLUGS) {
+    if (REDIRECTED_COMMUNITY_LANDINGS.has(slug)) continue;
     const page = DISCORD_AGENT_LANDING_PAGES[slug];
     routes.push(entry(page.path, "weekly", 0.9, synced));
   }
 
   for (const slug of TELEGRAM_AGENT_LANDING_SLUGS) {
+    if (REDIRECTED_COMMUNITY_LANDINGS.has(slug)) continue;
     const page = TELEGRAM_AGENT_LANDING_PAGES[slug];
     routes.push(entry(page.path, "weekly", 0.9, synced));
   }
@@ -136,9 +162,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of FINDS_HUB_SLUGS) {
     const page = FINDS_HUB_PAGES[slug];
-    routes.push(
-      entry(page.path, "daily", slug === "latest-finds" ? 0.95 : 0.92, synced)
-    );
+    // Authority finds hubs already listed with tiered priority above.
+    if (
+      page.path === "/finds" ||
+      page.path === "/latest-finds" ||
+      page.path === "/rep-finds"
+    ) {
+      continue;
+    }
+    routes.push(entry(page.path, "daily", 0.92, synced));
   }
 
   const highPriorityGuides = new Set([
@@ -193,6 +225,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_ARCHITECTURE_SLUGS) {
     const page = SEO_ARCHITECTURE_PAGES[slug];
+    // Community canons already listed above.
+    if (page.path === "/boonbuy-telegram" || page.path === "/boonbuy-discord") {
+      continue;
+    }
     routes.push(
       entry(page.path, "weekly", page.category === "comparison" ? 0.88 : 0.86, synced)
     );

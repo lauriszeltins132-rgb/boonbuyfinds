@@ -42,25 +42,83 @@ function byCategory(...slugs: string[]) {
 }
 
 const AUTHORITY = [
+  { href: "/finds", label: "Browse finds" },
+  { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+  { href: "/boonbuy-qc", label: "BoonBuy QC" },
   { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
   { href: "/boonbuy-discord", label: "BoonBuy Discord" },
   { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
-  { href: "/guides", label: "Guides" },
   { href: "/latest-finds", label: "Latest finds" },
 ] as const;
 
 const HUB_MESH = [
+  { href: "/finds", label: "Browse finds" },
   { href: "/sneaker-finds", label: "Sneaker finds" },
   { href: "/clothing-finds", label: "Clothing finds" },
   { href: "/streetwear-finds", label: "Streetwear finds" },
   { href: "/hoodie-finds", label: "Hoodie finds" },
   { href: "/jacket-finds", label: "Jacket finds" },
   { href: "/bag-finds", label: "Bag finds" },
+  { href: "/rep-finds", label: "Rep finds" },
   { href: "/best-rep-finds", label: "Best rep finds" },
 ] as const;
 
 export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
+  finds: {
+    slug: "finds",
+    path: "/finds",
+    title: "Browse BoonBuy Finds | Catalog Discovery Hub",
+    metaDescription:
+      "Browse BoonBuy finds — sneakers, streetwear, jackets, and accessories with photos, categories, brands, and verified BoonBuy checkout links.",
+    badge: "Browse finds",
+    h1: "Browse finds",
+    intro:
+      "Start here to browse the BoonBuy Finds catalog. Jump into categories and brands, open latest or trending rails, then continue to a product page and a verified BoonBuy checkout link when you are ready.",
+    directAnswer:
+      "The finds hub is the browse-first discovery layer for BoonBuy Finds — categories, brands, and product grids with photos and verified BoonBuy links, not checkout itself.",
+    keyFacts: [
+      "Browse the live catalog by category, brand, or freshness rails",
+      "Product pages include photos and QC references when available",
+      "Checkout, warehouse QC, and shipping happen on BoonBuy",
+      "Pair discovery with the spreadsheet hub and coupon pages when useful",
+    ],
+    freshnessLabel: "Catalog synced daily",
+    getProducts: () => getEditorsPicks(96),
+    relatedBrandSlugs: ["nike", "jordan", "stussy", "moncler", "adidas"],
+    relatedCategorySlugs: [
+      "shoes",
+      "hoodies-and-pants",
+      "coats-and-jackets",
+      "accessories",
+    ],
+    relatedHubHrefs: [...HUB_MESH.filter((l) => l.href !== "/finds")],
+    relatedGuideHrefs: [
+      { href: "/boonbuy-finds", label: "What is BoonBuy Finds?" },
+      { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
+      { href: "/boonbuy-qc", label: "QC photos" },
+    ],
+    authorityLinks: [...AUTHORITY.filter((l) => l.href !== "/finds")],
+    faqs: [
+      {
+        question: "Is /finds the same as /boonbuy-finds?",
+        answer:
+          "No. /finds is the browse/discovery hub. /boonbuy-finds is the branded BoonBuy finds catalog page for people searching “BoonBuy finds” specifically.",
+      },
+      {
+        question: "Can I check out here?",
+        answer:
+          "No. Browse and shortlist on BoonBuy Finds, then open the verified BoonBuy link to pay, request warehouse QC, and ship.",
+      },
+      {
+        question: "Where should I go for brand-new imports?",
+        answer:
+          "Use Latest finds for newest catalog additions, and Trending for engagement-weighted picks.",
+      },
+    ],
+  },
+
   "latest-finds": {
     slug: "latest-finds",
     path: "/latest-finds",
@@ -347,6 +405,53 @@ export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
     ],
   },
 
+  "rep-finds": {
+    slug: "rep-finds",
+    path: "/rep-finds",
+    title: "Rep Finds | BoonBuy Catalog Discovery 2026",
+    metaDescription:
+      "Browse rep finds on BoonBuy Finds — sneakers, streetwear, and accessories with photos, QC signals, and verified BoonBuy checkout links.",
+    badge: "Rep finds",
+    h1: "Rep finds",
+    intro:
+      "A broad discovery lane for rep-style finds indexed on BoonBuy Finds. Use this hub when you want the wider catalog — then narrow into sneakers, jackets, or best-rep shortlists when you know the lane.",
+    directAnswer:
+      "Rep finds are BoonBuy Finds catalog products commonly shared as spreadsheet rows — photos, category context, and verified BoonBuy links for discovery before warehouse QC.",
+    keyFacts: [
+      "Broad catalog discovery — not a paid placement board",
+      "Branch into sneaker, clothing, and bag finds hubs when ready",
+      "QC references help shortlist; warehouse QC covers your order",
+      "Use Best rep finds when you want a tighter shortlist",
+    ],
+    freshnessLabel: "Updated daily",
+    getProducts: () =>
+      filterFeaturedEligible(
+        priced([...getTrendingProducts(), ...getEditorsPicks(48)])
+      ).slice(0, 96),
+    relatedBrandSlugs: ["nike", "jordan", "stussy", "moncler", "chrome-hearts"],
+    relatedCategorySlugs: ["shoes", "hoodies-and-pants", "coats-and-jackets", "accessories"],
+    relatedHubHrefs: [...HUB_MESH.filter((l) => l.href !== "/rep-finds")],
+    relatedGuideHrefs: [
+      { href: "/best-rep-finds", label: "Best rep finds" },
+      { href: "/boonbuy-qc", label: "QC guide" },
+      { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
+      { href: "/boonbuy-review", label: "BoonBuy review" },
+    ],
+    authorityLinks: [...AUTHORITY],
+    faqs: [
+      {
+        question: "How is this different from Best rep finds?",
+        answer:
+          "Rep finds is the broader discovery hub. Best rep finds is a tighter shortlist ranked by editor and engagement signals.",
+      },
+      {
+        question: "Does “rep finds” mean guaranteed quality?",
+        answer:
+          "No. Listings come from third-party marketplace sellers. Use reference QC when available and always review warehouse QC before shipping.",
+      },
+    ],
+  },
+
   "best-rep-finds": {
     slug: "best-rep-finds",
     path: "/best-rep-finds",
@@ -390,9 +495,9 @@ export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
     authorityLinks: [...AUTHORITY],
     faqs: [
       {
-        question: "Is best rep finds the same as best finds?",
+        question: "Is best rep finds the same as rep finds?",
         answer:
-          "Same intent family. This hub uses LitBuy-style URL vocabulary for discovery; /best-finds remains the ranked best-of collection.",
+          "Same family, different depth. /rep-finds is broader catalog discovery; /best-rep-finds is a tighter shortlist. /best-finds remains the ranked best-of collection.",
       },
     ],
   },

@@ -41,6 +41,7 @@ function withQc(limit = 72) {
 }
 
 const RESOURCE_LINKS = [
+  { href: "/finds", label: "Browse finds" },
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
@@ -78,7 +79,8 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         links: [
           { href: "/collections/boonbuy-spreadsheet-alternative", label: "Spreadsheet alternative" },
           { href: "/boonbuy-products", label: "Browse products" },
-          { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
+          { href: "/finds", label: "Browse finds" },
+          { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
           { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
           { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
         ],
@@ -329,8 +331,10 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       },
     ],
     relatedLinks: [
+      { href: "/finds", label: "Browse finds" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/boonbuy-spreadsheet", label: "Spreadsheet guide" },
+      { href: "/top-qc-finds", label: "Top QC finds" },
       ...RESOURCE_LINKS,
     ],
     getProducts: withQc,
@@ -425,6 +429,9 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     ],
     relatedLinks: [
       { href: "/best-boonbuy-finds", label: "Best finds" },
+      { href: "/finds", label: "Browse finds" },
+      { href: "/latest-finds", label: "Latest finds" },
+      { href: "/rep-finds", label: "Rep finds" },
       { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
       { href: "/boonbuy-products", label: "All products" },
       ...RESOURCE_LINKS,
