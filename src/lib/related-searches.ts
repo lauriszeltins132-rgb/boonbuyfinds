@@ -8,6 +8,8 @@ export type RelatedSearchLink = {
 };
 
 const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
+  { label: "Browse finds", href: "/finds" },
+  { label: "BoonBuy finds", href: "/boonbuy-finds" },
   { label: "BoonBuy questions", href: "/boonbuy-questions" },
   { label: "What is BoonBuy?", href: "/what-is-boonbuy" },
   { label: "What is BoonBuy Finds?", href: "/what-is-boonbuy-finds" },
@@ -18,11 +20,13 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "Is BoonBuy legit?", href: "/is-boonbuy-legit" },
   { label: "Is BoonBuy safe?", href: "/is-boonbuy-safe" },
   { label: "BoonBuy Discord", href: "/boonbuy-discord" },
+  { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy shipping", href: "/boonbuy-shipping" },
   { label: "BoonBuy warehouse", href: "/boonbuy-warehouse" },
   { label: "How to use BoonBuy", href: "/how-to-use-boonbuy" },
   { label: "Guides", href: "/guides" },
   { label: "Latest finds", href: "/latest-finds" },
+  { label: "Rep finds", href: "/rep-finds" },
   { label: "Sneaker finds", href: "/sneaker-finds" },
   { label: "Best rep finds", href: "/best-rep-finds" },
   { label: "BoonBuy AI", href: "/ai" },

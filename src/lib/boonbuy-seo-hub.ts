@@ -46,9 +46,17 @@ export const BOONBUY_SEO_HUB = {
     href: "/boonbuy-finds",
     label: "BoonBuy Finds",
   },
+  browseFinds: {
+    href: "/finds",
+    label: "Browse Finds",
+  },
   latestFinds: {
     href: "/latest-finds",
     label: "Latest Finds",
+  },
+  repFinds: {
+    href: "/rep-finds",
+    label: "Rep Finds",
   },
   spreadsheet: {
     href: "/boonbuy-spreadsheet",
@@ -102,8 +110,10 @@ export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.home,
   BOONBUY_SEO_HUB.brandHub,
   BOONBUY_SEO_HUB.questions,
+  BOONBUY_SEO_HUB.browseFinds,
   BOONBUY_SEO_HUB.findsHub,
   BOONBUY_SEO_HUB.latestFinds,
+  BOONBUY_SEO_HUB.repFinds,
   BOONBUY_SEO_HUB.spreadsheet,
   BOONBUY_SEO_HUB.coupons,
   BOONBUY_SEO_HUB.shippingCoupon,
