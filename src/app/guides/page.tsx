@@ -18,7 +18,7 @@ const GUIDE_CLUSTERS = [
     title: "Beginner",
     links: [
       { href: "/boonbuy-questions", label: "BoonBuy questions hub" },
-      { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+      { href: "/boonbuy", label: "What is BoonBuy?" },
       { href: "/what-is-boonbuy-finds", label: "What is BoonBuy Finds?" },
       { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
       { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
@@ -30,7 +30,7 @@ const GUIDE_CLUSTERS = [
     title: "Money saving",
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/best-boonbuy-coupon", label: "Best BoonBuy coupon" },
+      { href: "/boonbuy-deals", label: "BoonBuy deals" },
       { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       { href: "/guides/how-shipping-works-with-agents", label: "Shipping tips" },
       { href: "/boonbuy-referral-code", label: "Referral code" },

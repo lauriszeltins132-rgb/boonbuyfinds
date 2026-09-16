@@ -148,7 +148,7 @@ export const BEGINNER_GUIDES: Record<string, GuidePage> = {
         paragraphs: [
           "Agents accept cards, PayPal, or balance top-ups in currencies buyers already use. The agent pays the seller in yuan and absorbs the messy part of cross-border checkout.",
         ],
-        links: [{ href: "/guides/what-is-boonbuy", label: "What is BoonBuy?" }],
+        links: [{ href: "/boonbuy", label: "What is BoonBuy?" }],
       },
       {
         heading: "A place to receive and inspect",
@@ -285,7 +285,7 @@ export const BEGINNER_GUIDES: Record<string, GuidePage> = {
         paragraphs: [
           "Register, add balance or a payment method, and skim their help pages for your country. You will reuse the same account for every future haul.",
         ],
-        links: [{ href: "/guides/what-is-boonbuy", label: "What is BoonBuy?" }],
+        links: [{ href: "/boonbuy", label: "What is BoonBuy?" }],
       },
       {
         heading: "Buy small, inspect carefully",

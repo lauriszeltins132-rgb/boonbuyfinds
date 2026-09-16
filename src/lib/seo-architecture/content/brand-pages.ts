@@ -578,67 +578,71 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     parentCrumb: { label: "Guides", href: "/guides" },
   }),
 
-  "what-is-boonbuy": page({
-    slug: "what-is-boonbuy",
-    category: "brand",
-    title: "What Is BoonBuy? Shopping Agent Explained",
-    metaDescription:
-      "What is BoonBuy — Chinese shopping agent for Taobao, Weidian, and 1688. How it works for international buyers and how BoonBuy Finds helps you discover products.",
-    badge: "Explainer",
-    h1: "What is BoonBuy?",
-    intro:
-      "BoonBuy is a shopping agent that buys from Chinese marketplaces on your behalf, stores goods at a warehouse, photographs them for QC, and ships internationally. It is not a store inventory — every item comes from a third-party seller link you provide or open through an agent URL.",
-    directAnswer:
-      "BoonBuy is a Chinese shopping agent — not a retailer — that buys from Taobao, Weidian, and 1688 on your behalf, warehouses items for QC, and ships internationally.",
-    keyFacts: [
-      "Buys from third-party marketplace sellers; BoonBuy does not hold store inventory.",
-      "Bridges overseas payment and shipping that Chinese marketplaces block for foreign buyers.",
-      "Typical flow: product link → pay → warehouse QC → international parcel.",
-      "Service fees and freight sit on top of listing prices.",
-      "BoonBuy Finds is an independent discovery catalog with outbound BoonBuy checkout links.",
-    ],
-    keywords: ["what is boonbuy", "boonbuy agent", "boonbuy shopping agent"],
-    sections: [
-      {
-        heading: "Why agents exist",
-        paragraphs: [
-          "Taobao and Weidian target domestic buyers with local payment and shipping. Overseas cards and addresses generally fail at checkout. Agents bridge that gap legally by purchasing locally and re-exporting to you.",
-        ],
-        links: [{ href: "/guides/what-is-a-shopping-agent", label: "What is a shopping agent" }],
-      },
-      {
-        heading: "BoonBuy in the ecosystem",
-        paragraphs: [
-          "BoonBuy competes with Kakobuy, MuleBuy, OopBuy, and others. BoonBuy Finds is independent — we organize spreadsheet finds and link out to BoonBuy for checkout.",
-        ],
-      },
-      {
-        heading: "Typical purchase flow",
-        paragraphs: [
-          "Link → pay → warehouse QC → international parcel. Budget for service fees and freight on top of listing prices.",
-        ],
-        links: [{ href: "/how-to-use-boonbuy", label: "How to use BoonBuy" }],
-      },
-    ],
-    faqs: buildGuideFaqs("BoonBuy as an agent", [
-      {
-        question: "Is BoonBuy a shopping agent?",
-        answer:
-          "Yes. BoonBuy buys from Chinese marketplaces on your behalf, warehouses items for QC, and ships internationally. It is not a retail store with its own inventory.",
-      },
-      {
-        question: "Is BoonBuy Finds the same as BoonBuy?",
-        answer:
-          "No. BoonBuy Finds is an independent discovery catalog. Checkout happens on BoonBuy.",
-      },
-    ]),
-    relatedLinks: [
-      { href: "/boonbuy", label: "BoonBuy hub" },
-      { href: "/what-is-boonbuy-finds", label: "What is BoonBuy Finds?" },
-      { href: "/boonbuy-questions", label: "BoonBuy questions" },
-    ],
-    relatedArticleSlugs: ["how-to-use-boonbuy", "is-boonbuy-legit", "boonbuy-review"],
-  }),
+  "what-is-boonbuy": {
+    ...page({
+      slug: "what-is-boonbuy",
+      category: "brand",
+      title: "What Is BoonBuy? Shopping Agent Explained",
+      metaDescription:
+        "What is BoonBuy — Chinese shopping agent for Taobao, Weidian, and 1688. How it works for international buyers and how BoonBuy Finds helps you discover products.",
+      badge: "Explainer",
+      h1: "What is BoonBuy?",
+      intro:
+        "BoonBuy is a shopping agent that buys from Chinese marketplaces on your behalf, stores goods at a warehouse, photographs them for QC, and ships internationally. It is not a store inventory — every item comes from a third-party seller link you provide or open through an agent URL.",
+      directAnswer:
+        "BoonBuy is a Chinese shopping agent — not a retailer — that buys from Taobao, Weidian, and 1688 on your behalf, warehouses items for QC, and ships internationally.",
+      keyFacts: [
+        "Buys from third-party marketplace sellers; BoonBuy does not hold store inventory.",
+        "Bridges overseas payment and shipping that Chinese marketplaces block for foreign buyers.",
+        "Typical flow: product link → pay → warehouse QC → international parcel.",
+        "Service fees and freight sit on top of listing prices.",
+        "BoonBuy Finds is an independent discovery catalog with outbound BoonBuy checkout links.",
+      ],
+      keywords: ["what is boonbuy", "boonbuy agent", "boonbuy shopping agent"],
+      sections: [
+        {
+          heading: "Why agents exist",
+          paragraphs: [
+            "Taobao and Weidian target domestic buyers with local payment and shipping. Overseas cards and addresses generally fail at checkout. Agents bridge that gap legally by purchasing locally and re-exporting to you.",
+          ],
+          links: [{ href: "/guides/what-is-a-shopping-agent", label: "What is a shopping agent" }],
+        },
+        {
+          heading: "BoonBuy in the ecosystem",
+          paragraphs: [
+            "BoonBuy competes with Kakobuy, MuleBuy, OopBuy, and others. BoonBuy Finds is an independent discovery platform that partners with BoonBuy for verified invite links and product discovery.",
+          ],
+        },
+        {
+          heading: "Typical purchase flow",
+          paragraphs: [
+            "Link → pay → warehouse QC → international parcel. Budget for service fees and freight on top of listing prices.",
+          ],
+          links: [{ href: "/how-to-use-boonbuy", label: "How to use BoonBuy" }],
+        },
+      ],
+      faqs: buildGuideFaqs("BoonBuy as an agent", [
+        {
+          question: "Is BoonBuy a shopping agent?",
+          answer:
+            "Yes. BoonBuy buys from Chinese marketplaces on your behalf, warehouses items for QC, and ships internationally. It is not a retail store with its own inventory.",
+        },
+        {
+          question: "Is BoonBuy Finds the same as BoonBuy?",
+          answer:
+            "No. BoonBuy Finds is an independent discovery catalog. Checkout happens on BoonBuy.",
+        },
+      ]),
+      relatedLinks: [
+        { href: "/boonbuy", label: "BoonBuy hub" },
+        { href: "/what-is-boonbuy-finds", label: "What is BoonBuy Finds?" },
+        { href: "/boonbuy-questions", label: "BoonBuy questions" },
+      ],
+      relatedArticleSlugs: ["how-to-use-boonbuy", "is-boonbuy-legit", "boonbuy-review"],
+    }),
+    // Canonical entity URL — served by /boonbuy authority hub (301 from /what-is-boonbuy).
+    path: "/boonbuy",
+  },
 
   "is-boonbuy-legit": page({
     slug: "is-boonbuy-legit",
@@ -804,7 +808,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
           "BoonBuy is the shopping agent where you register, pay, request warehouse QC, and ship. BoonBuy Finds is the discovery layer: browse finds, open a product page, then continue on BoonBuy. Confusing the two leads people to look for checkout on this site — payment happens on BoonBuy.",
         ],
         links: [
-          { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+          { href: "/boonbuy", label: "What is BoonBuy?" },
           { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
         ],
       },

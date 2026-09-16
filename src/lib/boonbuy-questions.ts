@@ -34,7 +34,7 @@ export const BOONBUY_QUESTION_GROUPS: QuestionGroup[] = [
     title: "Getting started",
     questions: [
       {
-        href: "/what-is-boonbuy",
+        href: "/boonbuy",
         label: "What is BoonBuy?",
         teaser: "Shopping agent explained — not a retail store.",
       },
@@ -64,7 +64,7 @@ export const BOONBUY_QUESTION_GROUPS: QuestionGroup[] = [
         teaser: "Marketplace products via Weidian, Taobao, and more.",
       },
       {
-        href: "/what-is-boonbuy",
+        href: "/boonbuy",
         label: "Is BoonBuy a shopping agent?",
         teaser: "Yes — it buys from Chinese marketplaces for you.",
       },
@@ -279,7 +279,7 @@ export const BOONBUY_QUESTION_GROUPS: QuestionGroup[] = [
 /** Compact homepage rail — highest-intent questions only. */
 export const POPULAR_BOONBUY_QUESTIONS: QuestionLink[] = [
   {
-    href: "/what-is-boonbuy",
+    href: "/boonbuy",
     label: "What is BoonBuy?",
     teaser: "Shopping agent basics",
   },

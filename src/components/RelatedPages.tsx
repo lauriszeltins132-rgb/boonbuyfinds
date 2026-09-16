@@ -28,19 +28,18 @@ const FEATURED_CATEGORY_SLUGS = [
 ];
 
 const FEATURED_GUIDE_PATHS = [
+  "/boonbuy",
   "/guides/beginner-guide-to-boonbuy",
   "/what-is-boonbuy-finds",
   "/boonbuy-qc",
   "/boonbuy-spreadsheet",
+  "/boonbuy-coupons",
   "/guides/how-to-buy-from-weidian",
   "/guides/how-to-find-good-reps",
   "/guides/boonbuy-vs-allchinabuy",
   "/guides/boonbuy-vs-sugargoo",
   "/guides/boonbuy-vs-pandabuy-alternatives",
-  "/guides/beginner-guide-to-boonbuy",
-  "/what-is-boonbuy-finds",
   "/guides/how-to-check-qc-photos",
-  "/guides/how-to-buy-from-weidian",
   "/guides/how-shipping-works-with-agents",
 ];
 

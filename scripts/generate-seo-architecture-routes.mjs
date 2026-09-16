@@ -31,7 +31,6 @@ const SLUGS = [
   "boonbuy-shipping",
   "boonbuy-review",
   "how-to-use-boonbuy",
-  "what-is-boonbuy",
   "is-boonbuy-legit",
   "is-boonbuy-safe",
   "what-is-boonbuy-finds",

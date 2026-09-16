@@ -260,7 +260,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
     ]),
     relatedLinks: [
       { href: "/boonbuy-referral-code", label: "Referral code" },
-      { href: "/boonbuy-discount-code", label: "Discount code" },
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/boonbuy-warehouse", label: "Warehouse" },
       { href: "/boonbuy-returns", label: "Returns" },
@@ -352,7 +352,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
     ],
     relatedLinks: [
       { href: "/boonbuy-invite", label: "BoonBuy invite" },
-      { href: "/boonbuy-discount-code", label: "Discount code" },
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/boonbuy-deals", label: "BoonBuy deals" },
       { href: "/editorial-policy", label: "Editorial policy" },
     ],

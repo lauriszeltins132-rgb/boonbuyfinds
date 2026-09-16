@@ -122,14 +122,6 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     keywordLine:
       "Looking for a BoonBuy voucher, BoonBuy shipping voucher, or BoonBuy coupon voucher? Claim the verified offer below.",
   },
-  {
-    slug: "boonbuy-deals",
-    titleSuffix: `BoonBuy Deals 2026 | Coupons, Finds & ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Off`,
-    metaDescription: `BoonBuy deals for 2026 — claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, then shop budget finds, QC picks, and spreadsheet deals on BoonBuy Finds.`,
-    intro: `Stack BoonBuy deals the smart way: claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping first, then browse under-$30 finds and trending spreadsheet picks on BoonBuy Finds.`,
-    keywordLine:
-      "Searching for BoonBuy deals, BoonBuy coupons, or cheap BoonBuy finds? Claim shipping savings below, then open deals.",
-  },
 ];
 
 function buildVariants(agent: SeoAgentDefinition): CouponPageVariant[] {
@@ -357,19 +349,6 @@ const BOONBUY_COUPON_SEO_OVERRIDES: Record<
       "boonbuy shipping voucher",
       "boonbuy discount",
       "boonbuy coupons",
-    ],
-  },
-  "boonbuy-deals": {
-    h1: "BoonBuy Deals",
-    ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
-    offerHeadline: BOONBUY_OFFER_HEADLINE,
-    offerDescription: BOONBUY_OFFER_DESCRIPTION,
-    keywords: [
-      "boonbuy deals",
-      "boonbuy coupons",
-      "cheap boonbuy finds",
-      "boonbuy discount",
-      "best boonbuy coupons",
     ],
   },
 };
