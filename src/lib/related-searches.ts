@@ -20,7 +20,6 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "Is BoonBuy legit?", href: "/is-boonbuy-legit" },
   { label: "Is BoonBuy safe?", href: "/is-boonbuy-safe" },
   { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
-  { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy shipping", href: "/boonbuy-shipping" },
   { label: "BoonBuy warehouse", href: "/boonbuy-warehouse" },
   { label: "How to use BoonBuy", href: "/how-to-use-boonbuy" },
@@ -29,7 +28,6 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "Rep finds", href: "/rep-finds" },
   { label: "Sneaker finds", href: "/sneaker-finds" },
   { label: "Best rep finds", href: "/best-rep-finds" },
-  { label: "BoonBuy AI", href: "/ai" },
 ];
 
 const BRAND_HREF: Record<string, string> = {
