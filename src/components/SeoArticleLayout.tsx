@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/Breadcrumbs";
 import GuideSignupCallout from "@/components/conversion/GuideSignupCallout";
-import ProductGrid from "@/components/ServerProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import SeoArticleReadingMeta from "@/components/SeoArticleReadingMeta";

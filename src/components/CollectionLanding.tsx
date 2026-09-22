@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/ServerCatalogPanel";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedSeoLinks from "@/components/RelatedSeoLinks";
 import { getBrandsFromProducts } from "@/lib/brands";
 import type { CollectionConfig } from "@/lib/collections";

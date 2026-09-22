@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/ServerCatalogPanel";
-import ProductGrid from "@/components/ServerProductGrid";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import { formatDatasetAge } from "@/lib/catalog-meta";

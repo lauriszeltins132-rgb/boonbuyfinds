@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ProductGrid from "@/components/ServerProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import SchemaScript from "@/components/SchemaScript";
 import type { SeoLandingConfig } from "@/lib/seo-landing-pages";
 import RelatedPages from "@/components/RelatedPages";

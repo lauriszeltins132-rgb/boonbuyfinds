@@ -20,7 +20,7 @@ export default async function HomepageCatalogSection({
 
   // Saved finds need wishlist IDs (client-only). Avoid shipping the full catalog.
   if (savedOnly) {
-    return <SavedFindsCatalog categories={categories} />;
+    return <SavedFindsCatalog />;
   }
 
   const allProducts = getAllProducts();

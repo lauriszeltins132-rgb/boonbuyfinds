@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/ServerCatalogPanel";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedSearches from "@/components/RelatedSearches";
 import { getBrandsFromProducts } from "@/lib/brands";
 import { getCategories, getLatestProducts } from "@/lib/products";

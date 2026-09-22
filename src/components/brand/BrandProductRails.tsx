@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DiscoveryRail from "@/components/ServerDiscoveryRail";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
 import type { BrandPageRails } from "@/lib/brand-page-rails";
 
 type BrandProductRailsProps = {

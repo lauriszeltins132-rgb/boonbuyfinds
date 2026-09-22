@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ProductDetailView from "@/components/ProductDetailView";
-import ProductGrid from "@/components/ServerProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import { getDisplayBrand } from "@/lib/product-validation";
 import {
   getMoreFromBrand,

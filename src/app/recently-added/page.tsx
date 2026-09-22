@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ProductGrid from "@/components/ServerProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import SignupCard from "@/components/SignupCard";
 import SchemaScript from "@/components/SchemaScript";
 import {

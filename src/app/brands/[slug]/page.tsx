@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/ServerCatalogPanel";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedGuides from "@/components/RelatedGuides";
 import SignupCard from "@/components/SignupCard";
 import RelatedSeoLinks from "@/components/RelatedSeoLinks";

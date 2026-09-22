@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/ServerCatalogPanel";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedSearches from "@/components/RelatedSearches";
 import SignupCard from "@/components/SignupCard";
 import { getBrandsFromProducts } from "@/lib/brands";

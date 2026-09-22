@@ -3,22 +3,16 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { CardDisplayMap } from "@/lib/card-display";
-import type { CategoryInfo, Product } from "@/lib/types";
+import type { Product } from "@/lib/types";
 import { useWishlist } from "@/context/WishlistContext";
 import ProductGrid from "./ProductGrid";
 import ProductGridSkeleton from "./ProductGridSkeleton";
-
-type SavedFindsCatalogProps = {
-  categories: CategoryInfo[];
-};
 
 /**
  * Wishlist filtering stays client-side without embedding the full catalog in the
  * homepage RSC payload. Products load on demand by saved IDs.
  */
-export default function SavedFindsCatalog({
-  categories: _categories,
-}: SavedFindsCatalogProps) {
+export default function SavedFindsCatalog() {
   const { wishlist } = useWishlist();
   const savedIds = useMemo(
     () => (Array.isArray(wishlist) ? wishlist.filter(Boolean) : []),

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DiscoveryRail from "@/components/ServerDiscoveryRail";
-import ProductGrid from "@/components/ServerProductGrid";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import SchemaScript from "@/components/SchemaScript";
 import {
   getBestOfBrands,
