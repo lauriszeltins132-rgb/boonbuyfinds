@@ -130,15 +130,18 @@ export default async function AiPage({ searchParams }: AiPageProps) {
             <ul className="mt-4 flex flex-wrap gap-2">
               {[
                 { href: "/", label: "Homepage" },
+                { href: "/boonbuy", label: "What is BoonBuy?" },
+                { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+                { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
                 { href: "/boonbuy-questions", label: "BoonBuy questions" },
                 { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
                 { href: "/boonbuy-finds", label: "Finds" },
                 { href: "/categories", label: "Categories" },
                 { href: "/trending", label: "Trending" },
+                { href: "/best-boonbuy-finds", label: "Best finds" },
                 { href: "/best-shoes", label: "Best shoes" },
                 { href: "/guides", label: "Guides" },
                 { href: "/boonbuy-telegram", label: "Telegram" },
-                { href: "/boonbuy-coupons", label: "Coupons" },
                 { href: "/boonbuy-warehouse", label: "Warehouse" },
                 { href: "/boonbuy-shipping", label: "Shipping" },
               ].map((link) => (

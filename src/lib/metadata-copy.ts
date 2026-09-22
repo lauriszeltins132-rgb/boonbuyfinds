@@ -47,7 +47,7 @@ export function getHomepageMetadataCopy() {
       72
     ),
     description: truncateMetaDescription(
-      `BoonBuy Finds is a product discovery catalog for BoonBuy — spreadsheet finds, QC photos, coupons, categories, brands, and verified checkout links. Updated daily.`
+      `The ultimate place to discover BoonBuy products, QC photos, coupons, spreadsheet finds and shopping guides — with verified checkout links. Updated daily.`
     ),
   };
 }

@@ -162,7 +162,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
           "Marketplaces often require local payment and addresses. BoonBuy handles purchase, optional QC, consolidation, and freight lines to your country.",
         ],
         links: [
-          { href: "/guides/what-is-boonbuy", label: "What is BoonBuy?" },
+          { href: "/boonbuy", label: "What is BoonBuy?" },
           { href: "/guides/how-to-order-from-boonbuy", label: "How to order" },
         ],
       },

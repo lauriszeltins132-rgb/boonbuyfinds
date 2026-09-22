@@ -7,16 +7,16 @@ export default function HomepageConversion() {
       <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-3">
         <div className="rounded-2xl border border-border bg-surface/30 p-5">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
-            New to BoonBuy?
+            What is BoonBuy?
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Learn how agents, QC photos, and haul shipping work before your first order.
+            Learn how the agent, warehouse QC, shipping, coupons, and BoonBuy Finds fit together.
           </p>
           <Link
-            href="/guides/beginner-guide-to-boonbuy"
+            href="/boonbuy"
             className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
           >
-            Beginner guide →
+            BoonBuy authority hub →
           </Link>
         </div>
 
@@ -39,16 +39,16 @@ export default function HomepageConversion() {
 
         <div className="rounded-2xl border border-border bg-surface/30 p-5">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
-            Verified links
+            Current deals
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Every buy button uses the stored Weidian or Taobao URL — no mystery redirects.
+            See current offers available through BoonBuyFinds, then browse finds and QC guides.
           </p>
           <Link
-            href="/what-is-boonbuy-finds"
+            href="/boonbuy-deals"
             className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
           >
-            How BoonBuy Finds works →
+            BoonBuy deals →
           </Link>
         </div>
       </div>

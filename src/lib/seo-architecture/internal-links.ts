@@ -10,11 +10,13 @@ const CORE_HUB: HubBlock[] = [
     title: "Home & catalog",
     links: [
       { href: "/", label: "Homepage" },
+      { href: "/boonbuy", label: "What is BoonBuy?" },
       { href: "/finds", label: "Browse finds" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/ai", label: "BoonBuy AI" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
       { href: "/boonbuy-qc", label: "BoonBuy QC" },
+      { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
       { href: "/collections", label: "Collections" },
       { href: "/trending", label: "Trending finds" },
       { href: "/latest-finds", label: "Latest finds" },
@@ -34,10 +36,10 @@ const CORE_HUB: HubBlock[] = [
     title: "Coupons & shipping",
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+      { href: "/boonbuy-deals", label: "BoonBuy deals" },
       { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       { href: "/boonbuy-referral-code", label: "Referral code" },
       { href: "/boonbuy-shipping", label: "BoonBuy shipping" },
-      { href: "/boonbuy-discount-code", label: "Discount code" },
     ],
   },
   {
@@ -54,7 +56,9 @@ const CORE_HUB: HubBlock[] = [
       { href: "/boonbuy-returns", label: "Returns guide" },
       { href: "/boonbuy-payment", label: "Payment guide" },
       { href: "/best-shopping-agent", label: "Best shopping agent" },
+      { href: "/about", label: "About" },
       { href: "/editorial-policy", label: "Editorial policy" },
+      { href: "/contact", label: "Contact" },
     ],
   },
 ];

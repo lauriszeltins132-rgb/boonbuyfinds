@@ -123,7 +123,7 @@ const SUPPLEMENT_BLOCKS: Record<
         `Before ${h1.toLowerCase()}, skim what-is-boonbuy and how-to-use-boonbuy if you are new. Agents add steps on top of normal online shopping — wallets, QC, parcels.`,
       ],
       links: [
-        { href: "/what-is-boonbuy", label: "What is BoonBuy" },
+        { href: "/boonbuy", label: "What is BoonBuy" },
         { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
       ],
     },
