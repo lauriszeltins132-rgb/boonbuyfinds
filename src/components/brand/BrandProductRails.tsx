@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DiscoveryRail from "@/components/DiscoveryRail";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
 import type { BrandPageRails } from "@/lib/brand-page-rails";
 
 type BrandProductRailsProps = {
@@ -18,7 +18,7 @@ export default function BrandProductRails({
   return (
     <>
       {rails.topProducts.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title={`Top ${brandName} Finds (${rails.stats.topCount})`}
           subtitle="Highest-ranked picks with photos and QC"
           href={pageHref}
@@ -27,7 +27,7 @@ export default function BrandProductRails({
       ) : null}
 
       {rails.trendingProducts.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title={`Trending ${brandName} Finds (${rails.stats.trendingCount})`}
           subtitle="Popular picks this week"
           href={pageHref}
@@ -37,7 +37,7 @@ export default function BrandProductRails({
       ) : null}
 
       {rails.recentlyAdded.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title={`Recently Added ${brandName} (${rails.stats.recentlyAddedCount})`}
           subtitle="Fresh listings in the catalog"
           href="/recently-added"
@@ -46,7 +46,7 @@ export default function BrandProductRails({
       ) : null}
 
       {rails.bestQcProducts.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title={`Best QC ${brandName} Finds (${rails.stats.bestQcCount})`}
           subtitle="Listings with QC reference photos"
           href="/best-qc-approved-finds"
@@ -55,7 +55,7 @@ export default function BrandProductRails({
       ) : null}
 
       {rails.bestUnder50.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title={`Budget ${brandName} Finds (${rails.stats.budgetCount})`}
           subtitle="Under $50 — great for haul fillers"
           href="/best-under-50"

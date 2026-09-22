@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DiscoveryRail from "@/components/DiscoveryRail";
-import ProductGrid from "@/components/ProductGrid";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import SchemaScript from "@/components/SchemaScript";
 import {
   getBestOfBrands,
@@ -90,7 +90,7 @@ export default function BestOfLanding({ config }: BestOfLandingProps) {
         <div className="mx-auto max-w-7xl">
           <h2 className="text-xl font-black">Top products</h2>
           <div className="mt-6">
-            <ProductGrid products={products.slice(0, 48)} />
+            <ServerProductGrid products={products.slice(0, 48)} />
           </div>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default function BestOfLanding({ config }: BestOfLandingProps) {
       ) : null}
 
       {rails.recentlyAdded.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title="Recently added"
           subtitle="Fresh listings from the catalog"
           href="/recently-added"
@@ -193,7 +193,7 @@ export default function BestOfLanding({ config }: BestOfLandingProps) {
       ) : null}
 
       {rails.popularWeek.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title="Popular this week"
           subtitle="Trending picks right now"
           href="/best-finds-this-week"
@@ -203,7 +203,7 @@ export default function BestOfLanding({ config }: BestOfLandingProps) {
       ) : null}
 
       {rails.mostSaved.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title="Most engaged"
           subtitle="High click and save activity"
           href="/most-popular-finds-now"

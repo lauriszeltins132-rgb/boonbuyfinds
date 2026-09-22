@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import type { CardDisplayMap } from "@/lib/card-display";
 import type { Product } from "@/lib/types";
 import { dedupeListingRail } from "@/lib/listing-dedupe";
 import ProductCard from "./ProductCard";
@@ -15,8 +16,9 @@ type DiscoveryRailProps = {
   href: string;
   products: Product[];
   showTrendingScore?: boolean;
-  /** Only the first rail should preload card images. */
+  /** Only the first visible above-fold rail should preload card images. */
   preloadImages?: boolean;
+  cardDisplays?: CardDisplayMap;
 };
 
 export default function DiscoveryRail({
@@ -26,6 +28,7 @@ export default function DiscoveryRail({
   products,
   showTrendingScore = false,
   preloadImages = false,
+  cardDisplays,
 }: DiscoveryRailProps) {
   const [selected, setSelected] = useState<Product | null>(null);
   const railProducts = dedupeListingRail(products);
@@ -64,7 +67,8 @@ export default function DiscoveryRail({
                 onOpen={setSelected}
                 compact
                 showTrendingScore={showTrendingScore}
-                priority={preloadImages && index < 2}
+                priority={preloadImages && index < 1}
+                display={cardDisplays?.[product.id] ?? null}
               />
             </div>
           ))}

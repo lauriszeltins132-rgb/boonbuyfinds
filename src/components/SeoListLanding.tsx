@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/CatalogPanel";
-import ProductGrid from "@/components/ProductGrid";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import { formatDatasetAge } from "@/lib/catalog-meta";
@@ -79,7 +79,7 @@ export default function SeoListLanding({ config }: SeoListLandingProps) {
             <h2 className="text-xl font-black">Featured picks</h2>
             <p className="mt-1 text-sm text-muted">Top listings from this collection</p>
             <div className="mt-6">
-              <ProductGrid products={featured} />
+              <ServerProductGrid products={featured} />
             </div>
           </div>
         </section>
@@ -94,7 +94,7 @@ export default function SeoListLanding({ config }: SeoListLandingProps) {
                 {group.products.length.toLocaleString()} picks
               </p>
               <div className="mt-6">
-                <ProductGrid products={group.products} />
+                <ServerProductGrid products={group.products} />
               </div>
             </section>
           ))}
@@ -105,7 +105,7 @@ export default function SeoListLanding({ config }: SeoListLandingProps) {
             <div className="py-24 text-center text-muted">Loading...</div>
           }
         >
-          <CatalogPanel
+          <ServerCatalogPanel
             products={products}
             categories={getCategories()}
             brands={brands}

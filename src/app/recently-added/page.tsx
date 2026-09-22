@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ProductGrid from "@/components/ProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import SignupCard from "@/components/SignupCard";
 import SchemaScript from "@/components/SchemaScript";
 import {
@@ -104,7 +104,7 @@ export default function RecentlyAddedPage() {
                 {products.length.toLocaleString()} finds shown
               </p>
               <div className="mt-6">
-                <ProductGrid products={products} />
+                <ServerProductGrid products={products} />
               </div>
             </div>
           </section>

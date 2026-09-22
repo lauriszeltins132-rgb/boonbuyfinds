@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ProductGrid from "@/components/ProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import SchemaScript from "@/components/SchemaScript";
 import RelatedPages from "@/components/RelatedPages";
 import { formatDatasetAge } from "@/lib/catalog-meta";
@@ -283,7 +283,7 @@ export default function SeoLandingPageLayout({ entry }: SeoLandingPageLayoutProp
                 <div className="mx-auto max-w-7xl">
                   <h2 className="text-2xl font-black">{group.label}</h2>
                   <div className="mt-6">
-                    <ProductGrid products={group.products} />
+                    <ServerProductGrid products={group.products} />
                   </div>
                 </div>
               </section>
@@ -301,7 +301,7 @@ export default function SeoLandingPageLayout({ entry }: SeoLandingPageLayoutProp
               Curated picks with verified agent buy links.
             </p>
             <div className="mt-6">
-              <ProductGrid products={products.slice(0, entry.productLimit ?? 48)} />
+              <ServerProductGrid products={products.slice(0, entry.productLimit ?? 48)} />
             </div>
           </div>
         </section>
@@ -314,7 +314,7 @@ export default function SeoLandingPageLayout({ entry }: SeoLandingPageLayoutProp
               {entry.productSectionTitle ?? "Sample finds"}
             </h2>
             <div className="mt-6">
-              <ProductGrid products={products} />
+              <ServerProductGrid products={products} />
             </div>
           </div>
         </section>

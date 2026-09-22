@@ -1,6 +1,11 @@
+import "server-only";
+
 import cardPropsData from "@/data/card-props.json";
 import { BADGE_LABELS } from "./product-badge-ui";
+import type { CardDisplayMap, CardDisplayProps } from "./card-display";
 import type { ProductBadgeKind } from "./types";
+
+export type { CardDisplayMap, CardDisplayProps } from "./card-display";
 
 type RawCardEntry = {
   src: string;
@@ -30,16 +35,6 @@ const FRESHNESS_LABELS: Record<"r" | "w" | "i", string> = {
   i: "Recently indexed",
 };
 
-export type CardDisplayProps = {
-  displaySrc: string;
-  fallbacks: string[];
-  fillClass: string;
-  isProcessedCutout: boolean;
-  badges: { kind: ProductBadgeKind; label: string }[];
-  badgesTrending: { kind: ProductBadgeKind; label: string }[];
-  freshness: string | null;
-};
-
 function expandBadges(kinds?: ProductBadgeKind[]) {
   if (!kinds?.length) return [];
   return kinds.map((kind) => ({ kind, label: BADGE_LABELS[kind] }));
@@ -63,4 +58,16 @@ export function getCardDisplayProps(productId: string): CardDisplayProps | null 
     badgesTrending,
     freshness: raw.f ? FRESHNESS_LABELS[raw.f] : null,
   };
+}
+
+/** Resolve display props for a product list without shipping the full manifest to the browser. */
+export function getCardDisplayMap(
+  productIds: Iterable<string>
+): CardDisplayMap {
+  const map: CardDisplayMap = {};
+  for (const id of productIds) {
+    const props = getCardDisplayProps(id);
+    if (props) map[id] = props;
+  }
+  return map;
 }
