@@ -3,6 +3,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import type { CardDisplayMap } from "@/lib/card-display";
 import type { Product } from "@/lib/types";
 import ProductCard from "./ProductCard";
 
@@ -11,11 +12,13 @@ const ProductModal = dynamic(() => import("./ProductModal"), { ssr: false });
 type ProductGridProps = {
   products: Product[];
   emptyMessage?: string;
+  cardDisplays?: CardDisplayMap;
 };
 
 export default function ProductGrid({
   products,
   emptyMessage = "No products match your filters.",
+  cardDisplays,
 }: ProductGridProps) {
   const [selected, setSelected] = useState<Product | null>(null);
 
@@ -69,7 +72,8 @@ export default function ProductGrid({
             product={product}
             onOpen={setSelected}
             showTrendingScore
-            priority={index < 4}
+            priority={index < 2}
+            display={cardDisplays?.[product.id] ?? null}
           />
         ))}
       </div>

@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import type { Product } from "@/lib/types";
 import { getDisplayProductName, getDisplayBrand } from "@/lib/product-validation";
 import { formatProductPrice, getPriceStatus } from "@/lib/pricing";
-import { getCardDisplayProps } from "@/lib/card-props";
+import type { CardDisplayProps } from "@/lib/card-display";
 import { getProductSource } from "@/lib/affiliate-source";
 import { getProductHref } from "@/lib/slugs";
 import BrandMark from "./BrandMark";
@@ -23,6 +23,8 @@ type ProductCardProps = {
   compact?: boolean;
   showTrendingScore?: boolean;
   priority?: boolean;
+  /** Pre-resolved on the server — keeps card-props.json out of the client bundle. */
+  display?: CardDisplayProps | null;
 };
 
 function getCardImageAlt(product: Product): string {
@@ -53,6 +55,7 @@ export default function ProductCard({
   compact = false,
   showTrendingScore = false,
   priority = false,
+  display = null,
 }: ProductCardProps) {
   const { currency } = usePreferences();
   const { isInWishlist, toggleWishlist } = useWishlist();
@@ -63,15 +66,14 @@ export default function ProductCard({
   const source = getProductSource(product.affiliate_link);
   const productHref = getProductHref(product);
   const imageAlt = getCardImageAlt(product);
-  const cardProps = useMemo(() => getCardDisplayProps(product.id), [product.id]);
   const badges = useMemo(
     () =>
       showTrendingScore
-        ? (cardProps?.badgesTrending ?? [])
-        : (cardProps?.badges ?? []),
-    [cardProps, showTrendingScore]
+        ? (display?.badgesTrending ?? [])
+        : (display?.badges ?? []),
+    [display, showTrendingScore]
   );
-  const freshness = cardProps?.freshness ?? null;
+  const freshness = display?.freshness ?? null;
 
   async function handleCopy() {
     const url = `${window.location.origin}${productHref}`;
@@ -100,10 +102,10 @@ export default function ProductCard({
         >
           <ProductCardImage
             src={product.image}
-            preferredSrc={cardProps?.displaySrc}
-            fallbacks={cardProps?.fallbacks}
-            fillClass={cardProps?.fillClass}
-            isProcessedCutout={cardProps?.isProcessedCutout}
+            preferredSrc={display?.displaySrc}
+            fallbacks={display?.fallbacks}
+            fillClass={display?.fillClass}
+            isProcessedCutout={display?.isProcessedCutout}
             alt={imageAlt}
             title={imageAlt}
             productHref={productHref}

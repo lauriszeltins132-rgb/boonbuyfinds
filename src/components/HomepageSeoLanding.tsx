@@ -35,7 +35,7 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
         </div>
 
         <div className="seo-product-mosaic mt-5">
-          {featured.map((product, index) => {
+          {featured.map((product) => {
             const name = getDisplayProductName(product);
             const brand = getDisplayBrand(product);
             const resolved = resolveProductDisplayImage(product);
@@ -58,7 +58,7 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       quality={85}
-                      priority={index < 4}
+                      loading="lazy"
                       className="object-contain transition duration-300 group-hover:scale-[1.03]"
                     />
                   ) : null}

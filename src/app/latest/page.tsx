@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/CatalogPanel";
+import CatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedSearches from "@/components/RelatedSearches";
 import { getBrandsFromProducts } from "@/lib/brands";
 import { getCategories, getLatestProducts } from "@/lib/products";
@@ -47,7 +47,7 @@ export default function LatestPage() {
         </div>
       </section>
       <Suspense fallback={<div className="py-24 text-center text-muted">Loading...</div>}>
-        <CatalogPanel
+        <ServerCatalogPanel
           products={products}
           categories={getCategories()}
           brands={brands}

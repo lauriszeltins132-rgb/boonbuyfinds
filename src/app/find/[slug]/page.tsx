@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ProductDetailView from "@/components/ProductDetailView";
-import ProductGrid from "@/components/ProductGrid";
+import ProductGrid from "@/components/ServerProductGrid";
 import { getDisplayBrand } from "@/lib/product-validation";
 import {
   getMoreFromBrand,
@@ -149,7 +149,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {brand ? ` and ${brand}` : ""}.
             </p>
             <div className="mt-6">
-              <ProductGrid products={similar} />
+              <ServerProductGrid products={similar} />
             </div>
           </div>
         </section>
@@ -163,7 +163,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               Popular {brand} finds in the catalog.
             </p>
             <div className="mt-6">
-              <ProductGrid products={moreFromBrand} />
+              <ServerProductGrid products={moreFromBrand} />
             </div>
           </div>
         </section>
@@ -177,7 +177,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               Trending picks from this category.
             </p>
             <div className="mt-6">
-              <ProductGrid products={popularInCategory} />
+              <ServerProductGrid products={popularInCategory} />
             </div>
           </div>
         </section>

@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useRef, useState, useTransition } from "
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { BrandInfo } from "@/lib/brands";
+import type { CardDisplayMap } from "@/lib/card-display";
 import type { CategoryInfo, Product } from "@/lib/types";
 import { filterProducts } from "@/lib/filters";
 import { POPULAR_SEARCHES } from "@/lib/constants";
@@ -33,6 +34,7 @@ type CatalogPanelProps = {
   categories: CategoryInfo[];
   brands: BrandInfo[];
   basePath?: string;
+  cardDisplays?: CardDisplayMap;
   /** Server-pre-filtered catalog slice (homepage performance). */
   serverCatalog?: {
     totalCount: number;
@@ -94,6 +96,7 @@ export default function CatalogPanel({
   categories,
   brands,
   basePath = "/",
+  cardDisplays,
   serverCatalog,
 }: CatalogPanelProps) {
   const router = useRouter();
@@ -394,7 +397,7 @@ export default function CatalogPanel({
           {showLoading ? (
             <ProductGridSkeleton count={8} />
           ) : paginated.length > 0 ? (
-            <ProductGrid products={paginated} />
+            <ProductGrid products={paginated} cardDisplays={cardDisplays} />
           ) : (
             <div className="rounded-2xl border border-border bg-surface/30 px-6 py-10 text-center">
               <p className="text-base font-bold text-foreground">No finds matched</p>

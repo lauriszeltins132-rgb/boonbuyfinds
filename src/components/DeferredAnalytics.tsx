@@ -3,12 +3,13 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const SpeedInsights = dynamic(
-  () => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights),
+const Analytics = dynamic(
+  () => import("@vercel/analytics/next").then((mod) => mod.Analytics),
   { ssr: false }
 );
 
-export default function DeferredSpeedInsights() {
+/** Defer Vercel Analytics until after first paint / idle. */
+export default function DeferredAnalytics() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -17,9 +18,9 @@ export default function DeferredSpeedInsights() {
     const enable = () => setReady(true);
 
     if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(enable, { timeout: 3500 });
+      idleId = window.requestIdleCallback(enable, { timeout: 3000 });
     } else {
-      timeoutId = window.setTimeout(enable, 1800);
+      timeoutId = window.setTimeout(enable, 1500);
     }
 
     return () => {
@@ -31,5 +32,5 @@ export default function DeferredSpeedInsights() {
   }, []);
 
   if (!ready) return null;
-  return <SpeedInsights />;
+  return <Analytics />;
 }

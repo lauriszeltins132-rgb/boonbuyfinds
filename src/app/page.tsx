@@ -4,7 +4,7 @@ import HomepageCatalogSection from "@/components/HomepageCatalogSection";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
 import HomepageSeoLanding from "@/components/HomepageSeoLanding";
-import DiscoveryRail from "@/components/DiscoveryRail";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
 import HomepageBrands from "@/components/HomepageBrands";
 import HomepageCategories from "@/components/HomepageCategories";
 import HomepageCollections from "@/components/HomepageCollections";
@@ -17,7 +17,7 @@ import RecentlyViewedRail from "@/components/RecentlyViewedRail";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import SchemaScript from "@/components/SchemaScript";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
-import { getHomepageRails } from "@/lib/homepage-rails";
+import { getHomepageSurfaceRails } from "@/lib/homepage-rails";
 import { getCategories } from "@/lib/products";
 import { buildWebPageSchema } from "@/lib/schema";
 import { buildHomepageMetadata } from "@/lib/seo";
@@ -33,7 +33,7 @@ export default async function HomePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const categories = getCategories();
-  const rails = getHomepageRails(12);
+  const rails = getHomepageSurfaceRails(12);
 
   return (
     <>
@@ -50,16 +50,15 @@ export default async function HomePage({
 
       <HomepageSeoLanding products={rails.editorsPicks.length ? rails.editorsPicks : rails.popularToday.length ? rails.popularToday : rails.latestFinds} />
 
-      <DiscoveryRail
+      <ServerDiscoveryRail
         title="Trending Today"
         subtitle="Most viewed and clicked in the last 24 hours"
         href="/most-popular-finds-now"
         products={rails.popularToday}
         showTrendingScore
-        preloadImages
       />
 
-      <DiscoveryRail
+      <ServerDiscoveryRail
         title="Latest Finds"
         subtitle="Newest drops from the BoonBuy spreadsheet sync"
         href="/latest-finds"
@@ -67,7 +66,7 @@ export default async function HomePage({
       />
 
       {rails.editorsPicks.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title="Editor's Picks"
           subtitle="QC-linked standouts with strong presentation"
           href="/editors-picks"
@@ -76,7 +75,7 @@ export default async function HomePage({
       ) : null}
 
       {rails.bestUnder20.length > 0 ? (
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title="Best Under $20"
           subtitle="Budget-friendly finds that still look premium"
           href="/best-under-30"
@@ -84,7 +83,7 @@ export default async function HomePage({
         />
       ) : null}
 
-      <DiscoveryRail
+      <ServerDiscoveryRail
         title="Most Viewed This Week"
         subtitle="Trending sneakers, jackets and streetwear"
         href="/trending"

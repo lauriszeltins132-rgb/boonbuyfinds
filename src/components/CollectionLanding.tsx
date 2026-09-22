@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/CatalogPanel";
+import CatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedSeoLinks from "@/components/RelatedSeoLinks";
 import { getBrandsFromProducts } from "@/lib/brands";
 import type { CollectionConfig } from "@/lib/collections";
@@ -43,7 +43,7 @@ export default function CollectionLanding({ collection }: CollectionLandingProps
       <RelatedSeoLinks />
 
       <Suspense fallback={<div className="py-24 text-center text-muted">Loading...</div>}>
-        <CatalogPanel
+        <ServerCatalogPanel
           products={products}
           categories={getCategories()}
           brands={brands}

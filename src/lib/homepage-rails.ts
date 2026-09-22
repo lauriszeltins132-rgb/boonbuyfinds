@@ -520,6 +520,67 @@ export function getHomepageRails(limit = 12): HomepageRails {
   };
 }
 
+export type HomepageSurfaceRails = Pick<
+  HomepageRails,
+  | "popularToday"
+  | "latestFinds"
+  | "editorsPicks"
+  | "bestUnder20"
+  | "popularWeek"
+  | "dayIndex"
+  | "weekIndex"
+  | "monthIndex"
+>;
+
+/**
+ * Homepage-only rails — skips unused discovery pools to cut TTFB work.
+ * Full `getHomepageRails` remains for other surfaces that need every rail.
+ */
+export function getHomepageSurfaceRails(limit = 12): HomepageSurfaceRails {
+  const day = getUtcDayIndex();
+  const week = getUtcWeekIndex();
+  const month = getUtcMonthIndex();
+  const used = new Set<string>();
+  const usedListingKeys = new Set<string>();
+
+  const popularToday = registerRailProducts(
+    pickPopularToday(limit, used, usedListingKeys, day),
+    used,
+    usedListingKeys
+  );
+  const latestFinds = registerRailProducts(
+    pickLatestFinds(limit, used, usedListingKeys),
+    used,
+    usedListingKeys
+  );
+  const editorsPicks = registerRailProducts(
+    pickEditorsPicks(limit, used, usedListingKeys, month),
+    used,
+    usedListingKeys
+  );
+  const bestUnder20 = registerRailProducts(
+    pickBestUnder20(limit, used, usedListingKeys, week),
+    used,
+    usedListingKeys
+  );
+  const popularWeek = registerRailProducts(
+    pickPopularWeek(limit, used, usedListingKeys, week),
+    used,
+    usedListingKeys
+  );
+
+  return {
+    popularToday,
+    latestFinds,
+    editorsPicks,
+    bestUnder20,
+    popularWeek,
+    dayIndex: day,
+    weekIndex: week,
+    monthIndex: month,
+  };
+}
+
 /** Shared editor's picks rail — monthly rotation, optional dedup set. */
 export function getHomepageEditorsPicks(
   limit = 12,

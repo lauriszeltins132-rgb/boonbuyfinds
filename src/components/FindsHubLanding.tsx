@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ProductGrid from "@/components/ProductGrid";
+import ProductGrid from "@/components/ServerProductGrid";
 import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import {
@@ -120,7 +120,7 @@ export default function FindsHubLanding({ config }: FindsHubLandingProps) {
         <div className="mx-auto max-w-7xl">
           <h2 className="text-xl font-black">Products</h2>
           <div className="mt-6">
-            <ProductGrid products={products.slice(0, 48)} />
+            <ServerProductGrid products={products.slice(0, 48)} />
           </div>
         </div>
       </section>

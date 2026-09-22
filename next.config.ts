@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   staticPageGenerationTimeout: 300,
+  experimental: {
+    optimizePackageImports: ["ai", "@ai-sdk/react", "zod"],
+  },
   async redirects() {
     return [
       {

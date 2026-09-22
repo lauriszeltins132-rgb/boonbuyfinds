@@ -1,7 +1,9 @@
 import { getBrandsFromProducts } from "@/lib/brands";
+import { getCardDisplayMap } from "@/lib/card-props";
 import { filterProducts } from "@/lib/filters";
 import { getAllProducts, getCategories } from "@/lib/products";
 import CatalogPanel from "@/components/CatalogPanel";
+import SavedFindsCatalog from "@/components/SavedFindsCatalog";
 
 const PAGE_SIZE = 48;
 
@@ -14,20 +16,15 @@ export default async function HomepageCatalogSection({
 }: HomepageCatalogSectionProps) {
   const params = await searchParams;
   const savedOnly = params.saved === "1";
-  const allProducts = getAllProducts();
   const categories = getCategories();
-  const brands = getBrandsFromProducts(allProducts);
 
+  // Saved finds need wishlist IDs (client-only). Avoid shipping the full catalog.
   if (savedOnly) {
-    return (
-      <CatalogPanel
-        products={allProducts}
-        categories={categories}
-        brands={brands}
-        basePath="/"
-      />
-    );
+    return <SavedFindsCatalog categories={categories} />;
   }
+
+  const allProducts = getAllProducts();
+  const brands = getBrandsFromProducts(allProducts);
 
   const search = String(params.q ?? "");
   const brand = String(params.brand ?? "");
@@ -54,6 +51,7 @@ export default async function HomepageCatalogSection({
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE
   );
+  const cardDisplays = getCardDisplayMap(paginated.map((product) => product.id));
 
   return (
     <CatalogPanel
@@ -61,6 +59,7 @@ export default async function HomepageCatalogSection({
       categories={categories}
       brands={brands}
       basePath="/"
+      cardDisplays={cardDisplays}
       serverCatalog={{
         totalCount: filtered.length,
         page: currentPage,

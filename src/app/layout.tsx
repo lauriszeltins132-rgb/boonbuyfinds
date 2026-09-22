@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import FooterSignupStrip from "@/components/conversion/FooterSignupStrip";
 import DeferredClientChrome from "@/components/DeferredClientChrome";
+import DeferredAnalytics from "@/components/DeferredAnalytics";
 import DeferredSpeedInsights from "@/components/DeferredSpeedInsights";
 import MobileDock from "@/components/MobileDock";
 import PreferencesBar from "@/components/PreferencesBar";
@@ -29,9 +29,10 @@ import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "700", "800"],
   variable: "--font-jakarta",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -130,7 +131,7 @@ export default function RootLayout({
                   <Footer />
                   <DeferredClientChrome />
                   <MobileDock />
-                  <Analytics />
+                  <DeferredAnalytics />
                   <DeferredSpeedInsights />
                 </ConversionProvider>
               </RecentlyViewedProvider>

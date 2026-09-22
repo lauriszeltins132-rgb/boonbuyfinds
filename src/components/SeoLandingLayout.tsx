@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ProductGrid from "@/components/ProductGrid";
+import ProductGrid from "@/components/ServerProductGrid";
 import SchemaScript from "@/components/SchemaScript";
 import type { SeoLandingConfig } from "@/lib/seo-landing-pages";
 import RelatedPages from "@/components/RelatedPages";
@@ -179,7 +179,7 @@ export default function SeoLandingLayout({ config }: SeoLandingLayoutProps) {
               {products.length.toLocaleString()} curated picks with verified BoonBuy links.
             </p>
             <div className="mt-6">
-              <ProductGrid products={products} />
+              <ServerProductGrid products={products} />
             </div>
           </div>
         </section>
