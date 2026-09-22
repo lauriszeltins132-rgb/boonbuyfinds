@@ -394,7 +394,8 @@ body::before {
 
 .product-float-stage--featured {
   padding: 0.5rem;
-  min-height: 400px;
+  min-height: 0;
+  height: 100%;
 }
 
 .product-float-stage--hero {
@@ -407,6 +408,10 @@ body::before {
     min-height: 540px;
     padding: 1rem;
   }
+}
+
+.product-image-shell--featured .product-float-stage--featured {
+  min-height: inherit;
 }
 
 .product-float-glow {
