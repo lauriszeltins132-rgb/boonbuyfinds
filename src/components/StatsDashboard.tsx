@@ -72,7 +72,6 @@ export default function StatsDashboard() {
     { label: "Register clicks", value: summary.totals.registerClicks },
     { label: "Buy clicks", value: summary.totals.buyClicks },
     { label: "QC clicks", value: summary.totals.qcClicks },
-    { label: "Discord clicks", value: summary.totals.discordClicks },
     { label: "Telegram clicks", value: summary.totals.telegramClicks },
     { label: "Page views", value: summary.totals.pageViews },
   ];

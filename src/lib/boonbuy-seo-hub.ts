@@ -14,12 +14,6 @@ export const BOONBUY_SEO_HUB = {
     externalUrl: SOCIAL_LINKS.telegram,
     cta: "Join BoonBuy Telegram",
   },
-  discord: {
-    href: "/boonbuy-discord",
-    label: "BoonBuy Discord",
-    externalUrl: SOCIAL_LINKS.discord,
-    cta: "Join BoonBuy Discord",
-  },
   coupons: {
     href: "/boonbuy-coupons",
     label: "BoonBuy Coupons",
@@ -92,12 +86,6 @@ export const HERO_LANDING_CTAS = [
     icon: "telegram" as const,
   },
   {
-    href: BOONBUY_SEO_HUB.discord.href,
-    label: BOONBUY_SEO_HUB.discord.cta,
-    variant: "secondary" as const,
-    icon: "discord" as const,
-  },
-  {
     href: BOONBUY_SEO_HUB.spreadsheet.href,
     label: BOONBUY_SEO_HUB.spreadsheet.cta,
     variant: "ghost" as const,
@@ -118,10 +106,9 @@ export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.coupons,
   BOONBUY_SEO_HUB.shippingCoupon,
   BOONBUY_SEO_HUB.qc,
-  BOONBUY_SEO_HUB.discord,
   BOONBUY_SEO_HUB.telegram,
   BOONBUY_SEO_HUB.review,
   BOONBUY_SEO_HUB.guides,
 ] as const;
 
-export const HOMEPAGE_SEO_INDEX_BLURB = `BoonBuy Finds is a product discovery platform and searchable database for BoonBuy spreadsheet finds, QC photos, coupons, and community updates. Use it to browse verified BoonBuy checkout links, claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, join Discord and Telegram for daily drops, and explore category finds hubs — without copying rows from a raw Google Sheet.`;
+export const HOMEPAGE_SEO_INDEX_BLURB = `BoonBuy Finds is a product discovery platform and searchable database for BoonBuy spreadsheet finds, QC photos, coupons, and community updates. Use it to browse verified BoonBuy checkout links, claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, join Telegram for daily drops, and explore category finds hubs — without copying rows from a raw Google Sheet.`;

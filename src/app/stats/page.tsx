@@ -20,7 +20,7 @@ export default function StatsPage() {
         </p>
         <h1 className="mt-2 text-3xl font-black">Conversion dashboard</h1>
         <p className="mt-3 max-w-2xl text-sm text-muted">
-          Lightweight tracking for register, buy, QC, Discord, and Telegram
+          Lightweight tracking for register, buy, QC, and Telegram
           clicks. Events are sent to Vercel Analytics and aggregated here.
         </p>
         <div className="mt-8">

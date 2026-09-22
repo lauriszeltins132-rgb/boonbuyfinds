@@ -301,7 +301,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       "Streetwear spreadsheet finds — Stussy, Corteiz, Supreme, and hype labels with searchable BoonBuy pages and QC references.",
     h1: "Streetwear spreadsheet finds",
     intro:
-      "Streetwear sheets move fast. BoonBuy Finds keeps the same discovery value while adding photos, QC badges, and shareable URLs for Discord and Telegram.",
+      "Streetwear sheets move fast. BoonBuy Finds keeps the same discovery value while adding photos, QC badges, and shareable URLs for Telegram.",
     badge: "Spreadsheet",
     keywords: ["streetwear spreadsheet", "hype finds sheet"],
     updateFrequency: "weekly",
@@ -331,7 +331,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       "LitBuy spreadsheet alternative on BoonBuy Finds — searchable QC-curated finds with photos, filters, and BoonBuy checkout links.",
     h1: "LitBuy spreadsheet finds alternative",
     intro:
-      "LitBuy communities lean on shared Google Sheets and Discord QC. Use this page as a LitBuy spreadsheet alternative: curated product rows become searchable cards with photos, pricing, and verified links.",
+      "LitBuy communities lean on shared Google Sheets and Telegram QC. Use this page as a LitBuy spreadsheet alternative: curated product rows become searchable cards with photos, pricing, and verified links.",
     badge: "Agent spreadsheet",
     keywords: ["litbuy spreadsheet", "litbuy finds", "litbuy finds spreadsheet"],
     updateFrequency: "weekly",
@@ -612,7 +612,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
       {
         heading: "What to compare",
         paragraphs: [
-          "Look at warehouse QC options, storage time, international lines to your country, payment methods, and current coupons — not just hype in a Discord poll.",
+          "Look at warehouse QC options, storage time, international lines to your country, payment methods, and current coupons — not just hype in a community poll.",
           "BoonBuy Finds is built around BoonBuy discovery and checkout. Other agents remain useful for quote shopping; this catalog’s buy buttons open BoonBuy.",
         ],
         links: [

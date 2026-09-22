@@ -32,12 +32,6 @@ export default function CommunityLinks({
   return (
     <div className={`${layoutClass} ${className}`}>
       <CommunityButton
-        platform="discord"
-        variant={buttonVariant}
-        location={location}
-        fullWidth={fullWidth}
-      />
-      <CommunityButton
         platform="telegram"
         variant={buttonVariant}
         location={location}

@@ -5,7 +5,7 @@ const SIGNALS = [
   { key: "finds", label: "QC-curated finds" },
   { key: "qc", label: "with QC references" },
   { key: "updates", label: "Daily catalog sync" },
-  { key: "community", label: "Active Discord & Telegram" },
+  { key: "community", label: "Active Telegram community" },
   { key: "boonbuy", label: "Verified BoonBuy links" },
 ] as const;
 

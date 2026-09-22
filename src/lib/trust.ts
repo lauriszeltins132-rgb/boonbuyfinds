@@ -16,7 +16,7 @@ export const TRUST_FOOTER_SIGNALS = [
   "Updated regularly",
   "3,000+ product listings",
   "Guides and buying resources",
-  "Community support via Discord and Telegram",
+  "Community support via Telegram",
 ] as const;
 
 export const TRUST_CONTACT_CHANNELS = [
@@ -24,11 +24,6 @@ export const TRUST_CONTACT_CHANNELS = [
     label: "Email",
     href: `mailto:${CONTACT_EMAIL}`,
     description: CONTACT_EMAIL,
-  },
-  {
-    label: "Discord",
-    href: SOCIAL_LINKS.discord,
-    description: "Buyer community — QC help and daily finds",
   },
   {
     label: "Telegram",

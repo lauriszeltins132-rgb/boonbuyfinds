@@ -49,7 +49,6 @@ const TRUST_LINKS = [
 const AGENT_FINDS_LINKS = [
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
-  { href: "/boonbuy-discord", label: "BoonBuy Discord" },
   { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
   { href: "/how-to-buy", label: "How to buy on BoonBuy" },
@@ -75,7 +74,7 @@ export default function Footer() {
                 Community
               </p>
               <h2 className="mt-2 text-2xl font-black text-foreground sm:text-3xl">
-                Join buyers on Discord & Telegram
+                Join buyers on Telegram
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 QC checks, shipping advice, and daily finds from real buyers.

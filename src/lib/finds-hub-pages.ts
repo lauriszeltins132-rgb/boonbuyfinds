@@ -47,7 +47,7 @@ const AUTHORITY = [
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
   { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-  { href: "/boonbuy-discord", label: "BoonBuy Discord" },
+  { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
   { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
   { href: "/latest-finds", label: "Latest finds" },
 ] as const;
@@ -252,13 +252,13 @@ export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
     badge: "Streetwear",
     h1: "Streetwear finds",
     intro:
-      "Culture-brand streetwear from the BoonBuy Finds catalog — hoodies, tees, and everyday pieces with photos and verified BoonBuy checkout instead of hunting Discord screenshots.",
+      "Culture-brand streetwear from the BoonBuy Finds catalog — hoodies, tees, and everyday pieces with photos and verified BoonBuy checkout instead of hunting community screenshots.",
     directAnswer:
       "Streetwear finds are BoonBuy-indexed culture-brand apparel and accessories curated for discovery, QC context, and verified agent links.",
     keyFacts: [
       "Blends hoodies, tees, and related streetwear categories",
       "Strong for Stussy, Corteiz, Bape-style searches",
-      "Use Discord and Telegram for live batch chatter",
+      "Use Telegram for live batch chatter",
       "Pair with the spreadsheet hub for broader browsing",
     ],
     freshnessLabel: "Updated regularly",
@@ -281,7 +281,7 @@ export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
     relatedHubHrefs: HUB_MESH.filter((l) => l.href !== "/streetwear-finds"),
     relatedGuideHrefs: [
       { href: "/top-streetwear-finds", label: "Top streetwear list" },
-      { href: "/boonbuy-discord", label: "Discord community" },
+      { href: "/boonbuy-telegram", label: "Telegram community" },
     ],
     authorityLinks: [...AUTHORITY],
     faqs: [

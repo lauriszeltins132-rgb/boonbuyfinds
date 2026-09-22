@@ -17,10 +17,6 @@ import {
 } from "@/lib/seo-landing-engine";
 import { AGENT_LANDING_SLUGS } from "@/lib/agent-landing-pages";
 import {
-  DISCORD_AGENT_LANDING_PAGES,
-  DISCORD_AGENT_LANDING_SLUGS,
-} from "@/lib/discord-agent-landing-pages";
-import {
   AGENT_COUPON_LANDING_PAGES,
   AGENT_COUPON_LANDING_SLUGS,
   isPrimaryCouponLandingSlug,
@@ -70,7 +66,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/boonbuy-coupons", "weekly", 0.95, synced),
     entry("/boonbuy-qc", "weekly", 0.93, synced),
     entry("/boonbuy-telegram", "weekly", 0.92, synced),
-    entry("/boonbuy-discord", "weekly", 0.92, synced),
     entry("/boonbuy-questions", "weekly", 0.94, synced),
     entry("/ai", "weekly", 0.9, synced),
     entry("/trending", "daily", 0.9, synced),
@@ -130,17 +125,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push(entry(page.path, "weekly", 0.9, synced));
   }
 
-  // Skip BoonBuy telegram/discord agent-landing aliases — they 301 to architecture canons.
+  // Skip BoonBuy telegram agent-landing alias — it 301s to the architecture canon.
   const REDIRECTED_COMMUNITY_LANDINGS = new Set([
     "telegram-boonbuy",
-    "discord-boonbuy",
   ]);
-
-  for (const slug of DISCORD_AGENT_LANDING_SLUGS) {
-    if (REDIRECTED_COMMUNITY_LANDINGS.has(slug)) continue;
-    const page = DISCORD_AGENT_LANDING_PAGES[slug];
-    routes.push(entry(page.path, "weekly", 0.9, synced));
-  }
 
   for (const slug of TELEGRAM_AGENT_LANDING_SLUGS) {
     if (REDIRECTED_COMMUNITY_LANDINGS.has(slug)) continue;
@@ -225,8 +213,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_ARCHITECTURE_SLUGS) {
     const page = SEO_ARCHITECTURE_PAGES[slug];
-    // Community canons already listed above.
-    if (page.path === "/boonbuy-telegram" || page.path === "/boonbuy-discord") {
+    // Telegram community canon already listed above.
+    if (page.path === "/boonbuy-telegram") {
       continue;
     }
     routes.push(

@@ -215,28 +215,6 @@ export function buildTelegramAgentWebPageSchema({
   });
 }
 
-export function buildDiscordAgentWebPageSchema({
-  name,
-  description,
-  path,
-  agentName,
-  discordUrl,
-}: {
-  name: string;
-  description: string;
-  path: string;
-  agentName: string;
-  discordUrl: string;
-}) {
-  return buildJoinAgentWebPageSchema({
-    name,
-    description,
-    path,
-    joinUrl: discordUrl,
-    joinLabel: `Join ${agentName} Discord`,
-  });
-}
-
 function buildJoinAgentWebPageSchema({
   name,
   description,

@@ -168,7 +168,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
     path: "/contact",
     title: "Contact BoonBuy Finds",
     metaDescription:
-      "Contact BoonBuy Finds by email, Discord, Telegram, or social channels. Listing corrections, guide feedback, and partnership inquiries.",
+      "Contact BoonBuy Finds by email, Telegram, or social channels. Listing corrections, guide feedback, and partnership inquiries.",
     badge: "Contact",
     h1: "Contact us",
     intro:
@@ -182,13 +182,12 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         ],
       },
       {
-        heading: "Discord & Telegram",
+        heading: "Telegram",
         paragraphs: [
-          "For faster help from other buyers, join Discord or Telegram. Members share QC tips, shipping advice, and recent pickups daily.",
-          "These are community spaces — not official BoonBuy support — but they are often the quickest place to get a second opinion before you ship a haul.",
+          "For faster help from other buyers, join Telegram. Members share QC tips, shipping advice, and recent pickups daily.",
+          "This is a community space — not official BoonBuy support — but it is often the quickest place to get a second opinion before you ship a haul.",
         ],
         links: [
-          { href: SOCIAL_LINKS.discord, label: "Join Discord" },
           {
             href: SOCIAL_LINKS.telegram,
             label: `Join Telegram ${TELEGRAM_HANDLE}`,
@@ -276,7 +275,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       {
         heading: "Third-party links",
         paragraphs: [
-          "Outbound links to BoonBuy, Discord, Telegram, and product sellers are third-party sites with their own privacy policies. We are not responsible for their practices.",
+          "Outbound links to BoonBuy, Telegram, and product sellers are third-party sites with their own privacy policies. We are not responsible for their practices.",
         ],
       },
       {
@@ -434,10 +433,9 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       {
         heading: "Join the community",
         paragraphs: [
-          "Discord and Telegram are where buyers share recent QCs, batch advice, and shipping line recommendations for specific countries.",
+          "Telegram is where buyers share recent QCs, batch advice, and shipping line recommendations for specific countries.",
         ],
         links: [
-          { href: SOCIAL_LINKS.discord, label: "Discord" },
           { href: SOCIAL_LINKS.telegram, label: "Telegram" },
         ],
       },
@@ -660,7 +658,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
     path: "/boonbuy",
     title: "BoonBuy | Shopping Agent, Finds, Coupons & Spreadsheet 2026",
     metaDescription:
-      "BoonBuy shopping agent explained — plus BoonBuy Finds for QC photos, spreadsheet finds, BoonBuy coupons, Telegram and Discord. Start at boonbuyfinds.net.",
+      "BoonBuy shopping agent explained — plus BoonBuy Finds for QC photos, spreadsheet finds, BoonBuy coupons, Telegram. Start at boonbuyfinds.net.",
     badge: "BoonBuy agent",
     h1: "BoonBuy — shopping agent & finds hub",
     intro:
@@ -691,8 +689,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         links: [
           { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
           { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-          { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
-          { href: "/discord-boonbuy", label: "BoonBuy Discord" },
+          { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
         ],
       },
       {

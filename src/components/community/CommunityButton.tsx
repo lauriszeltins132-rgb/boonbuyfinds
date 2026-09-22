@@ -1,14 +1,14 @@
 "use client";
 
 import { SOCIAL_LINKS, TELEGRAM_HANDLE } from "@/lib/constants";
-import { trackDiscordClick, trackTelegramClick } from "@/lib/analytics-events";
-import { DiscordIcon, TelegramIcon } from "./SocialIcons";
+import { trackTelegramClick } from "@/lib/analytics-events";
+import { TelegramIcon } from "./SocialIcons";
 
-export type CommunityPlatform = "discord" | "telegram";
+export type CommunityPlatform = "telegram";
 export type CommunityButtonVariant = "icon" | "pill" | "cta";
 
 type CommunityButtonProps = {
-  platform: CommunityPlatform;
+  platform?: CommunityPlatform;
   variant?: CommunityButtonVariant;
   location?: string;
   className?: string;
@@ -17,25 +17,8 @@ type CommunityButtonProps = {
   fullWidth?: boolean;
 };
 
-const PLATFORM_CONFIG = {
-  discord: {
-    href: SOCIAL_LINKS.discord,
-    defaultLabel: "Join Discord",
-    track: trackDiscordClick,
-    ariaLabel: "Join Discord",
-    btnClass: "community-btn--discord",
-  },
-  telegram: {
-    href: SOCIAL_LINKS.telegram,
-    defaultLabel: "Join Telegram",
-    track: trackTelegramClick,
-    ariaLabel: "Join Telegram",
-    btnClass: "community-btn--telegram",
-  },
-} as const;
-
 export default function CommunityButton({
-  platform,
+  platform: _platform = "telegram",
   variant = "pill",
   location = "community",
   className = "",
@@ -43,14 +26,13 @@ export default function CommunityButton({
   showTelegramHandle = false,
   fullWidth = false,
 }: CommunityButtonProps) {
-  const config = PLATFORM_CONFIG[platform];
-  const Icon = platform === "discord" ? DiscordIcon : TelegramIcon;
+  void _platform;
 
   const text =
     label ??
-    (platform === "telegram" && showTelegramHandle
+    (showTelegramHandle
       ? `Join Telegram ${TELEGRAM_HANDLE}`
-      : config.defaultLabel);
+      : "Join Telegram");
 
   const variantClass =
     variant === "icon"
@@ -64,16 +46,16 @@ export default function CommunityButton({
 
   return (
     <a
-      href={config.href}
+      href={SOCIAL_LINKS.telegram}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={variant === "icon" ? config.ariaLabel : undefined}
-      onClick={() => config.track(location)}
-      className={`community-btn ${config.btnClass} ${variantClass} ${
+      aria-label={variant === "icon" ? "Join Telegram" : undefined}
+      onClick={() => trackTelegramClick(location)}
+      className={`community-btn community-btn--telegram ${variantClass} ${
         fullWidth ? "community-btn--full" : ""
       } ${className}`}
     >
-      <Icon className={iconSize} />
+      <TelegramIcon className={iconSize} />
       {variant !== "icon" ? <span>{text}</span> : null}
     </a>
   );

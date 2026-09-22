@@ -805,15 +805,6 @@ body::before {
   outline-offset: 3px;
 }
 
-.community-btn--discord {
-  background: #5865f2;
-  box-shadow: 0 4px 18px rgba(88, 101, 242, 0.38);
-}
-
-.community-btn--discord:hover {
-  box-shadow: 0 10px 32px rgba(88, 101, 242, 0.55);
-}
-
 .community-btn--telegram {
   background: #229ed9;
   box-shadow: 0 4px 18px rgba(34, 158, 217, 0.38);

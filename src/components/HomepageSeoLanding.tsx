@@ -83,7 +83,7 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
             <li>Product discovery platform for BoonBuy finds</li>
             <li>Searchable database with QC photo references</li>
             <li>Spreadsheet alternative with filters and product pages</li>
-            <li>Coupon, Discord, and Telegram resource hub</li>
+            <li>Coupon and Telegram resource hub</li>
           </ul>
           <ul className="mt-4 flex flex-wrap gap-2">
             {SEO_HUB_FOOTER_LINKS.map((link) => (
