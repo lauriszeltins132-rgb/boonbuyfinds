@@ -114,7 +114,32 @@ export default function RelatedPages({
         <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-muted">
           Related pages
         </h2>
-        <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
+              Save on BoonBuy
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {[
+                { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+                { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
+                { href: "/boonbuy-discount-code", label: "Discount code guide" },
+                { href: "/boonbuy-shipping-coupon", label: "Save on BoonBuy shipping" },
+                { href: "/boonbuy", label: "What is BoonBuy?" },
+              ]
+                .filter((link) => link.href !== currentPath)
+                .map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="rounded-full border border-border px-3 py-1 text-xs font-bold hover:border-accent/40 hover:text-accent"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">Brands</p>
             <ul className="mt-2 flex flex-wrap gap-2">

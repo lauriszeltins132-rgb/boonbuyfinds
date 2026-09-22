@@ -39,7 +39,6 @@ export function getSeoArchitecturePage(slug: string): SeoArchitecturePage | unde
 /** Slugs consolidated onto non-architecture canons (301 + path remap). */
 const ARCHITECTURE_PATH_OVERRIDES: Record<string, string> = {
   "what-is-boonbuy": "/boonbuy",
-  "boonbuy-discount-code": "/boonbuy-coupons",
 };
 
 export function getSeoArchitecturePath(slug: string): string {

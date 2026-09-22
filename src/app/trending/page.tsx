@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CatalogPanel from "@/components/CatalogPanel";
 import RelatedSearches from "@/components/RelatedSearches";
@@ -42,6 +43,28 @@ export default function TrendingPage() {
         </div>
       </section>
       <SignupCard location="trending" variant="compact" />
+      <section className="px-4 pb-2 sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-wrap gap-2">
+          <Link
+            href="/boonbuy-coupons"
+            className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+          >
+            BoonBuy coupons
+          </Link>
+          <Link
+            href="/boonbuy-deals"
+            className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+          >
+            Latest BoonBuy deals
+          </Link>
+          <Link
+            href="/boonbuy"
+            className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+          >
+            What is BoonBuy?
+          </Link>
+        </div>
+      </section>
       <Suspense fallback={<div className="py-24 text-center text-muted">Loading...</div>}>
         <CatalogPanel
           products={products}

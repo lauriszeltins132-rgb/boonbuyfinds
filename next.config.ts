@@ -179,7 +179,7 @@ const nextConfig: NextConfig = {
       { source: "/boonbuy-coupons-2026", destination: "/boonbuy-coupons", permanent: true },
       { source: "/best-boonbuy-coupons", destination: "/boonbuy-coupons", permanent: true },
       { source: "/best-boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
-      { source: "/boonbuy-discount-code", destination: "/boonbuy-coupons", permanent: true },
+      // /boonbuy-discount-code kept as unique cluster page (codes vs shipping coupons).
     ];
   },
   images: {

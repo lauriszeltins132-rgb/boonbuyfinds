@@ -30,10 +30,11 @@ const GUIDE_CLUSTERS = [
     title: "Money saving",
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/boonbuy-deals", label: "BoonBuy deals" },
+      { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
       { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       { href: "/guides/how-shipping-works-with-agents", label: "Shipping tips" },
       { href: "/boonbuy-referral-code", label: "Referral code" },
+      { href: "/boonbuy-discount-code", label: "Discount code guide" },
     ],
   },
   {

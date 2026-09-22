@@ -66,8 +66,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/finds", "daily", 0.98, synced),
     entry("/boonbuy-finds", "daily", 0.97, synced),
     entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
-    entry("/boonbuy-coupons", "weekly", 0.95, synced),
+    entry("/boonbuy-coupons", "weekly", 0.98, synced),
     entry("/boonbuy-deals", "weekly", 0.95, synced),
+    entry("/boonbuy-discount-code", "weekly", 0.93, synced),
     entry("/latest-finds", "daily", 0.95, synced),
     entry("/rep-finds", "daily", 0.94, synced),
     entry("/boonbuy-qc", "weekly", 0.93, synced),
@@ -231,14 +232,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_ARCHITECTURE_SLUGS) {
     const page = SEO_ARCHITECTURE_PAGES[slug];
-    // Community canons + consolidated entity/coupon aliases already listed above.
+    // Community canons + consolidated entity aliases already listed above.
     if (
       page.path === "/boonbuy-telegram" ||
       page.path === "/boonbuy-discord" ||
       page.path === "/boonbuy" ||
       page.path === "/boonbuy-coupons" ||
-      slug === "what-is-boonbuy" ||
-      slug === "boonbuy-discount-code"
+      slug === "what-is-boonbuy"
     ) {
       continue;
     }

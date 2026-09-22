@@ -115,7 +115,8 @@ export const BOONBUY_AUTHORITY_SECTIONS: AuthoritySection[] = [
     ],
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/boonbuy-deals", label: "BoonBuy deals" },
+      { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
+      { href: "/boonbuy-discount-code", label: "Discount code guide" },
       { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       { href: "/best-boonbuy-coupon", label: "Best BoonBuy coupon" },
     ],

@@ -238,23 +238,40 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
   "boonbuy-discount-code": page({
     slug: "boonbuy-discount-code",
     category: "brand",
-    title: "BoonBuy Discount Code 2026 | Shipping Coupon",
+    title: "BoonBuy Discount Code 2026 | How Codes Differ From Coupons",
     metaDescription:
-      "Active BoonBuy discount code for 2026 — invite registration, shipping coupon, and how to apply codes at checkout on BoonBuy.",
+      "BoonBuy discount code explained — how invite codes, shipping coupons, and promo codes differ, where to enter them, and how to avoid expired fake codes in 2026.",
     badge: "Discount code",
     h1: "BoonBuy discount code",
     intro:
-      "BoonBuy discount codes usually arrive as registration invite codes and shipping coupons — not random strings in YouTube comments. Use the current invite on our coupon hub; confirm the live percentage on BoonBuy before you fund a haul.",
-    directAnswer: `BoonBuy discount codes are usually registration invite codes and shipping coupons — not item markdowns. Use invite code ${BOONBUY_INVITE_CODE} at signup and confirm live promo terms on BoonBuy before funding a haul.`,
+      "Searching for a BoonBuy discount code usually means you want an invite, shipping promo, or account coupon — not a markdown on every Weidian listing. This guide explains how codes work, where they apply, and how they connect to the BoonBuy coupons hub.",
+    directAnswer: `A BoonBuy discount code is typically a registration invite or shipping promo attached to your account — not an item-price coupon typed on every product. Use invite code ${BOONBUY_INVITE_CODE} via the verified coupon hub, then confirm live promo terms on BoonBuy before funding a haul.`,
     keyFacts: [
       `Primary registration invite: ${BOONBUY_INVITE_CODE} via the official coupon URL.`,
-      "Coupons adjust service fees or international freight — rarely listing prices on Taobao.",
-      "Enter the invite during BoonBuy signup, not on individual Weidian listings.",
-      "Expired influencer codes circulate on Reddit — use verified hub links instead.",
-      "Combine promos with smart parcel consolidation for the biggest savings.",
+      "Discount codes rarely change Taobao/Weidian listing prices — they adjust freight or account promos.",
+      "Enter invites during BoonBuy signup; activate shipping promos before paying parcel freight.",
+      "Expired influencer codes circulate on Reddit and Discord — prefer verified hub links.",
+      "Pair codes with consolidation and QC approval to avoid wasting discounted freight on rejects.",
     ],
-    keywords: ["boonbuy discount code", "boonbuy coupon", "boonbuy invite code"],
+    keywords: [
+      "boonbuy discount code",
+      "boonbuy coupon code",
+      "boonbuy promo code",
+      "boonbuy invite code",
+      "boonbuy coupon",
+    ],
     sections: [
+      {
+        heading: "Discount code vs BoonBuy coupon",
+        paragraphs: [
+          "Shoppers use “discount code,” “coupon code,” and “promo code” interchangeably. On BoonBuy, the practical workflow is usually: register with an invite, then use any shipping or service promo that appears in your account.",
+          "The coupons hub lists current offers available through BoonBuyFinds. This page focuses on how codes are applied and how to spot fake strings.",
+        ],
+        links: [
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+          { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
+        ],
+      },
       {
         heading: "Current invite code",
         paragraphs: [
@@ -271,12 +288,13 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         links: [
           { href: "/boonbuy-coupons", label: "All coupons" },
           { href: "/boonbuy-shipping", label: "Shipping" },
+          { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
         ],
       },
       {
         heading: "Avoid fake codes",
         paragraphs: [
-          "Expired influencer codes circulate forever on Reddit. If a code fails, use our hub instead of random generators. Phishing sites mimic agent login pages — bookmark boonbuy.com directly.",
+          "Expired influencer codes circulate forever on Reddit. If a code fails, use our coupons hub instead of random generators. Phishing sites mimic agent login pages — bookmark boonbuy.com directly.",
         ],
       },
       {
@@ -284,25 +302,36 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         paragraphs: [
           "Combine registration shipping promos with smart parcel building: bundle items, pick the right line, remove excess packaging when safe. The code is one lever; consolidation is the other.",
         ],
-        links: [{ href: "/how-to-save-on-shipping", label: "Save on shipping" }],
+        links: [
+          { href: "/how-to-save-on-shipping", label: "Save on shipping" },
+          { href: "/boonbuy", label: "What is BoonBuy?" },
+        ],
       },
     ],
     faqs: buildGuideFaqs("BoonBuy discount codes", [
       {
         question: "Does the code work on every item?",
-        answer: "Invite codes attach to your account; shipping discounts apply at freight checkout. Item prices still follow seller listings.",
+        answer:
+          "Invite codes attach to your account; shipping discounts apply at freight checkout. Item prices still follow seller listings.",
       },
       {
         question: "Can existing users get shipping coupons?",
-        answer: "Promotions vary. Check BoonBuy's promotions tab and our coupon pages for returning-user campaigns.",
+        answer:
+          "Promotions vary. Check BoonBuy's promotions tab and our coupon pages for returning-user campaigns.",
+      },
+      {
+        question: "Is this the same as the BoonBuy coupons page?",
+        answer:
+          "No. /boonbuy-coupons is the savings hub for current offers and claim steps. This page explains how discount codes work and how they differ from shipping coupons.",
       },
     ]),
     relatedLinks: [
       { href: "/boonbuy-coupons", label: "Coupon hub" },
-      { href: "/boonbuy-promo", label: "Promo page" },
+      { href: "/boonbuy-deals", label: "BoonBuy deals" },
+      { href: "/boonbuy-referral-code", label: "Referral code" },
       { href: BOONBUY_COUPON_URL, label: "Register with invite" },
     ],
-    relatedArticleSlugs: ["boonbuy-shipping", "boonbuy-coupons", "how-to-save-on-shipping"],
+    relatedArticleSlugs: ["boonbuy-shipping", "how-to-save-on-shipping", "is-boonbuy-legit"],
   }),
 
   "boonbuy-shipping": page({
