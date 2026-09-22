@@ -11,7 +11,7 @@ type AiProductCardProps = {
 
 export default function AiProductCard({ product }: AiProductCardProps) {
   return (
-    <article className="overflow-hidden rounded-2xl border border-border bg-surface/60">
+    <article className="product-card overflow-hidden rounded-2xl border border-border bg-panel">
       <Link
         href={`/find/${product.slug}`}
         className="block"
@@ -22,14 +22,15 @@ export default function AiProductCard({ product }: AiProductCardProps) {
           })
         }
       >
-        <div className="relative aspect-square bg-background">
+        <div className="product-image-shell product-image-shell--card relative aspect-square">
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
               alt={product.name}
               fill
-              className="object-contain p-2"
-              sizes="(max-width: 640px) 45vw, 160px"
+              className="object-contain p-[4%]"
+              sizes="(max-width: 640px) 45vw, 220px"
+              quality={85}
               loading="lazy"
             />
           ) : (
@@ -47,7 +48,7 @@ export default function AiProductCard({ product }: AiProductCardProps) {
           <h3 className="line-clamp-2 text-sm font-bold text-foreground">
             {product.name}
           </h3>
-          <p className="text-sm font-black text-foreground">
+          <p className="text-sm font-black text-accent">
             {product.price != null ? `$${product.price}` : "Price TBA"}
           </p>
           <p className="text-[11px] text-muted">{product.category}</p>

@@ -17,11 +17,23 @@ type ProductImageVariant = "card" | "featured" | "hero";
 
 const IMAGE_LAYOUT: Record<
   ProductImageVariant,
-  { width: number; height: number }
+  { width: number; height: number; sizes: string }
 > = {
-  card: { width: 400, height: 400 },
-  featured: { width: 540, height: 500 },
-  hero: { width: 600, height: 560 },
+  card: {
+    width: 800,
+    height: 800,
+    sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw",
+  },
+  featured: {
+    width: 1200,
+    height: 1200,
+    sizes: "(max-width: 1024px) 92vw, 48vw",
+  },
+  hero: {
+    width: 1400,
+    height: 1400,
+    sizes: "(max-width: 1024px) 100vw, 50vw",
+  },
 };
 
 type ProductImageProps = {
@@ -216,6 +228,8 @@ export default function ProductImage({
     .filter(Boolean)
     .join(" ");
 
+  const layout = IMAGE_LAYOUT[variant];
+
   const imageNode = (
     /* eslint-disable-next-line @next/next/no-img-element */
     <img
@@ -223,8 +237,9 @@ export default function ProductImage({
       key={displaySrc}
       src={displaySrc}
       alt={alt}
-      width={IMAGE_LAYOUT[variant].width}
-      height={IMAGE_LAYOUT[variant].height}
+      width={layout.width}
+      height={layout.height}
+      sizes={layout.sizes}
       loading={loadEager ? "eager" : "lazy"}
       fetchPriority={loadEager ? "high" : "auto"}
       decoding="async"

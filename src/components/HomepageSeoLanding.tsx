@@ -14,10 +14,10 @@ type HomepageSeoLandingProps = {
 };
 
 export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps) {
-  const featured = products.slice(0, 6);
+  const featured = products.slice(0, 8);
 
   return (
-    <section className="px-4 py-8 sm:px-6">
+    <section className="px-4 py-8 sm:px-6 sm:py-10">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -34,8 +34,8 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
           </Link>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {featured.map((product) => {
+        <div className="seo-product-mosaic mt-5">
+          {featured.map((product, index) => {
             const name = getDisplayProductName(product);
             const brand = getDisplayBrand(product);
             const resolved = resolveProductDisplayImage(product);
@@ -48,21 +48,23 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
               <Link
                 key={product.id}
                 href={getProductHref(product)}
-                className="group overflow-hidden rounded-2xl border border-border bg-surface/30 transition hover:border-accent/35"
+                className="product-card group overflow-hidden rounded-2xl border border-border bg-panel transition hover:border-accent/35"
               >
-                <div className="relative aspect-square bg-background">
+                <div className="seo-product-mosaic__media product-image-shell product-image-shell--card">
                   {src ? (
                     <Image
                       src={src}
                       alt={alt}
                       fill
-                      sizes="(max-width:640px) 50vw, 16vw"
-                      className="object-contain p-2 transition duration-300 group-hover:scale-[1.03]"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      quality={85}
+                      priority={index < 4}
+                      className="object-contain transition duration-300 group-hover:scale-[1.03]"
                     />
                   ) : null}
                 </div>
-                <div className="space-y-1 p-3">
-                  <p className="line-clamp-2 text-xs font-bold leading-snug text-foreground">
+                <div className="space-y-1 p-3 sm:p-3.5">
+                  <p className="line-clamp-2 text-sm font-bold leading-snug text-foreground">
                     {name}
                   </p>
                   <p className="text-[11px] font-semibold text-muted">

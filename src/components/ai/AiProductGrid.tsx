@@ -18,7 +18,7 @@ export default function AiProductGrid({ products, title }: AiProductGridProps) {
           {title}
         </p>
       ) : null}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {products.map((product) => (
           <AiProductCard key={product.id} product={product} />
         ))}

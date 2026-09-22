@@ -85,11 +85,11 @@ export default function ProductCard({
   }
 
   const iconBtn =
-    "flex h-7 w-7 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-accent/40 hover:text-accent sm:h-8 sm:w-8";
+    "flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-accent/40 hover:text-accent";
 
   return (
     <article
-      className={`product-card group flex flex-col overflow-hidden rounded-xl border border-border bg-panel active:scale-[0.99] sm:rounded-2xl ${
+      className={`product-card group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-panel active:scale-[0.99] sm:rounded-2xl ${
         compact ? "text-[12px] sm:text-[13px]" : ""
       }`}
     >
@@ -109,7 +109,7 @@ export default function ProductCard({
             productHref={productHref}
             priority={priority}
           />
-          <div className="product-card-hover-hint bg-gradient-to-t from-background/50 to-transparent px-3 py-2 opacity-0 transition-opacity group-hover:opacity-100">
+          <div className="product-card-hover-hint bg-gradient-to-t from-background/55 to-transparent px-3 py-2.5 opacity-0 transition-opacity group-hover:opacity-100">
             <p className="text-[10px] font-bold uppercase tracking-wider text-accent">
               View details
             </p>
@@ -118,11 +118,15 @@ export default function ProductCard({
         <ProductBadges badges={badges} />
       </div>
 
-      <div className={`flex flex-1 flex-col gap-1.5 ${compact ? "p-2.5 sm:p-3" : "p-3.5"}`}>
+      <div
+        className={`flex flex-1 flex-col ${
+          compact ? "gap-1 p-2.5 sm:gap-1.5 sm:p-3" : "gap-1.5 p-3 sm:p-3.5"
+        }`}
+      >
         <Link href={productHref} className="text-left">
           <h3
             className={`line-clamp-2 font-bold leading-snug text-foreground ${
-              compact ? "text-xs" : "text-sm"
+              compact ? "text-xs sm:text-[13px]" : "text-sm sm:text-[15px]"
             }`}
           >
             {displayName}
@@ -142,12 +146,12 @@ export default function ProductCard({
             getPriceStatus(product.price) === "exact"
               ? "text-accent"
               : "text-muted text-sm"
-          } ${compact ? "text-sm" : "text-base"}`}
+          } ${compact ? "text-sm" : "text-base sm:text-lg"}`}
         >
           {formatProductPrice(product.price, currency)}
         </p>
 
-        <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-1">
+        <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-1.5">
           {product.affiliate_link ? (
             <BuyWithAgentButton
               product={product}
