@@ -2,7 +2,7 @@
 export const COLLECTION_SEO_BODIES: Record<string, string[]> = {
   "best-nike-finds": [
     "Nike is the most searched brand on BoonBuy Finds — Dunks, Air Max, Travis Scott collabs, and everyday AM1s all appear across Weidian and Taobao listings. This collection ranks Nike picks by photo quality, QC references, and buyer engagement so you are not guessing which row in a spreadsheet is worth opening.",
-    "Use this page when you need shareable Nike links for Discord or Reddit. Each card opens a full product page with agent buttons for BoonBuy, OopBuy, Kakobuy, MuleBuy, and ACBuy. Compare swoosh shape and toe box in QC threads before you ship — especially on Dunks and Jordan-adjacent Nike silhouettes.",
+    "Use this page when you need shareable Nike links for Telegram or Reddit. Each card opens a full product page with agent buttons for BoonBuy, OopBuy, Kakobuy, MuleBuy, and ACBuy. Compare swoosh shape and toe box in QC threads before you ship — especially on Dunks and Jordan-adjacent Nike silhouettes.",
     "Related: browse all Nike on the brand hub, jump to Best Jordan Finds for Jumpman grails, or open the sneakers category for Adidas and New Balance mixed in.",
   ],
   "best-jordan-finds": [
@@ -46,7 +46,7 @@ export const COLLECTION_SEO_BODIES: Record<string, string[]> = {
     "Combine with Trending This Week for hot items, or brand collections like Nike and Jordan for focused hauls.",
   ],
   "trending-this-week": [
-    "Trending This Week reflects what BoonBuy Finds visitors are clicking and saving over the last seven days — a live signal on top of daily spreadsheet sync. Use it when you want momentum picks without reading every Discord thread.",
+    "Trending This Week reflects what BoonBuy Finds visitors are clicking and saving over the last seven days — a live signal on top of daily spreadsheet sync. Use it when you want momentum picks without reading every Telegram chat.",
     "Trending rotates as new finds land and old batches sell out. Check Latest Finds for brand-new rows and Editor's Picks for QC-heavy standouts.",
     "Share this page when friends ask what is hot right now — it updates as engagement shifts.",
   ],

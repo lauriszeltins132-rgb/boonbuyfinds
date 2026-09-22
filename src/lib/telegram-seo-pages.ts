@@ -522,7 +522,7 @@ const TOPIC_PAGES: Record<string, TelegramSeoPageConfig> = {
         heading: "Why sneaker buyers use Telegram",
         paragraphs: [
           "Sneaker batches change quietly — the same listing photo can map to different quality tiers. Telegram sneaker finds move with commentary about which batch a link points to and whether recent QC looked good.",
-          "RN Finds concentrates that chatter into one channel instead of scattered Discord threads and dead spreadsheet tabs.",
+          "RN Finds concentrates that chatter into one channel instead of scattered Telegram chats and dead spreadsheet tabs.",
         ],
       },
       {

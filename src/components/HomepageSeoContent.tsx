@@ -8,10 +8,10 @@ const PARAGRAPHS = [
   "QC photos are the reason many buyers use agents in the first place. After you order, the warehouse photographs your item so you can approve it or request an exchange before international shipping. BoonBuy Finds highlights listings with QC references — links to real warehouse photos from past orders — so you know what a batch looked like for other buyers. That does not replace your own QC set, but it helps you avoid obvious misses.",
   "Most finds on BoonBuy Finds come from Weidian and Taobao sellers. Weidian is popular for sneakers, streetwear, and independent brands; Taobao covers a wider mix of fashion and accessories. BoonBuy Finds does not host the shops — it indexes affiliate and community spreadsheet links and opens verified BoonBuy product URLs for checkout.",
   "This site is BoonBuy-only. Every buy button opens a verified BoonBuy listing so you get shipping discounts, QC workflows, and order tracking in one place — no multi-agent picker.",
-  "Daily updates matter because spreadsheet catalogs move quickly. Sellers change prices, batches sell out, and new QC threads appear on Reddit and Discord. BoonBuy Finds syncs with community sheets and engagement signals so Trending Today, Latest Finds, and collection pages reflect what people are actually clicking — not a static snapshot from months ago.",
+  "Daily updates matter because spreadsheet catalogs move quickly. Sellers change prices, batches sell out, and new QC threads appear on Reddit and Telegram. BoonBuy Finds syncs with community sheets and engagement signals so Trending Today, Latest Finds, and collection pages reflect what people are actually clicking — not a static snapshot from months ago.",
   "Categories make browsing intuitive when you do not have a specific brand in mind. Sneakers and shoes cover Dunks, Jordans, New Balance, and more. Hoodies and jackets include Stussy, Corteiz, Moncler, and Arc'teryx-style outerwear. Bags and accessories round out hauls with crossbody, belt, and jewelry picks. Electronics and niche categories are indexed too when they appear in source sheets.",
   "Verified links protect you from broken or hijacked URLs — a common spreadsheet problem when rows get copied without checking. Every buy button on BoonBuy Finds is generated from the stored marketplace link, not an opaque redirect chain. Registering a free BoonBuy account also unlocks shipping coupons and order tracking, which is why we surface a 45% off shipping offer without aggressive popups.",
-  "Collections are curated shortcuts for sharing. Pages like Best Nike BoonBuy Finds, Best Jordan BoonBuy Finds, Best QC Approved Finds, and Trending This Week are designed for Discord pins, TikTok bios, and haul posts. Each collection has its own intro, product grid, and internal links to related brands so search engines and humans can navigate deeper.",
+  "Collections are curated shortcuts for sharing. Pages like Best Nike BoonBuy Finds, Best Jordan BoonBuy Finds, Best QC Approved Finds, and Trending This Week are designed for Telegram pins, TikTok bios, and haul posts. Each collection has its own intro, product grid, and internal links to related brands so search engines and humans can navigate deeper.",
   "If you are new to agent buying, start with our beginner guide — then browse Trending or Editor's Picks on the homepage. Experienced buyers can jump straight to brand hubs (Nike, Jordan, Moncler, Chrome Hearts, Stussy, Dior, Balenciaga, Louis Vuitton) or category pages for sneakers, hoodies, jackets, and bags. The goal is simple: less time hunting spreadsheets, more time picking finds you will actually ship.",
 ] as const;
 
@@ -73,10 +73,10 @@ export default function HomepageSeoContent() {
                 Guides
               </Link>
               <Link
-                href="/boonbuy-discord"
+                href="/boonbuy-telegram"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Discord
+                Telegram
               </Link>
             </div>
           </div>

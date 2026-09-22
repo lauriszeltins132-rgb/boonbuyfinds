@@ -26,7 +26,7 @@ const CORE_HUB: HubBlock[] = [
     title: "Community",
     links: [
       { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
-      { href: "/boonbuy-discord", label: "BoonBuy Discord" },
+      { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
       { href: "/telegram", label: "Telegram hub" },
     ],
   },

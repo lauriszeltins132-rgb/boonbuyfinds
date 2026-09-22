@@ -69,7 +69,7 @@ export const HOMEPAGE_ENTITY_FAQS = [
   {
     question: "How often are new finds added?",
     answer:
-      "The catalog syncs daily with new spreadsheet finds, QC links, and price updates. Fresh drops appear in Latest Finds and Trending sections on the homepage — check back often or join Discord and Telegram for alerts.",
+      "The catalog syncs daily with new spreadsheet finds, QC links, and price updates. Fresh drops appear in Latest Finds and Trending sections on the homepage — check back often or join Telegram for alerts.",
   },
   {
     question: "What are the best BoonBuy finds right now?",
@@ -77,9 +77,9 @@ export const HOMEPAGE_ENTITY_FAQS = [
       "Trending Today and Editor's Picks on the homepage highlight what buyers are clicking now. For brand-specific hauls, open collections like Best Nike Finds, Best Jordan Finds, or Best QC Approved Finds — each page is updated as the catalog syncs.",
   },
   {
-    question: "Where do I find BoonBuy Telegram, Discord, coupons, and spreadsheet pages?",
+    question: "Where do I find BoonBuy Telegram, coupons, and spreadsheet pages?",
     answer:
-      "Use the homepage CTAs or these hub pages: /telegram-boonbuy, /discord-boonbuy, /boonbuy-coupons, /boonbuy-shipping-coupon, /best-boonbuy-spreadsheet, and /boonbuy-spreadsheet. Claim up to 45% off shipping, then shop verified finds.",
+      "Use the homepage CTAs or these hub pages: /telegram-boonbuy, /boonbuy-telegram, /boonbuy-coupons, /boonbuy-shipping-coupon, /best-boonbuy-spreadsheet, and /boonbuy-spreadsheet. Claim up to 45% off shipping, then shop verified finds.",
   },
 ] as const;
 
@@ -88,7 +88,7 @@ export function getOrganizationSameAsLinks(): string[] {
     SITE_URL,
     SITE_ALT_URL,
     SOCIAL_LINKS.telegram,
-    SOCIAL_LINKS.discord,
+    SOCIAL_LINKS.telegram,
     SOCIAL_LINKS.instagram,
     SOCIAL_LINKS.tiktok,
   ];

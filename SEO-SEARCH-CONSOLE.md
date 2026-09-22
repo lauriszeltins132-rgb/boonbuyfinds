@@ -13,7 +13,7 @@ Goal: win **BoonBuy + intent** queries first (coupon, spreadsheet, finds, QC, Te
 - [ ] Optional: add `boonbuys.com` only to confirm 301s — do **not** submit a second sitemap of content
 - [ ] Submit sitemap: `https://boonbuyfinds.net/sitemap.xml`
 - [ ] Confirm coverage: no mass “Excluded by ‘noindex’” / redirect loops on key URLs
-- [ ] Set preferred brand mention: **BoonBuy Finds** everywhere (bios, Discord, Telegram, TikTok)
+- [ ] Set preferred brand mention: **BoonBuy Finds** everywhere (bios, Telegram, TikTok)
 
 ### Request indexing (URL Inspection → Request indexing)
 
@@ -26,7 +26,6 @@ Do these first (highest ROI):
 5. `https://boonbuyfinds.net/boonbuy-spreadsheet`
 6. `https://boonbuyfinds.net/best-boonbuy-spreadsheet`
 7. `https://boonbuyfinds.net/telegram-boonbuy`
-8. `https://boonbuyfinds.net/discord-boonbuy`
 9. `https://boonbuyfinds.net/boonbuy-finds`
 10. `https://boonbuyfinds.net/boonbuy-qc`
 
@@ -52,7 +51,6 @@ Then second wave:
 | P0 | `/boonbuy-spreadsheet` | boonbuy spreadsheet | BoonBuy Spreadsheet 2026 \| Searchable Finds Catalog | Core intent |
 | P0 | `/best-boonbuy-spreadsheet` | best boonbuy spreadsheet | Best BoonBuy Spreadsheet 2026 \| … | “Best” SERP |
 | P1 | `/telegram-boonbuy` | boonbuy telegram | BoonBuy Telegram \| Join BoonBuy Finds Channel 2026 | Community |
-| P1 | `/discord-boonbuy` | boonbuy discord | BoonBuy Discord \| Join BoonBuy Finds Server 2026 | Community |
 | P1 | `/boonbuy-finds` | boonbuy finds, boonbuy finds 2026 | BoonBuy Finds 2026 \| QC Catalog & Verified Links | Strengthened title |
 | P1 | `/boonbuy-qc` | boonbuy qc, boonbuy qc photos | BoonBuy QC Photos 2026 \| How to Check Before Shipping | Strengthened title |
 | P2 | `/boonbuy-coupon` | boonbuy coupon (singular) | BoonBuy Coupon 2026 \| 45% Off Shipping | Singular variant |
@@ -69,12 +67,12 @@ Invite / CTA link to promote on all coupon pages:
 
 ### Week 1 — Index + brand consistency
 - [ ] Finish Search Console items above
-- [ ] Pin homepage + coupon + spreadsheet links in Telegram / Discord
+- [ ] Pin homepage + coupon + spreadsheet links in Telegram
 - [ ] Put `boonbuyfinds.net` in Instagram + TikTok bios (not only boonbuys.com)
 - [ ] Share 3 posts: coupon, spreadsheet, Telegram — each with one priority URL
 
 ### Week 2 — Internal linking
-- [ ] From homepage CTAs → coupons / spreadsheet / telegram / discord (already live)
+- [ ] From homepage CTAs → coupons / spreadsheet / telegram (already live)
 - [ ] From every coupon page → spreadsheet + telegram
 - [ ] From spreadsheet → shipping coupon + best coupons
 - [ ] From top brand pages (Nike/Jordan/Moncler) → coupon + spreadsheet once each
@@ -82,7 +80,7 @@ Invite / CTA link to promote on all coupon pages:
 ### Week 3 — External mentions (biggest ranking lever)
 - [ ] Spreadsheet header / community docs link to `/boonbuy-spreadsheet`
 - [ ] Haul / QC posts with site in caption or first comment
-- [ ] Reddit / Discord other servers: helpful answers + one link (no spam)
+- [ ] Reddit other communities: helpful answers + one link (no spam)
 - [ ] Ask partners to use exact anchor text: **BoonBuy Finds**, **BoonBuy coupon**, **BoonBuy spreadsheet**
 
 ### Week 4 — Measure in Search Console

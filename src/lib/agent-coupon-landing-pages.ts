@@ -214,7 +214,6 @@ function buildPageConfig(
       { href: "/recently-added", label: "Recently added finds" },
       { href: agent.findsPath, label: `${agent.name} finds catalog` },
       { href: `/telegram-${agent.slug}`, label: `${agent.name} Telegram` },
-      { href: `/discord-${agent.slug}`, label: `${agent.name} Discord` },
     ],
   };
 }

@@ -19,7 +19,7 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "BoonBuy review", href: "/boonbuy-review" },
   { label: "Is BoonBuy legit?", href: "/is-boonbuy-legit" },
   { label: "Is BoonBuy safe?", href: "/is-boonbuy-safe" },
-  { label: "BoonBuy Discord", href: "/boonbuy-discord" },
+  { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy shipping", href: "/boonbuy-shipping" },
   { label: "BoonBuy warehouse", href: "/boonbuy-warehouse" },

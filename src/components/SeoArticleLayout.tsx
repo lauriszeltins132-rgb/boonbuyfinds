@@ -417,14 +417,6 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
             >
               Telegram
             </a>{" "}
-            and{" "}
-            <a
-              href={SOCIAL_LINKS.discord}
-              className="font-bold text-accent hover:underline"
-              rel="noopener noreferrer"
-            >
-              Discord
-            </a>{" "}
             for daily drops and haul discussion.
           </p>
         </div>

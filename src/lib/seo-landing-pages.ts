@@ -112,7 +112,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         heading: "Why curated pages beat raw rows",
         paragraphs: [
           "Spreadsheets do not filter by image quality, QC availability, or category automatically. BoonBuy Finds ranks popular products, hides broken listings where possible, and surfaces related finds so you can build a haul without jumping between tabs.",
-          "Collection pages like best Nike finds or QC-approved picks are designed for sharing in Discord, Reddit, and TikTok bios — cleaner than sending someone a 5,000-row Google Sheet.",
+          "Collection pages like best Nike finds or QC-approved picks are designed for sharing in Telegram, Reddit, and TikTok bios — cleaner than sending someone a 5,000-row Google Sheet.",
         ],
         links: [
           { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
@@ -445,7 +445,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     path: "/boonbuyfinds",
     title: "Boonbuyfinds | Official BoonBuy Finds Catalog 2026",
     metaDescription:
-      "Boonbuyfinds (BoonBuy Finds) — searchable BoonBuy spreadsheet finds, QC photos, 45% shipping coupon, Telegram & Discord. The catalog at boonbuyfinds.net.",
+      "Boonbuyfinds (BoonBuy Finds) — searchable BoonBuy spreadsheet finds, QC photos, 45% shipping coupon, Telegram. The catalog at boonbuyfinds.net.",
     badge: "Boonbuyfinds",
     h1: "Boonbuyfinds — BoonBuy Finds catalog",
     intro:
@@ -466,7 +466,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       {
         heading: "Coupons, spreadsheet & community",
         paragraphs: [
-          "New BoonBuy accounts can unlock up to 45% off shipping through our invite coupon pages. Pair that with the BoonBuy spreadsheet alternative and daily Telegram/Discord drops.",
+          "New BoonBuy accounts can unlock up to 45% off shipping through our invite coupon pages. Pair that with the BoonBuy spreadsheet alternative and daily Telegram drops.",
         ],
         links: [
           { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
