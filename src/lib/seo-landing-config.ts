@@ -616,7 +616,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
           "BoonBuy Finds is built around BoonBuy discovery and checkout. Other agents remain useful for quote shopping; this catalog’s buy buttons open BoonBuy.",
         ],
         links: [
-          { href: "/what-is-boonbuy", label: "What is BoonBuy?" },
+          { href: "/boonbuy", label: "What is BoonBuy?" },
           { href: "/boonbuy-vs-litbuy", label: "BoonBuy vs LitBuy" },
           { href: "/boonbuy-vs-cnfans", label: "BoonBuy vs CNFans" },
           { href: "/how-shipping-works", label: "Shipping basics" },

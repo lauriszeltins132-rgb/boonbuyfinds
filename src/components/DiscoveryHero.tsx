@@ -60,6 +60,28 @@ export default function DiscoveryHero() {
 
         <HeroLandingCtas />
 
+        <nav
+          aria-label="Popular BoonBuy paths"
+          className="mx-auto mt-4 flex max-w-2xl flex-wrap items-center justify-center gap-2"
+        >
+          {[
+            { href: "/boonbuy", label: "What is BoonBuy?" },
+            { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+            { href: "/boonbuy-qc", label: "QC Guides" },
+            { href: "/latest-finds", label: "Latest Finds" },
+            { href: "/best-boonbuy-finds", label: "Best Finds" },
+            { href: "/boonbuy-deals", label: "Deals" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-full border border-border/80 bg-surface/30 px-3 py-1 text-[11px] font-bold text-foreground/80 hover:border-accent/40 hover:text-accent"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
         <LiveSiteSignals />
 
         <div className="mx-auto mt-7 max-w-[700px] sm:mt-8">

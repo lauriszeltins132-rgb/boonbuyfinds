@@ -24,6 +24,7 @@ export type StaticPage = {
 };
 
 const GUIDE_LINKS = [
+  { href: "/boonbuy", label: "What is BoonBuy?" },
   { href: "/guides", label: "All guides" },
   { href: "/boonbuy-questions", label: "BoonBuy questions" },
   { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
@@ -50,7 +51,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
     badge: "About us",
     h1: "About BoonBuy Finds",
     intro:
-      "BoonBuy Finds is an independent product discovery site for the BoonBuy ecosystem. We organize spreadsheet finds into searchable categories, brands, and guides — so you can browse before buying and open the correct agent link when you are ready.",
+      "BoonBuy Finds is an independent product discovery site for the BoonBuy ecosystem — and a dedicated BoonBuy discovery platform. We organize spreadsheet finds into searchable categories, brands, and guides — so you can browse before buying and open the correct agent link when you are ready.",
     sections: [
       {
         heading: "Our mission",
@@ -58,13 +59,28 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
           "Shopping through agents should not require scrolling a 3,000-row spreadsheet on your phone. We built BoonBuy Finds to make discovery faster, clearer, and easier to share.",
           "We focus on structure: categories, brands, trending collections, QC references where available, and plain-language guides for beginners.",
         ],
-        links: [{ href: "/guides", label: "Browse all guides" }],
+        links: [
+          { href: "/boonbuy", label: "What is BoonBuy?" },
+          { href: "/guides", label: "Browse all guides" },
+        ],
+      },
+      {
+        heading: "Partnership with BoonBuy",
+        paragraphs: [
+          "BoonBuy Finds works with BoonBuy so shoppers can discover verified product links, claim current offers available through BoonBuyFinds, and continue to BoonBuy for payment, warehouse QC, and shipping.",
+          "We remain an independent catalog — we do not process payments, hold inventory, or replace BoonBuy support. Checkout always happens on BoonBuy.",
+        ],
+        links: [
+          { href: "/boonbuy-deals", label: "Current BoonBuy deals" },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+          { href: "/editorial-policy", label: "Editorial policy" },
+        ],
       },
       {
         heading: "What BoonBuy Finds is — and is not",
         paragraphs: [
           "BoonBuy Finds is a discovery catalog. We do not sell products, hold inventory, or process payments. Checkout happens on BoonBuy and other agent platforms through outbound links.",
-          "We are not affiliated with or endorsed by BoonBuy. We curate and organize public find data to help shoppers navigate the ecosystem.",
+          "We are not the BoonBuy company. We curate and organize public find data to help shoppers navigate the ecosystem and maximize the value of verified BoonBuy invite and product links.",
         ],
       },
       {
@@ -161,7 +177,11 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
           "Yes. Email hello@boonbuyfinds.net with the product or guide URL and what should change. We review listing corrections regularly.",
       },
     ],
-    relatedLinks: [...GUIDE_LINKS.slice(0, 4), { href: "/contact", label: "Contact" }],
+    relatedLinks: [
+      { href: "/boonbuy", label: "What is BoonBuy?" },
+      ...GUIDE_LINKS.slice(0, 4),
+      { href: "/contact", label: "Contact" },
+    ],
   },
 
   contact: {
@@ -245,7 +265,13 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
           "The BoonBuy Finds Team writes and updates guides. If something is outdated, email us with the guide URL.",
       },
     ],
-    relatedLinks: TRUST_LINKS.filter((l) => l.href !== "/contact"),
+    relatedLinks: [
+      { href: "/boonbuy", label: "What is BoonBuy?" },
+      { href: "/about", label: "About" },
+      { href: "/editorial-policy", label: "Editorial policy" },
+      { href: "/boonbuy-deals", label: "Partner deals" },
+      ...TRUST_LINKS.filter((l) => l.href !== "/contact" && l.href !== "/about"),
+    ],
   },
 
   "privacy-policy": {
@@ -595,13 +621,18 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
     badge: "Trust",
     h1: "Editorial policy",
     intro:
-      "BoonBuy Finds is an independent discovery catalog. This policy explains how we research content, update pages, disclose affiliate relationships, and handle corrections.",
+      "BoonBuy Finds is an independent discovery catalog and a dedicated BoonBuy discovery platform. This policy explains how we research content, update pages, disclose affiliate relationships, and handle corrections.",
     sections: [
       {
-        heading: "Independence",
+        heading: "Independence & partnership",
         paragraphs: [
           "We are not owned by BoonBuy. Product grids and guides are written to help buyers research Weidian and Taobao finds before checkout.",
+          "We partner with BoonBuy on verified invite links and discovery so shoppers can claim current offers available through BoonBuyFinds, then continue to BoonBuy for payment and shipping.",
           "Affiliate commissions may apply when you register or buy through outbound BoonBuy links. Commissions do not change the price you pay.",
+        ],
+        links: [
+          { href: "/boonbuy", label: "BoonBuy authority hub" },
+          { href: "/boonbuy-deals", label: "Partner deals" },
         ],
       },
       {
@@ -651,66 +682,6 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       { href: "/privacy-policy", label: "Privacy" },
       { href: "/terms", label: "Terms" },
       { href: "/boonbuy", label: "BoonBuy hub" },
-    ],
-  },
-
-  boonbuy: {
-    path: "/boonbuy",
-    title: "BoonBuy | Shopping Agent, Finds, Coupons & Spreadsheet 2026",
-    metaDescription:
-      "BoonBuy shopping agent explained — plus BoonBuy Finds for QC photos, spreadsheet finds, BoonBuy coupons, Telegram. Start at boonbuyfinds.net.",
-    badge: "BoonBuy agent",
-    h1: "BoonBuy — shopping agent & finds hub",
-    intro:
-      "BoonBuy (boonbuy.com) is a China shopping agent for Weidian, Taobao, and 1688. BoonBuy Finds (boonbuyfinds.net) is the independent catalog people search for as boonbuy finds, boonbuyfinds, and boonbuy spreadsheet — with coupons, QC photos, and verified checkout links.",
-    sections: [
-      {
-        heading: "What is BoonBuy?",
-        paragraphs: [
-          "BoonBuy helps international buyers purchase from Weidian, Taobao, and 1688 with warehouse QC, consolidated shipping, and agent checkout links.",
-          "Use boonbuy.com to register and ship. Use boonbuyfinds.net to browse curated finds, claim coupons, and open verified product links before you buy.",
-        ],
-        links: [
-          {
-            href: BOONBUY_SIGNUP_URL,
-            label: "Register on BoonBuy",
-          },
-          { href: "/boonbuy-coupons", label: "Claim BoonBuy coupons" },
-          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
-          { href: "/boonbuy-finds", label: "Browse BoonBuy finds" },
-        ],
-      },
-      {
-        heading: "BoonBuy Finds — your discovery layer",
-        paragraphs: [
-          "Search thousands of QC-approved fashion and sneaker finds. Every product opens a verified BoonBuy link with QC references and trusted checkout.",
-          "Looking for boonbuyfinds or boonbuy finds? That is this site — start on the homepage catalog or the dedicated boonbuyfinds hub.",
-        ],
-        links: [
-          { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
-          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-          { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
-        ],
-      },
-      {
-        heading: "Coupons, invite & spreadsheet",
-        paragraphs: [
-          "New BoonBuy accounts can unlock up to 45% off shipping through our invite coupon pages. Pair that with the BoonBuy spreadsheet alternative for searchable product rows instead of a giant Google Sheet.",
-        ],
-        links: [
-          { href: "/boonbuy-coupon", label: "BoonBuy coupon" },
-          { href: "/boonbuy-invite-code", label: "BoonBuy invite code" },
-          { href: "/boonbuy-promo-code", label: "BoonBuy promo code" },
-          { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
-        ],
-      },
-    ],
-    relatedLinks: [
-      { href: "/", label: "Homepage" },
-      { href: "/boonbuyfinds", label: "Boonbuyfinds" },
-      { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/boonbuy-finds", label: "BoonBuy finds catalog" },
-      { href: "https://boonbuy.com", label: "Official BoonBuy site" },
     ],
   },
 };

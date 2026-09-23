@@ -65,8 +65,11 @@ export default function CategoriesPage() {
             { href: "/boonbuy-finds", label: "BoonBuy finds" },
             { href: "/brands", label: "Brands" },
             { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+            { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+            { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
             { href: "/boonbuy-qc", label: "QC photos" },
             { href: "/latest-finds", label: "Latest finds" },
+            { href: "/boonbuy", label: "What is BoonBuy?" },
           ].map((link) => (
             <Link
               key={link.href}

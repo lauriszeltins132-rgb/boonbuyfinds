@@ -9,7 +9,10 @@ import SeoArticleReadingMeta from "@/components/SeoArticleReadingMeta";
 import TableOfContents from "@/components/TableOfContents";
 import { getSeoArchitectureContentDates } from "@/lib/seo-architecture/dates";
 import { getSeoArchitectureInternalLinks } from "@/lib/seo-architecture/internal-links";
-import { getSeoArchitecturePage } from "@/lib/seo-architecture/registry";
+import {
+  getSeoArchitecturePage,
+  getSeoArchitecturePath,
+} from "@/lib/seo-architecture/registry";
 import { resolveSeoArchitectureProducts } from "@/lib/seo-architecture/products";
 import type { SeoArchitecturePage } from "@/lib/seo-architecture/types";
 import {
@@ -35,9 +38,11 @@ type SeoArticleLayoutProps = {
 };
 
 const AUTHORITY_CLUSTER_LINKS = [
+  { href: "/boonbuy", label: "What is BoonBuy?" },
   { href: "/ai", label: "BoonBuy AI" },
   { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
   { href: "/boonbuy-coupons", label: "Coupons" },
+  { href: "/boonbuy-deals", label: "Deals" },
   { href: "/latest-finds", label: "Latest finds" },
   { href: "/categories", label: "Categories" },
   { href: "/collections", label: "Collections" },
@@ -66,7 +71,7 @@ function RelatedArticles({
         {articles.slice(0, 8).map((article) => (
           <li key={article.slug}>
             <Link
-              href={article.path}
+              href={getSeoArchitecturePath(article.slug)}
               className="text-sm font-semibold text-accent hover:underline"
             >
               {article.h1}

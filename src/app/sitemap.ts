@@ -58,15 +58,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes: MetadataRoute.Sitemap = [
     entry("/", "daily", 1, synced),
+    entry("/boonbuy", "weekly", 0.99, synced),
     entry("/finds", "daily", 0.98, synced),
     entry("/boonbuy-finds", "daily", 0.97, synced),
+    entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
+    entry("/boonbuy-coupons", "weekly", 0.98, synced),
+    entry("/boonbuy-deals", "weekly", 0.95, synced),
+    entry("/boonbuy-discount-code", "weekly", 0.93, synced),
     entry("/latest-finds", "daily", 0.95, synced),
     entry("/rep-finds", "daily", 0.94, synced),
-    entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
-    entry("/boonbuy-coupons", "weekly", 0.95, synced),
     entry("/boonbuy-qc", "weekly", 0.93, synced),
     entry("/boonbuy-telegram", "weekly", 0.92, synced),
     entry("/boonbuy-questions", "weekly", 0.94, synced),
+    entry("/best-boonbuy-finds", "daily", 0.93, synced),
+    entry("/trending-boonbuy-finds", "daily", 0.92, synced),
     entry("/ai", "weekly", 0.9, synced),
     entry("/trending", "daily", 0.9, synced),
     entry("/deals", "daily", 0.9, synced),
@@ -94,7 +99,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (
       page.path === "/boonbuy-finds" ||
       page.path === "/boonbuy-spreadsheet" ||
-      page.path === "/boonbuy-qc"
+      page.path === "/boonbuy-qc" ||
+      page.path === "/best-boonbuy-finds" ||
+      page.path === "/trending-boonbuy-finds"
     ) {
       continue;
     }
@@ -213,8 +220,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_ARCHITECTURE_SLUGS) {
     const page = SEO_ARCHITECTURE_PAGES[slug];
-    // Telegram community canon already listed above.
-    if (page.path === "/boonbuy-telegram") {
+    // Community canons + consolidated entity aliases already listed above.
+    if (
+      page.path === "/boonbuy-telegram" ||
+      page.path === "/boonbuy-discord" ||
+      page.path === "/boonbuy" ||
+      page.path === "/boonbuy-coupons" ||
+      slug === "what-is-boonbuy"
+    ) {
       continue;
     }
     routes.push(

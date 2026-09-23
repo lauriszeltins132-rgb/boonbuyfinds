@@ -68,26 +68,33 @@ export const BOONBUY_SEO_HUB = {
 } as const;
 
 export const HERO_LANDING_TITLE =
-  "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
+  "BoonBuy Finds — Products, QC Photos, Coupons & Spreadsheet";
 
-export const HERO_LANDING_SUBTITLE = `Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified links through BoonBuy with a ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% shipping coupon.`;
+export const HERO_LANDING_SUBTITLE =
+  "The ultimate place to discover BoonBuy products, QC photos, coupons, spreadsheet finds and shopping guides — with verified BoonBuy checkout links.";
 
 export const HERO_LANDING_CTAS = [
   {
-    href: BOONBUY_SEO_HUB.coupons.href,
-    label: BOONBUY_SEO_HUB.coupons.cta,
+    href: "/finds",
+    label: "Explore Finds",
     variant: "primary" as const,
+    icon: "spreadsheet" as const,
+  },
+  {
+    href: BOONBUY_SEO_HUB.coupons.href,
+    label: "BoonBuy Coupons",
+    variant: "secondary" as const,
     icon: "coupon" as const,
   },
   {
-    href: BOONBUY_SEO_HUB.telegram.href,
-    label: BOONBUY_SEO_HUB.telegram.cta,
+    href: BOONBUY_SEO_HUB.spreadsheet.href,
+    label: "BoonBuy Spreadsheet",
     variant: "secondary" as const,
-    icon: "telegram" as const,
+    icon: "spreadsheet" as const,
   },
   {
-    href: BOONBUY_SEO_HUB.spreadsheet.href,
-    label: BOONBUY_SEO_HUB.spreadsheet.cta,
+    href: "/best-boonbuy-finds",
+    label: "Best BoonBuy Finds",
     variant: "ghost" as const,
     icon: "spreadsheet" as const,
   },
@@ -104,6 +111,7 @@ export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.repFinds,
   BOONBUY_SEO_HUB.spreadsheet,
   BOONBUY_SEO_HUB.coupons,
+  { href: "/boonbuy-deals", label: "BoonBuy Deals" },
   BOONBUY_SEO_HUB.shippingCoupon,
   BOONBUY_SEO_HUB.qc,
   BOONBUY_SEO_HUB.telegram,
