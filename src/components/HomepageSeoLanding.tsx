@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   HOMEPAGE_SEO_INDEX_BLURB,
@@ -8,13 +7,15 @@ import { getDisplayBrand, getDisplayProductName } from "@/lib/product-validation
 import { getProductHref } from "@/lib/slugs";
 import { resolveProductDisplayImage } from "@/lib/product-image-presentation";
 import type { Product } from "@/lib/types";
+import SafeNextImage from "./SafeNextImage";
 
 type HomepageSeoLandingProps = {
   products: Product[];
 };
 
 export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps) {
-  const featured = products.slice(0, 8);
+  // Keep initial image requests low — only the first mosaic row on mobile.
+  const featured = products.slice(0, 4);
 
   return (
     <section className="px-4 py-8 sm:px-6 sm:py-10">
@@ -51,17 +52,14 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
                 className="product-card group overflow-hidden rounded-2xl border border-border bg-panel transition hover:border-accent/35"
               >
                 <div className="seo-product-mosaic__media product-image-shell product-image-shell--card">
-                  {src ? (
-                    <Image
-                      src={src}
-                      alt={alt}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      quality={85}
-                      loading="lazy"
-                      className="object-contain transition duration-300 group-hover:scale-[1.03]"
-                    />
-                  ) : null}
+                  <SafeNextImage
+                    src={src || ""}
+                    alt={alt}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    quality={85}
+                    productHref={getProductHref(product)}
+                    className="object-contain p-[4%] transition duration-300 group-hover:scale-[1.03]"
+                  />
                 </div>
                 <div className="space-y-1 p-3 sm:p-3.5">
                   <p className="line-clamp-2 text-sm font-bold leading-snug text-foreground">

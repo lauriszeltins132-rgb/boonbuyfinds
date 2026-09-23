@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackBrokenImage } from "@/lib/analytics-events";
 import { validateImageUrl } from "@/lib/image-url";
@@ -18,6 +19,16 @@ type ProductCardImageProps = {
   isProcessedCutout?: boolean;
 };
 
+function isLocalAsset(url: string): boolean {
+  return url.startsWith("/") && !url.startsWith("//");
+}
+
+function isUsableCandidate(url: string): boolean {
+  if (!url) return false;
+  if (isLocalAsset(url)) return true;
+  return validateImageUrl(url).valid;
+}
+
 export default function ProductCardImage({
   src,
   alt,
@@ -33,27 +44,26 @@ export default function ProductCardImage({
   const validation = useMemo(() => validateImageUrl(src), [src]);
 
   const candidates = useMemo(() => {
-    if (!validation.valid) return [];
     const ordered = [
       preferredSrc,
-      validation.normalized,
+      isLocalAsset(src) ? src : validation.normalized || src,
       ...fallbacks,
-    ].filter((url): url is string => Boolean(url));
+    ].filter((url): url is string => typeof url === "string" && url.length > 0);
+
     const seen = new Set<string>();
     const unique: string[] = [];
     for (const url of ordered) {
-      if (seen.has(url)) continue;
+      if (!isUsableCandidate(url) || seen.has(url)) continue;
       seen.add(url);
       unique.push(url);
     }
     return unique;
-  }, [validation, preferredSrc, fallbacks]);
+  }, [validation.normalized, preferredSrc, fallbacks, src]);
 
   const candidateKey = candidates.join("|");
   const [srcIndex, setSrcIndex] = useState(0);
   const [failed, setFailed] = useState(candidates.length === 0);
   const [loaded, setLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
   const loggedRef = useRef(false);
 
   const displaySrc = candidates[srcIndex] ?? "";
@@ -87,45 +97,6 @@ export default function ProductCardImage({
     });
   }, [candidates.length, failExhausted]);
 
-  const confirmLoaded = useCallback(
-    (img: HTMLImageElement) => {
-      if (img.naturalWidth <= 0 || img.naturalHeight <= 0) {
-        advanceOrFail();
-        return;
-      }
-      setLoaded(true);
-    },
-    [advanceOrFail]
-  );
-
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img || failed || !displaySrc) return;
-
-    const tryConfirm = () => {
-      if (img.complete && img.naturalWidth > 0) {
-        confirmLoaded(img);
-        return true;
-      }
-      return false;
-    };
-
-    if (tryConfirm()) return;
-
-    let cancelled = false;
-    void img.decode?.().then(() => {
-      if (!cancelled) tryConfirm();
-    }).catch(() => {
-      if (!cancelled && img.complete && img.naturalWidth > 0) {
-        setLoaded(true);
-      }
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [confirmLoaded, displaySrc, failed, srcIndex]);
-
   if (failed || !displaySrc) {
     return (
       <ImageUnavailablePlaceholder
@@ -149,24 +120,26 @@ export default function ProductCardImage({
     <div
       className={`product-float-stage product-float-stage--card ${className}`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        ref={imgRef}
-        key={displaySrc}
-        src={displaySrc}
-        alt={alt}
-        title={title ?? alt}
-        width={800}
-        height={800}
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding="async"
-        referrerPolicy="no-referrer"
-        className={assetClass}
-        onLoad={(event) => confirmLoaded(event.currentTarget)}
-        onError={advanceOrFail}
-      />
+      {!loaded ? (
+        <div className="product-float-stage__shimmer" aria-hidden />
+      ) : null}
+      <div className="product-float-stage__frame">
+        <Image
+          key={displaySrc}
+          src={displaySrc}
+          alt={alt}
+          title={title ?? alt}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          quality={85}
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          className={assetClass}
+          onLoad={() => setLoaded(true)}
+          onError={advanceOrFail}
+        />
+      </div>
     </div>
   );
 }

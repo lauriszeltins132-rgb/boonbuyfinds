@@ -312,6 +312,28 @@ body::before {
   padding: 0.5rem;
 }
 
+.product-float-stage__shimmer {
+  position: absolute;
+  inset: 8%;
+  z-index: 0;
+  border-radius: 1rem;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 244, 234, 0.55) 20%,
+    rgba(255, 255, 255, 0.9) 40%,
+    rgba(255, 244, 234, 0.55) 60%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s linear infinite;
+  pointer-events: none;
+}
+
+.product-float-stage__frame {
+  position: absolute;
+  inset: 1.5%;
+  z-index: 2;
+}
+
 .product-float-stage--card {
   padding: 1.5%;
 }
@@ -459,7 +481,7 @@ body::before {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain !important;
   object-position: center center;
   image-rendering: auto;
   -webkit-user-drag: none;

@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-09-23T18:16:27.720Z",
+  "totalProducts": 3146,
+  "missing": 42,
+  "malformed": 0,
+  "invalidHost": 0,
+  "validRemote": 3104,
+  "deadMarked": 2785,
+  "deadWithLocalFallback": 2775,
+  "localProcessedMissingFile": 0,
+  "damagedManifestUrls": 2947,
+  "hosts": [
+    {
+      "host": "i.postimg.cc",
+      "count": 2960
+    },
+    {
+      "host": "si.geilicdn.com",
+      "count": 139
+    },
+    {
+      "host": "cbu01.alicdn.com",
+      "count": 5
+    }
+  ],
+  "formats": {
+    "jpg": 1165,
+    "png": 1931,
+    "unknown": 4,
+    "pngg": 4
+  },
+  "failureReasons": [
+    {
+      "reason": "CDN URL marked dead in dead-image-urls.json",
+      "count": 2785
+    },
+    {
+      "reason": "Missing image URL",
+      "count": 42
+    },
+    {
+      "reason": "Invalid / disallowed host",
+      "count": 0
+    },
+    {
+      "reason": "Malformed URL",
+      "count": 0
+    },
+    {
+      "reason": "Processed cutouts blocked by damaged-processed-manifest (forces CDN)",
+      "count": 2947
+    }
+  ],
+  "remediation": "Serve /processed local mattes when CDN is dead; route remotes through next/image for AVIF/WebP + caching; reduce homepage initial image count."
+}
