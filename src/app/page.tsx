@@ -16,6 +16,7 @@ import HomepageSeoContent from "@/components/HomepageSeoContent";
 import RecentlyViewedRail from "@/components/RecentlyViewedRail";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import SchemaScript from "@/components/SchemaScript";
+import LazyMount from "@/components/LazyMount";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
 import { getHomepageSurfaceRails } from "@/lib/homepage-rails";
 import { getCategories } from "@/lib/products";
@@ -33,7 +34,13 @@ export default async function HomePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const categories = getCategories();
-  const rails = getHomepageSurfaceRails(12);
+  // Fewer products per rail = fewer concurrent image requests on first paint.
+  const rails = getHomepageSurfaceRails(8);
+  const mosaicSource = rails.editorsPicks.length
+    ? rails.editorsPicks
+    : rails.popularToday.length
+      ? rails.popularToday
+      : rails.latestFinds;
 
   return (
     <>
@@ -48,7 +55,7 @@ export default async function HomePage({
 
       <DiscoveryHero />
 
-      <HomepageSeoLanding products={rails.editorsPicks.length ? rails.editorsPicks : rails.popularToday.length ? rails.popularToday : rails.latestFinds} />
+      <HomepageSeoLanding products={mosaicSource} />
 
       <ServerDiscoveryRail
         title="Trending Today"
@@ -58,38 +65,46 @@ export default async function HomePage({
         showTrendingScore
       />
 
-      <ServerDiscoveryRail
-        title="Latest Finds"
-        subtitle="Newest drops from the BoonBuy spreadsheet sync"
-        href="/latest-finds"
-        products={rails.latestFinds}
-      />
+      <LazyMount minHeight={380} rootMargin="280px 0px">
+        <ServerDiscoveryRail
+          title="Latest Finds"
+          subtitle="Newest drops from the BoonBuy spreadsheet sync"
+          href="/latest-finds"
+          products={rails.latestFinds}
+        />
+      </LazyMount>
 
       {rails.editorsPicks.length > 0 ? (
-        <ServerDiscoveryRail
-          title="Editor's Picks"
-          subtitle="QC-linked standouts with strong presentation"
-          href="/editors-picks"
-          products={rails.editorsPicks}
-        />
+        <LazyMount minHeight={380} rootMargin="280px 0px">
+          <ServerDiscoveryRail
+            title="Editor's Picks"
+            subtitle="QC-linked standouts with strong presentation"
+            href="/editors-picks"
+            products={rails.editorsPicks}
+          />
+        </LazyMount>
       ) : null}
 
       {rails.bestUnder20.length > 0 ? (
-        <ServerDiscoveryRail
-          title="Best Under $20"
-          subtitle="Budget-friendly finds that still look premium"
-          href="/best-under-30"
-          products={rails.bestUnder20}
-        />
+        <LazyMount minHeight={380} rootMargin="320px 0px">
+          <ServerDiscoveryRail
+            title="Best Under $20"
+            subtitle="Budget-friendly finds that still look premium"
+            href="/best-under-30"
+            products={rails.bestUnder20}
+          />
+        </LazyMount>
       ) : null}
 
-      <ServerDiscoveryRail
-        title="Most Viewed This Week"
-        subtitle="Trending sneakers, jackets and streetwear"
-        href="/trending"
-        products={rails.popularWeek}
-        showTrendingScore
-      />
+      <LazyMount minHeight={380} rootMargin="320px 0px">
+        <ServerDiscoveryRail
+          title="Most Viewed This Week"
+          subtitle="Trending sneakers, jackets and streetwear"
+          href="/trending"
+          products={rails.popularWeek}
+          showTrendingScore
+        />
+      </LazyMount>
 
       <HomepageCategories categories={categories} />
       <HomepageCollections />
@@ -122,7 +137,7 @@ export default async function HomePage({
         fallback={
           <section className="px-4 pb-16 sm:px-6">
             <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
-              <ProductGridSkeleton count={12} />
+              <ProductGridSkeleton count={8} />
             </div>
           </section>
         }

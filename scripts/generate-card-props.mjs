@@ -86,10 +86,11 @@ function resolveImage(sourceUrl) {
     processedPath,
     details
   );
+  const cdnDead = deadUrls.has(sourceUrl);
   const useProcessed =
     processedPath &&
-    !cutoutUnsafe &&
-    !isNaturalProductPhoto(sourceUrl, details);
+    ((!cutoutUnsafe && !isNaturalProductPhoto(sourceUrl, details)) ||
+      cdnDead);
 
   const fill = details?.contentFillRatio;
   let fc = "b";

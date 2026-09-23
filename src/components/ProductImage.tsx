@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackBrokenImage } from "@/lib/analytics-events";
 import {
@@ -53,6 +54,10 @@ type ProductImageProps = {
   darkBoost?: boolean;
 };
 
+function isLocalAsset(url: string): boolean {
+  return url.startsWith("/") && !url.startsWith("//");
+}
+
 function buildCandidateList(
   src: string,
   preferredSrc: string | undefined,
@@ -60,19 +65,21 @@ function buildCandidateList(
   variant: ProductImageVariant = "card"
 ): string[] {
   const validation = validateImageUrl(src);
-  if (!validation.valid) return [];
+  const plan = validation.valid
+    ? getProductImagePlan(validation.normalized)
+    : null;
 
-  const plan = getProductImagePlan(validation.normalized);
   const ordered: (string | undefined)[] = [
     preferredSrc,
-    validation.normalized,
-    plan.originalSrc,
+    plan?.src,
+    validation.valid ? validation.normalized : isLocalAsset(src) ? src : undefined,
+    plan?.originalSrc,
     ...extraFallbacks,
-    ...plan.fallbacks,
+    ...(plan?.fallbacks ?? []),
   ];
 
-  if (variant !== "card") {
-    if (plan.isProcessed) ordered.push(plan.src);
+  if (variant !== "card" && validation.valid) {
+    if (plan?.isProcessed) ordered.push(plan.src);
     ordered.push(getProcessedApiSrc(validation.normalized));
   }
 
@@ -80,6 +87,9 @@ function buildCandidateList(
   const unique: string[] = [];
   for (const url of ordered) {
     if (!url || seen.has(url)) continue;
+    if (!isLocalAsset(url) && !validateImageUrl(url).valid && !url.startsWith("/api/")) {
+      continue;
+    }
     seen.add(url);
     unique.push(url);
   }
@@ -119,11 +129,11 @@ export default function ProductImage({
   const [srcIndex, setSrcIndex] = useState(0);
   const [failed, setFailed] = useState(candidates.length === 0);
   const [loaded, setLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
   const loggedRef = useRef(false);
 
   const displaySrc = candidates[srcIndex] ?? "";
   const loadEager = priority;
+  const layout = IMAGE_LAYOUT[variant];
 
   useEffect(() => {
     setSrcIndex(0);
@@ -152,8 +162,9 @@ export default function ProductImage({
     });
   }, [candidates.length, failExhausted]);
 
-  const confirmLoaded = useCallback(
-    (img: HTMLImageElement) => {
+  const handleLoad = useCallback(
+    (event: React.SyntheticEvent<HTMLImageElement>) => {
+      const img = event.currentTarget;
       if (!hasPlausibleImageDimensions(img.naturalWidth, img.naturalHeight)) {
         advanceOrFail();
         return;
@@ -162,45 +173,6 @@ export default function ProductImage({
     },
     [advanceOrFail]
   );
-
-  const handleLoad = useCallback(
-    (event: React.SyntheticEvent<HTMLImageElement>) => {
-      confirmLoaded(event.currentTarget);
-    },
-    [confirmLoaded]
-  );
-
-  const handleError = useCallback(() => {
-    advanceOrFail();
-  }, [advanceOrFail]);
-
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img || failed || !displaySrc) return;
-
-    const tryConfirm = () => {
-      if (img.complete && img.naturalWidth > 0) {
-        confirmLoaded(img);
-        return true;
-      }
-      return false;
-    };
-
-    if (tryConfirm()) return;
-
-    let cancelled = false;
-    void img.decode?.().then(() => {
-      if (!cancelled) tryConfirm();
-    }).catch(() => {
-      if (!cancelled && img.complete && img.naturalWidth > 0) {
-        setLoaded(true);
-      }
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [confirmLoaded, displaySrc, failed, srcIndex]);
 
   if (failed || !displaySrc) {
     return (
@@ -228,26 +200,24 @@ export default function ProductImage({
     .filter(Boolean)
     .join(" ");
 
-  const layout = IMAGE_LAYOUT[variant];
-
   const imageNode = (
-    /* eslint-disable-next-line @next/next/no-img-element */
-    <img
-      ref={imgRef}
-      key={displaySrc}
-      src={displaySrc}
-      alt={alt}
-      width={layout.width}
-      height={layout.height}
-      sizes={layout.sizes}
-      loading={loadEager ? "eager" : "lazy"}
-      fetchPriority={loadEager ? "high" : "auto"}
-      decoding="async"
-      referrerPolicy="no-referrer"
-      className={assetClass}
-      onLoad={handleLoad}
-      onError={handleError}
-    />
+    <div className="product-float-stage__frame">
+      <Image
+        key={displaySrc}
+        src={displaySrc}
+        alt={alt}
+        fill
+        sizes={layout.sizes}
+        quality={85}
+        priority={loadEager}
+        loading={loadEager ? "eager" : "lazy"}
+        decoding="async"
+        unoptimized={displaySrc.startsWith("/api/")}
+        className={assetClass}
+        onLoad={handleLoad}
+        onError={advanceOrFail}
+      />
+    </div>
   );
 
   return (
@@ -258,7 +228,9 @@ export default function ProductImage({
       {variant === "card" ? (
         imageNode
       ) : (
-        <div className="product-float-matte product-float-matte--opaque">{imageNode}</div>
+        <div className="product-float-matte product-float-matte--opaque relative min-h-[inherit] w-full h-full">
+          {imageNode}
+        </div>
       )}
       {!loaded && variant !== "card" ? (
         <ImageUnavailablePlaceholder

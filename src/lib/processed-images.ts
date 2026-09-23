@@ -1,5 +1,6 @@
 import damagedData from "@/data/damaged-processed-manifest.json";
 import mapData from "@/data/processed-image-map.json";
+import { isCatalogImageUrlDead } from "./dead-images";
 import { getImageQualityDetails } from "./image-quality";
 
 type ProcessedImageMap = {
@@ -51,7 +52,11 @@ function shouldUseOriginal(sourceUrl: string, staticPath?: string): boolean {
   return isProcessedCutoutBlocked(sourceUrl, staticPath);
 }
 
-/** Prefer pre-built matte PNGs when clean; otherwise catalog original. */
+/**
+ * Prefer clean local mattes when available. If the CDN URL is known-dead but a
+ * local processed file exists, serve the local file even when marked damaged —
+ * a matte is better than a broken card.
+ */
 export function getProductImagePlan(sourceUrl: string): ProductImagePlan {
   if (FORCE_ORIGINAL_URLS.has(sourceUrl)) {
     return {
@@ -64,8 +69,19 @@ export function getProductImagePlan(sourceUrl: string): ProductImagePlan {
   }
 
   const staticPath = catalog.urls[sourceUrl];
+  const cdnDead = isCatalogImageUrlDead(sourceUrl);
 
   if (staticPath && !shouldUseOriginal(sourceUrl, staticPath)) {
+    return {
+      src: staticPath,
+      originalSrc: sourceUrl,
+      isProcessed: true,
+      knockoutWhite: false,
+      fallbacks: [sourceUrl],
+    };
+  }
+
+  if (staticPath && cdnDead) {
     return {
       src: staticPath,
       originalSrc: sourceUrl,
@@ -80,6 +96,6 @@ export function getProductImagePlan(sourceUrl: string): ProductImagePlan {
     originalSrc: sourceUrl,
     isProcessed: false,
     knockoutWhite: false,
-    fallbacks: staticPath ? [] : [],
+    fallbacks: staticPath ? [staticPath] : [],
   };
 }

@@ -5,7 +5,7 @@ import { getAllProducts, getCategories } from "@/lib/products";
 import CatalogPanel from "@/components/CatalogPanel";
 import SavedFindsCatalog from "@/components/SavedFindsCatalog";
 
-const PAGE_SIZE = 48;
+const PAGE_SIZE = 24;
 
 type HomepageCatalogSectionProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
