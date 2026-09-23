@@ -60,7 +60,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     path: "/best-finds",
     title: "Best BoonBuy Finds",
     metaDescription:
-      "Discover the best BoonBuy finds including sneakers, hoodies, jackets, bags and QC-approved products — updated daily from the catalog.",
+      "Best BoonBuy finds including sneakers, hoodies, jackets, bags and QC-approved products — updated daily from the BoonBuy Finds catalog.",
     badge: "Best of",
     h1: "Best BoonBuy finds",
     intro:

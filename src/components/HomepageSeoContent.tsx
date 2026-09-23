@@ -43,16 +43,10 @@ export default function HomepageSeoContent() {
 
             <div className="flex flex-wrap gap-2 pt-2">
               <Link
-                href="/latest-finds"
+                href="/boonbuy"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Latest finds
-              </Link>
-              <Link
-                href="/boonbuy-spreadsheet"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Spreadsheet
+                What is BoonBuy?
               </Link>
               <Link
                 href="/boonbuy-coupons"
@@ -61,22 +55,34 @@ export default function HomepageSeoContent() {
                 Coupons
               </Link>
               <Link
-                href="/sneaker-finds"
+                href="/boonbuy-spreadsheet"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Sneaker finds
+                Spreadsheet
+              </Link>
+              <Link
+                href="/best-boonbuy-finds"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Best finds
+              </Link>
+              <Link
+                href="/latest-finds"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Latest finds
+              </Link>
+              <Link
+                href="/trending"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Trending
               </Link>
               <Link
                 href="/guides"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
                 Guides
-              </Link>
-              <Link
-                href="/boonbuy-telegram"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Telegram
               </Link>
             </div>
           </div>

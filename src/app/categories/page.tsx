@@ -53,7 +53,7 @@ export default function CategoriesPage() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <CategoryBrandGrid
           title="Categories"
-          subtitle="Browse finds by spreadsheet section — then open brands, QC, or the spreadsheet hub when you know what you need."
+          subtitle="Browse BoonBuy Finds by category — sneakers, hoodies, jackets, bags, and more — then open brands, QC, coupons, or the spreadsheet hub when you know what you need."
           items={categories}
         />
         <nav
@@ -61,15 +61,16 @@ export default function CategoriesPage() {
           className="mt-8 flex flex-wrap gap-2"
         >
           {[
+            { href: "/boonbuy", label: "What is BoonBuy?" },
+            { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+            { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+            { href: "/best-boonbuy-finds", label: "Best finds" },
             { href: "/finds", label: "Browse finds" },
             { href: "/boonbuy-finds", label: "BoonBuy finds" },
             { href: "/brands", label: "Brands" },
-            { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-            { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-            { href: "/boonbuy-deals", label: "Latest BoonBuy deals" },
             { href: "/boonbuy-qc", label: "QC photos" },
             { href: "/latest-finds", label: "Latest finds" },
-            { href: "/boonbuy", label: "What is BoonBuy?" },
+            { href: "/trending", label: "Trending" },
           ].map((link) => (
             <Link
               key={link.href}

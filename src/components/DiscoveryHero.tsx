@@ -66,6 +66,7 @@ export default function DiscoveryHero() {
         >
           {[
             { href: "/boonbuy", label: "What is BoonBuy?" },
+            { href: "/boonbuy-coupons", label: "Coupons" },
             { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
             { href: "/boonbuy-qc", label: "QC Guides" },
             { href: "/latest-finds", label: "Latest Finds" },

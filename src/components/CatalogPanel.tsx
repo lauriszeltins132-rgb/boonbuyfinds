@@ -330,8 +330,8 @@ export default function CatalogPanel({
         <div className="space-y-6 border-b border-border pb-6">
           <FilterChips
             title="Categories"
-            allHref="/"
-            allActive={pathname === "/" && !onCategoryPage && !onFeaturedPage}
+            allHref={basePath}
+            allActive={pathname === basePath && !onCategoryPage && !onFeaturedPage}
             items={categories.map((item) => ({
               label: item.name,
               count: item.count,

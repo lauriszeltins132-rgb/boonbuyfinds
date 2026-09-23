@@ -120,7 +120,7 @@ export default function HeroSearch({ searchIndex }: HeroSearchProps) {
       scrollToCatalogResults();
       return;
     }
-    router.push(`/?q=${encodeURIComponent(trimmed)}`, { scroll: false });
+    router.push(`/browse?q=${encodeURIComponent(trimmed)}`, { scroll: false });
     scrollToCatalogResults();
   }
 

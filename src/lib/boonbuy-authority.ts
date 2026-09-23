@@ -12,11 +12,11 @@ export const BOONBUY_AUTHORITY = {
   path: "/boonbuy",
   title: "What Is BoonBuy? Agent, Finds, Spreadsheet & Coupons",
   metaDescription:
-    "What is BoonBuy — Chinese shopping agent for Weidian and Taobao. How it works with BoonBuy Finds for spreadsheet finds, QC photos, coupons, shipping, and AI.",
+    "What is BoonBuy — Chinese shopping agent for Weidian and Taobao. How it works with BoonBuy Finds for spreadsheet finds, QC photos, coupons, and shipping.",
   badge: "BoonBuy authority",
   h1: "What Is BoonBuy?",
   intro:
-    "BoonBuy Finds is a dedicated discovery platform for BoonBuy shoppers. This hub explains the agent, then links every major tool on this site — finds, spreadsheet, QC, coupons, shipping, warehouse, and AI.",
+    "BoonBuy Finds is a dedicated discovery catalog for BoonBuy shoppers. This hub explains the agent, then links every major tool on this site — finds, spreadsheet, QC, coupons, shipping, and warehouse.",
   directAnswer:
     "BoonBuy is a Chinese shopping agent — not a retail store. It buys from Weidian, Taobao, and 1688 on your behalf, stores items in a warehouse for QC photos, and ships internationally. BoonBuy Finds (boonbuyfinds.net) is an independent catalog that helps you discover products, coupons, and guides before checkout on BoonBuy.",
   keyFacts: [
@@ -70,13 +70,13 @@ export const BOONBUY_AUTHORITY_SECTIONS: AuthoritySection[] = [
     heading: "How to find products on BoonBuy",
     paragraphs: [
       "Start on the finds browse hub or branded BoonBuy finds catalog. Filter by category and brand, open latest or trending rails, then open a product page. When ready, use the verified BoonBuy checkout link.",
-      "For budget hunting or natural-language search, use BoonBuy AI against the live catalog — it will not invent products that are not indexed here.",
+      "Use search on the browse catalog for brand and budget filters. Product pages stay grounded in indexed listings — we do not invent prices or stock.",
     ],
     links: [
       { href: "/finds", label: "Browse finds" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/latest-finds", label: "Latest finds" },
-      { href: "/ai", label: "BoonBuy AI" },
+      { href: "/browse", label: "Search catalog" },
       { href: "/categories", label: "Categories" },
       { href: "/brands", label: "Brands" },
     ],
@@ -146,14 +146,18 @@ export const BOONBUY_AUTHORITY_SECTIONS: AuthoritySection[] = [
     ],
   },
   {
-    id: "ai",
-    heading: "BoonBuy AI",
+    id: "tools",
+    heading: "BoonBuyFinds tools",
     paragraphs: [
-      "BoonBuy AI searches the live BoonBuy Finds catalog with natural language. Ask for brands, budgets, or outfit ideas. It is grounded in indexed products — it should not invent listings, prices, or stock.",
+      "BoonBuyFinds organizes discovery before you pay on BoonBuy: searchable catalog, spreadsheet hub, QC guides, coupon hub, shipping and warehouse explainers, and best/trending shortlists from the live index.",
     ],
     links: [
-      { href: "/ai", label: "Open BoonBuy AI" },
-      { href: "/trending", label: "Trending finds" },
+      { href: "/boonbuy-coupons", label: "Coupons" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+      { href: "/boonbuy-qc", label: "QC" },
+      { href: "/best-boonbuy-finds", label: "Best finds" },
+      { href: "/trending", label: "Trending" },
+      { href: "/latest-finds", label: "Latest" },
     ],
   },
   {

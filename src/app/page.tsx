@@ -29,11 +29,12 @@ export const metadata: Metadata = buildHomepageMetadata();
 /** Refresh discovery rails hourly so rotation and dedupe stay current. */
 export const revalidate = 3600;
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+/**
+ * No searchParams on this page — accepting them opts the entire homepage into
+ * dynamic `private, no-cache` responses (~4s TTFB MISS for Googlebot).
+ * Filtered browsing lives on `/browse`.
+ */
+export default async function HomePage() {
   const categories = getCategories();
   // Fewer products per rail = fewer concurrent image requests on first paint.
   const rails = getHomepageSurfaceRails(8);
@@ -130,7 +131,11 @@ export default async function HomePage({
         <div className="mx-auto max-w-7xl pb-4">
           <h2 className="text-2xl font-black">Browse All Finds</h2>
           <p className="mt-1 text-sm text-muted">
-            Search, filter, and explore the full catalog.
+            Featured catalog below — search and filters open the full{" "}
+            <a href="/browse" className="font-semibold text-accent hover:underline">
+              browse catalog
+            </a>
+            .
           </p>
         </div>
       </section>
@@ -144,7 +149,7 @@ export default async function HomePage({
           </section>
         }
       >
-        <HomepageCatalogSection searchParams={searchParams} />
+        <HomepageCatalogSection />
       </Suspense>
     </>
   );

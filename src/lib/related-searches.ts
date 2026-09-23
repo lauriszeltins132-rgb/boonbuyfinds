@@ -49,7 +49,7 @@ const BRAND_HREF: Record<string, string> = {
 export function getRelatedSearches(limit = 16): RelatedSearchLink[] {
   const brandLinks: RelatedSearchLink[] = POPULAR_SEARCHES.map((term) => ({
     label: term,
-    href: BRAND_HREF[term] ?? `/?q=${encodeURIComponent(term)}#browse`,
+    href: BRAND_HREF[term] ?? `/browse?q=${encodeURIComponent(term)}`,
   }));
 
   const findsLinks: RelatedSearchLink[] = FINDS_HUB_SLUGS.map((slug) => {

@@ -68,23 +68,23 @@ export const BOONBUY_SEO_HUB = {
 } as const;
 
 export const HERO_LANDING_TITLE =
-  "BoonBuy Finds — Products, QC Photos, Coupons & Spreadsheet";
+  "BoonBuy Finds — BoonBuy Products, Coupons & Spreadsheet Catalog";
 
 export const HERO_LANDING_SUBTITLE =
-  "The ultimate place to discover BoonBuy products, QC photos, coupons, spreadsheet finds and shopping guides — with verified BoonBuy checkout links.";
+  "BoonBuyFinds is an independent catalog for BoonBuy shoppers: searchable products, QC photo context, current shipping coupons, and spreadsheet-style finds with verified BoonBuy checkout links.";
 
 export const HERO_LANDING_CTAS = [
   {
-    href: "/finds",
-    label: "Explore Finds",
-    variant: "primary" as const,
-    icon: "spreadsheet" as const,
-  },
-  {
     href: BOONBUY_SEO_HUB.coupons.href,
     label: "BoonBuy Coupons",
-    variant: "secondary" as const,
+    variant: "primary" as const,
     icon: "coupon" as const,
+  },
+  {
+    href: "/finds",
+    label: "Explore Finds",
+    variant: "secondary" as const,
+    icon: "spreadsheet" as const,
   },
   {
     href: BOONBUY_SEO_HUB.spreadsheet.href,
@@ -119,4 +119,4 @@ export const SEO_HUB_FOOTER_LINKS = [
   BOONBUY_SEO_HUB.guides,
 ] as const;
 
-export const HOMEPAGE_SEO_INDEX_BLURB = `BoonBuy Finds is a product discovery platform and searchable database for BoonBuy spreadsheet finds, QC photos, coupons, and community updates. Use it to browse verified BoonBuy checkout links, claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, join Telegram for daily drops, and explore category finds hubs — without copying rows from a raw Google Sheet.`;
+export const HOMEPAGE_SEO_INDEX_BLURB = `BoonBuy Finds (boonbuyfinds.net) is a BoonBuy-focused product discovery catalog — spreadsheet finds, QC photo references, shipping coupons, and guides. Browse verified BoonBuy checkout links, claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when eligible, and use category and brand hubs instead of scrolling a raw Google Sheet.`;

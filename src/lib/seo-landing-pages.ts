@@ -193,7 +193,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     badge: "Best spreadsheet",
     h1: "Best BoonBuy Spreadsheet",
     intro:
-      "Looking for the best BoonBuy spreadsheet? BoonBuy Finds is the searchable alternative buyers use instead of raw Google Sheets — QC photos, filters, verified BoonBuy links, and a 45% shipping coupon for new accounts.",
+      "BoonBuy Finds is the searchable alternative buyers use instead of raw Google Sheets — QC photos, filters, verified BoonBuy links, and shipping coupons for eligible new accounts.",
     sections: [
       {
         heading: "Why this beats a raw BoonBuy spreadsheet",
