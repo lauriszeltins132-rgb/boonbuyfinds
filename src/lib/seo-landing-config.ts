@@ -676,8 +676,8 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
     filter: { freshness: "popularToday" },
     productLimit: 48,
     relatedLinks: [
-      { href: "/most-popular-finds-now", label: "Most popular now" },
-      { href: "/trending-this-week", label: "Trending this week" },
+      { href: "/trending", label: "Most popular now" },
+      { href: "/trending", label: "Trending this week" },
       { href: "/recently-added", label: "Recently added" },
     ],
     faqs: [
@@ -706,7 +706,7 @@ export const SEO_LANDING_CONFIG: Record<string, SeoLandingPageEntry> = {
     productLimit: 48,
     relatedLinks: [
       { href: "/trending", label: "Trending hub" },
-      { href: "/trending-today", label: "Trending today" },
+      { href: "/trending", label: "Trending today" },
       { href: "/best-finds-this-week", label: "Best this week" },
     ],
     faqs: [

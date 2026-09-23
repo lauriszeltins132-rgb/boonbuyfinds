@@ -103,7 +103,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         ],
         links: [
           { href: "/guides/what-are-qc-photos", label: "What are QC photos?" },
-          { href: "/best-qc-approved-finds", label: "QC-approved finds" },
+          { href: "/top-qc-finds", label: "QC-approved finds" },
         ],
       },
       {

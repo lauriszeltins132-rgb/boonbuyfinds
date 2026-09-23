@@ -425,7 +425,7 @@ export function getCategorySeo(slug: string, name: string, count: number): Landi
   return {
     title,
     description,
-    intro: `Explore ${name.toLowerCase()} from the BoonBuy Finds catalog. Filter by brand and price, open product details for QC references, and buy through verified affiliate links.`,
+    intro: `${name} finds from the BoonBuy Finds catalog. Filter by brand and price, open product details for QC references, and buy through verified affiliate links.`,
   };
 }
 
@@ -447,7 +447,7 @@ export function getBrandSeo(slug: string, name: string, count: number): LandingC
   return {
     title,
     description,
-    intro: `A focused view of ${name} products from the BoonBuy Finds catalog. Save favorites, compare prices, and buy through verified BoonBuy links.`,
+    intro: `${name} products from the BoonBuy Finds catalog — save favorites, compare prices, and buy through verified BoonBuy links.`,
   };
 }
 

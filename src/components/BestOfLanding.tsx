@@ -39,7 +39,7 @@ export default function BestOfLanding({ config }: BestOfLandingProps) {
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
-          { label: "Best of", href: "/best-finds" },
+          { label: "Best of", href: "/best-boonbuy-finds" },
           { label: config.h1 },
         ]}
         currentPath={config.path}

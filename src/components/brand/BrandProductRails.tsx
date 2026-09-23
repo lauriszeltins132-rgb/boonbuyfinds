@@ -49,7 +49,7 @@ export default function BrandProductRails({
         <ServerDiscoveryRail
           title={`Best QC ${brandName} Finds (${rails.stats.bestQcCount})`}
           subtitle="Listings with QC reference photos"
-          href="/best-qc-approved-finds"
+          href="/top-qc-finds"
           products={rails.bestQcProducts}
         />
       ) : null}

@@ -44,7 +44,7 @@ const SUPPLEMENT_BLOCKS: Record<
         `When you are ready to buy, open the agent link from the listing you researched — not a generic marketplace search.`,
       ],
       links: [
-        { href: "/trending-finds", label: "Trending" },
+        { href: "/trending", label: "Trending" },
         { href: "/boonbuy-telegram", label: "Telegram" },
       ],
     },

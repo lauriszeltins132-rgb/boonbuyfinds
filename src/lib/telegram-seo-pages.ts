@@ -474,7 +474,7 @@ const TOPIC_PAGES: Record<string, TelegramSeoPageConfig> = {
           "BoonBuy Finds marks catalog items with QC references when available; Telegram adds real-time discussion around those references.",
         ],
         links: [
-          { href: "/best-qc-approved-finds", label: "QC-approved catalog" },
+          { href: "/top-qc-finds", label: "QC-approved catalog" },
           { href: "/guides/how-to-check-qc-photos", label: "How to check QC" },
         ],
       },

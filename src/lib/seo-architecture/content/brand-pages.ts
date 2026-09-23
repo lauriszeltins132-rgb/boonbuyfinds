@@ -97,7 +97,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     ]),
     relatedLinks: [
       { href: "/", label: "Homepage" },
-      { href: "/spreadsheet", label: "Spreadsheet hub" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
       { href: "/telegram-boonbuy", label: "Telegram" },
     ],
     relatedArticleSlugs: BRAND_RELATED,
@@ -139,7 +139,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         ],
         links: [
           { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-          { href: "/spreadsheet", label: "Spreadsheet hub" },
+          { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
         ],
       },
       {

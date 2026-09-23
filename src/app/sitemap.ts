@@ -102,13 +102,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_LANDING_SLUGS) {
     const page = SEO_LANDING_PAGES[slug];
-    // Authority hubs already listed above with higher priority.
+    // Authority hubs + consolidated aliases already listed / redirected.
     if (
       page.path === "/boonbuy-finds" ||
       page.path === "/boonbuy-spreadsheet" ||
       page.path === "/boonbuy-qc" ||
       page.path === "/best-boonbuy-finds" ||
-      page.path === "/trending-boonbuy-finds"
+      page.path === "/trending-boonbuy-finds" ||
+      page.path === "/boonbuy-finds"
     ) {
       continue;
     }
@@ -116,6 +117,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const configEntry of getPublishedSeoLandingConfigs()) {
+    // Consolidated freshness aliases redirect to /trending.
+    if (
+      configEntry.slug === "trending-today" ||
+      configEntry.slug === "trending-this-week"
+    ) {
+      continue;
+    }
     routes.push(
       entry(
         `/${configEntry.slug}`,
@@ -159,6 +167,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of BEST_OF_SLUGS) {
     const page = BEST_OF_PAGES[slug];
+    // Consolidated onto /best-boonbuy-finds or /top-qc-finds.
+    if (page.path === "/best-finds" || page.path === "/best-qc-items") {
+      continue;
+    }
     routes.push(entry(page.path, "daily", 0.9, synced));
   }
 
@@ -233,6 +245,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       page.path === "/boonbuy-discord" ||
       page.path === "/boonbuy" ||
       page.path === "/boonbuy-coupons" ||
+      page.path === "/spreadsheet" ||
+      page.path === "/best-spreadsheet" ||
+      page.path === "/trending-finds" ||
       slug === "what-is-boonbuy"
     ) {
       continue;

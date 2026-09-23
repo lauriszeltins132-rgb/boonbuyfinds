@@ -74,7 +74,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     ],
     relatedBestOfHrefs: [
       { href: "/best-finds-this-week", label: "This week" },
-      { href: "/best-qc-items", label: "QC items" },
+      { href: "/top-qc-finds", label: "QC items" },
     ],
     faqs: [
       {
@@ -105,7 +105,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     relatedCategorySlugs: ["shoes", "hoodies-and-pants"],
     relatedGuideHrefs: GUIDE_CLUSTER,
     relatedBestOfHrefs: [
-      { href: "/best-finds", label: "All best finds" },
+      { href: "/best-boonbuy-finds", label: "All best finds" },
       { href: "/best-finds-this-month", label: "This month" },
     ],
     faqs: [
@@ -132,7 +132,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     relatedGuideHrefs: GUIDE_CLUSTER,
     relatedBestOfHrefs: [
       { href: "/best-finds-this-week", label: "This week" },
-      { href: "/best-finds", label: "All best finds" },
+      { href: "/best-boonbuy-finds", label: "All best finds" },
     ],
     faqs: [],
   },
@@ -190,7 +190,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     path: "/best-under-50",
     title: "Best BoonBuy Finds Under $50",
     metaDescription:
-      "Discover the best BoonBuy finds under $50 including sneakers, hoodies, jackets, bags and QC-approved products.",
+      "Best BoonBuy finds under $50 including sneakers, hoodies, jackets, bags and QC-approved products from the catalog.",
     badge: "Under $50",
     h1: "Best finds under $50",
     intro:
@@ -251,7 +251,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     ],
     relatedBestOfHrefs: [
       { href: "/best-under-50", label: "Sneakers under $50" },
-      { href: "/best-qc-items", label: "QC sneakers" },
+      { href: "/top-qc-finds", label: "QC sneakers" },
     ],
     faqs: [
       {
@@ -280,7 +280,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     ],
     relatedBestOfHrefs: [
       { href: "/best-under-100", label: "Under $100" },
-      { href: "/best-qc-items", label: "QC outerwear" },
+      { href: "/top-qc-finds", label: "QC outerwear" },
     ],
     faqs: [],
   },
@@ -301,7 +301,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     relatedGuideHrefs: GUIDE_CLUSTER,
     relatedBestOfHrefs: [
       { href: "/best-under-50", label: "Under $50" },
-      { href: "/best-finds", label: "All best finds" },
+      { href: "/best-boonbuy-finds", label: "All best finds" },
     ],
     faqs: [],
   },
@@ -336,7 +336,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     ],
     relatedBestOfHrefs: [
       { href: "/best-accessories", label: "All accessories" },
-      { href: "/best-qc-items", label: "QC bags" },
+      { href: "/top-qc-finds", label: "QC bags" },
     ],
     faqs: [],
   },
@@ -487,7 +487,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
     relatedBestOfHrefs: [
       { href: "/most-viewed-finds", label: "Most viewed" },
       { href: "/editors-picks", label: "Editor's picks" },
-      { href: "/best-finds", label: "Best finds" },
+      { href: "/best-boonbuy-finds", label: "Best finds" },
     ],
     faqs: [
       {
@@ -686,7 +686,7 @@ export function getContextualBestOfLinks(context: {
   maxPrice?: number;
 }): { href: string; label: string }[] {
   const links: { href: string; label: string }[] = [
-    { href: "/best-finds", label: "Best Finds" },
+    { href: "/best-boonbuy-finds", label: "Best Finds" },
     { href: "/collections", label: "Collections" },
   ];
 

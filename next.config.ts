@@ -189,6 +189,18 @@ const nextConfig: NextConfig = {
       { source: "/best-boonbuy-coupons", destination: "/boonbuy-coupons", permanent: true },
       { source: "/best-boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
       // /boonbuy-discount-code kept as unique cluster page (codes vs shipping coupons).
+
+      // Near-duplicate hubs → BoonBuy canons (LitBuy-audit consolidation).
+      { source: "/boonbuyfinds", destination: "/boonbuy-finds", permanent: true },
+      { source: "/spreadsheet", destination: "/boonbuy-spreadsheet", permanent: true },
+      { source: "/best-spreadsheet", destination: "/best-boonbuy-spreadsheet", permanent: true },
+      { source: "/best-finds", destination: "/best-boonbuy-finds", permanent: true },
+      { source: "/trending-finds", destination: "/trending", permanent: true },
+      { source: "/trending-today", destination: "/trending", permanent: true },
+      { source: "/trending-this-week", destination: "/trending", permanent: true },
+      { source: "/most-popular-finds-now", destination: "/trending", permanent: true },
+      { source: "/best-qc-items", destination: "/top-qc-finds", permanent: true },
+      { source: "/best-qc-approved-finds", destination: "/top-qc-finds", permanent: true },
     ];
   },
   images: {

@@ -51,7 +51,7 @@ function buildCategoryPage(c: CategoryConfig): SeoArchitecturePage {
         ],
         links: [
           { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-          { href: "/trending-finds", label: "Trending" },
+          { href: "/trending", label: "Trending" },
           { href: "/boonbuy-coupons", label: "Coupons" },
         ],
       },

@@ -5,7 +5,7 @@ import {
   SOCIAL_LINKS,
 } from "./constants";
 
-/** Canonical SEO hub routes for BoonBuy Finds (LitBuy-parity structure). */
+/** Canonical SEO hub routes for BoonBuy Finds. */
 export const BOONBUY_SEO_HUB = {
   home: { href: "/", label: "BoonBuy Finds" },
   telegram: {

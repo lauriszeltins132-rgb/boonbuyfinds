@@ -21,7 +21,7 @@ export const COMPARISON_GUIDES: Record<string, GuidePage> = {
         ],
         links: [
           { href: "/boonbuy-qc", label: "BoonBuy QC guide" },
-          { href: "/best-qc-items", label: "Top QC finds" },
+          { href: "/top-qc-finds", label: "Top QC finds" },
         ],
       },
       {
@@ -30,7 +30,7 @@ export const COMPARISON_GUIDES: Record<string, GuidePage> = {
           "Search by brand on BoonBuy Finds to narrow Nike, Jordan, or Moncler lanes. Check Popular Today and Top QC Finds for community-weighted picks.",
         ],
         links: [
-          { href: "/best-finds", label: "Best finds" },
+          { href: "/best-boonbuy-finds", label: "Best finds" },
           { href: "/guides/how-to-check-qc-photos", label: "Check QC photos" },
         ],
       },

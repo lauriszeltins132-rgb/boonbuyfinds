@@ -47,7 +47,7 @@ const CORE_HUB: HubBlock[] = [
     links: [
       { href: "/guides", label: "All guides" },
       { href: "/boonbuy", label: "BoonBuy hub" },
-      { href: "/boonbuyfinds", label: "Boonbuyfinds" },
+      { href: "/boonbuy-finds", label: "Boonbuyfinds" },
       { href: "/latest-finds", label: "Latest finds" },
       { href: "/sneaker-finds", label: "Sneaker finds" },
       { href: "/boonbuy-questions", label: "BoonBuy questions" },
@@ -81,12 +81,11 @@ const COMPARISON_HUB: HubBlock = {
 const SPREADSHEET_HUB: HubBlock = {
   title: "Spreadsheet hubs",
   links: [
-    { href: "/spreadsheet", label: "Spreadsheet hub" },
-    { href: "/best-spreadsheet", label: "Best spreadsheet" },
+    { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
+    { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
     { href: "/china-spreadsheet", label: "China spreadsheet" },
     { href: "/designer-spreadsheet", label: "Designer spreadsheet" },
     { href: "/shoe-spreadsheet", label: "Shoe spreadsheet" },
-    { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
   ],
 };
 
@@ -102,7 +101,7 @@ const CATEGORY_HUB: HubBlock = {
     { href: "/best-watches", label: "Best watches" },
     { href: "/best-accessories", label: "Best accessories" },
     { href: "/best-budget-finds", label: "Best budget finds" },
-    { href: "/trending-finds", label: "Trending finds" },
+    { href: "/trending", label: "Trending finds" },
   ],
 };
 

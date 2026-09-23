@@ -131,7 +131,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
       "Listings with QC references attached. Use these when you want extra confidence before buying.",
     getProducts: TOP_LISTS["best-qc-approved-finds"].getProducts,
     relatedLinks: [
-      { href: "/best-qc-approved-finds", label: "QC list page" },
+      { href: "/top-qc-finds", label: "QC list page" },
       { href: "/guides/boonbuy-qc-photos", label: "QC guide" },
     ],
     clusterLinks: [
@@ -204,7 +204,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     getProducts: () => getEditorsPicks(96),
     relatedLinks: [
       { href: "/top-boonbuy-finds-this-month", label: "This month" },
-      { href: "/most-popular-finds-now", label: "Popular today" },
+      { href: "/trending", label: "Popular today" },
       { href: "/guides/boonbuy-finds", label: "BoonBuy finds guide" },
     ],
     clusterLinks: [
@@ -412,7 +412,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
       "High-engagement picks from visitor clicks and saves — useful when you want what others are bookmarking.",
     getProducts: () => getEngagementPicks(72),
     relatedLinks: [
-      { href: "/most-popular-finds-now", label: "Popular today" },
+      { href: "/trending", label: "Popular today" },
       { href: "/collections/trending-this-week", label: "Trending week" },
     ],
     clusterLinks: [

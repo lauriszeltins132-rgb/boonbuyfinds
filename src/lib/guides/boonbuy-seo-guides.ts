@@ -106,7 +106,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
     ],
     relatedLinks: [
       { href: "/guides/boonbuy-spreadsheet", label: "Spreadsheet guide" },
-      { href: "/most-popular-finds-now", label: "Popular today" },
+      { href: "/trending", label: "Popular today" },
       ...CORE_LINKS,
     ],
   }),
@@ -141,7 +141,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
     ],
     relatedLinks: [
       { href: "/guides/boonbuy-finds", label: "BoonBuy finds" },
-      { href: "/best-qc-approved-finds", label: "Best QC finds" },
+      { href: "/top-qc-finds", label: "Best QC finds" },
       ...CORE_LINKS,
     ],
   }),

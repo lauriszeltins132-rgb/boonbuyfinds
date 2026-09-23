@@ -488,7 +488,7 @@ export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
     relatedCategorySlugs: ["shoes", "coats-and-jackets", "accessories"],
     relatedHubHrefs: [...HUB_MESH.filter((l) => l.href !== "/best-rep-finds")],
     relatedGuideHrefs: [
-      { href: "/best-finds", label: "Best finds hub" },
+      { href: "/best-boonbuy-finds", label: "Best finds hub" },
       { href: "/guides/best-rep-sneakers", label: "Best rep sneakers guide" },
       { href: "/boonbuy-review", label: "BoonBuy review" },
     ],

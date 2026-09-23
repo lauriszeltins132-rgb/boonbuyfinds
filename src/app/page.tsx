@@ -62,7 +62,7 @@ export default async function HomePage() {
       <ServerDiscoveryRail
         title="Trending Today"
         subtitle="Most viewed and clicked in the last 24 hours"
-        href="/most-popular-finds-now"
+        href="/trending"
         products={rails.popularToday}
         showTrendingScore
       />

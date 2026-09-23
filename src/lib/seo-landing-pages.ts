@@ -59,7 +59,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     badge: "BoonBuy spreadsheet",
     h1: "BoonBuy Spreadsheet",
     intro:
-      "Looking for a BoonBuy spreadsheet? BoonBuy Finds is the searchable spreadsheet alternative for Weidian and Taobao finds — photos, QC references, filters, verified BoonBuy checkout links, and a 45% shipping coupon invite so you spend less time hunting rows and more time buying.",
+      "BoonBuy Finds is the searchable spreadsheet alternative for Weidian and Taobao finds — photos, QC references, filters, verified BoonBuy checkout links, and a shipping coupon invite so you spend less time hunting rows and more time buying.",
     directAnswer:
       "A BoonBuy spreadsheet is a community product list (links, prices, QC notes); BoonBuy Finds is the searchable catalog alternative with photos, filters, and verified BoonBuy checkout links.",
     keyFacts: [
@@ -213,7 +213,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
           "Start with Popular Today and Editor's Picks, then narrow by Nike, Jordan, Moncler, bags, or jackets. Open QC when available, claim your shipping coupon, and checkout on BoonBuy with a verified link.",
         ],
         links: [
-          { href: "/most-popular-finds-now", label: "Popular today" },
+          { href: "/trending", label: "Popular today" },
           { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
           { href: "/boonbuy-coupon", label: "BoonBuy coupon" },
         ],
@@ -270,7 +270,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         ],
         links: [
           { href: "/guides/boonbuy-qc-photos", label: "Detailed QC guide" },
-          { href: "/best-qc-approved-finds", label: "QC-approved list" },
+          { href: "/top-qc-finds", label: "QC-approved list" },
         ],
       },
       {
@@ -379,7 +379,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
           "Check Popular Today and Top QC Finds for community-weighted picks before diving into the full catalog.",
         ],
         links: [
-          { href: "/most-popular-finds-now", label: "Popular today" },
+          { href: "/trending", label: "Popular today" },
           { href: "/trending", label: "Trending" },
         ],
       },
@@ -432,7 +432,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       { href: "/finds", label: "Browse finds" },
       { href: "/latest-finds", label: "Latest finds" },
       { href: "/rep-finds", label: "Rep finds" },
-      { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
+      { href: "/boonbuy-finds", label: "Boonbuyfinds hub" },
       { href: "/boonbuy-products", label: "All products" },
       ...RESOURCE_LINKS,
     ],
@@ -442,7 +442,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
 
   boonbuyfinds: {
     slug: "boonbuyfinds",
-    path: "/boonbuyfinds",
+    path: "/boonbuy-finds",
     title: "Boonbuyfinds | Official BoonBuy Finds Catalog 2026",
     metaDescription:
       "Boonbuyfinds (BoonBuy Finds) — searchable BoonBuy spreadsheet finds, QC photos, 45% shipping coupon, Telegram. The catalog at boonbuyfinds.net.",
@@ -807,7 +807,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
           "Products are ranked using engagement signals, premium brand weighting, QC availability, and image quality. Popular Today and editor picks feed into this page.",
         ],
         links: [
-          { href: "/most-popular-finds-now", label: "Popular today" },
+          { href: "/trending", label: "Popular today" },
           { href: "/collections/best-boonbuy-finds-2026", label: "2026 collection" },
         ],
       },
@@ -1226,7 +1226,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       },
     ],
     relatedLinks: [
-      { href: "/best-qc-items", label: "Best QC items" },
+      { href: "/top-qc-finds", label: "Best QC items" },
       { href: "/collections/best-qc-approved-finds", label: "QC collection" },
     ],
     getProducts: () => withQc(96),
@@ -1251,7 +1251,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         ],
         links: [
           { href: "/trending", label: "Trending page" },
-          { href: "/most-popular-finds-now", label: "Popular today" },
+          { href: "/trending", label: "Popular today" },
         ],
       },
     ],
