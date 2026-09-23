@@ -21,7 +21,6 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "Is BoonBuy legit?", href: "/is-boonbuy-legit" },
   { label: "Is BoonBuy safe?", href: "/is-boonbuy-safe" },
   { label: "Best BoonBuy finds", href: "/best-boonbuy-finds" },
-  { label: "BoonBuy Discord", href: "/boonbuy-discord" },
   { label: "BoonBuy Telegram", href: "/boonbuy-telegram" },
   { label: "BoonBuy shipping", href: "/boonbuy-shipping" },
   { label: "BoonBuy warehouse", href: "/boonbuy-warehouse" },
@@ -31,7 +30,6 @@ const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
   { label: "Rep finds", href: "/rep-finds" },
   { label: "Sneaker finds", href: "/sneaker-finds" },
   { label: "Best rep finds", href: "/best-rep-finds" },
-  { label: "BoonBuy AI", href: "/ai" },
 ];
 
 const BRAND_HREF: Record<string, string> = {
@@ -51,7 +49,7 @@ const BRAND_HREF: Record<string, string> = {
 export function getRelatedSearches(limit = 16): RelatedSearchLink[] {
   const brandLinks: RelatedSearchLink[] = POPULAR_SEARCHES.map((term) => ({
     label: term,
-    href: BRAND_HREF[term] ?? `/?q=${encodeURIComponent(term)}#browse`,
+    href: BRAND_HREF[term] ?? `/browse?q=${encodeURIComponent(term)}`,
   }));
 
   const findsLinks: RelatedSearchLink[] = FINDS_HUB_SLUGS.map((slug) => {

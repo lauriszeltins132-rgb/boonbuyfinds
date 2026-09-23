@@ -102,6 +102,24 @@ export default function BrandsPage() {
               Best Moncler finds
             </Link>
             <Link
+              href="/boonbuy"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              What is BoonBuy?
+            </Link>
+            <Link
+              href="/boonbuy-coupons"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Coupons
+            </Link>
+            <Link
+              href="/best-boonbuy-finds"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Best finds
+            </Link>
+            <Link
               href="/finds"
               className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
             >

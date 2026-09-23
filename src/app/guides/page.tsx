@@ -55,7 +55,7 @@ const GUIDE_CLUSTERS = [
       { href: "/boonbuy-returns", label: "Returns" },
       { href: "/is-boonbuy-legit", label: "Is BoonBuy legit?" },
       { href: "/boonbuy-review", label: "BoonBuy review" },
-      { href: "/boonbuy-discord", label: "Discord" },
+      { href: "/boonbuy-telegram", label: "Telegram" },
     ],
   },
 ] as const;

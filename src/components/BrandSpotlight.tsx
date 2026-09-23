@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getBrandSpotlight } from "@/lib/discovery";
-import DiscoveryRail from "./DiscoveryRail";
+import ServerDiscoveryRail from "./ServerDiscoveryRail";
 
 export default function BrandSpotlight() {
   const { brand, products } = getBrandSpotlight();
@@ -29,7 +29,7 @@ export default function BrandSpotlight() {
           </Link>
         </div>
 
-        <DiscoveryRail
+        <ServerDiscoveryRail
           title=""
           href={`/brands/${brand.slug}`}
           products={products}

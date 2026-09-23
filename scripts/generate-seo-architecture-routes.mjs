@@ -25,8 +25,7 @@ const registrySrc = readFileSync(
 // Extract slug keys from spread imports - simpler: read slugs.json we'll write from a static list
 const SLUGS = [
   "boonbuy-spreadsheet-2026",
-  "boonbuy-discord",
-  "boonbuy-telegram",
+    "boonbuy-telegram",
   "boonbuy-discount-code",
   "boonbuy-shipping",
   "boonbuy-review",

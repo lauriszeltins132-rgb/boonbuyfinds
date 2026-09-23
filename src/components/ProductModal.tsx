@@ -97,7 +97,8 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                 darkBoost={displayImage?.darkBoost}
                 alt={imageAlt}
                 productName={displayName}
-                variant="card"
+                variant="featured"
+                priority
                 productHref={getProductHref(product)}
               />
               <ProductBadges badges={badges} />

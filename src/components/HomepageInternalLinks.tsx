@@ -53,9 +53,7 @@ const SECTIONS = [
       { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
       { href: "/boonbuy-qc", label: "BoonBuy QC" },
       { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
-      { href: "/boonbuy-discord", label: "BoonBuy Discord" },
       { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
-      { href: "/ai", label: "BoonBuy AI" },
     ],
   },
   {

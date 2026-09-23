@@ -4,7 +4,7 @@ import HomepageCatalogSection from "@/components/HomepageCatalogSection";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
 import HomepageSeoLanding from "@/components/HomepageSeoLanding";
-import DiscoveryRail from "@/components/DiscoveryRail";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
 import HomepageBrands from "@/components/HomepageBrands";
 import HomepageCategories from "@/components/HomepageCategories";
 import HomepageCollections from "@/components/HomepageCollections";
@@ -17,8 +17,9 @@ import HomepageSeoContent from "@/components/HomepageSeoContent";
 import RecentlyViewedRail from "@/components/RecentlyViewedRail";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import SchemaScript from "@/components/SchemaScript";
+import LazyMount from "@/components/LazyMount";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
-import { getHomepageRails } from "@/lib/homepage-rails";
+import { getHomepageSurfaceRails } from "@/lib/homepage-rails";
 import { getCategories } from "@/lib/products";
 import { buildWebPageSchema } from "@/lib/schema";
 import { buildHomepageMetadata } from "@/lib/seo";
@@ -28,13 +29,20 @@ export const metadata: Metadata = buildHomepageMetadata();
 /** Refresh discovery rails hourly so rotation and dedupe stay current. */
 export const revalidate = 3600;
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+/**
+ * No searchParams on this page — accepting them opts the entire homepage into
+ * dynamic `private, no-cache` responses (~4s TTFB MISS for Googlebot).
+ * Filtered browsing lives on `/browse`.
+ */
+export default async function HomePage() {
   const categories = getCategories();
-  const rails = getHomepageRails(12);
+  // Fewer products per rail = fewer concurrent image requests on first paint.
+  const rails = getHomepageSurfaceRails(8);
+  const mosaicSource = rails.editorsPicks.length
+    ? rails.editorsPicks
+    : rails.popularToday.length
+      ? rails.popularToday
+      : rails.latestFinds;
 
   return (
     <>
@@ -49,49 +57,56 @@ export default async function HomePage({
 
       <DiscoveryHero />
 
-      <HomepageSeoLanding products={rails.editorsPicks.length ? rails.editorsPicks : rails.popularToday.length ? rails.popularToday : rails.latestFinds} />
+      <HomepageSeoLanding products={mosaicSource} />
 
-      <DiscoveryRail
+      <ServerDiscoveryRail
         title="Trending Today"
         subtitle="Most viewed and clicked in the last 24 hours"
-        href="/most-popular-finds-now"
+        href="/trending"
         products={rails.popularToday}
         showTrendingScore
-        preloadImages
       />
 
-      <DiscoveryRail
-        title="Latest Finds"
-        subtitle="Newest drops from the BoonBuy spreadsheet sync"
-        href="/latest-finds"
-        products={rails.latestFinds}
-      />
+      <LazyMount minHeight={380} rootMargin="280px 0px">
+        <ServerDiscoveryRail
+          title="Latest Finds"
+          subtitle="Newest drops from the BoonBuy spreadsheet sync"
+          href="/latest-finds"
+          products={rails.latestFinds}
+        />
+      </LazyMount>
 
       {rails.editorsPicks.length > 0 ? (
-        <DiscoveryRail
-          title="Editor's Picks"
-          subtitle="QC-linked standouts with strong presentation"
-          href="/editors-picks"
-          products={rails.editorsPicks}
-        />
+        <LazyMount minHeight={380} rootMargin="280px 0px">
+          <ServerDiscoveryRail
+            title="Editor's Picks"
+            subtitle="QC-linked standouts with strong presentation"
+            href="/editors-picks"
+            products={rails.editorsPicks}
+          />
+        </LazyMount>
       ) : null}
 
       {rails.bestUnder20.length > 0 ? (
-        <DiscoveryRail
-          title="Best Under $20"
-          subtitle="Budget-friendly finds that still look premium"
-          href="/best-under-30"
-          products={rails.bestUnder20}
-        />
+        <LazyMount minHeight={380} rootMargin="320px 0px">
+          <ServerDiscoveryRail
+            title="Best Under $20"
+            subtitle="Budget-friendly finds that still look premium"
+            href="/best-under-30"
+            products={rails.bestUnder20}
+          />
+        </LazyMount>
       ) : null}
 
-      <DiscoveryRail
-        title="Most Viewed This Week"
-        subtitle="Trending sneakers, jackets and streetwear"
-        href="/trending"
-        products={rails.popularWeek}
-        showTrendingScore
-      />
+      <LazyMount minHeight={380} rootMargin="320px 0px">
+        <ServerDiscoveryRail
+          title="Most Viewed This Week"
+          subtitle="Trending sneakers, jackets and streetwear"
+          href="/trending"
+          products={rails.popularWeek}
+          showTrendingScore
+        />
+      </LazyMount>
 
       <HomepageCategories categories={categories} />
       <HomepageCollections />
@@ -116,7 +131,11 @@ export default async function HomePage({
         <div className="mx-auto max-w-7xl pb-4">
           <h2 className="text-2xl font-black">Browse All Finds</h2>
           <p className="mt-1 text-sm text-muted">
-            Search, filter, and explore the full catalog.
+            Featured catalog below — search and filters open the full{" "}
+            <a href="/browse" className="font-semibold text-accent hover:underline">
+              browse catalog
+            </a>
+            .
           </p>
         </div>
       </section>
@@ -125,12 +144,12 @@ export default async function HomePage({
         fallback={
           <section className="px-4 pb-16 sm:px-6">
             <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
-              <ProductGridSkeleton count={12} />
+              <ProductGridSkeleton count={8} />
             </div>
           </section>
         }
       >
-        <HomepageCatalogSection searchParams={searchParams} />
+        <HomepageCatalogSection />
       </Suspense>
     </>
   );

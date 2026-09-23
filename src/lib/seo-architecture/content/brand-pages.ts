@@ -46,7 +46,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         heading: "How to search like a spreadsheet power user",
         paragraphs: [
           "Start from the homepage search or open a category rail — shoes, hoodies, jackets, accessories. Add a brand filter when you know the label you want. Sort mentally by QC availability: listings with reference photos reduce guesswork before warehouse photos even exist.",
-          "Save Telegram drops for heat that has not hit the index yet. When a row lands here, you get stable URLs for sharing in Discords and group chats — cleaner than paste-exporting sheet ranges.",
+          "Save Telegram drops for heat that has not hit the index yet. When a row lands here, you get stable URLs for sharing in Telegrams and group chats — cleaner than paste-exporting sheet ranges.",
           "Open the agent link only when variant, size, and price match your notes. The spreadsheet row is research; BoonBuy checkout is commitment.",
         ],
       },
@@ -68,7 +68,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       {
         heading: "Community sheets vs this catalog",
         paragraphs: [
-          "Private Discord sheets may list exclusives faster for a day. Public SEO catalogs win for stable links, image hosting, and structured categories. Use both: Telegram for speed, BoonBuy Finds for organization.",
+          "Private community sheets may list exclusives faster for a day. Public SEO catalogs win for stable links, image hosting, and structured categories. Use both: Telegram for speed, BoonBuy Finds for organization.",
           "When a friend sends a raw Weidian URL, paste it into BoonBuy manually. When they send a boonbuyfinds.net/find link, you inherit context — name, photo, category — before checkout.",
         ],
       },
@@ -97,81 +97,13 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     ]),
     relatedLinks: [
       { href: "/", label: "Homepage" },
-      { href: "/spreadsheet", label: "Spreadsheet hub" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
       { href: "/telegram-boonbuy", label: "Telegram" },
     ],
     relatedArticleSlugs: BRAND_RELATED,
     spreadsheetHref: "/boonbuy-spreadsheet",
   }),
 
-  "boonbuy-discord": page({
-    slug: "boonbuy-discord",
-    category: "brand",
-    title: "BoonBuy Discord | Join BoonBuy Finds Server 2026",
-    metaDescription:
-      "Join the BoonBuy Discord for haul discussion, spreadsheet drops, QC help, and links to the BoonBuy Finds catalog. Official community server for 2026.",
-    badge: "Discord",
-    h1: "BoonBuy Discord",
-    intro:
-      "The BoonBuy Finds Discord is where haulers share new spreadsheet rows, QC outcomes, shipping line tips, and coupon reminders — without cluttering your camera roll with screenshots. It complements the website catalog; it does not replace searchable filters on desktop and mobile.",
-    keywords: ["boonbuy discord", "boonbuy finds discord", "rep discord"],
-    sections: [
-      {
-        heading: "What you get on Discord",
-        paragraphs: [
-          "Real-time drops when curators post heat before it hits trending rails. Size check threads where buyers compare measurements to retail. Shipping channel chatter about which line cleared customs last week for your country.",
-          "Moderation keeps spam down so links stay usable. Pin the coupon page and spreadsheet hub in your own notes — Discord moves fast and pins scroll away.",
-        ],
-      },
-      {
-        heading: "Discord vs Telegram",
-        paragraphs: [
-          "Telegram is better for push notifications on a phone lock screen. Discord is better for threaded QC debates and long-form haul reviews. Most active members use both; join Discord for depth, Telegram for speed.",
-        ],
-        links: [
-          { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
-          { href: "/discord-boonbuy", label: "Discord landing page" },
-        ],
-      },
-      {
-        heading: "How Discord fits the spreadsheet workflow",
-        paragraphs: [
-          "When someone posts a find, ask for a boonbuyfinds.net link if available — structured pages beat raw URLs for newcomers. If only a Weidian link exists, paste into BoonBuy after verifying batch notes in thread history.",
-          "Use category channels when the server organizes by sneakers, streetwear, or accessories. It mirrors how we slice the catalog on-site.",
-        ],
-      },
-      {
-        heading: "Rules and safety",
-        paragraphs: [
-          "Never share payment passwords or full ID documents in public channels. Agents handle KYC inside their official apps. Report sketchy middlemen — buy through BoonBuy or agents you recognize.",
-          "QC photos in Discord are educational, not guarantees for your exact pair. Warehouse photos still rule before international shipping.",
-        ],
-      },
-      {
-        heading: "Join link",
-        paragraphs: [
-          `The BoonBuy Finds Discord is open at ${SOCIAL_LINKS.discord}. Introduce yourself with your country and what you collect — sneaker size, jacket brands, budget. Better answers follow better questions.`,
-        ],
-      },
-    ],
-    faqs: buildGuideFaqs("BoonBuy Discord", [
-      {
-        question: "Is this the official BoonBuy agent Discord?",
-        answer:
-          "This is the BoonBuy Finds community server for discovery and haul talk. BoonBuy agent support still lives inside BoonBuy's official channels.",
-      },
-      {
-        question: "Can I get coupon codes on Discord?",
-        answer: "Members share when promos go live. Always verify on our coupon pages and BoonBuy checkout before assuming a code still works.",
-      },
-    ]),
-    relatedLinks: [
-      { href: SOCIAL_LINKS.discord, label: "Join Discord" },
-      { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-      { href: "/boonbuy-coupons", label: "Coupons" },
-    ],
-    relatedArticleSlugs: ["boonbuy-telegram", "boonbuy-finds", "boonbuy-spreadsheet"],
-  }),
 
   "boonbuy-telegram": page({
     slug: "boonbuy-telegram",
@@ -182,7 +114,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     badge: "Telegram",
     h1: "BoonBuy Telegram",
     intro:
-      "Telegram is the fastest pipe for BoonBuy spreadsheet alerts — new rows, price dips, and QC reference posts land here before they trend on-site. Follow the BoonBuy Finds channel if you want push notifications without living inside Discord threads.",
+      "Telegram is the fastest pipe for BoonBuy spreadsheet alerts — new rows, price dips, and QC reference posts land here before they trend on-site. Follow the BoonBuy Finds channel if you want push notifications for daily drops.",
     keywords: ["boonbuy telegram", "boonbuy finds telegram", "spreadsheet telegram"],
     sections: [
       {
@@ -207,7 +139,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         ],
         links: [
           { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-          { href: "/spreadsheet", label: "Spreadsheet hub" },
+          { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
         ],
       },
       {
@@ -224,15 +156,15 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       },
       {
         question: "Can I submit finds?",
-        answer: "Contact via the site collab page or ask moderators in Discord for submission guidelines.",
+        answer: "Contact via the site collab page or ask moderators in Telegram for submission guidelines.",
       },
     ]),
     relatedLinks: [
       { href: SOCIAL_LINKS.telegram, label: "Join Telegram" },
       { href: "/telegram-boonbuy", label: "Telegram hub page" },
-      { href: "/boonbuy-discord", label: "Discord" },
+      { href: "/boonbuy-telegram", label: "Telegram" },
     ],
-    relatedArticleSlugs: ["boonbuy-discord", "boonbuy-spreadsheet", "trending-finds"],
+    relatedArticleSlugs: ["boonbuy-telegram", "boonbuy-spreadsheet", "trending-finds"],
   }),
 
   "boonbuy-discount-code": page({
@@ -751,7 +683,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       {
         heading: "Account security",
         paragraphs: [
-          "Use a unique password and enable any 2FA BoonBuy offers. Do not share login details in Discord tickets with unverified helpers.",
+          "Use a unique password and enable any 2FA BoonBuy offers. Do not share login details in Telegram tickets with unverified helpers.",
         ],
       },
       {
@@ -821,7 +753,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       "Independent from the BoonBuy shopping agent company.",
       "Turns spreadsheet-style lists into searchable product and brand pages.",
       "Outbound buy buttons open verified BoonBuy listings.",
-      "Also covers coupons, Discord/Telegram community links, guides, and BoonBuy AI.",
+      "Also covers coupons, Telegram community links, guides, and BoonBuy AI.",
       "Catalog prices and stock can change — confirm live totals on BoonBuy.",
     ],
     keywords: [

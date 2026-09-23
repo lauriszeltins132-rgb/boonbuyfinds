@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   staticPageGenerationTimeout: 300,
+  experimental: {
+    optimizePackageImports: ["ai", "@ai-sdk/react", "zod"],
+  },
   async redirects() {
     return [
       {
@@ -92,7 +95,13 @@ const nextConfig: NextConfig = {
       },
       { source: "/guides/weidian-guide", destination: "/guides/how-to-buy-from-weidian", permanent: true },
       { source: "/guides/boonbuy-spreadsheet", destination: "/boonbuy-spreadsheet", permanent: true },
-      { source: "/discord-boonbuy", destination: "/boonbuy-discord", permanent: true },
+      // Discord removed — consolidate community equity onto Telegram hubs.
+      { source: "/boonbuy-discord", destination: "/boonbuy-telegram", permanent: true },
+      { source: "/discord-boonbuy", destination: "/boonbuy-telegram", permanent: true },
+      { source: "/discord-mulebuy", destination: "/telegram-mulebuy", permanent: true },
+      { source: "/discord-hipobuy", destination: "/telegram-hipobuy", permanent: true },
+      { source: "/discord-oopbuy", destination: "/telegram-oopbuy", permanent: true },
+      { source: "/discord-kakobuy", destination: "/telegram-kakobuy", permanent: true },
       { source: "/telegram-boonbuy", destination: "/boonbuy-telegram", permanent: true },
       { source: "/qc", destination: "/boonbuy-qc", permanent: true },
       { source: "/qc-photos", destination: "/boonbuy-qc", permanent: true },
@@ -180,17 +189,41 @@ const nextConfig: NextConfig = {
       { source: "/best-boonbuy-coupons", destination: "/boonbuy-coupons", permanent: true },
       { source: "/best-boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
       // /boonbuy-discount-code kept as unique cluster page (codes vs shipping coupons).
+
+      // Near-duplicate hubs → BoonBuy canons (LitBuy-audit consolidation).
+      { source: "/boonbuyfinds", destination: "/boonbuy-finds", permanent: true },
+      { source: "/spreadsheet", destination: "/boonbuy-spreadsheet", permanent: true },
+      { source: "/best-spreadsheet", destination: "/best-boonbuy-spreadsheet", permanent: true },
+      { source: "/best-finds", destination: "/best-boonbuy-finds", permanent: true },
+      { source: "/trending-finds", destination: "/trending", permanent: true },
+      { source: "/trending-today", destination: "/trending", permanent: true },
+      { source: "/trending-this-week", destination: "/trending", permanent: true },
+      { source: "/most-popular-finds-now", destination: "/trending", permanent: true },
+      { source: "/best-qc-items", destination: "/top-qc-finds", permanent: true },
+      { source: "/best-qc-approved-finds", destination: "/top-qc-finds", permanent: true },
     ];
   },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "i.postimg.cc" },
+      { protocol: "https", hostname: "postimg.cc" },
+      { protocol: "https", hostname: "i.postimages.org" },
+      { protocol: "https", hostname: "postimages.org" },
       { protocol: "https", hostname: "si.geilicdn.com" },
-      { protocol: "https", hostname: "cbu01.alicdn.com" },
-      { protocol: "https", hostname: "**.alicdn.com" },
       { protocol: "https", hostname: "**.geilicdn.com" },
+      { protocol: "https", hostname: "cbu01.alicdn.com" },
+      { protocol: "https", hostname: "img.alicdn.com" },
+      { protocol: "https", hostname: "ae01.alicdn.com" },
+      { protocol: "https", hostname: "sc04.alicdn.com" },
+      { protocol: "https", hostname: "gd4.alicdn.com" },
+      { protocol: "https", hostname: "**.alicdn.com" },
     ],
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [96, 128, 256, 384, 512, 640],
+    qualities: [75, 85],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+    dangerouslyAllowSVG: false,
   },
   async headers() {
     return [
@@ -201,6 +234,24 @@ const nextConfig: NextConfig = {
             key: "Link",
             value:
               "<https://i.postimg.cc>; rel=preconnect, <https://si.geilicdn.com>; rel=preconnect, <https://cbu01.alicdn.com>; rel=preconnect",
+          },
+        ],
+      },
+      {
+        source: "/processed/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/_next/image",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, stale-while-revalidate=86400",
           },
         ],
       },

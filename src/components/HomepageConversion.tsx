@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BOONBUY_SIGNUP_URL, REGISTER_HEADER_CTA_LABEL } from "@/lib/constants";
 
 export default function HomepageConversion() {
   return (
@@ -22,34 +21,41 @@ export default function HomepageConversion() {
 
         <div className="rounded-2xl border border-accent/25 bg-accent/5 p-5">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
-            {REGISTER_HEADER_CTA_LABEL}
+            BoonBuy coupons
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Create a free BoonBuy account for shipping coupons, QC access, and order tracking.
+            Current shipping offers available through BoonBuyFinds, how to claim them, and how to use
+            a coupon at checkout.
           </p>
-          <a
-            href={BOONBUY_SIGNUP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/boonbuy-coupons"
             className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
           >
-            Register on BoonBuy →
-          </a>
+            Open coupon hub →
+          </Link>
         </div>
 
         <div className="rounded-2xl border border-border bg-surface/30 p-5">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
-            Current deals
+            Spreadsheet & best finds
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            See current offers available through BoonBuyFinds, then browse finds and QC guides.
+            Searchable spreadsheet alternative plus curated best and trending BoonBuy finds.
           </p>
-          <Link
-            href="/boonbuy-deals"
-            className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
-          >
-            BoonBuy deals →
-          </Link>
+          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
+            <Link
+              href="/boonbuy-spreadsheet"
+              className="text-sm font-bold text-accent hover:underline"
+            >
+              Spreadsheet →
+            </Link>
+            <Link
+              href="/best-boonbuy-finds"
+              className="text-sm font-bold text-accent hover:underline"
+            >
+              Best finds →
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -109,7 +109,7 @@ export function buildComparisonPage(
       ],
       links: [
         { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
-        { href: "/spreadsheet", label: "Spreadsheet hub" },
+        { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
         { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
       ],
     },

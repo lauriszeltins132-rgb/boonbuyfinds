@@ -37,7 +37,7 @@ const BEST_OF_LINKS = BEST_OF_SLUGS.slice(0, 6).map((slug) => {
 const GUIDE_LINKS = [
   { href: "/guides", label: "Guides" },
   { href: "/collections", label: "Collections" },
-  { href: "/most-popular-finds-now", label: "Popular now" },
+  { href: "/trending", label: "Popular now" },
   { href: "/boonbuy-spreadsheet", label: "Spreadsheet guide" },
 ];
 

@@ -15,8 +15,8 @@ const TOP_LIST_LINKS = [
   { href: "/top-rep-sneakers", label: "Top rep sneakers" },
   { href: "/top-streetwear-finds", label: "Top streetwear" },
   { href: "/top-designer-bags", label: "Designer bags" },
-  { href: "/best-qc-approved-finds", label: "QC approved" },
-  { href: "/most-popular-finds-now", label: "Popular now" },
+  { href: "/top-qc-finds", label: "QC approved" },
+  { href: "/trending", label: "Popular now" },
   { href: "/top-boonbuy-finds-this-month", label: "Top this month" },
 ];
 

@@ -24,7 +24,7 @@ export const COMPARISON_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> 
       shippingAngle:
         "LitBuy publishes multiple international lines including economy and express options; EU and US buyers should compare tax-inclusive routes when available. During peak seasons, line suspensions affect every agent — LitBuy is not immune. Weigh estimated delivery windows against per-kilo price, not just the cheapest label.",
       spreadsheetAngle:
-        "LitBuy's community ecosystem includes large shared sheets and Discord workflows. If your friends already paste LitBuy-specific columns, migration friction is real. BoonBuy Finds does not replace those social graphs — it gives you a searchable BoonBuy-oriented catalog when you want that checkout path.",
+        "LitBuy's community ecosystem includes large shared sheets workflows. If your friends already paste LitBuy-specific columns, migration friction is real. BoonBuy Finds does not replace those social graphs — it gives you a searchable BoonBuy-oriented catalog when you want that checkout path.",
       strengths: [
         "Strong community spreadsheet culture with active QC sharing on popular batches.",
         "Familiar interface for buyers who migrated from older agent generations.",
@@ -36,7 +36,7 @@ export const COMPARISON_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> 
         "Support volume spikes around holidays; plan extra buffer on first-time disputes.",
       ],
       bestFor:
-        "LitBuy fits buyers already embedded in LitBuy-centric Discord servers who quote shipping often and want a community-standard agent wallet.",
+        "LitBuy fits buyers already embedded in LitBuy-centric community servers who quote shipping often and want a community-standard agent wallet.",
       verdict:
         "LitBuy is a credible BoonBuy alternative when your circle standardizes on its spreadsheets and you like its current shipping promos to your country. BoonBuy pulls ahead when you want BoonBuy Finds' indexed catalog, coupon hub, and a single invite workflow tied to this site.",
     },

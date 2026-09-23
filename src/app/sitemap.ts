@@ -17,10 +17,6 @@ import {
 } from "@/lib/seo-landing-engine";
 import { AGENT_LANDING_SLUGS } from "@/lib/agent-landing-pages";
 import {
-  DISCORD_AGENT_LANDING_PAGES,
-  DISCORD_AGENT_LANDING_SLUGS,
-} from "@/lib/discord-agent-landing-pages";
-import {
   AGENT_COUPON_LANDING_PAGES,
   AGENT_COUPON_LANDING_SLUGS,
   isPrimaryCouponLandingSlug,
@@ -63,28 +59,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [
     entry("/", "daily", 1, synced),
     entry("/boonbuy", "weekly", 0.99, synced),
-    entry("/finds", "daily", 0.98, synced),
-    entry("/boonbuy-finds", "daily", 0.97, synced),
-    entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
     entry("/boonbuy-coupons", "weekly", 0.98, synced),
-    entry("/boonbuy-deals", "weekly", 0.95, synced),
-    entry("/boonbuy-discount-code", "weekly", 0.93, synced),
-    entry("/latest-finds", "daily", 0.95, synced),
-    entry("/rep-finds", "daily", 0.94, synced),
-    entry("/boonbuy-qc", "weekly", 0.93, synced),
-    entry("/boonbuy-telegram", "weekly", 0.92, synced),
-    entry("/boonbuy-discord", "weekly", 0.92, synced),
-    entry("/boonbuy-questions", "weekly", 0.94, synced),
-    entry("/best-boonbuy-finds", "daily", 0.93, synced),
-    entry("/trending-boonbuy-finds", "daily", 0.92, synced),
-    entry("/ai", "weekly", 0.9, synced),
-    entry("/trending", "daily", 0.9, synced),
-    entry("/deals", "daily", 0.9, synced),
-    entry("/recently-added", "daily", 0.92, synced),
-    entry("/brands", "weekly", 0.85, synced),
-    entry("/categories", "weekly", 0.85, synced),
-    entry("/collections", "weekly", 0.88, synced),
-    entry("/best-finds-by-category", "weekly", 0.85, synced),
+    entry("/boonbuy-spreadsheet", "weekly", 0.97, synced),
+    entry("/best-boonbuy-finds", "daily", 0.96, synced),
+    entry("/finds", "daily", 0.95, synced),
+    entry("/boonbuy-finds", "daily", 0.94, synced),
+    entry("/boonbuy-deals", "weekly", 0.93, synced),
+    entry("/boonbuy-discount-code", "weekly", 0.9, synced),
+    entry("/latest-finds", "daily", 0.94, synced),
+    entry("/trending", "daily", 0.93, synced),
+    entry("/rep-finds", "daily", 0.9, synced),
+    entry("/boonbuy-qc", "weekly", 0.92, synced),
+    entry("/boonbuy-shipping", "weekly", 0.91, synced),
+    entry("/boonbuy-warehouse", "weekly", 0.88, synced),
+    entry("/boonbuy-payment", "weekly", 0.86, synced),
+    entry("/boonbuy-returns", "weekly", 0.86, synced),
+    entry("/boonbuy-telegram", "weekly", 0.85, synced),
+    entry("/boonbuy-questions", "weekly", 0.92, synced),
+    entry("/boonbuy-review", "weekly", 0.9, synced),
+    entry("/is-boonbuy-legit", "weekly", 0.9, synced),
+    entry("/how-to-use-boonbuy", "weekly", 0.9, synced),
+    entry("/trending-boonbuy-finds", "daily", 0.9, synced),
+    entry("/browse", "daily", 0.7, synced),
+    entry("/deals", "daily", 0.85, synced),
+    entry("/recently-added", "daily", 0.88, synced),
+    entry("/brands", "weekly", 0.88, synced),
+    entry("/categories", "weekly", 0.88, synced),
+    entry("/collections", "weekly", 0.86, synced),
+    entry("/best-finds-by-category", "weekly", 0.84, synced),
     entry(GUIDES_HUB.path, "weekly", 0.9, synced),
   ];
 
@@ -100,13 +102,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_LANDING_SLUGS) {
     const page = SEO_LANDING_PAGES[slug];
-    // Authority hubs already listed above with higher priority.
+    // Authority hubs + consolidated aliases already listed / redirected.
     if (
       page.path === "/boonbuy-finds" ||
       page.path === "/boonbuy-spreadsheet" ||
       page.path === "/boonbuy-qc" ||
       page.path === "/best-boonbuy-finds" ||
-      page.path === "/trending-boonbuy-finds"
+      page.path === "/trending-boonbuy-finds" ||
+      page.path === "/boonbuy-finds"
     ) {
       continue;
     }
@@ -114,6 +117,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const configEntry of getPublishedSeoLandingConfigs()) {
+    // Consolidated freshness aliases redirect to /trending.
+    if (
+      configEntry.slug === "trending-today" ||
+      configEntry.slug === "trending-this-week"
+    ) {
+      continue;
+    }
     routes.push(
       entry(
         `/${configEntry.slug}`,
@@ -137,17 +147,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push(entry(page.path, "weekly", 0.9, synced));
   }
 
-  // Skip BoonBuy telegram/discord agent-landing aliases — they 301 to architecture canons.
+  // Skip BoonBuy telegram agent-landing alias — it 301s to the architecture canon.
   const REDIRECTED_COMMUNITY_LANDINGS = new Set([
     "telegram-boonbuy",
-    "discord-boonbuy",
   ]);
-
-  for (const slug of DISCORD_AGENT_LANDING_SLUGS) {
-    if (REDIRECTED_COMMUNITY_LANDINGS.has(slug)) continue;
-    const page = DISCORD_AGENT_LANDING_PAGES[slug];
-    routes.push(entry(page.path, "weekly", 0.9, synced));
-  }
 
   for (const slug of TELEGRAM_AGENT_LANDING_SLUGS) {
     if (REDIRECTED_COMMUNITY_LANDINGS.has(slug)) continue;
@@ -164,6 +167,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of BEST_OF_SLUGS) {
     const page = BEST_OF_PAGES[slug];
+    // Consolidated onto /best-boonbuy-finds or /top-qc-finds.
+    if (page.path === "/best-finds" || page.path === "/best-qc-items") {
+      continue;
+    }
     routes.push(entry(page.path, "daily", 0.9, synced));
   }
 
@@ -238,6 +245,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       page.path === "/boonbuy-discord" ||
       page.path === "/boonbuy" ||
       page.path === "/boonbuy-coupons" ||
+      page.path === "/spreadsheet" ||
+      page.path === "/best-spreadsheet" ||
+      page.path === "/trending-finds" ||
       slug === "what-is-boonbuy"
     ) {
       continue;

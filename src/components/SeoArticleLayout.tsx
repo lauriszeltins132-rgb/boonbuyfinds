@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/Breadcrumbs";
 import GuideSignupCallout from "@/components/conversion/GuideSignupCallout";
-import ProductGrid from "@/components/ProductGrid";
+import ServerProductGrid from "@/components/ServerProductGrid";
 import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import SeoArticleReadingMeta from "@/components/SeoArticleReadingMeta";
@@ -365,7 +365,7 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
                 Live picks from the BoonBuy Finds catalog — updated as new listings sync.
               </p>
               <div className="mt-6">
-                <ProductGrid products={products.slice(0, 24)} />
+                <ServerProductGrid products={products.slice(0, 24)} />
               </div>
             </section>
           ) : null}
@@ -421,14 +421,6 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
               rel="noopener noreferrer"
             >
               Telegram
-            </a>{" "}
-            and{" "}
-            <a
-              href={SOCIAL_LINKS.discord}
-              className="font-bold text-accent hover:underline"
-              rel="noopener noreferrer"
-            >
-              Discord
             </a>{" "}
             for daily drops and haul discussion.
           </p>

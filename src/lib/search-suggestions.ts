@@ -104,7 +104,7 @@ function buildIndex(): SearchSuggestion[] {
   for (const brand of POPULAR_SEARCHES) {
     items.push({
       label: brand,
-      href: `/?q=${encodeURIComponent(brand)}#browse`,
+      href: `/browse?q=${encodeURIComponent(brand)}`,
       type: "query",
       keywords: brand.toLowerCase(),
       priority: 100,
@@ -218,7 +218,7 @@ function buildIndex(): SearchSuggestion[] {
   for (const bag of GENERIC_BAG_SUGGESTIONS) {
     items.push({
       label: bag.label,
-      href: bag.href ?? `/?q=${encodeURIComponent(bag.query)}#browse`,
+      href: bag.href ?? `/browse?q=${encodeURIComponent(bag.query)}`,
       type: "product-type",
       keywords: bag.query.toLowerCase(),
       priority: bag.priority,

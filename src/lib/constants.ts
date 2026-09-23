@@ -111,7 +111,6 @@ export const CONTACT_EMAIL = "hello@boonbuyfinds.net";
 /** Official community + social destinations for BoonBuy Finds */
 export const SOCIAL_LINKS = {
   telegram: "https://t.me/RNFinds",
-  discord: "https://discord.gg/G3Ryc2JE3Q",
   instagram: "https://www.instagram.com/smukasolass/",
   tiktok: "https://www.tiktok.com/@smks.reps",
 };

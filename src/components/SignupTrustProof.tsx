@@ -8,7 +8,6 @@ export default function SignupTrustProof() {
     `${stats.total.toLocaleString()}+ product finds`,
     "Daily catalog updates",
     `${stats.withQc.toLocaleString()} QC references`,
-    "Active Discord community",
     "Active Telegram community",
   ];
 
@@ -20,9 +19,7 @@ export default function SignupTrustProof() {
           {item}
         </li>
       ))}
-      <li className="sr-only">
-        Discord: {SOCIAL_LINKS.discord} · Telegram: {SOCIAL_LINKS.telegram}
-      </li>
+      <li className="sr-only">Telegram: {SOCIAL_LINKS.telegram}</li>
     </ul>
   );
 }

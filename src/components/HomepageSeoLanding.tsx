@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   HOMEPAGE_SEO_INDEX_BLURB,
@@ -8,16 +7,18 @@ import { getDisplayBrand, getDisplayProductName } from "@/lib/product-validation
 import { getProductHref } from "@/lib/slugs";
 import { resolveProductDisplayImage } from "@/lib/product-image-presentation";
 import type { Product } from "@/lib/types";
+import SafeNextImage from "./SafeNextImage";
 
 type HomepageSeoLandingProps = {
   products: Product[];
 };
 
 export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps) {
-  const featured = products.slice(0, 6);
+  // Keep initial image requests low — only the first mosaic row on mobile.
+  const featured = products.slice(0, 4);
 
   return (
-    <section className="px-4 py-8 sm:px-6">
+    <section className="px-4 py-8 sm:px-6 sm:py-10">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -34,7 +35,7 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
           </Link>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="seo-product-mosaic mt-5">
           {featured.map((product) => {
             const name = getDisplayProductName(product);
             const brand = getDisplayBrand(product);
@@ -48,21 +49,20 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
               <Link
                 key={product.id}
                 href={getProductHref(product)}
-                className="group overflow-hidden rounded-2xl border border-border bg-surface/30 transition hover:border-accent/35"
+                className="product-card group overflow-hidden rounded-2xl border border-border bg-panel transition hover:border-accent/35"
               >
-                <div className="relative aspect-square bg-background">
-                  {src ? (
-                    <Image
-                      src={src}
-                      alt={alt}
-                      fill
-                      sizes="(max-width:640px) 50vw, 16vw"
-                      className="object-contain p-2 transition duration-300 group-hover:scale-[1.03]"
-                    />
-                  ) : null}
+                <div className="seo-product-mosaic__media product-image-shell product-image-shell--card">
+                  <SafeNextImage
+                    src={src || ""}
+                    alt={alt}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    quality={85}
+                    productHref={getProductHref(product)}
+                    className="object-contain p-[4%] transition duration-300 group-hover:scale-[1.03]"
+                  />
                 </div>
-                <div className="space-y-1 p-3">
-                  <p className="line-clamp-2 text-xs font-bold leading-snug text-foreground">
+                <div className="space-y-1 p-3 sm:p-3.5">
+                  <p className="line-clamp-2 text-sm font-bold leading-snug text-foreground">
                     {name}
                   </p>
                   <p className="text-[11px] font-semibold text-muted">
@@ -80,10 +80,10 @@ export default function HomepageSeoLanding({ products }: HomepageSeoLandingProps
             {HOMEPAGE_SEO_INDEX_BLURB}
           </p>
           <ul className="mt-4 grid gap-2 text-sm text-muted sm:grid-cols-2">
-            <li>Product discovery platform for BoonBuy finds</li>
-            <li>Searchable database with QC photo references</li>
-            <li>Spreadsheet alternative with filters and product pages</li>
-            <li>Coupon, Discord, and Telegram resource hub</li>
+            <li>Searchable BoonBuy product pages with brand and category filters</li>
+            <li>QC photo references when the catalog has them</li>
+            <li>Spreadsheet alternative with shareable product URLs</li>
+            <li>Coupon hub and Telegram updates for new drops</li>
           </ul>
           <ul className="mt-4 flex flex-wrap gap-2">
             {SEO_HUB_FOOTER_LINKS.map((link) => (

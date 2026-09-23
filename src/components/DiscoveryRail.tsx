@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import type { CardDisplayMap } from "@/lib/card-display";
 import type { Product } from "@/lib/types";
 import { dedupeListingRail } from "@/lib/listing-dedupe";
 import ProductCard from "./ProductCard";
@@ -15,8 +16,9 @@ type DiscoveryRailProps = {
   href: string;
   products: Product[];
   showTrendingScore?: boolean;
-  /** Only the first rail should preload card images. */
+  /** Only the first visible above-fold rail should preload card images. */
   preloadImages?: boolean;
+  cardDisplays?: CardDisplayMap;
 };
 
 export default function DiscoveryRail({
@@ -26,6 +28,7 @@ export default function DiscoveryRail({
   products,
   showTrendingScore = false,
   preloadImages = false,
+  cardDisplays,
 }: DiscoveryRailProps) {
   const [selected, setSelected] = useState<Product | null>(null);
   const railProducts = dedupeListingRail(products);
@@ -33,10 +36,10 @@ export default function DiscoveryRail({
   if (railProducts.length === 0) return null;
 
   return (
-    <section className="px-3 py-4 sm:px-6 sm:py-8">
+    <section className="px-3 py-5 sm:px-6 sm:py-9">
       <div className="mx-auto max-w-7xl">
         {(title || subtitle) && (
-          <div className="mb-2.5 flex items-end justify-between gap-3 sm:mb-5 sm:gap-4">
+          <div className="mb-3 flex items-end justify-between gap-3 sm:mb-5 sm:gap-4">
             <div className="min-w-0">
               {title && (
                 <h2 className="text-lg font-black leading-tight sm:text-2xl">{title}</h2>
@@ -56,18 +59,16 @@ export default function DiscoveryRail({
           </div>
         )}
 
-        <div className="discovery-rail -mx-0.5 flex gap-2.5 overflow-x-auto px-0.5 pb-1 sm:gap-4">
+        <div className="discovery-rail -mx-0.5 flex overflow-x-auto px-0.5 pb-1">
           {railProducts.map((product, index) => (
-            <div
-              key={product.id}
-              className="w-[calc(50vw-1.25rem)] max-w-[178px] shrink-0 sm:w-[240px] sm:max-w-none"
-            >
+            <div key={product.id} className="discovery-rail__item">
               <ProductCard
                 product={product}
                 onOpen={setSelected}
                 compact
                 showTrendingScore={showTrendingScore}
-                priority={preloadImages && index < 2}
+                priority={preloadImages && index < 1}
+                display={cardDisplays?.[product.id] ?? null}
               />
             </div>
           ))}

@@ -51,7 +51,7 @@ if (!layout.includes("PROMO_OG_IMAGE_URL")) {
 }
 
 console.log(`\nOG image URL: ${OG_URL}`);
-console.log(`Telegram/Discord/X: use ${OG_URL} via og:image meta tag`);
+console.log(`Telegram/X: use ${OG_URL} via og:image meta tag`);
 
 if (failed > 0) {
   console.error(`\nAudit failed (${failed} issues).`);

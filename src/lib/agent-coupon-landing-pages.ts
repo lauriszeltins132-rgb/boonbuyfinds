@@ -46,9 +46,9 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     slug: "boonbuy-coupon",
     titleSuffix: `BoonBuy Coupon 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`,
     metaDescription: `Claim the BoonBuy coupon for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping in 2026. Verified invite link, promo code savings, and haul discounts.`,
-    intro: `Looking for a BoonBuy coupon? Register with our invite link to unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping — one of the highest new-user shipping discounts BoonBuy offers.`,
+    intro: `Register with our invite link to unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when your BoonBuy account is eligible — confirm terms inside BoonBuy before you pay freight.`,
     keywordLine:
-      "Searching for a BoonBuy coupon, BoonBuy coupon code, or BoonBuy shipping coupon? Claim the verified offer below.",
+      "BoonBuy coupon, BoonBuy coupon code, and BoonBuy shipping coupon — claim the verified offer below.",
   },
   {
     slug: "best-boonbuy-coupon",
@@ -56,7 +56,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `Best BoonBuy coupon for 2026 — up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with a verified invite. Claim savings before your next haul.`,
     intro: `The best BoonBuy coupon right now is the new-user shipping discount: up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when you register through our invite link.`,
     keywordLine:
-      "Want the best BoonBuy coupon, best BoonBuy promo code, or best BoonBuy shipping deal? Start with the offer below.",
+      "Best BoonBuy coupon, best BoonBuy promo code, and best BoonBuy shipping deal — start with the offer below.",
   },
   {
     slug: "boonbuy-shipping-coupon",
@@ -64,7 +64,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `BoonBuy shipping coupon for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off international freight. Verified signup link for new BoonBuy accounts in 2026.`,
     intro: `BoonBuy shipping is often the biggest haul cost. Claim our BoonBuy shipping coupon for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping on eligible new accounts.`,
     keywordLine:
-      "Looking for a BoonBuy shipping coupon, BoonBuy freight discount, or BoonBuy shipping promo? Claim it below.",
+      "BoonBuy shipping coupon, freight discount, and shipping promo — claim it below when eligible.",
   },
   {
     slug: "boonbuy-discount",
@@ -72,7 +72,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `Claim a verified BoonBuy discount for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping in 2026. Latest coupons, promo codes, and voucher deals.`,
     intro: `Unlock BoonBuy discount savings on verified finds, QC-approved products, and spreadsheet links — including up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping.`,
     keywordLine:
-      "Looking for a BoonBuy discount, BoonBuy savings, or BoonBuy voucher codes? Claim the verified offer below.",
+      "BoonBuy discount, savings, and voucher codes — claim the verified offer below.",
   },
   {
     slug: "boonbuy-promo",
@@ -80,7 +80,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `Get the latest BoonBuy promo codes and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping for 2026. Click below to claim verified savings instantly.`,
     intro: `Redeem the latest BoonBuy promo on verified finds and spreadsheet products, including the ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% shipping coupon for new users.`,
     keywordLine:
-      "Searching for a BoonBuy promo, BoonBuy promo code, or daily BoonBuy coupon? Claim the verified offer below.",
+      "BoonBuy promo, BoonBuy promo code, and daily BoonBuy coupon — claim the verified offer below.",
   },
   {
     slug: "boonbuy-promo-code",
@@ -88,15 +88,15 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `Use a verified BoonBuy promo code path for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping in 2026. Claim via invite signup on BoonBuy Finds.`,
     intro: `Need a BoonBuy promo code? New accounts unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping through our verified invite — then shop QC finds on BoonBuy Finds.`,
     keywordLine:
-      "Searching for a BoonBuy promo code, BoonBuy coupon code, or BoonBuy discount code? Claim the offer below.",
+      "BoonBuy promo code, coupon code, and discount code — claim the offer below.",
   },
   {
     slug: "boonbuy-coupon-code",
     titleSuffix: `BoonBuy Coupon Code 2026 | Verified ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Offer`,
     metaDescription: `BoonBuy coupon code alternative for 2026 — claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with a verified BoonBuy Finds invite link.`,
-    intro: `Looking for a BoonBuy coupon code? Our invite unlocks the current shipping coupon (up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off) without hunting expired influencer codes.`,
+    intro: `Our invite unlocks the current shipping coupon (up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off) without hunting expired influencer codes.`,
     keywordLine:
-      "Want a BoonBuy coupon code, BoonBuy voucher code, or working BoonBuy discount code? Start with the verified claim button.",
+      "BoonBuy coupon code, voucher code, and discount code — start with the verified claim button.",
   },
   {
     slug: "boonbuy-invite",
@@ -104,7 +104,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `Use the BoonBuy invite link from BoonBuy Finds to unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. Verified signup for new BoonBuy accounts.`,
     intro: `This is the BoonBuy invite used across BoonBuy Finds. Register with it to claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, then browse spreadsheet finds with QC references.`,
     keywordLine:
-      "Looking for a BoonBuy invite, BoonBuy referral link, or BoonBuy invite coupon? Claim it below.",
+      "BoonBuy invite, referral link, and invite coupon — claim it below.",
   },
   {
     slug: "boonbuy-invite-code",
@@ -112,7 +112,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `BoonBuy invite code via BoonBuy Finds — unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping and shop verified Weidian & Taobao finds.`,
     intro: `Enter BoonBuy through our invite code link to unlock the new-user shipping coupon (up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off). Then use BoonBuy Finds to pick QC-backed products.`,
     keywordLine:
-      "Searching for a BoonBuy invite code, BoonBuy referral code, or BoonBuy signup code? Use the verified link below.",
+      "BoonBuy invite code, referral code, and signup code — use the verified link below.",
   },
   {
     slug: "boonbuy-voucher",
@@ -120,7 +120,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     metaDescription: `Claim a BoonBuy voucher-style shipping discount — up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off freight for new accounts via BoonBuy Finds.`,
     intro: `BoonBuy vouchers usually mean shipping savings. Our current offer unlocks up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when you register with the BoonBuy Finds invite.`,
     keywordLine:
-      "Looking for a BoonBuy voucher, BoonBuy shipping voucher, or BoonBuy coupon voucher? Claim the verified offer below.",
+      "BoonBuy voucher, shipping voucher, and coupon voucher — claim the verified offer below.",
   },
 ];
 
@@ -131,7 +131,7 @@ function buildVariants(agent: SeoAgentDefinition): CouponPageVariant[] {
       titleSuffix: `${agent.name} Coupons 2026 | Best Promo & Discount Codes`,
       metaDescription: `Get the latest verified ${agent.name} coupons, promo codes, and discounts for 2026. Click below to claim your savings instantly.`,
       intro: `Save money on verified ${agent.name} finds and spreadsheet products using the latest ${agent.name} coupons. Click below to claim your discount.`,
-      keywordLine: `Looking for ${agent.name} coupons, ${agent.name} coupon codes, or ${agent.name} savings? Start here.`,
+      keywordLine: `${agent.name} coupons, promo codes, and savings — start here.`,
     },
     {
       slug: `best-${agent.slug}-coupons`,
@@ -206,7 +206,6 @@ function buildPageConfig(
       { href: "/recently-added", label: "Recently added finds" },
       { href: agent.findsPath, label: `${agent.name} finds catalog` },
       { href: `/telegram-${agent.slug}`, label: `${agent.name} Telegram` },
-      { href: `/discord-${agent.slug}`, label: `${agent.name} Discord` },
     ],
   };
 }

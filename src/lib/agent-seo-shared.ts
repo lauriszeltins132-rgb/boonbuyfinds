@@ -68,7 +68,6 @@ export function getSeoAgentBySlug(slug: string): SeoAgentDefinition | undefined 
 export function getAgentPlatformPaths(agent: SeoAgentDefinition) {
   return {
     telegram: `/telegram-${agent.slug}`,
-    discord: `/discord-${agent.slug}`,
     coupons: `/${agent.slug}-coupons`,
     finds: agent.findsPath,
   };
@@ -88,36 +87,12 @@ export function buildTelegramFooterLinks(currentSlug: string) {
 
   if (paths && agent) {
     links.push(
-      { href: paths.discord, label: `${agent.name} Discord` },
       { href: paths.coupons, label: `${agent.name} coupons` },
       { href: paths.finds, label: `${agent.name} finds` }
     );
   }
 
   links.push({ href: "/telegram", label: "Telegram finds hub" });
-  return links;
-}
-
-export function buildDiscordFooterLinks(currentSlug: string) {
-  const agent = getSeoAgentBySlug(currentSlug);
-  const paths = agent ? getAgentPlatformPaths(agent) : null;
-
-  const links = [
-    { href: "/", label: "BoonBuy Finds homepage" },
-    ...SEO_AGENTS.filter((entry) => entry.slug !== currentSlug).map((entry) => ({
-      href: `/discord-${entry.slug}`,
-      label: `${entry.name} Discord`,
-    })),
-  ];
-
-  if (paths && agent) {
-    links.push(
-      { href: paths.telegram, label: `${agent.name} Telegram` },
-      { href: paths.coupons, label: `${agent.name} coupons` },
-      { href: paths.finds, label: `${agent.name} finds` }
-    );
-  }
-
   return links;
 }
 
@@ -134,7 +109,6 @@ export function buildCouponFooterLinks(
     { href: "/recently-added", label: "New finds" },
     { href: paths.finds, label: `${agent.name} finds` },
     { href: paths.telegram, label: `${agent.name} Telegram` },
-    { href: paths.discord, label: `${agent.name} Discord` },
     ...siblingCouponPaths.filter((link) => link.href !== currentPath),
     ...SEO_AGENTS.filter((entry) => entry.slug !== agent.slug).map((entry) => ({
       href: `/${entry.slug}-coupons`,

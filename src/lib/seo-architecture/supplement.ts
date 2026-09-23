@@ -11,7 +11,7 @@ const SUPPLEMENT_BLOCKS: Record<
       heading: "Who this page is for",
       paragraphs: [
         `${h1} is written for international buyers who already know they want BoonBuy-oriented discovery — not for debating whether Chinese marketplaces exist. If you are comparing agents, read our comparison hub after this page.`,
-        `Return here when you need a stable URL to share in Discord or Telegram instead of a screenshot of a spreadsheet row. Stable links help your friends land on the same listing you researched.`,
+        `Return here when you need a stable URL to share in Telegram or Telegram instead of a screenshot of a spreadsheet row. Stable links help your friends land on the same listing you researched.`,
         `Bookmark the spreadsheet hub and coupon pages alongside this article so your next haul starts from one tab group, not twelve forgotten Chrome windows.`,
       ],
       links: [
@@ -40,11 +40,11 @@ const SUPPLEMENT_BLOCKS: Record<
       heading: "What to do next",
       paragraphs: [
         `Browse trending finds if you want community-weighted heat, or filter by category if you already know the lane — shoes, hoodies, designer bags.`,
-        `Join Telegram for speed and Discord for threaded QC debate. Both channels link back to catalog pages when a row is indexed.`,
+        `Join Telegram for speed for threaded QC debate. Both channels link back to catalog pages when a row is indexed.`,
         `When you are ready to buy, open the agent link from the listing you researched — not a generic marketplace search.`,
       ],
       links: [
-        { href: "/trending-finds", label: "Trending" },
+        { href: "/trending", label: "Trending" },
         { href: "/boonbuy-telegram", label: "Telegram" },
       ],
     },

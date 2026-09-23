@@ -2,15 +2,17 @@ import Link from "next/link";
 import { getBrandSpotlight } from "@/lib/discovery";
 import { getBrandsFromProducts } from "@/lib/brands";
 import { getAllProducts } from "@/lib/products";
-import DiscoveryRail from "./DiscoveryRail";
+import ServerDiscoveryRail from "./ServerDiscoveryRail";
 
 type HomepageBrandsProps = {
   hideSpotlight?: boolean;
 };
 
 export default function HomepageBrands({ hideSpotlight = false }: HomepageBrandsProps) {
-  const { brand, products } = getBrandSpotlight();
   const brands = getBrandsFromProducts(getAllProducts()).slice(0, 12);
+  const spotlight = hideSpotlight ? null : getBrandSpotlight();
+  const brand = spotlight?.brand;
+  const products = spotlight?.products ?? [];
 
   return (
     <section className="px-4 py-6 sm:px-6">
@@ -43,7 +45,7 @@ export default function HomepageBrands({ hideSpotlight = false }: HomepageBrands
                 Shop {brand.name} →
               </Link>
             </div>
-            <DiscoveryRail title="" href={`/brands/${brand.slug}`} products={products} />
+            <ServerDiscoveryRail title="" href={`/brands/${brand.slug}`} products={products} />
           </div>
         ) : null}
 

@@ -61,7 +61,7 @@ export default function GlobalSearch({
     event.preventDefault();
     const trimmed = query.trim();
     if (!trimmed) return;
-    router.push(`/?q=${encodeURIComponent(trimmed)}`, { scroll: false });
+    router.push(`/browse?q=${encodeURIComponent(trimmed)}`, { scroll: false });
     scrollToCatalogResults();
     setOpen(false);
     setQuery("");

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/CatalogPanel";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedGuides from "@/components/RelatedGuides";
 import SignupCard from "@/components/SignupCard";
 import BestOfLinks from "@/components/BestOfLinks";
@@ -121,7 +121,7 @@ export default async function CategoryLandingPage({ params }: CategoryPageProps)
             categorySlug={resolved.slug}
           />
         </div>
-        <CatalogPanel
+        <ServerCatalogPanel
           products={resolved.products}
           categories={allCategories}
           brands={brands}

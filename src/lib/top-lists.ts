@@ -336,7 +336,7 @@ export const TOP_LISTS: Record<string, SeoListConfig> = {
     relatedLinks: [
       { href: "/trending", label: "Trending" },
       { href: "/recently-added", label: "Recently added" },
-      { href: "/most-popular-finds-now", label: "Popular now" },
+      { href: "/trending", label: "Popular now" },
     ],
     clusterLinks: CLUSTER_SNEAKERS,
   },

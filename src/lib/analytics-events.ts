@@ -132,10 +132,6 @@ export function getMobilePopupCtaVariant(): "a" | "b" {
   return variant;
 }
 
-export function trackDiscordClick(location: string) {
-  trackConversion("discord_click", { location });
-}
-
 export function trackTelegramClick(location: string) {
   trackConversion("telegram_click", { location });
 }

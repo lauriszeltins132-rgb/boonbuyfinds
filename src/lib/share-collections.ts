@@ -56,7 +56,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     badge: "Collection",
     h1: "Best Nike BoonBuy finds",
     intro:
-      "Premium Nike picks from the BoonBuy Finds catalog. Ideal for Discord shares, Pinterest boards, and haul planning.",
+      "Premium Nike picks from the BoonBuy Finds catalog. Ideal for Telegram shares, Pinterest boards, and haul planning.",
     getProducts: TOP_LISTS["top-nike-finds"].getProducts,
     relatedLinks: [
       { href: "/top-nike-finds", label: "Top Nike list" },
@@ -131,7 +131,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
       "Listings with QC references attached. Use these when you want extra confidence before buying.",
     getProducts: TOP_LISTS["best-qc-approved-finds"].getProducts,
     relatedLinks: [
-      { href: "/best-qc-approved-finds", label: "QC list page" },
+      { href: "/top-qc-finds", label: "QC list page" },
       { href: "/guides/boonbuy-qc-photos", label: "QC guide" },
     ],
     clusterLinks: [
@@ -182,7 +182,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     badge: "Collection",
     h1: "Best sneaker finds",
     intro:
-      "Sneaker-heavy shareable collection for TikTok bios, Discord, and Reddit threads.",
+      "Sneaker-heavy shareable collection for TikTok bios, and Reddit threads.",
     getProducts: TOP_LISTS["top-rep-sneakers"].getProducts,
     relatedLinks: [
       { href: "/top-rep-sneakers", label: "Top sneakers list" },
@@ -204,7 +204,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     getProducts: () => getEditorsPicks(96),
     relatedLinks: [
       { href: "/top-boonbuy-finds-this-month", label: "This month" },
-      { href: "/most-popular-finds-now", label: "Popular today" },
+      { href: "/trending", label: "Popular today" },
       { href: "/guides/boonbuy-finds", label: "BoonBuy finds guide" },
     ],
     clusterLinks: [
@@ -412,7 +412,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
       "High-engagement picks from visitor clicks and saves — useful when you want what others are bookmarking.",
     getProducts: () => getEngagementPicks(72),
     relatedLinks: [
-      { href: "/most-popular-finds-now", label: "Popular today" },
+      { href: "/trending", label: "Popular today" },
       { href: "/collections/trending-this-week", label: "Trending week" },
     ],
     clusterLinks: [

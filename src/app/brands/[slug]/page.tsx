@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CatalogPanel from "@/components/CatalogPanel";
+import ServerCatalogPanel from "@/components/ServerCatalogPanel";
 import RelatedGuides from "@/components/RelatedGuides";
 import SignupCard from "@/components/SignupCard";
 import RelatedSeoLinks from "@/components/RelatedSeoLinks";
@@ -121,7 +121,7 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
       </section>
 
       <Suspense fallback={<div className="py-24 text-center text-muted">Loading...</div>}>
-        <CatalogPanel
+        <ServerCatalogPanel
           products={products}
           categories={getCategories()}
           brands={getBrandsFromProducts(allProducts)}

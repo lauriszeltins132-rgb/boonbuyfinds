@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroLandingCtas from "@/components/HeroLandingCtas";
 import HeroSearch from "@/components/HeroSearch";
-import AiHeroEntry from "@/components/ai/AiHeroEntry";
 import LiveSiteSignals from "@/components/LiveSiteSignals";
 import TrustStrip from "@/components/TrustStrip";
 import { HERO_ENTITY_LINE } from "@/lib/brand-entity";
@@ -28,7 +27,7 @@ export default function DiscoveryHero() {
   );
 
   return (
-    <section className="border-b border-border/50 px-4 pb-7 pt-5 sm:px-6 sm:pb-10 sm:pt-10">
+    <section className="border-b border-border/50 px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-10">
       <div className="mx-auto max-w-3xl text-center">
         <Link href="/" className="inline-flex items-center justify-center gap-3">
           <Image
@@ -67,6 +66,7 @@ export default function DiscoveryHero() {
         >
           {[
             { href: "/boonbuy", label: "What is BoonBuy?" },
+            { href: "/boonbuy-coupons", label: "Coupons" },
             { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
             { href: "/boonbuy-qc", label: "QC Guides" },
             { href: "/latest-finds", label: "Latest Finds" },
@@ -85,14 +85,12 @@ export default function DiscoveryHero() {
 
         <LiveSiteSignals />
 
-        <div className="mx-auto mt-6 max-w-[700px] sm:mt-7">
+        <div className="mx-auto mt-7 max-w-[700px] sm:mt-8">
           <HeroSearch searchIndex={searchIndex} />
         </div>
-
-        <AiHeroEntry />
       </div>
 
-      <div className="mx-auto mt-5 max-w-7xl sm:mt-6">
+      <div className="mx-auto mt-6 max-w-7xl sm:mt-7">
         <TrustStrip compact />
       </div>
     </section>

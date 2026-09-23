@@ -1,6 +1,12 @@
+import "server-only";
+
 import cardPropsData from "@/data/card-props.json";
 import { BADGE_LABELS } from "./product-badge-ui";
+import type { CardDisplayMap, CardDisplayProps } from "./card-display";
+import { getProductImagePlan } from "./processed-images";
 import type { ProductBadgeKind } from "./types";
+
+export type { CardDisplayMap, CardDisplayProps } from "./card-display";
 
 type RawCardEntry = {
   src: string;
@@ -30,37 +36,61 @@ const FRESHNESS_LABELS: Record<"r" | "w" | "i", string> = {
   i: "Recently indexed",
 };
 
-export type CardDisplayProps = {
-  displaySrc: string;
-  fallbacks: string[];
-  fillClass: string;
-  isProcessedCutout: boolean;
-  badges: { kind: ProductBadgeKind; label: string }[];
-  badgesTrending: { kind: ProductBadgeKind; label: string }[];
-  freshness: string | null;
-};
-
 function expandBadges(kinds?: ProductBadgeKind[]) {
   if (!kinds?.length) return [];
   return kinds.map((kind) => ({ kind, label: BADGE_LABELS[kind] }));
+}
+
+function catalogSourceUrl(raw: RawCardEntry): string {
+  if (!raw.src.startsWith("/processed/")) return raw.src;
+  const remote = raw.fb?.find((url) => /^https?:\/\//i.test(url));
+  return remote ?? raw.src;
 }
 
 export function getCardDisplayProps(productId: string): CardDisplayProps | null {
   const raw = manifest.p[productId];
   if (!raw) return null;
 
+  const sourceUrl = catalogSourceUrl(raw);
+  const plan = /^https?:\/\//i.test(sourceUrl)
+    ? getProductImagePlan(sourceUrl)
+    : null;
+
+  const displaySrc = plan?.src ?? raw.src;
+  const fallbacks = [
+    ...new Set(
+      [...(plan?.fallbacks ?? []), ...(raw.fb ?? [])].filter(
+        (url) => url && url !== displaySrc
+      )
+    ),
+  ];
+  const isProcessedCutout =
+    Boolean(plan?.isProcessed) ||
+    raw.pm === 1 ||
+    displaySrc.startsWith("/processed/");
+
   const badges = expandBadges(raw.b);
   const badgesTrending = expandBadges(raw.bt ?? raw.b);
-  const isProcessedCutout =
-    raw.pm === 1 || raw.src.startsWith("/processed/");
 
   return {
-    displaySrc: raw.src,
-    fallbacks: raw.fb ?? [],
+    displaySrc,
+    fallbacks,
     fillClass: FILL_CLASSES[raw.fc ?? "b"],
     isProcessedCutout,
     badges,
     badgesTrending,
     freshness: raw.f ? FRESHNESS_LABELS[raw.f] : null,
   };
+}
+
+/** Resolve display props for a product list without shipping the full manifest to the browser. */
+export function getCardDisplayMap(
+  productIds: Iterable<string>
+): CardDisplayMap {
+  const map: CardDisplayMap = {};
+  for (const id of productIds) {
+    const props = getCardDisplayProps(id);
+    if (props) map[id] = props;
+  }
+  return map;
 }
