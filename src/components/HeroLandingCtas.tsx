@@ -23,12 +23,6 @@ function CtaIcon({ name }: { name: HeroCtaIcon }) {
           <path d="M10 8v8" />
         </svg>
       );
-    case "telegram":
-      return (
-        <svg {...common} fill="currentColor" stroke="none">
-          <path d="M21.8 4.3 3.7 11.3c-1.2.5-1.2 1.2-.2 1.5l4.6 1.4 1.8 5.4c.2.7.4.9 1 .9.6 0 .9-.3 1.2-.6l2.5-2.4 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.2-.4-1.7-1.4-1.3zM9.5 14.5l8.9-5.6c.4-.3.8-.1.5.2l-7.2 6.5-.3 3.3-1.9-4.4z" />
-        </svg>
-      );
     case "spreadsheet":
       return (
         <svg {...common}>
