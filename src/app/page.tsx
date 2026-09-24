@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import HomepageCatalogSection from "@/components/HomepageCatalogSection";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
-import HomepageSeoLanding from "@/components/HomepageSeoLanding";
+import HomepageProductMosaic from "@/components/HomepageProductMosaic";
 import DiscoveryRail from "@/components/DiscoveryRail";
 import HomepageBrands from "@/components/HomepageBrands";
 import HomepageCategories from "@/components/HomepageCategories";
@@ -12,6 +12,7 @@ import HomepageConversion from "@/components/HomepageConversion";
 import HomepageFaq from "@/components/HomepageFaq";
 import HomepageInternalLinks from "@/components/HomepageInternalLinks";
 import HomepagePopularQuestions from "@/components/HomepagePopularQuestions";
+import HomepageQuickCtas from "@/components/HomepageQuickCtas";
 import HomepageSaveOnBoonBuy from "@/components/HomepageSaveOnBoonBuy";
 import HomepageSeoContent from "@/components/HomepageSeoContent";
 import RecentlyViewedRail from "@/components/RecentlyViewedRail";
@@ -34,7 +35,13 @@ export default async function HomePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const categories = getCategories();
-  const rails = getHomepageRails(12);
+  // Fewer products per early rail = faster first paint on mobile.
+  const rails = getHomepageRails(10);
+  const mosaicSource = rails.editorsPicks.length
+    ? rails.editorsPicks
+    : rails.popularToday.length
+      ? rails.popularToday
+      : rails.latestFinds;
 
   return (
     <>
@@ -47,14 +54,19 @@ export default async function HomePage({
         })}
       />
 
+      {/* 1. Hero / search */}
       <DiscoveryHero />
 
-      <HomepageSeoLanding products={rails.editorsPicks.length ? rails.editorsPicks : rails.popularToday.length ? rails.popularToday : rails.latestFinds} />
+      {/* 2. Compact primary CTAs */}
+      <HomepageQuickCtas />
+
+      {/* 3–5. Products first */}
+      <HomepageProductMosaic products={mosaicSource} />
 
       <DiscoveryRail
         title="Trending Today"
         subtitle="Most viewed and clicked in the last 24 hours"
-        href="/most-popular-finds-now"
+        href="/trending"
         products={rails.popularToday}
         showTrendingScore
         preloadImages
@@ -76,6 +88,33 @@ export default async function HomePage({
         />
       ) : null}
 
+      {/* Browse catalog — still above long SEO walls */}
+      <section id="browse" className="scroll-mt-24 px-4 pt-2 sm:px-6">
+        <div className="mx-auto max-w-7xl pb-3">
+          <h2 className="text-xl font-black sm:text-2xl">Browse All Finds</h2>
+          <p className="mt-1 text-sm text-muted">
+            Search, filter, and explore the full catalog.
+          </p>
+        </div>
+      </section>
+
+      <Suspense
+        fallback={
+          <section className="px-4 pb-10 sm:px-6">
+            <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
+              <ProductGridSkeleton count={8} />
+            </div>
+          </section>
+        }
+      >
+        <HomepageCatalogSection searchParams={searchParams} />
+      </Suspense>
+
+      {/* 6–8. Compact discovery chips */}
+      <HomepageCategories categories={categories} />
+      <HomepageBrands hideSpotlight />
+      <HomepageCollections />
+
       {rails.bestUnder20.length > 0 ? (
         <DiscoveryRail
           title="Best Under $20"
@@ -93,12 +132,9 @@ export default async function HomePage({
         showTrendingScore
       />
 
-      <HomepageCategories categories={categories} />
-      <HomepageCollections />
-      <HomepageBrands hideSpotlight />
-
       <RecentlyViewedRail />
 
+      {/* 9–12. SEO / conversion lower — still SSR */}
       <HomepageConversion />
       <HomepageSaveOnBoonBuy />
       <HomepagePopularQuestions />
@@ -106,32 +142,11 @@ export default async function HomePage({
       <HomepageSeoContent />
       <HomepageFaq />
 
-      <section className="px-4 pb-2 sm:px-6">
+      <section className="px-4 pb-8 sm:px-6">
         <div className="mx-auto max-w-7xl text-center">
           <DataFreshness variant="block" label="Catalog synced" />
         </div>
       </section>
-
-      <section id="browse" className="scroll-mt-24 px-4 pt-4 sm:px-6">
-        <div className="mx-auto max-w-7xl pb-4">
-          <h2 className="text-2xl font-black">Browse All Finds</h2>
-          <p className="mt-1 text-sm text-muted">
-            Search, filter, and explore the full catalog.
-          </p>
-        </div>
-      </section>
-
-      <Suspense
-        fallback={
-          <section className="px-4 pb-16 sm:px-6">
-            <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
-              <ProductGridSkeleton count={12} />
-            </div>
-          </section>
-        }
-      >
-        <HomepageCatalogSection searchParams={searchParams} />
-      </Suspense>
     </>
   );
 }

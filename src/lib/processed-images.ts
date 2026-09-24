@@ -16,11 +16,6 @@ const damaged = damagedData as DamagedProcessedManifest;
 const damagedUrls = new Set(damaged.urls ?? []);
 const damagedPaths = new Set(damaged.paths ?? []);
 
-/** Broken background removal — serve catalog original instead. */
-const FORCE_ORIGINAL_URLS = new Set([
-  "https://i.postimg.cc/zzMm64y4/1.png", // Jordan Socks (jordan-socks-2829)
-]);
-
 export type ProductImagePlan = {
   src: string;
   originalSrc: string;
@@ -38,48 +33,33 @@ export function isProcessedCutoutBlocked(
   sourceUrl: string,
   processedPath?: string
 ): boolean {
-  if (FORCE_ORIGINAL_URLS.has(sourceUrl)) return true;
   if (damagedUrls.has(sourceUrl)) return true;
   if (processedPath && damagedPaths.has(processedPath)) return true;
   if (getImageQualityDetails(sourceUrl)?.issues?.includes("damaged_cutout")) {
     return true;
   }
-  return false;
+  // Default: do not trust background-removal cutouts for primary display.
+  return true;
 }
 
-function shouldUseOriginal(sourceUrl: string, staticPath?: string): boolean {
-  return isProcessedCutoutBlocked(sourceUrl, staticPath);
-}
-
-/** Prefer pre-built matte PNGs when clean; otherwise catalog original. */
+/**
+ * Always prefer the catalog original. Processed cutouts change appearance
+ * (posterize / harsh matte) and must not be the primary card image.
+ * Processed paths are omitted from fallbacks — they are unreliable.
+ */
 export function getProductImagePlan(sourceUrl: string): ProductImagePlan {
-  if (FORCE_ORIGINAL_URLS.has(sourceUrl)) {
-    return {
-      src: sourceUrl,
-      originalSrc: sourceUrl,
-      isProcessed: false,
-      knockoutWhite: false,
-      fallbacks: [],
-    };
-  }
-
-  const staticPath = catalog.urls[sourceUrl];
-
-  if (staticPath && !shouldUseOriginal(sourceUrl, staticPath)) {
-    return {
-      src: staticPath,
-      originalSrc: sourceUrl,
-      isProcessed: true,
-      knockoutWhite: false,
-      fallbacks: [sourceUrl],
-    };
-  }
-
   return {
     src: sourceUrl,
     originalSrc: sourceUrl,
     isProcessed: false,
     knockoutWhite: false,
-    fallbacks: staticPath ? [] : [],
+    fallbacks: [],
   };
+}
+
+/** @deprecated Kept for callers that inspect the map; prefer originals. */
+export function getProcessedPathForUrl(sourceUrl: string): string | undefined {
+  const path = catalog.urls[sourceUrl];
+  if (!path || isProcessedCutoutBlocked(sourceUrl, path)) return undefined;
+  return path;
 }

@@ -1,35 +1,10 @@
-import { getCatalogBrightBgTreatment } from "./bright-bg";
 import { isDeadImageUrl } from "./dead-images";
 import {
   getImageFillClass,
-  getImageQualityDetails,
   getImageQualityScore,
 } from "./image-quality";
-import {
-  getProductImagePlan,
-  isProcessedCutoutBlocked,
-} from "./processed-images";
+import { getProductImagePlan } from "./processed-images";
 import type { Product } from "./types";
-
-function isNaturalProductPhoto(
-  sourceUrl: string,
-  details: ReturnType<typeof getImageQualityDetails>
-): boolean {
-  if (!details) return false;
-  if (details.issues?.includes("dead_url") && (details.score ?? 0) <= 0) {
-    return false;
-  }
-  if (details.isScreenshotStyle) return true;
-  if (details.isTransparent && (details.transparencyRatio ?? 0) > 0.15) {
-    return true;
-  }
-  if (getCatalogBrightBgTreatment(sourceUrl) === "none") {
-    const whiteBlank = details.whiteBlankRatio ?? 0;
-    const border = details.borderBrightRatio ?? 0;
-    if (whiteBlank < 0.03 && border < 0.05) return true;
-  }
-  return false;
-}
 
 export type ResolvedProductImage = {
   displaySrc: string;
@@ -45,8 +20,8 @@ export type ResolvedProductImage = {
 };
 
 /**
- * Prefer clean transparent cutouts for studio-white photos; keep originals
- * for QC / carpet shots. No CSS white knockout — real alpha PNGs only.
+ * Faithful catalog rendering — always the original product image.
+ * No cutouts, no CSS enhancement, no knockout.
  */
 export function resolveProductDisplayImage(
   product: Product
@@ -54,61 +29,30 @@ export function resolveProductDisplayImage(
   if (!product.image) return null;
 
   const sourceUrl = product.image;
+  if (isDeadImageUrl(sourceUrl)) return null;
+
   const plan = getProductImagePlan(sourceUrl);
-  const details = getImageQualityDetails(sourceUrl);
-
-  if (isDeadImageUrl(sourceUrl) && !plan.isProcessed) return null;
-
-  const processedPath =
-    plan.isProcessed && plan.src.startsWith("/processed/") ? plan.src : undefined;
-  const cutoutUnsafe =
-    isProcessedCutoutBlocked(sourceUrl, processedPath) ||
-    details?.issues?.includes("damaged_cutout") === true;
-
-  const useProcessed =
-    Boolean(processedPath) &&
-    !cutoutUnsafe &&
-    !isNaturalProductPhoto(sourceUrl, details);
-
-  const displaySrc = useProcessed && processedPath ? processedPath : sourceUrl;
-  const showingProcessed = displaySrc.startsWith("/processed/");
-
-  const fallbacks = [
-    ...new Set(
-      [
-        showingProcessed ? sourceUrl : processedPath && !cutoutUnsafe ? processedPath : null,
-        ...plan.fallbacks,
-      ].filter((url): url is string => Boolean(url) && url !== displaySrc)
-    ),
-  ];
 
   return {
-    displaySrc,
+    displaySrc: plan.src,
     sourceUrl,
     score: getImageQualityScore(sourceUrl),
-    fillClass: showingProcessed
-      ? "product-float-asset--fill-balanced"
-      : getImageFillClass(sourceUrl),
+    fillClass: getImageFillClass(sourceUrl),
     needsMatte: false,
     knockoutWhite: false,
     enhance: false,
     darkBoost: false,
-    isProcessed: showingProcessed,
-    fallbacks,
+    isProcessed: false,
+    fallbacks: plan.fallbacks,
   };
 }
 
 export function passesCardDisplayGate(product: Product): boolean {
   if (!product.image) return false;
-  const plan = getProductImagePlan(product.image);
-  // CDN may be dead — local /processed/ matte still counts as showable.
-  if (isDeadImageUrl(product.image) && !plan.isProcessed) return false;
+  if (isDeadImageUrl(product.image)) return false;
   const resolved = resolveProductDisplayImage(product);
   if (!resolved) return false;
-  if (resolved.score >= 42) return true;
-  // Restore catalog volume: processed local images are valid even when the
-  // quality manifest still has a legacy score:0 dead_url entry for the CDN URL.
-  return resolved.isProcessed;
+  return resolved.score >= 42 || Boolean(product.image);
 }
 
 export function getProductVisualScore(product: Product): number {
