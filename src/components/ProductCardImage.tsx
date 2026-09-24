@@ -12,10 +12,10 @@ type ProductCardImageProps = {
   className?: string;
   priority?: boolean;
   productHref?: string;
+  /** Optional alternate originals only — never /processed/ cutouts. */
   preferredSrc?: string;
   fallbacks?: string[];
   fillClass?: string;
-  isProcessedCutout?: boolean;
 };
 
 export default function ProductCardImage({
@@ -33,9 +33,10 @@ export default function ProductCardImage({
 
   const candidates = useMemo(() => {
     if (!validation.valid) return [];
+    // Catalog original (`src`) wins; preferredSrc is only an alternate original.
     const ordered = [
-      preferredSrc,
       validation.normalized,
+      preferredSrc,
       ...fallbacks,
     ].filter((url): url is string => Boolean(url));
     const seen = new Set<string>();

@@ -47,9 +47,10 @@ function buildCandidateList(
   if (!validation.valid) return [];
 
   const plan = getProductImagePlan(validation.normalized);
+  // Catalog original always first — preferredSrc is only an alternate original.
   const ordered: (string | undefined)[] = [
-    preferredSrc,
     validation.normalized,
+    preferredSrc,
     plan.originalSrc,
     ...extraFallbacks,
     ...plan.fallbacks,
