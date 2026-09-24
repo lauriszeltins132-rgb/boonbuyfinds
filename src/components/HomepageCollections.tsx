@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SHARE_COLLECTION_SLUGS, SHARE_COLLECTIONS } from "@/lib/share-collections";
+import { SHARE_COLLECTIONS } from "@/lib/share-collections";
 
 const FEATURED_COLLECTION_SLUGS = [
   "best-nike-finds",
@@ -31,7 +31,7 @@ export default function HomepageCollections() {
             </p>
             <h2 className="mt-2 text-xl font-black sm:text-2xl">Curated find collections</h2>
             <p className="mt-1 text-sm text-muted">
-              Shareable SEO pages — brand picks, QC finds, budget hauls, and trending lists.
+              Brand picks, QC finds, budget hauls, and trending lists.
             </p>
           </div>
           <Link

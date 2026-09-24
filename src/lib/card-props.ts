@@ -3,7 +3,6 @@ import "server-only";
 import cardPropsData from "@/data/card-props.json";
 import { BADGE_LABELS } from "./product-badge-ui";
 import type { CardDisplayMap, CardDisplayProps } from "./card-display";
-import { getProductImagePlan } from "./processed-images";
 import type { ProductBadgeKind } from "./types";
 
 export type { CardDisplayMap, CardDisplayProps } from "./card-display";
@@ -41,33 +40,26 @@ function expandBadges(kinds?: ProductBadgeKind[]) {
   return kinds.map((kind) => ({ kind, label: BADGE_LABELS[kind] }));
 }
 
-function catalogSourceUrl(raw: RawCardEntry): string {
-  if (!raw.src.startsWith("/processed/")) return raw.src;
+function catalogOriginalUrl(raw: RawCardEntry): string {
+  // Prefer remote catalog original over local /processed/ cutouts.
+  if (/^https?:\/\//i.test(raw.src)) return raw.src;
   const remote = raw.fb?.find((url) => /^https?:\/\//i.test(url));
   return remote ?? raw.src;
 }
 
+/** Card display uses the original catalog image — never processed cutouts. */
 export function getCardDisplayProps(productId: string): CardDisplayProps | null {
   const raw = manifest.p[productId];
   if (!raw) return null;
 
-  const sourceUrl = catalogSourceUrl(raw);
-  const plan = /^https?:\/\//i.test(sourceUrl)
-    ? getProductImagePlan(sourceUrl)
-    : null;
-
-  const displaySrc = plan?.src ?? raw.src;
-  const fallbacks = [
-    ...new Set(
-      [...(plan?.fallbacks ?? []), ...(raw.fb ?? [])].filter(
-        (url) => url && url !== displaySrc
-      )
-    ),
-  ];
-  const isProcessedCutout =
-    Boolean(plan?.isProcessed) ||
-    raw.pm === 1 ||
-    displaySrc.startsWith("/processed/");
+  const displaySrc = catalogOriginalUrl(raw);
+  const fallbacks = (raw.fb ?? []).filter(
+    (url) =>
+      url &&
+      url !== displaySrc &&
+      !url.startsWith("/processed/") &&
+      !url.includes("/api/processed-image")
+  );
 
   const badges = expandBadges(raw.b);
   const badgesTrending = expandBadges(raw.bt ?? raw.b);
@@ -76,7 +68,7 @@ export function getCardDisplayProps(productId: string): CardDisplayProps | null 
     displaySrc,
     fallbacks,
     fillClass: FILL_CLASSES[raw.fc ?? "b"],
-    isProcessedCutout,
+    isProcessedCutout: false,
     badges,
     badgesTrending,
     freshness: raw.f ? FRESHNESS_LABELS[raw.f] : null,

@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  HOMEPAGE_SEO_INDEX_BLURB,
+  SEO_HUB_FOOTER_LINKS,
+} from "@/lib/boonbuy-seo-hub";
 import { PUBLIC_CATALOG_COUNT } from "@/lib/constants";
 
 const PARAGRAPHS = [
@@ -15,26 +19,55 @@ const PARAGRAPHS = [
   "If you are new to agent buying, start with our beginner guide — then browse Trending or Editor's Picks on the homepage. Experienced buyers can jump straight to brand hubs (Nike, Jordan, Moncler, Chrome Hearts, Stussy, Dior, Balenciaga, Louis Vuitton) or category pages for sneakers, hoodies, jackets, and bags. The goal is simple: less time hunting spreadsheets, more time picking finds you will actually ship.",
 ] as const;
 
+/**
+ * Long-form SEO explanation — server-rendered inside <details> so crawlers
+ * still see full text while mobile users are not pushed past products.
+ */
 export default function HomepageSeoContent() {
   const preview = PARAGRAPHS.slice(0, 2).join(" ");
 
   return (
-    <section className="px-4 py-8 sm:px-6">
-      <div className="mx-auto max-w-3xl">
-        <details className="group rounded-2xl border border-border bg-surface/25 p-6 sm:p-8">
+    <section className="px-4 py-6 sm:px-6">
+      <div className="mx-auto max-w-3xl space-y-4">
+        <div className="rounded-2xl border border-border/80 bg-surface/20 p-5 sm:p-6">
+          <h2 className="text-lg font-black sm:text-xl">What is BoonBuy Finds?</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            {HOMEPAGE_SEO_INDEX_BLURB}
+          </p>
+          <ul className="mt-3 grid gap-1.5 text-sm text-muted sm:grid-cols-2">
+            <li>Searchable BoonBuy product pages with filters</li>
+            <li>QC photo references when available</li>
+            <li>Spreadsheet alternative with shareable URLs</li>
+            <li>Coupon hub and Telegram updates</li>
+          </ul>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {SEO_HUB_FOOTER_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="inline-flex rounded-full border border-border px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent/40 hover:text-accent"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <details className="group rounded-2xl border border-border bg-surface/25 p-5 sm:p-6">
           <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            <h2 className="text-xl font-black sm:text-2xl">
+            <h2 className="text-lg font-black sm:text-xl">
               The Largest BoonBuy Finds Database
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted group-open:hidden">
+            <p className="mt-2 text-sm leading-relaxed text-muted group-open:hidden">
               {preview}
             </p>
-            <span className="mt-4 inline-block text-sm font-bold text-accent group-open:hidden">
+            <span className="mt-3 inline-block text-sm font-bold text-accent group-open:hidden">
               Read the full guide
             </span>
           </summary>
 
-          <div className="mt-6 space-y-4 border-t border-border pt-6">
+          <div className="mt-5 space-y-4 border-t border-border pt-5">
             {PARAGRAPHS.map((paragraph) => (
               <p key={paragraph.slice(0, 48)} className="text-sm leading-relaxed text-muted">
                 {paragraph}
@@ -43,16 +76,10 @@ export default function HomepageSeoContent() {
 
             <div className="flex flex-wrap gap-2 pt-2">
               <Link
-                href="/latest-finds"
+                href="/boonbuy"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Latest finds
-              </Link>
-              <Link
-                href="/boonbuy-spreadsheet"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Spreadsheet
+                What is BoonBuy?
               </Link>
               <Link
                 href="/boonbuy-coupons"
@@ -61,10 +88,16 @@ export default function HomepageSeoContent() {
                 Coupons
               </Link>
               <Link
-                href="/sneaker-finds"
+                href="/boonbuy-spreadsheet"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Sneaker finds
+                Spreadsheet
+              </Link>
+              <Link
+                href="/best-boonbuy-finds"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Best finds
               </Link>
               <Link
                 href="/guides"

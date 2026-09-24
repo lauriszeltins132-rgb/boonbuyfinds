@@ -3,8 +3,7 @@ import { Suspense } from "react";
 import HomepageCatalogSection from "@/components/HomepageCatalogSection";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
-import HomepageSeoLanding from "@/components/HomepageSeoLanding";
-import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
+import HomepageProductMosaic from "@/components/HomepageProductMosaic";
 import HomepageBrands from "@/components/HomepageBrands";
 import HomepageCategories from "@/components/HomepageCategories";
 import HomepageCollections from "@/components/HomepageCollections";
@@ -12,11 +11,13 @@ import HomepageConversion from "@/components/HomepageConversion";
 import HomepageFaq from "@/components/HomepageFaq";
 import HomepageInternalLinks from "@/components/HomepageInternalLinks";
 import HomepagePopularQuestions from "@/components/HomepagePopularQuestions";
+import HomepageQuickCtas from "@/components/HomepageQuickCtas";
 import HomepageSeoContent from "@/components/HomepageSeoContent";
 import RecentlyViewedRail from "@/components/RecentlyViewedRail";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import SchemaScript from "@/components/SchemaScript";
 import LazyMount from "@/components/LazyMount";
+import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
 import { getHomepageSurfaceRails } from "@/lib/homepage-rails";
 import { getCategories } from "@/lib/products";
@@ -34,7 +35,7 @@ export default async function HomePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const categories = getCategories();
-  // Fewer products per rail = fewer concurrent image requests on first paint.
+  // Fewer products per early rail = fewer concurrent image requests on first paint.
   const rails = getHomepageSurfaceRails(8);
   const mosaicSource = rails.editorsPicks.length
     ? rails.editorsPicks
@@ -53,14 +54,19 @@ export default async function HomePage({
         })}
       />
 
+      {/* 1. Hero / search */}
       <DiscoveryHero />
 
-      <HomepageSeoLanding products={mosaicSource} />
+      {/* 2. Compact primary CTAs */}
+      <HomepageQuickCtas />
+
+      {/* 3–5. Products first */}
+      <HomepageProductMosaic products={mosaicSource} />
 
       <ServerDiscoveryRail
         title="Trending Today"
         subtitle="Most viewed and clicked in the last 24 hours"
-        href="/most-popular-finds-now"
+        href="/trending"
         products={rails.popularToday}
         showTrendingScore
       />
@@ -85,6 +91,33 @@ export default async function HomePage({
         </LazyMount>
       ) : null}
 
+      {/* Browse catalog — still above long SEO walls */}
+      <section id="browse" className="scroll-mt-24 px-4 pt-2 sm:px-6">
+        <div className="mx-auto max-w-7xl pb-3">
+          <h2 className="text-xl font-black sm:text-2xl">Browse All Finds</h2>
+          <p className="mt-1 text-sm text-muted">
+            Search, filter, and explore the full catalog.
+          </p>
+        </div>
+      </section>
+
+      <Suspense
+        fallback={
+          <section className="px-4 pb-10 sm:px-6">
+            <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
+              <ProductGridSkeleton count={8} />
+            </div>
+          </section>
+        }
+      >
+        <HomepageCatalogSection searchParams={searchParams} />
+      </Suspense>
+
+      {/* 6–8. Compact discovery chips */}
+      <HomepageCategories categories={categories} />
+      <HomepageBrands hideSpotlight />
+      <HomepageCollections />
+
       {rails.bestUnder20.length > 0 ? (
         <LazyMount minHeight={380} rootMargin="320px 0px">
           <ServerDiscoveryRail
@@ -106,44 +139,20 @@ export default async function HomePage({
         />
       </LazyMount>
 
-      <HomepageCategories categories={categories} />
-      <HomepageCollections />
-      <HomepageBrands hideSpotlight />
-
       <RecentlyViewedRail />
 
+      {/* 9–12. SEO / conversion lower — still SSR */}
       <HomepageConversion />
       <HomepagePopularQuestions />
       <HomepageInternalLinks />
       <HomepageSeoContent />
       <HomepageFaq />
 
-      <section className="px-4 pb-2 sm:px-6">
+      <section className="px-4 pb-8 sm:px-6">
         <div className="mx-auto max-w-7xl text-center">
           <DataFreshness variant="block" label="Catalog synced" />
         </div>
       </section>
-
-      <section id="browse" className="scroll-mt-24 px-4 pt-4 sm:px-6">
-        <div className="mx-auto max-w-7xl pb-4">
-          <h2 className="text-2xl font-black">Browse All Finds</h2>
-          <p className="mt-1 text-sm text-muted">
-            Search, filter, and explore the full catalog.
-          </p>
-        </div>
-      </section>
-
-      <Suspense
-        fallback={
-          <section className="px-4 pb-16 sm:px-6">
-            <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
-              <ProductGridSkeleton count={8} />
-            </div>
-          </section>
-        }
-      >
-        <HomepageCatalogSection searchParams={searchParams} />
-      </Suspense>
     </>
   );
 }

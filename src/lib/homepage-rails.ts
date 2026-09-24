@@ -7,7 +7,7 @@ import {
   getLatestProducts,
   getTrendingProducts,
 } from "./products";
-import { passesCardDisplayGate, resolveProductDisplayImage } from "./product-image-presentation";
+import { passesCardDisplayGate } from "./product-image-presentation";
 import { hasExactPrice } from "./pricing";
 import {
   getProductQualityScore,
@@ -166,7 +166,7 @@ function pickPopularWeek(
   });
 }
 
-/** Newest sheet imports — prefer processed mattes like trending rails. */
+/** Newest sheet imports — quality + recency, no processed-matte preference. */
 function pickLatestFinds(
   limit: number,
   used: Set<string>,
@@ -180,12 +180,7 @@ function pickLatestFinds(
         !used.has(product.id) &&
         !usedListingKeys.has(getListingDedupeKey(product))
     )
-    .sort((a, b) => {
-      const aProcessed = resolveProductDisplayImage(a)?.isProcessed ? 1 : 0;
-      const bProcessed = resolveProductDisplayImage(b)?.isProcessed ? 1 : 0;
-      if (bProcessed !== aProcessed) return bProcessed - aProcessed;
-      return Number(b.id) - Number(a.id);
-    });
+    .sort((a, b) => Number(b.id) - Number(a.id));
 
   return dedupeListingRail(pool).slice(0, limit);
 }

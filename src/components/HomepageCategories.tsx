@@ -5,37 +5,59 @@ type HomepageCategoriesProps = {
   categories: CategoryInfo[];
 };
 
+const PRIORITY_SLUGS = [
+  "shoes",
+  "hoodies-and-pants",
+  "coats-and-jackets",
+  "bags",
+  "accessories",
+  "tshirts-and-shorts",
+];
+
 export default function HomepageCategories({ categories }: HomepageCategoriesProps) {
-  const items = categories.filter((category) => category.group === "category");
+  const bySlug = new Map(
+    categories
+      .filter((category) => category.group === "category")
+      .map((category) => [category.slug, category])
+  );
+
+  const items = PRIORITY_SLUGS.map((slug) => bySlug.get(slug)).filter(
+    (item): item is CategoryInfo => Boolean(item)
+  );
+
+  const fallback = categories
+    .filter((category) => category.group === "category")
+    .slice(0, 6);
+
+  const chips = items.length >= 4 ? items.slice(0, 6) : fallback;
 
   return (
-    <section className="px-4 py-6 sm:px-6">
+    <section className="px-4 py-4 sm:px-6">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-5 flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-xl font-black sm:text-2xl">Shop by Category</h2>
-            <p className="mt-1 text-sm text-muted">
-              Sneakers, streetwear, bags, and more — jump straight in.
-            </p>
-          </div>
-          <Link href="/categories" className="text-sm font-bold text-accent hover:underline">
-            All categories →
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {items.map((category) => (
-            <Link
-              key={category.slug}
-              href={category.href}
-              className="panel-shell rounded-2xl border border-border p-4 transition hover:border-accent/35"
-            >
-              <p className="font-bold text-foreground">{category.name}</p>
-              <p className="mt-1 text-xs text-muted">
-                {category.count.toLocaleString()} finds
-              </p>
-            </Link>
-          ))}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h2 className="text-sm font-black text-foreground sm:text-base">
+            Popular categories
+          </h2>
+          <ul className="flex flex-wrap items-center gap-1.5">
+            {chips.map((category) => (
+              <li key={category.slug}>
+                <Link
+                  href={category.href}
+                  className="inline-flex rounded-full border border-border bg-surface/40 px-3 py-1 text-xs font-bold text-foreground/85 hover:border-accent/40 hover:text-accent"
+                >
+                  {category.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/categories"
+                className="inline-flex rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-bold text-accent hover:bg-accent/15"
+              >
+                View all
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
