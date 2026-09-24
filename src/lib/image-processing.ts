@@ -48,8 +48,7 @@ function cacheResult(normalized: string, src: string): ProcessedImageEntry {
  * Background-removal / canvas cutouts caused posterized / B&W artifacts.
  */
 export async function processProductImage(
-  imageUrl: string,
-  _threshold = 245
+  imageUrl: string
 ): Promise<ProcessedImageEntry> {
   const { valid, normalized } = validateImageUrl(imageUrl);
   if (!valid) {
@@ -71,10 +70,7 @@ export async function processProductImage(
 }
 
 /** @deprecated Returns original URL unchanged. */
-export async function removeWhiteBackground(
-  imageUrl: string,
-  threshold = 245
-): Promise<string> {
-  const result = await processProductImage(imageUrl, threshold);
+export async function removeWhiteBackground(imageUrl: string): Promise<string> {
+  const result = await processProductImage(imageUrl);
   return result.src;
 }
