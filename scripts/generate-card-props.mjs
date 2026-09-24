@@ -16,29 +16,12 @@ const products = JSON.parse(
 const qualityManifest = JSON.parse(
   fs.readFileSync(path.join(dataDir, "image-quality-manifest.json"), "utf8")
 );
-const processedMap = JSON.parse(
-  fs.readFileSync(path.join(dataDir, "processed-image-map.json"), "utf8")
-);
-const damagedManifest = JSON.parse(
-  fs.readFileSync(path.join(dataDir, "damaged-processed-manifest.json"), "utf8")
-);
 const deadManifest = JSON.parse(
   fs.readFileSync(path.join(dataDir, "dead-image-urls.json"), "utf8")
 );
-const brightBgManifest = JSON.parse(
-  fs.readFileSync(path.join(dataDir, "bright-bg-manifest.json"), "utf8")
-);
 
-const damagedUrls = new Set(damagedManifest.urls ?? []);
-const damagedPaths = new Set(damagedManifest.paths ?? []);
 const deadUrls = new Set(deadManifest.urls ?? []);
-const processedUrls = processedMap.urls ?? {};
 const qualityUrls = qualityManifest.urls ?? {};
-const brightBgUrls = brightBgManifest.urls ?? {};
-
-const FORCE_ORIGINAL = new Set([
-  "https://i.postimg.cc/zzMm64y4/1.png",
-]);
 
 function hasExactPrice(price) {
   return typeof price === "number" && Number.isFinite(price) && price > 0;
@@ -53,44 +36,12 @@ function getImageQualityScore(url) {
   return qualityUrls[url]?.score ?? 62;
 }
 
-function isProcessedCutoutBlocked(sourceUrl, processedPath, details) {
-  if (FORCE_ORIGINAL.has(sourceUrl)) return true;
-  if (damagedUrls.has(sourceUrl)) return true;
-  if (processedPath && damagedPaths.has(processedPath)) return true;
-  if (details?.issues?.includes("damaged_cutout")) return true;
-  return false;
-}
-
-function isNaturalProductPhoto(sourceUrl, details) {
-  if (!details) return false;
-  if (details.issues?.includes("dead_url") && (details.score ?? 0) <= 0) {
-    return false;
-  }
-  if (details.isScreenshotStyle) return true;
-  if (details.isTransparent && (details.transparencyRatio ?? 0) > 0.15) {
-    return true;
-  }
-  if (brightBgUrls[sourceUrl] === "none") {
-    const whiteBlank = details.whiteBlankRatio ?? 0;
-    const border = details.borderBrightRatio ?? 0;
-    if (whiteBlank < 0.03 && border < 0.05) return true;
-  }
-  return false;
-}
-
+/**
+ * Always emit the catalog original. Processed cutouts (/processed/) change
+ * appearance (posterize / harsh matte) and must never be primary or fallback.
+ */
 function resolveImage(sourceUrl) {
-  const processedPath = processedUrls[sourceUrl];
   const details = getQualityDetails(sourceUrl);
-  const cutoutUnsafe = isProcessedCutoutBlocked(
-    sourceUrl,
-    processedPath,
-    details
-  );
-  const useProcessed =
-    processedPath &&
-    !cutoutUnsafe &&
-    !isNaturalProductPhoto(sourceUrl, details);
-
   const fill = details?.contentFillRatio;
   let fc = "b";
   if (fill != null) {
@@ -98,20 +49,11 @@ function resolveImage(sourceUrl) {
     else if (fill >= 0.52) fc = "d";
   }
 
-  let displaySrc = sourceUrl;
-  const fallbacks = [];
-  if (useProcessed) {
-    displaySrc = processedPath;
-    fallbacks.push(sourceUrl);
-  } else if (processedPath && !cutoutUnsafe) {
-    fallbacks.push(processedPath);
-  }
-
   return {
-    src: displaySrc,
-    fb: fallbacks,
+    src: sourceUrl,
+    fb: [],
     fc,
-    pm: displaySrc.startsWith("/processed/") ? 1 : 0,
+    pm: 0,
   };
 }
 
@@ -244,12 +186,10 @@ function main() {
   const ctx = { editorsPick, popular, recent, trendingIndex };
   const cardProps = {};
   let withQc = 0;
-  let processedCount = 0;
 
   for (const product of catalog) {
     if (product.qc_link) withQc += 1;
     const image = resolveImage(product.image);
-    if (image.pm === 1) processedCount += 1;
     const entry = { ...image };
 
     const b = buildBadges(product, ctx, 74);
@@ -318,7 +258,7 @@ function main() {
   fs.writeFileSync(navPath, JSON.stringify(nav));
 
   console.log(
-    `Card props → ${Object.keys(cardProps).length} products, ${processedCount} processed cutouts, QC count → ${withQc}`
+    `Card props → ${Object.keys(cardProps).length} products (originals only), QC count → ${withQc}`
   );
 }
 

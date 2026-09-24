@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  HOMEPAGE_SEO_INDEX_BLURB,
+  SEO_HUB_FOOTER_LINKS,
+} from "@/lib/boonbuy-seo-hub";
 import { PUBLIC_CATALOG_COUNT } from "@/lib/constants";
 
 const PARAGRAPHS = [
@@ -8,33 +12,62 @@ const PARAGRAPHS = [
   "QC photos are the reason many buyers use agents in the first place. After you order, the warehouse photographs your item so you can approve it or request an exchange before international shipping. BoonBuy Finds highlights listings with QC references — links to real warehouse photos from past orders — so you know what a batch looked like for other buyers. That does not replace your own QC set, but it helps you avoid obvious misses.",
   "Most finds on BoonBuy Finds come from Weidian and Taobao sellers. Weidian is popular for sneakers, streetwear, and independent brands; Taobao covers a wider mix of fashion and accessories. BoonBuy Finds does not host the shops — it indexes affiliate and community spreadsheet links and opens verified BoonBuy product URLs for checkout.",
   "This site is BoonBuy-only. Every buy button opens a verified BoonBuy listing so you get shipping discounts, QC workflows, and order tracking in one place — no multi-agent picker.",
-  "Daily updates matter because spreadsheet catalogs move quickly. Sellers change prices, batches sell out, and new QC threads appear on Reddit and Discord. BoonBuy Finds syncs with community sheets and engagement signals so Trending Today, Latest Finds, and collection pages reflect what people are actually clicking — not a static snapshot from months ago.",
+  "Daily updates matter because spreadsheet catalogs move quickly. Sellers change prices, batches sell out, and new QC threads appear on Reddit and Telegram. BoonBuy Finds syncs with community sheets and engagement signals so Trending Today, Latest Finds, and collection pages reflect what people are actually clicking — not a static snapshot from months ago.",
   "Categories make browsing intuitive when you do not have a specific brand in mind. Sneakers and shoes cover Dunks, Jordans, New Balance, and more. Hoodies and jackets include Stussy, Corteiz, Moncler, and Arc'teryx-style outerwear. Bags and accessories round out hauls with crossbody, belt, and jewelry picks. Electronics and niche categories are indexed too when they appear in source sheets.",
   "Verified links protect you from broken or hijacked URLs — a common spreadsheet problem when rows get copied without checking. Every buy button on BoonBuy Finds is generated from the stored marketplace link, not an opaque redirect chain. Registering a free BoonBuy account also unlocks shipping coupons and order tracking, which is why we surface a 45% off shipping offer without aggressive popups.",
-  "Collections are curated shortcuts for sharing. Pages like Best Nike BoonBuy Finds, Best Jordan BoonBuy Finds, Best QC Approved Finds, and Trending This Week are designed for Discord pins, TikTok bios, and haul posts. Each collection has its own intro, product grid, and internal links to related brands so search engines and humans can navigate deeper.",
+  "Collections are curated shortcuts for sharing. Pages like Best Nike BoonBuy Finds, Best Jordan BoonBuy Finds, Best QC Approved Finds, and Trending This Week are designed for Telegram pins, TikTok bios, and haul posts. Each collection has its own intro, product grid, and internal links to related brands so search engines and humans can navigate deeper.",
   "If you are new to agent buying, start with our beginner guide — then browse Trending or Editor's Picks on the homepage. Experienced buyers can jump straight to brand hubs (Nike, Jordan, Moncler, Chrome Hearts, Stussy, Dior, Balenciaga, Louis Vuitton) or category pages for sneakers, hoodies, jackets, and bags. The goal is simple: less time hunting spreadsheets, more time picking finds you will actually ship.",
 ] as const;
 
+/**
+ * Long-form SEO explanation — server-rendered inside <details> so crawlers
+ * still see full text while mobile users are not pushed past products.
+ */
 export default function HomepageSeoContent() {
   const preview = PARAGRAPHS.slice(0, 2).join(" ");
 
   return (
-    <section className="px-4 py-8 sm:px-6">
-      <div className="mx-auto max-w-3xl">
-        <details className="group rounded-2xl border border-border bg-surface/25 p-6 sm:p-8">
+    <section className="px-4 py-6 sm:px-6">
+      <div className="mx-auto max-w-3xl space-y-4">
+        <div className="rounded-2xl border border-border/80 bg-surface/20 p-5 sm:p-6">
+          <h2 className="text-lg font-black sm:text-xl">What is BoonBuy Finds?</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            {HOMEPAGE_SEO_INDEX_BLURB}
+          </p>
+          <ul className="mt-3 grid gap-1.5 text-sm text-muted sm:grid-cols-2">
+            <li>Searchable BoonBuy product pages with filters</li>
+            <li>QC photo references when available</li>
+            <li>Spreadsheet alternative with shareable URLs</li>
+            <li>Coupon hub and Telegram updates</li>
+          </ul>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {SEO_HUB_FOOTER_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="inline-flex rounded-full border border-border px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent/40 hover:text-accent"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <details className="group rounded-2xl border border-border bg-surface/25 p-5 sm:p-6">
           <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            <h2 className="text-xl font-black sm:text-2xl">
+            <h2 className="text-lg font-black sm:text-xl">
               The Largest BoonBuy Finds Database
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted group-open:hidden">
+            <p className="mt-2 text-sm leading-relaxed text-muted group-open:hidden">
               {preview}
             </p>
-            <span className="mt-4 inline-block text-sm font-bold text-accent group-open:hidden">
+            <span className="mt-3 inline-block text-sm font-bold text-accent group-open:hidden">
               Read the full guide
             </span>
           </summary>
 
-          <div className="mt-6 space-y-4 border-t border-border pt-6">
+          <div className="mt-5 space-y-4 border-t border-border pt-5">
             {PARAGRAPHS.map((paragraph) => (
               <p key={paragraph.slice(0, 48)} className="text-sm leading-relaxed text-muted">
                 {paragraph}
@@ -43,16 +76,10 @@ export default function HomepageSeoContent() {
 
             <div className="flex flex-wrap gap-2 pt-2">
               <Link
-                href="/latest-finds"
+                href="/boonbuy"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Latest finds
-              </Link>
-              <Link
-                href="/boonbuy-spreadsheet"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Spreadsheet
+                What is BoonBuy?
               </Link>
               <Link
                 href="/boonbuy-coupons"
@@ -61,10 +88,16 @@ export default function HomepageSeoContent() {
                 Coupons
               </Link>
               <Link
-                href="/sneaker-finds"
+                href="/boonbuy-spreadsheet"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Sneaker finds
+                Spreadsheet
+              </Link>
+              <Link
+                href="/best-boonbuy-finds"
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+              >
+                Best finds
               </Link>
               <Link
                 href="/guides"
@@ -73,10 +106,10 @@ export default function HomepageSeoContent() {
                 Guides
               </Link>
               <Link
-                href="/boonbuy-discord"
+                href="/boonbuy-telegram"
                 className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
               >
-                Discord
+                Telegram
               </Link>
             </div>
           </div>

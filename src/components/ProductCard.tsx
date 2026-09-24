@@ -100,10 +100,8 @@ export default function ProductCard({
         >
           <ProductCardImage
             src={product.image}
-            preferredSrc={cardProps?.displaySrc}
             fallbacks={cardProps?.fallbacks}
             fillClass={cardProps?.fillClass}
-            isProcessedCutout={cardProps?.isProcessedCutout}
             alt={imageAlt}
             title={imageAlt}
             productHref={productHref}

@@ -2,11 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackBrokenImage } from "@/lib/analytics-events";
-import {
-  getImageFillClass,
-  shouldEnhanceImage,
-} from "@/lib/image-quality";
-import { getProductImagePlan, getProcessedApiSrc } from "@/lib/processed-images";
+import { getImageFillClass } from "@/lib/image-quality";
+import { getProductImagePlan } from "@/lib/processed-images";
 import {
   hasPlausibleImageDimensions,
   validateImageUrl,
@@ -44,30 +41,29 @@ type ProductImageProps = {
 function buildCandidateList(
   src: string,
   preferredSrc: string | undefined,
-  extraFallbacks: string[] = [],
-  variant: ProductImageVariant = "card"
+  extraFallbacks: string[] = []
 ): string[] {
   const validation = validateImageUrl(src);
   if (!validation.valid) return [];
 
   const plan = getProductImagePlan(validation.normalized);
+  // Catalog original always first — preferredSrc is only an alternate original.
   const ordered: (string | undefined)[] = [
-    preferredSrc,
     validation.normalized,
+    preferredSrc,
     plan.originalSrc,
     ...extraFallbacks,
     ...plan.fallbacks,
   ];
 
-  if (variant !== "card") {
-    if (plan.isProcessed) ordered.push(plan.src);
-    ordered.push(getProcessedApiSrc(validation.normalized));
-  }
-
   const seen = new Set<string>();
   const unique: string[] = [];
   for (const url of ordered) {
     if (!url || seen.has(url)) continue;
+    // Never surface background-removal / processed cutouts.
+    if (url.startsWith("/processed/") || url.includes("/api/processed-image")) {
+      continue;
+    }
     seen.add(url);
     unique.push(url);
   }
@@ -84,15 +80,12 @@ export default function ProductImage({
   preferredSrc,
   fallbacks = [],
   fillClass,
-  knockoutWhite = false,
-  enhance,
-  darkBoost = false,
 }: ProductImageProps) {
   const validation = useMemo(() => validateImageUrl(src), [src]);
 
   const candidates = useMemo(
-    () => buildCandidateList(src, preferredSrc, fallbacks, variant),
-    [src, preferredSrc, fallbacks, variant]
+    () => buildCandidateList(src, preferredSrc, fallbacks),
+    [src, preferredSrc, fallbacks]
   );
   const candidateKey = candidates.join("|");
 
@@ -101,8 +94,6 @@ export default function ProductImage({
     (validation.valid
       ? getImageFillClass(validation.normalized)
       : "product-float-asset--fill-balanced");
-  const resolvedEnhance =
-    enhance ?? (validation.valid ? shouldEnhanceImage(validation.normalized) : false);
 
   const [srcIndex, setSrcIndex] = useState(0);
   const [failed, setFailed] = useState(candidates.length === 0);
@@ -200,17 +191,9 @@ export default function ProductImage({
     );
   }
 
-  const isProcessedSrc =
-    displaySrc.startsWith("/processed/") ||
-    displaySrc.startsWith("/api/processed-image");
-
   const assetClass = [
     "product-float-asset",
     resolvedFillClass,
-    variant !== "card" && resolvedEnhance ? "product-float-asset--enhanced" : "",
-    variant !== "card" && darkBoost ? "product-float-asset--dark-boost" : "",
-    knockoutWhite ? "product-float-asset--knockout-white" : "",
-    variant !== "card" && isProcessedSrc ? "product-float-asset--processed-matte" : "",
     loaded ? "product-float-asset--ready" : "product-float-asset--loading",
   ]
     .filter(Boolean)

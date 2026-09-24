@@ -12,10 +12,10 @@ type ProductCardImageProps = {
   className?: string;
   priority?: boolean;
   productHref?: string;
+  /** Optional alternate originals only — never /processed/ cutouts. */
   preferredSrc?: string;
   fallbacks?: string[];
   fillClass?: string;
-  isProcessedCutout?: boolean;
 };
 
 export default function ProductCardImage({
@@ -28,21 +28,24 @@ export default function ProductCardImage({
   preferredSrc,
   fallbacks = [],
   fillClass = "product-float-asset--fill-balanced",
-  isProcessedCutout = false,
 }: ProductCardImageProps) {
   const validation = useMemo(() => validateImageUrl(src), [src]);
 
   const candidates = useMemo(() => {
     if (!validation.valid) return [];
+    // Catalog original (`src`) wins; preferredSrc is only an alternate original.
     const ordered = [
-      preferredSrc,
       validation.normalized,
+      preferredSrc,
       ...fallbacks,
     ].filter((url): url is string => Boolean(url));
     const seen = new Set<string>();
     const unique: string[] = [];
     for (const url of ordered) {
       if (seen.has(url)) continue;
+      if (url.startsWith("/processed/") || url.includes("/api/processed-image")) {
+        continue;
+      }
       seen.add(url);
       unique.push(url);
     }
@@ -57,8 +60,6 @@ export default function ProductCardImage({
   const loggedRef = useRef(false);
 
   const displaySrc = candidates[srcIndex] ?? "";
-  const showingProcessed =
-    isProcessedCutout || displaySrc.startsWith("/processed/");
 
   useEffect(() => {
     setSrcIndex(0);
@@ -139,7 +140,6 @@ export default function ProductCardImage({
   const assetClass = [
     "product-float-asset",
     fillClass,
-    showingProcessed ? "product-float-asset--processed-cutout" : "",
     loaded ? "product-float-asset--ready" : "product-float-asset--loading",
   ]
     .filter(Boolean)

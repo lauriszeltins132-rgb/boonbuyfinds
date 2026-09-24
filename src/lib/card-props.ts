@@ -45,20 +45,35 @@ function expandBadges(kinds?: ProductBadgeKind[]) {
   return kinds.map((kind) => ({ kind, label: BADGE_LABELS[kind] }));
 }
 
+function catalogOriginalUrl(raw: RawCardEntry): string {
+  // Prefer remote catalog original over local /processed/ cutouts.
+  if (/^https?:\/\//i.test(raw.src)) return raw.src;
+  const remote = raw.fb?.find((url) => /^https?:\/\//i.test(url));
+  return remote ?? raw.src;
+}
+
+/** Card display uses the original catalog image — never processed cutouts. */
 export function getCardDisplayProps(productId: string): CardDisplayProps | null {
   const raw = manifest.p[productId];
   if (!raw) return null;
 
+  const displaySrc = catalogOriginalUrl(raw);
+  const fallbacks = (raw.fb ?? []).filter(
+    (url) =>
+      url &&
+      url !== displaySrc &&
+      !url.startsWith("/processed/") &&
+      !url.includes("/api/processed-image")
+  );
+
   const badges = expandBadges(raw.b);
   const badgesTrending = expandBadges(raw.bt ?? raw.b);
-  const isProcessedCutout =
-    raw.pm === 1 || raw.src.startsWith("/processed/");
 
   return {
-    displaySrc: raw.src,
-    fallbacks: raw.fb ?? [],
+    displaySrc,
+    fallbacks,
     fillClass: FILL_CLASSES[raw.fc ?? "b"],
-    isProcessedCutout,
+    isProcessedCutout: false,
     badges,
     badgesTrending,
     freshness: raw.f ? FRESHNESS_LABELS[raw.f] : null,

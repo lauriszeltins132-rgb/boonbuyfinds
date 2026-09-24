@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroLandingCtas from "@/components/HeroLandingCtas";
 import HeroSearch from "@/components/HeroSearch";
-import AiHeroEntry from "@/components/ai/AiHeroEntry";
 import LiveSiteSignals from "@/components/LiveSiteSignals";
 import TrustStrip from "@/components/TrustStrip";
 import { HERO_ENTITY_LINE } from "@/lib/brand-entity";
@@ -28,7 +27,7 @@ export default function DiscoveryHero() {
   );
 
   return (
-    <section className="border-b border-border/50 px-4 pb-7 pt-5 sm:px-6 sm:pb-10 sm:pt-10">
+    <section className="border-b border-border/50 px-4 pb-5 pt-5 sm:px-6 sm:pb-8 sm:pt-10">
       <div className="mx-auto max-w-3xl text-center">
         <Link href="/" className="inline-flex items-center justify-center gap-3">
           <Image
@@ -42,57 +41,33 @@ export default function DiscoveryHero() {
           <span className="sr-only">{SITE_NAME}</span>
         </Link>
 
-        <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-accent">
+        <p className="mt-3 text-[11px] font-bold uppercase tracking-[0.2em] text-accent sm:mt-4">
           Verified BoonBuy finds · QC · {BOONBUY_SHIPPING_DISCOUNT_PERCENT}%
           shipping coupon
         </p>
 
-        <h1 className="mt-3 text-[1.35rem] font-black leading-[1.12] tracking-tight sm:text-[1.85rem] lg:text-[2.35rem]">
+        <h1 className="mt-2 text-[1.35rem] font-black leading-[1.12] tracking-tight sm:mt-3 sm:text-[1.85rem] lg:text-[2.35rem]">
           {HERO_LANDING_TITLE}
         </h1>
 
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-muted sm:mt-3 sm:text-base">
           {HERO_LANDING_SUBTITLE}
         </p>
 
-        <p className="mx-auto mt-2 max-w-2xl text-xs leading-relaxed text-muted/80 sm:text-sm">
+        <p className="mx-auto mt-1.5 max-w-2xl text-xs leading-relaxed text-muted/80 sm:mt-2 sm:text-sm">
           {HERO_ENTITY_LINE}
         </p>
 
         <HeroLandingCtas />
 
-        <nav
-          aria-label="Popular BoonBuy paths"
-          className="mx-auto mt-4 flex max-w-2xl flex-wrap items-center justify-center gap-2"
-        >
-          {[
-            { href: "/boonbuy", label: "What is BoonBuy?" },
-            { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
-            { href: "/boonbuy-qc", label: "QC Guides" },
-            { href: "/latest-finds", label: "Latest Finds" },
-            { href: "/best-boonbuy-finds", label: "Best Finds" },
-            { href: "/boonbuy-deals", label: "Deals" },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-full border border-border/80 bg-surface/30 px-3 py-1 text-[11px] font-bold text-foreground/80 hover:border-accent/40 hover:text-accent"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <LiveSiteSignals />
-
-        <div className="mx-auto mt-6 max-w-[700px] sm:mt-7">
+        <div className="mx-auto mt-5 max-w-[700px] sm:mt-6">
           <HeroSearch searchIndex={searchIndex} />
         </div>
 
-        <AiHeroEntry />
+        <LiveSiteSignals />
       </div>
 
-      <div className="mx-auto mt-5 max-w-7xl sm:mt-6">
+      <div className="mx-auto mt-4 max-w-7xl sm:mt-5">
         <TrustStrip compact />
       </div>
     </section>

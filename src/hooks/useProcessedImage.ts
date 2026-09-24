@@ -2,8 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { BrightBgTreatment } from "@/lib/bright-bg";
-import { getCatalogBrightBgTreatment } from "@/lib/bright-bg";
-import { probeImageLoad, processProductImage } from "@/lib/image-processing";
+import { probeImageLoad } from "@/lib/image-processing";
 import { validateImageUrl } from "@/lib/image-url";
 
 export type ProcessedImageState = "idle" | "loading" | "ready" | "failed";
@@ -11,8 +10,6 @@ export type ProcessedImageState = "idle" | "loading" | "ready" | "failed";
 export function useProcessedImage(rawSrc: string) {
   const validation = useMemo(() => validateImageUrl(rawSrc), [rawSrc]);
   const [displaySrc, setDisplaySrc] = useState("");
-  const [processedToPng, setProcessedToPng] = useState(false);
-  const [treatment, setTreatment] = useState<BrightBgTreatment>("none");
   const [state, setState] = useState<ProcessedImageState>(() =>
     validation.valid ? "loading" : "failed"
   );
@@ -20,45 +17,25 @@ export function useProcessedImage(rawSrc: string) {
   useEffect(() => {
     if (!validation.valid) {
       setDisplaySrc("");
-      setProcessedToPng(false);
-      setTreatment("none");
       setState("failed");
       return;
     }
 
     let cancelled = false;
     setDisplaySrc("");
-    setProcessedToPng(false);
-    setTreatment("none");
     setState("loading");
 
-    processProductImage(validation.normalized)
-      .then((processed) => {
-        if (cancelled) return;
-        setDisplaySrc(processed.src);
-        setProcessedToPng(processed.processedToPng);
-        setTreatment(processed.treatment);
+    // Faithful original only — no canvas cutouts or bright-bg treatments.
+    void probeImageLoad(validation.normalized).then((ok) => {
+      if (cancelled) return;
+      if (ok) {
+        setDisplaySrc(validation.normalized);
         setState("ready");
-      })
-      .catch(() => {
-        void probeImageLoad(validation.normalized).then((ok) => {
-          if (cancelled) return;
-          if (ok) {
-            const catalogTreatment = getCatalogBrightBgTreatment(
-              validation.normalized
-            );
-            setDisplaySrc(validation.normalized);
-            setProcessedToPng(false);
-            setTreatment(catalogTreatment);
-            setState("ready");
-            return;
-          }
-          setDisplaySrc("");
-          setProcessedToPng(false);
-          setTreatment("none");
-          setState("failed");
-        });
-      });
+        return;
+      }
+      setDisplaySrc("");
+      setState("failed");
+    });
 
     return () => {
       cancelled = true;
@@ -69,10 +46,10 @@ export function useProcessedImage(rawSrc: string) {
     displaySrc,
     state,
     normalizedSrc: validation.normalized,
-    processedToPng,
-    treatment,
-    needsDarkMatte: state === "ready" && treatment === "matte",
-    needsVignette: state === "ready" && treatment === "vignette",
+    processedToPng: false,
+    treatment: "none" as BrightBgTreatment,
+    needsDarkMatte: false,
+    needsVignette: false,
     failed: state === "failed",
     loading: state === "loading",
     ready: state === "ready",
