@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { CATEGORY_ALIAS_SLUGS } from "@/lib/category-aliases";
+import { CATEGORY_ALIAS_SLUGS, resolveCategorySlug } from "@/lib/category-aliases";
 import { COLLECTION_SLUGS, COLLECTIONS } from "@/lib/collections";
-import { getBrandsFromProducts } from "@/lib/brands";
-import { getCategories, getAllProducts } from "@/lib/products";
+import { getIndexableBrands } from "@/lib/brand-indexability";
+import { getIndexableCategories } from "@/lib/seo-directories";
 import { getAllProductSlugs } from "@/lib/slugs";
 import { GUIDE_SLUGS, GUIDES_HUB, GUIDE_PAGES } from "@/lib/guides";
 import { SEO_LIST_SLUGS, SEO_LIST_ROUTES } from "@/lib/seo-list-routes";
@@ -51,8 +51,8 @@ function entry(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const categories = getCategories();
-  const brands = getBrandsFromProducts(getAllProducts());
+  const categories = getIndexableCategories();
+  const brands = getIndexableBrands();
   const productSlugs = getAllProductSlugs();
   const synced = getDatasetSyncedAt();
 
@@ -210,15 +210,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const category of categories) {
-    if (category.group === "category") {
-      routes.push(entry(`/categories/${category.slug}`, "weekly", 0.8, synced));
-    }
+    routes.push(entry(`/categories/${category.slug}`, "weekly", 0.8, synced));
   }
 
+  // Useful category aliases with enough inventory (hoodies, jackets, bags, …).
   for (const slug of CATEGORY_ALIAS_SLUGS) {
+    const resolved = resolveCategorySlug(slug);
+    if (!resolved || resolved.count < 10) continue;
     routes.push(entry(`/categories/${slug}`, "weekly", 0.82, synced));
   }
 
+  // Indexable brands only — never vanity hosts, short aliases, or thin inventory.
   for (const brand of brands) {
     routes.push(entry(`/brands/${brand.slug}`, "weekly", 0.75, synced));
   }

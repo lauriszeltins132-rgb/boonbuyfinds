@@ -12,8 +12,12 @@ import { getRelatedGuidesForCategory } from "@/lib/related-guides";
 import CategorySeoBlock from "@/components/seo/CategorySeoBlock";
 import CollectionAiRefine from "@/components/ai/CollectionAiRefine";
 import SchemaScript from "@/components/SchemaScript";
-import { buildCollectionPageSchema } from "@/lib/schema";
+import {
+  buildBreadcrumbSchema,
+  buildCollectionPageSchema,
+} from "@/lib/schema";
 import { getBrandsFromProducts } from "@/lib/brands";
+import { isBrandIndexable, isCategoryIndexable } from "@/lib/brand-indexability";
 import {
   CATEGORY_ALIAS_SLUGS,
   getResolvedCategorySeo,
@@ -43,11 +47,17 @@ export async function generateMetadata({
   if (!resolved) return {};
 
   const copy = getResolvedCategorySeo(resolved);
-  return buildPageMetadata({
-    title: copy.title,
-    description: copy.description,
-    path: `/categories/${slug}`,
-  });
+  const indexable = isCategoryIndexable(resolved.count);
+  return {
+    ...buildPageMetadata({
+      title: copy.title,
+      description: copy.description,
+      path: `/categories/${slug}`,
+    }),
+    robots: indexable
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
+  };
 }
 
 export default async function CategoryLandingPage({ params }: CategoryPageProps) {
@@ -59,15 +69,26 @@ export default async function CategoryLandingPage({ params }: CategoryPageProps)
   }
 
   const copy = getResolvedCategorySeo(resolved);
-  const brands = getBrandsFromProducts(resolved.products);
+  const brands = getBrandsFromProducts(resolved.products).filter(isBrandIndexable);
   const allCategories = getCategories();
   const relatedCategories = allCategories
-    .filter((c) => c.slug !== resolved.slug && c.group === "category")
+    .filter(
+      (c) =>
+        c.slug !== resolved.slug &&
+        c.group === "category" &&
+        isCategoryIndexable(c.count)
+    )
     .slice(0, 6);
   const pagePath = `/categories/${slug}`;
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Categories", href: "/categories" },
+    { label: resolved.name },
+  ];
 
   return (
     <>
+      <SchemaScript data={buildBreadcrumbSchema(breadcrumbs, pagePath)} />
       <SchemaScript
         data={buildCollectionPageSchema({
           name: copy.title,
@@ -76,14 +97,7 @@ export default async function CategoryLandingPage({ params }: CategoryPageProps)
           numberOfItems: resolved.count,
         })}
       />
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Categories", href: "/categories" },
-          { label: resolved.name },
-        ]}
-        currentPath={pagePath}
-      />
+      <Breadcrumbs items={breadcrumbs} currentPath={pagePath} />
 
       <section className="px-4 pb-6 pt-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
@@ -123,8 +137,8 @@ export default async function CategoryLandingPage({ params }: CategoryPageProps)
         </div>
         <ServerCatalogPanel
           products={resolved.products}
-          categories={allCategories}
-          brands={brands}
+          categories={allCategories.filter((c) => c.group === "category")}
+          brands={brands.slice(0, 24)}
           basePath={resolved.href}
         />
       </Suspense>

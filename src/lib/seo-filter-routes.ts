@@ -3,7 +3,16 @@
  * Used by middleware + /browse metadata so Google does not index param URLs.
  */
 
+import {
+  BRAND_SLUG_ALIASES,
+  resolveCanonicalBrandSlug,
+  slugifyBrandName,
+} from "./brand-normalization";
+import vanityRegistry from "@/data/vanity-registry.json";
+
 const KNOWN_BRAND_SLUGS = new Set([
+  ...Object.keys(vanityRegistry.brands ?? {}),
+  ...Object.keys(BRAND_SLUG_ALIASES),
   "chrome-hearts",
   "balenciaga",
   "ralph-lauren",
@@ -124,12 +133,7 @@ const EXTRA_FILTER_KEYS = [
 ] as const;
 
 export function slugifyBrandQuery(raw: string): string {
-  return raw
-    .trim()
-    .toLowerCase()
-    .replace(/['']/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  return slugifyBrandName(raw);
 }
 
 function paramValue(
@@ -144,19 +148,27 @@ function paramValue(
   return value ?? null;
 }
 
+function resolveKnownBrandSlug(raw: string): string | null {
+  const slug = resolveCanonicalBrandSlug(slugifyBrandQuery(raw));
+  if (KNOWN_BRAND_SLUGS.has(slug) || KNOWN_BRAND_SLUGS.has(raw.trim().toLowerCase())) {
+    return slug;
+  }
+  return null;
+}
+
 /** Map brand= or exact q= to /brands/{slug} when safe. */
 export function resolveBrandDestination(
   brand: string | null,
   q: string | null
 ): string | null {
-  const brandSlug = brand ? slugifyBrandQuery(brand) : "";
-  const qSlug = q ? slugifyBrandQuery(q) : "";
+  const brandSlug = brand ? resolveKnownBrandSlug(brand) : null;
+  const qSlug = q ? resolveKnownBrandSlug(q) : null;
 
-  if (brandSlug && KNOWN_BRAND_SLUGS.has(brandSlug)) {
+  if (brandSlug) {
     if (!qSlug || qSlug === brandSlug) return `/brands/${brandSlug}`;
   }
 
-  if (!brandSlug && qSlug && KNOWN_BRAND_SLUGS.has(qSlug)) {
+  if (!brandSlug && qSlug) {
     return `/brands/${qSlug}`;
   }
 
