@@ -259,8 +259,8 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
       },
     ]),
     relatedLinks: [
-      { href: "/boonbuy-referral-code", label: "Referral code" },
-      { href: "/boonbuy-discount-code", label: "Discount code" },
+      { href: "/boonbuy-coupons", label: "Referral / invite code" },
+      { href: "/boonbuy-coupons", label: "Discount code" },
       { href: "/boonbuy-questions", label: "BoonBuy questions" },
       { href: "/boonbuy-warehouse", label: "Warehouse" },
       { href: "/boonbuy-returns", label: "Returns" },
@@ -305,7 +305,7 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
         ],
         links: [
           { href: BOONBUY_COUPON_URL, label: "Claim invite signup" },
-          { href: "/boonbuy-invite-code", label: "Invite code page" },
+          { href: "/boonbuy-coupons", label: "Invite / coupon hub" },
           { href: "/boonbuy-coupons", label: "All BoonBuy coupons" },
         ],
       },
@@ -313,12 +313,12 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
         heading: "Referral vs coupon vs promo code",
         paragraphs: [
           "People search these phrases interchangeably. On BoonBuy, the practical path is usually an invite registration that unlocks shipping savings — not a checkout coupon typed on every order.",
-          "Use our coupon cluster pages if you searched for coupon code, promo code, voucher, or deals — they all point to the same verified claim flow.",
+          "Use the canonical /boonbuy-coupons hub if you searched for coupon code, promo code, voucher, discount code, or deals — they all point to the same verified claim flow.",
         ],
         links: [
-          { href: "/boonbuy-coupon-code", label: "Coupon code" },
-          { href: "/boonbuy-promo-code", label: "Promo code" },
-          { href: "/best-boonbuy-coupons", label: "Best coupons" },
+          { href: "/boonbuy-coupons", label: "Coupon code hub" },
+          { href: "/boonbuy-coupons", label: "Promo codes" },
+          { href: "/boonbuy-coupons", label: "Best coupons" },
         ],
       },
       {
@@ -351,9 +351,9 @@ export const AUTHORITY_GUIDE_PAGES: Record<string, SeoArchitecturePage> = {
       },
     ],
     relatedLinks: [
-      { href: "/boonbuy-invite", label: "BoonBuy invite" },
-      { href: "/boonbuy-discount-code", label: "Discount code" },
-      { href: "/boonbuy-deals", label: "BoonBuy deals" },
+      { href: "/boonbuy-coupons", label: "BoonBuy coupons hub" },
+      { href: "/boonbuy-coupons", label: "Discount / promo codes" },
+      { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       { href: "/editorial-policy", label: "Editorial policy" },
     ],
     relatedArticleSlugs: [

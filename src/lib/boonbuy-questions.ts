@@ -159,14 +159,14 @@ export const BOONBUY_QUESTION_GROUPS: QuestionGroup[] = [
         teaser: "Shipping and invite offers tracked on our coupon hub.",
       },
       {
-        href: "/best-boonbuy-coupon",
+        href: "/boonbuy-coupons",
         label: "What is the best BoonBuy coupon?",
         teaser: "Current shipping-focused invite for new accounts.",
       },
       {
-        href: "/boonbuy-referral-code",
+        href: "/boonbuy-coupons",
         label: "Does BoonBuy have a referral code?",
-        teaser: "Invite / referral signup path explained.",
+        teaser: "Invite / referral signup path explained on the coupon hub.",
       },
     ],
   },
@@ -314,7 +314,7 @@ export const POPULAR_BOONBUY_QUESTIONS: QuestionLink[] = [
     teaser: "Catalog search assistant",
   },
   {
-    href: "/best-boonbuy-coupon",
+    href: "/boonbuy-coupons",
     label: "Best BoonBuy coupon",
     teaser: "Shipping invite offers",
   },

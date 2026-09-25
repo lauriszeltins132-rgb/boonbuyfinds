@@ -272,8 +272,8 @@ const nextConfig: NextConfig = {
       { source: "/best-boonbuy-jerseys", destination: "/best-jerseys", permanent: true },
       { source: "/best-boonbuy-shoes", destination: "/best-shoes", permanent: true },
       { source: "/best-boonbuy-watches", destination: "/best-watches", permanent: true },
-      { source: "/referral-code", destination: "/boonbuy-referral-code", permanent: true },
-      { source: "/boonbuy-referral", destination: "/boonbuy-referral-code", permanent: true },
+      { source: "/referral-code", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-referral", destination: "/boonbuy-coupons", permanent: true },
       // Consolidate parallel freshness / engagement URLs onto canonical hubs.
       { source: "/new-finds", destination: "/latest-finds", permanent: true },
       // /latest handled by collectionShortcuts → /latest-finds
@@ -298,7 +298,7 @@ const nextConfig: NextConfig = {
       { source: "/how-to-find-products-on-boonbuy", destination: "/boonbuy-finds", permanent: true },
       { source: "/how-to-find-cheaper-products", destination: "/ai", permanent: true },
       { source: "/how-to-compare-boonbuy-products", destination: "/ai", permanent: true },
-      // Thin BoonBuy coupon variants → primary coupon hub (keep shipping-coupon separate).
+      // Thin BoonBuy coupon-cluster variants → primary hub (keep shipping-coupon separate).
       { source: "/boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-coupon-code", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-coupons-2026", destination: "/boonbuy-coupons", permanent: true },
@@ -309,6 +309,12 @@ const nextConfig: NextConfig = {
       { source: "/boonbuy-promo-code", destination: "/boonbuy-coupons", permanent: true },
       { source: "/best-boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
       { source: "/best-boonbuy-coupons", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/best-boonbuy-coupons-2026", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/best-boonbuy-coupon-2026", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-invite", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-invite-code", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-voucher", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-referral-code", destination: "/boonbuy-coupons", permanent: true },
     ];
   },
   images: {

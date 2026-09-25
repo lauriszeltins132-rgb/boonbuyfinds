@@ -83,7 +83,7 @@ export function buildComparisonPage(
       ],
       links: [
         { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-        { href: "/boonbuy-discount-code", label: "Discount codes" },
+        { href: "/boonbuy-coupons", label: "Discount codes" },
         { href: "/how-to-save-on-shipping", label: "Save on shipping" },
       ],
     },
