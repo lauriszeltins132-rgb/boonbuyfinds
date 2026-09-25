@@ -7,7 +7,33 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["ai", "@ai-sdk/react", "zod"],
   },
   async redirects() {
+    const marketingHosts = ["boonbuys.com", "www.boonbuys.com"] as const;
+
+    /** Short marketing paths → clean canonical hubs on boonbuyfinds.net */
+    const shortMarketingPaths: Array<{ source: string; destination: string }> = [
+      { source: "/coupon", destination: "/boonbuy-coupons" },
+      { source: "/coupons", destination: "/boonbuy-coupons" },
+      { source: "/finds", destination: "/boonbuy-finds" },
+      { source: "/spreadsheet", destination: "/boonbuy-spreadsheet" },
+      { source: "/qc", destination: "/boonbuy-qc" },
+      { source: "/shipping", destination: "/boonbuy-shipping" },
+      { source: "/review", destination: "/boonbuy-review" },
+      { source: "/legit", destination: "/is-boonbuy-legit" },
+    ];
+
+    const hostRemaps = marketingHosts.flatMap((host) =>
+      shortMarketingPaths.map(({ source, destination }) => ({
+        source,
+        has: [{ type: "host" as const, value: host }],
+        destination: `https://boonbuyfinds.net${destination}`,
+        permanent: true,
+      }))
+    );
+
     return [
+      // One-hop remaps from boonbuys.com short URLs → canonical hubs
+      ...hostRemaps,
+
       {
         source: "/:path*",
         has: [{ type: "host", value: "boonbuys.com" }],
@@ -26,6 +52,13 @@ const nextConfig: NextConfig = {
         destination: "https://boonbuyfinds.net/:path*",
         permanent: true,
       },
+
+      // Same short aliases on the primary domain (human-readable, no query params)
+      ...shortMarketingPaths.map(({ source, destination }) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
 
       {
         source: "/guides/why-use-an-agent",
@@ -103,11 +136,10 @@ const nextConfig: NextConfig = {
       { source: "/discord-oopbuy", destination: "/telegram-oopbuy", permanent: true },
       { source: "/discord-kakobuy", destination: "/telegram-kakobuy", permanent: true },
       { source: "/telegram-boonbuy", destination: "/boonbuy-telegram", permanent: true },
-      { source: "/qc", destination: "/boonbuy-qc", permanent: true },
       { source: "/qc-photos", destination: "/boonbuy-qc", permanent: true },
       { source: "/boonbuy-qc-photos", destination: "/boonbuy-qc", permanent: true },
-      { source: "/browse-finds", destination: "/finds", permanent: true },
-      { source: "/all-finds", destination: "/finds", permanent: true },
+      { source: "/browse-finds", destination: "/boonbuy-finds", permanent: true },
+      { source: "/all-finds", destination: "/boonbuy-finds", permanent: true },
       { source: "/reps-finds", destination: "/rep-finds", permanent: true },
       { source: "/repfinds", destination: "/rep-finds", permanent: true },
       { source: "/guides/how-to-buy-from-taobao", destination: "/how-to-buy-from-taobao", permanent: true },

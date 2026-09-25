@@ -87,7 +87,41 @@ const KNOWN_BRAND_SLUGS = new Set([
   "sony",
 ]);
 
-const EXTRA_FILTER_KEYS = ["min", "max", "sort", "qc", "page", "saved"] as const;
+/** Canonical category slugs + common marketing aliases. */
+const CATEGORY_SLUG_ALIASES: Record<string, string> = {
+  shoes: "shoes",
+  shoe: "shoes",
+  sneakers: "shoes",
+  sneaker: "shoes",
+  "hoodies-and-pants": "hoodies-and-pants",
+  hoodies: "hoodies-and-pants",
+  hoodie: "hoodies-and-pants",
+  pants: "hoodies-and-pants",
+  "coats-and-jackets": "coats-and-jackets",
+  jackets: "coats-and-jackets",
+  jacket: "coats-and-jackets",
+  coats: "coats-and-jackets",
+  coat: "coats-and-jackets",
+  "tshirts-and-shorts": "tshirts-and-shorts",
+  tshirts: "tshirts-and-shorts",
+  "t-shirts": "tshirts-and-shorts",
+  shorts: "tshirts-and-shorts",
+  accessories: "accessories",
+  bags: "accessories",
+  bag: "accessories",
+  electronics: "electronics",
+  electronic: "electronics",
+};
+
+const EXTRA_FILTER_KEYS = [
+  "min",
+  "max",
+  "sort",
+  "qc",
+  "page",
+  "saved",
+  "category",
+] as const;
 
 export function slugifyBrandQuery(raw: string): string {
   return raw
@@ -96,6 +130,18 @@ export function slugifyBrandQuery(raw: string): string {
     .replace(/['']/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function paramValue(
+  searchParams: URLSearchParams | Record<string, string | string[] | undefined>,
+  key: string
+): string | null {
+  if (searchParams instanceof URLSearchParams) {
+    return searchParams.get(key);
+  }
+  const value = searchParams[key];
+  if (Array.isArray(value)) return value[0] ?? null;
+  return value ?? null;
 }
 
 /** Map brand= or exact q= to /brands/{slug} when safe. */
@@ -117,36 +163,60 @@ export function resolveBrandDestination(
   return null;
 }
 
+/** Map category= (or exact category q=) to /categories/{slug}. */
+export function resolveCategoryDestination(
+  category: string | null,
+  q: string | null
+): string | null {
+  const fromCategory = category ? slugifyBrandQuery(category) : "";
+  const fromQ = q ? slugifyBrandQuery(q) : "";
+
+  if (fromCategory && CATEGORY_SLUG_ALIASES[fromCategory]) {
+    if (!fromQ || fromQ === fromCategory || CATEGORY_SLUG_ALIASES[fromQ] === CATEGORY_SLUG_ALIASES[fromCategory]) {
+      return `/categories/${CATEGORY_SLUG_ALIASES[fromCategory]}`;
+    }
+  }
+
+  if (!fromCategory && fromQ && CATEGORY_SLUG_ALIASES[fromQ]) {
+    return `/categories/${CATEGORY_SLUG_ALIASES[fromQ]}`;
+  }
+
+  return null;
+}
+
 export function hasExtraCatalogFilters(
   searchParams: URLSearchParams | Record<string, string | string[] | undefined>
 ): boolean {
-  const get = (key: string) => {
-    if (searchParams instanceof URLSearchParams) {
-      return searchParams.get(key);
-    }
-    const value = searchParams[key];
-    return Array.isArray(value) ? value[0] : value;
-  };
-
   return EXTRA_FILTER_KEYS.some((key) => {
-    const value = get(key);
+    const value = paramValue(searchParams, key);
     if (!value) return false;
     if (key === "sort" && value === "featured") return false;
     if (key === "page" && (value === "1" || value === "0")) return false;
+    // category alone is handled by resolveCategoryDestination — not "extra"
+    if (key === "category") return false;
     return String(value).length > 0;
   });
 }
 
 /**
- * Prefer clean SEO routes over ?brand= / ?q= filter URLs.
+ * Prefer clean SEO routes over ?brand= / ?q= / ?category= filter URLs.
  * Returns null when the request should stay on /browse (and remain noindex).
  */
 export function resolveCleanCatalogPath(
-  searchParams: URLSearchParams
+  searchParams: URLSearchParams | Record<string, string | string[] | undefined>
 ): string | null {
   if (hasExtraCatalogFilters(searchParams)) return null;
-  return resolveBrandDestination(
-    searchParams.get("brand"),
-    searchParams.get("q")
-  );
+
+  const brand = paramValue(searchParams, "brand");
+  const category = paramValue(searchParams, "category");
+  const q = paramValue(searchParams, "q");
+
+  // Brand wins when both brand + category are present without other filters.
+  const brandPath = resolveBrandDestination(brand, q);
+  if (brandPath) return brandPath;
+
+  const categoryPath = resolveCategoryDestination(category, brand ? null : q);
+  if (categoryPath) return categoryPath;
+
+  return null;
 }

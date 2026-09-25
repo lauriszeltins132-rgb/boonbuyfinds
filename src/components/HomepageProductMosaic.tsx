@@ -30,7 +30,7 @@ export default function HomepageProductMosaic({
             </p>
           </div>
           <Link
-            href="/finds"
+            href="/boonbuy-finds"
             className="text-sm font-bold text-accent hover:underline"
           >
             Browse all →

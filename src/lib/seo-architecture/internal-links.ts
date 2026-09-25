@@ -10,7 +10,7 @@ const CORE_HUB: HubBlock[] = [
     title: "Home & catalog",
     links: [
       { href: "/", label: "Homepage" },
-      { href: "/finds", label: "Browse finds" },
+      { href: "/boonbuy-finds", label: "Browse finds" },
       { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/ai", label: "BoonBuy AI" },
       { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },

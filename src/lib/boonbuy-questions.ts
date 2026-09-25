@@ -195,7 +195,7 @@ export const BOONBUY_QUESTION_GROUPS: QuestionGroup[] = [
         teaser: "Editor and engagement shortlists from the catalog.",
       },
       {
-        href: "/finds",
+        href: "/boonbuy-finds",
         label: "How to find products on BoonBuy",
         teaser: "Browse finds hub, brands, categories, and spreadsheet.",
       },

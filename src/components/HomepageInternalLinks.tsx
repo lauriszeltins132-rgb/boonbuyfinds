@@ -20,7 +20,7 @@ const SECTIONS = [
       { href: "/categories", label: "Categories" },
       { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
       { href: "/guides", label: "Guides" },
-      { href: "/finds", label: "Browse finds" },
+      { href: "/boonbuy-finds", label: "Browse finds" },
     ],
   },
   {
@@ -39,7 +39,7 @@ const SECTIONS = [
   {
     title: "Finds hubs",
     links: [
-      { href: "/finds", label: "Browse finds" },
+      { href: "/boonbuy-finds", label: "Browse finds" },
       { href: "/latest-finds", label: "Latest finds" },
       { href: "/sneaker-finds", label: "Sneaker finds" },
       { href: "/clothing-finds", label: "Clothing finds" },

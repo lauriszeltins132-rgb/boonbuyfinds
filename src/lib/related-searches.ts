@@ -8,7 +8,7 @@ export type RelatedSearchLink = {
 };
 
 const AUTHORITY_SEARCHES: RelatedSearchLink[] = [
-  { label: "Browse finds", href: "/finds" },
+  { label: "Browse finds", href: "/boonbuy-finds" },
   { label: "BoonBuy finds", href: "/boonbuy-finds" },
   { label: "BoonBuy questions", href: "/boonbuy-questions" },
   { label: "What is BoonBuy?", href: "/what-is-boonbuy" },

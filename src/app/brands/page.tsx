@@ -102,7 +102,7 @@ export default function BrandsPage() {
               Best Moncler finds
             </Link>
             <Link
-              href="/finds"
+              href="/boonbuy-finds"
               className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
             >
               Browse finds
