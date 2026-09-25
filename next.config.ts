@@ -46,6 +46,8 @@ const nextConfig: NextConfig = {
       { source: "/shipping", destination: "/boonbuy-shipping" },
       { source: "/review", destination: "/boonbuy-review" },
       { source: "/legit", destination: "/is-boonbuy-legit" },
+      // Prefer BoonBuy Telegram authority hub over the generic /telegram agent hub.
+      { source: "/telegram", destination: "/boonbuy-telegram" },
     ];
 
     const categoryShortcuts: Array<{ source: string; destination: string }> = Object.entries(
