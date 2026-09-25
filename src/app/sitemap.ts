@@ -85,8 +85,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry(GUIDES_HUB.path, "weekly", 0.9, synced),
   ];
 
+  // Paths that permanently redirect elsewhere — never emit in the sitemap.
+  const SITEMAP_REDIRECT_SKIP = new Set([
+    "/spreadsheet",
+    "/boonbuy-discount-code",
+    "/guides/what-is-boonbuy",
+    "/guides/boonbuy-spreadsheet",
+    "/guides/boonbuy-spreadsheet-guide",
+    "/guides/how-to-buy-from-taobao",
+    "/guides/how-to-buy-from-weidian",
+  ]);
+
   for (const slug of GUIDE_SLUGS) {
     const guide = GUIDE_PAGES[slug];
+    if (SITEMAP_REDIRECT_SKIP.has(guide.path)) continue;
     routes.push(entry(guide.path, "monthly", 0.86, synced));
   }
 
@@ -240,6 +252,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (page.path === "/boonbuy-telegram") {
       continue;
     }
+    if (SITEMAP_REDIRECT_SKIP.has(page.path)) continue;
     routes.push(
       entry(page.path, "weekly", page.category === "comparison" ? 0.88 : 0.86, synced)
     );

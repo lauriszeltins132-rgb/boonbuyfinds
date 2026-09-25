@@ -143,6 +143,7 @@ const RESERVED = [
   "shipping",
   "review",
   "legit",
+  "telegram",
   "trending",
   "latest",
   "brands",
@@ -211,6 +212,7 @@ const MARKETING = {
   shipping: "/boonbuy-shipping",
   review: "/boonbuy-review",
   legit: "/is-boonbuy-legit",
+  telegram: "/boonbuy-telegram",
 };
 
 const CATEGORIES = {

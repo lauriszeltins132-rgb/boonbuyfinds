@@ -48,6 +48,12 @@ const nextConfig: NextConfig = {
       { source: "/legit", destination: "/is-boonbuy-legit" },
     ];
 
+    // Vanity-only: boonbuys.com/telegram → BoonBuy Telegram hub.
+    // Keep primary /telegram as the multi-agent RN Finds community page.
+    const vanityOnlyMarketingPaths: Array<{ source: string; destination: string }> = [
+      { source: "/telegram", destination: "/boonbuy-telegram" },
+    ];
+
     const categoryShortcuts: Array<{ source: string; destination: string }> = Object.entries(
       vanity.categories ?? {
         sneakers: "/categories/shoes",
@@ -96,6 +102,7 @@ const nextConfig: NextConfig = {
     const hostRemaps = marketingHosts.flatMap((host) =>
       [
         ...shortMarketingPaths,
+        ...vanityOnlyMarketingPaths,
         ...categoryShortcuts,
         ...collectionShortcuts,
         ...brandShortcuts,

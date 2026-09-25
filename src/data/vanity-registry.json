@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T08:41:49.148Z",
+  "generatedAt": "2026-09-25T09:07:15.165Z",
   "minIndexableBrandCount": 3,
   "reserved": [
     "coupon",
@@ -15,6 +15,7 @@
     "shipping",
     "review",
     "legit",
+    "telegram",
     "trending",
     "latest",
     "brands",
@@ -81,7 +82,8 @@
     "qc": "/boonbuy-qc",
     "shipping": "/boonbuy-shipping",
     "review": "/boonbuy-review",
-    "legit": "/is-boonbuy-legit"
+    "legit": "/is-boonbuy-legit",
+    "telegram": "/boonbuy-telegram"
   },
   "categories": {
     "sneakers": "/categories/shoes",

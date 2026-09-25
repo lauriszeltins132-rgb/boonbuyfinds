@@ -23,6 +23,7 @@ export const RESERVED_ROOT_SLUGS = new Set([
   "shipping",
   "review",
   "legit",
+  "telegram",
   "trending",
   "latest",
   "brands",
@@ -63,6 +64,7 @@ export const MARKETING_SHORTCUTS: Record<string, string> = {
   shipping: "/boonbuy-shipping",
   review: "/boonbuy-review",
   legit: "/is-boonbuy-legit",
+  telegram: "/boonbuy-telegram",
 };
 
 /** Category vanity → canonical category (or curated best-of) path. */

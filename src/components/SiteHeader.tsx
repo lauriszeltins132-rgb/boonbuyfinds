@@ -11,11 +11,14 @@ import GlobalSearch from "./GlobalSearch";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/boonbuy-finds", label: "Finds" },
   { href: "/trending", label: "Trending" },
   { href: "/latest-finds", label: "New Finds" },
-  { href: "/guides", label: "Guides" },
   { href: "/brands", label: "Brands" },
   { href: "/categories", label: "Categories" },
+  { href: "/boonbuy-coupons", label: "Coupons" },
+  { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+  { href: "/guides", label: "Guides" },
   { href: "/wishlist", label: "Saved" },
 ];
 

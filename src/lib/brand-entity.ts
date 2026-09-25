@@ -76,7 +76,6 @@ export function getOrganizationSameAsLinks(): string[] {
     SITE_URL,
     SITE_ALT_URL,
     SOCIAL_LINKS.telegram,
-    SOCIAL_LINKS.telegram,
     SOCIAL_LINKS.instagram,
     SOCIAL_LINKS.tiktok,
   ];
