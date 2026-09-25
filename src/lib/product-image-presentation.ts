@@ -22,14 +22,22 @@ export type ResolvedProductImage = {
 /**
  * Faithful catalog rendering — always the original product image.
  * No cutouts, no CSS enhancement, no knockout.
+ *
+ * Source priority (catalog fields only — never invent imagery):
+ * 1. Valid primary `product.image`
+ * 2. Placeholder (null) when dead/missing — QC links are Telegram threads, not images
  */
+export function resolveBestProductImageSrc(product: Product): string | null {
+  if (!product.image) return null;
+  if (isDeadImageUrl(product.image)) return null;
+  return product.image;
+}
+
 export function resolveProductDisplayImage(
   product: Product
 ): ResolvedProductImage | null {
-  if (!product.image) return null;
-
-  const sourceUrl = product.image;
-  if (isDeadImageUrl(sourceUrl)) return null;
+  const sourceUrl = resolveBestProductImageSrc(product);
+  if (!sourceUrl) return null;
 
   const plan = getProductImagePlan(sourceUrl);
 

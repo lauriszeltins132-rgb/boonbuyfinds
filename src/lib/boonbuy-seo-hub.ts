@@ -2,6 +2,7 @@ import {
   BOONBUY_COUPON_URL,
   BOONBUY_SHIPPING_COUPON_CTA,
   BOONBUY_SHIPPING_DISCOUNT_PERCENT,
+  PUBLIC_CATALOG_COUNT,
   SOCIAL_LINKS,
 } from "./constants";
 
@@ -67,28 +68,21 @@ export const BOONBUY_SEO_HUB = {
   },
 } as const;
 
-export const HERO_LANDING_TITLE =
-  "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
+export const HERO_LANDING_TITLE = "BoonBuy Finds";
 
-export const HERO_LANDING_SUBTITLE = `Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified links through BoonBuy with a ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% shipping coupon.`;
+export const HERO_LANDING_SUBTITLE = `Search ${PUBLIC_CATALOG_COUNT.toLocaleString()}+ BoonBuy products, QC references, and spreadsheet finds — then open verified checkout links.`;
 
 export const HERO_LANDING_CTAS = [
   {
     href: BOONBUY_SEO_HUB.coupons.href,
-    label: BOONBUY_SEO_HUB.coupons.cta,
+    label: "BoonBuy Coupons",
     variant: "primary" as const,
     icon: "coupon" as const,
   },
   {
-    href: BOONBUY_SEO_HUB.telegram.href,
-    label: BOONBUY_SEO_HUB.telegram.cta,
-    variant: "secondary" as const,
-    icon: "telegram" as const,
-  },
-  {
     href: BOONBUY_SEO_HUB.spreadsheet.href,
-    label: BOONBUY_SEO_HUB.spreadsheet.cta,
-    variant: "ghost" as const,
+    label: "Spreadsheet",
+    variant: "secondary" as const,
     icon: "spreadsheet" as const,
   },
 ] as const;

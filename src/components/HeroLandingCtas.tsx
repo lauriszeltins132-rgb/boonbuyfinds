@@ -30,6 +30,8 @@ function CtaIcon({ name }: { name: HeroCtaIcon }) {
           <path d="M4 10h16M4 14h16M10 4v16" />
         </svg>
       );
+    default:
+      return null;
   }
 }
 
@@ -42,14 +44,15 @@ const VARIANT_CLASS = {
     "border-border bg-white text-foreground hover:border-accent/35 hover:text-accent",
 } as const;
 
+/** Two primary actions only — Coupons + Spreadsheet. */
 export default function HeroLandingCtas() {
   return (
-    <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+    <div className="mx-auto mt-5 flex max-w-xl flex-wrap items-center justify-center gap-2.5 sm:mt-6">
       {HERO_LANDING_CTAS.map((cta) => (
         <Link
           key={cta.href}
           href={cta.href}
-          className={`hero-landing-cta inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-bold tracking-tight transition duration-200 sm:px-5 sm:py-3 ${VARIANT_CLASS[cta.variant]}`}
+          className={`hero-landing-cta inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-bold tracking-tight transition duration-200 sm:px-5 ${VARIANT_CLASS[cta.variant]}`}
         >
           <CtaIcon name={cta.icon} />
           <span>{cta.label}</span>
