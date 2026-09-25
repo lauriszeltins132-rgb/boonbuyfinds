@@ -1,7 +1,7 @@
-import { createSeoArchitecturePage } from "@/lib/seo-architecture/create-page";
+import { createAuthorityHubPage } from "@/lib/create-authority-hub-page";
 
-export const revalidate = 86400;
+export const revalidate = 3600;
 
-const { generateMetadata, Page } = createSeoArchitecturePage("boonbuy-warehouse");
+const { generateMetadata, Page } = createAuthorityHubPage("boonbuy-warehouse");
 export { generateMetadata };
 export default Page;

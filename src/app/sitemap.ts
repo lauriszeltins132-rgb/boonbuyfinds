@@ -93,6 +93,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/boonbuy-invite",
     "/boonbuy-invite-code",
     "/boonbuy-voucher",
+    "/best-boonbuy-spreadsheet",
+    "/boonbuy-spreadsheet-2026",
+    "/best-boonbuy-finds",
+    "/is-boonbuy-safe",
+    "/what-is-boonbuy",
+    "/boonbuy-reviews",
     "/guides/what-is-boonbuy",
     "/guides/boonbuy-spreadsheet",
     "/guides/boonbuy-spreadsheet-guide",
@@ -117,7 +123,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (
       page.path === "/boonbuy-finds" ||
       page.path === "/boonbuy-spreadsheet" ||
-      page.path === "/boonbuy-qc"
+      page.path === "/boonbuy-qc" ||
+      SITEMAP_REDIRECT_SKIP.has(page.path)
     ) {
       continue;
     }
@@ -207,6 +214,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const page of Object.values(STATIC_PAGES)) {
     if (AUTHORITY_STATIC_SKIP.has(page.path)) continue;
+    if (SITEMAP_REDIRECT_SKIP.has(page.path)) continue;
     routes.push(
       entry(page.path, "monthly", highPriorityGuides.has(page.path) ? 0.85 : 0.75, synced)
     );
@@ -252,11 +260,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of SEO_ARCHITECTURE_SLUGS) {
     const page = SEO_ARCHITECTURE_PAGES[slug];
-    // Telegram community canon already listed above.
-    if (page.path === "/boonbuy-telegram") {
+    // Authority hubs already listed above — avoid duplicate sitemap URLs.
+    if (
+      page.path === "/boonbuy-telegram" ||
+      page.path === "/boonbuy-shipping" ||
+      page.path === "/boonbuy-review" ||
+      page.path === "/is-boonbuy-legit" ||
+      page.path === "/boonbuy-warehouse" ||
+      SITEMAP_REDIRECT_SKIP.has(page.path)
+    ) {
       continue;
     }
-    if (SITEMAP_REDIRECT_SKIP.has(page.path)) continue;
     routes.push(
       entry(page.path, "weekly", page.category === "comparison" ? 0.88 : 0.86, synced)
     );

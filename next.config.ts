@@ -315,6 +315,14 @@ const nextConfig: NextConfig = {
       { source: "/boonbuy-invite-code", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-voucher", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-referral-code", destination: "/boonbuy-coupons", permanent: true },
+
+      // Authority-hub cluster consolidation (one canon per intent).
+      { source: "/best-boonbuy-spreadsheet", destination: "/boonbuy-spreadsheet", permanent: true },
+      { source: "/boonbuy-spreadsheet-2026", destination: "/boonbuy-spreadsheet", permanent: true },
+      { source: "/best-boonbuy-finds", destination: "/boonbuy-finds", permanent: true },
+      { source: "/is-boonbuy-safe", destination: "/is-boonbuy-legit", permanent: true },
+      { source: "/what-is-boonbuy", destination: "/boonbuy", permanent: true },
+      { source: "/boonbuy-reviews", destination: "/boonbuy-review", permanent: true },
     ];
   },
   images: {
