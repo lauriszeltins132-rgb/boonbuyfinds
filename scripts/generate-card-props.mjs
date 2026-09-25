@@ -19,9 +19,13 @@ const qualityManifest = JSON.parse(
 const deadManifest = JSON.parse(
   fs.readFileSync(path.join(dataDir, "dead-image-urls.json"), "utf8")
 );
+const cdnManifest = JSON.parse(
+  fs.readFileSync(path.join(dataDir, "product-image-cdn.json"), "utf8")
+);
 
 const deadUrls = new Set(deadManifest.urls ?? []);
 const qualityUrls = qualityManifest.urls ?? {};
+const cdnBySource = cdnManifest.bySourceUrl ?? {};
 
 function hasExactPrice(price) {
   return typeof price === "number" && Number.isFinite(price) && price > 0;
@@ -37,8 +41,9 @@ function getImageQualityScore(url) {
 }
 
 /**
- * Always emit the catalog original. Processed cutouts (/processed/) change
- * appearance (posterize / harsh matte) and must never be primary or fallback.
+ * Prefer first-party WebP card variants when present.
+ * Never emit /processed/ cutouts (appearance-changing).
+ * Keep marketplace original as fallback.
  */
 function resolveImage(sourceUrl) {
   const details = getQualityDetails(sourceUrl);
@@ -47,6 +52,17 @@ function resolveImage(sourceUrl) {
   if (fill != null) {
     if (fill < 0.32) fc = "s";
     else if (fill >= 0.52) fc = "d";
+  }
+
+  const cdn = cdnBySource[sourceUrl];
+  const cardSrc = cdn?.variants?.card?.src;
+  if (cardSrc && String(cardSrc).startsWith("/cdn/")) {
+    return {
+      src: cardSrc,
+      fb: [sourceUrl],
+      fc,
+      pm: 0,
+    };
   }
 
   return {

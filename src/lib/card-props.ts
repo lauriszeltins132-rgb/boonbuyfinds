@@ -40,19 +40,23 @@ function expandBadges(kinds?: ProductBadgeKind[]) {
   return kinds.map((kind) => ({ kind, label: BADGE_LABELS[kind] }));
 }
 
-function catalogOriginalUrl(raw: RawCardEntry): string {
-  // Prefer remote catalog original over local /processed/ cutouts.
+function catalogDisplayUrl(raw: RawCardEntry): string {
+  // Prefer first-party /cdn WebP variants, then remote original.
+  // Never prefer /processed/ cutouts (appearance-changing).
+  if (raw.src.startsWith("/cdn/")) return raw.src;
   if (/^https?:\/\//i.test(raw.src)) return raw.src;
+  const cdn = raw.fb?.find((url) => url.startsWith("/cdn/"));
+  if (cdn) return cdn;
   const remote = raw.fb?.find((url) => /^https?:\/\//i.test(url));
   return remote ?? raw.src;
 }
 
-/** Card display uses the original catalog image — never processed cutouts. */
+/** Card display prefers first-party CDN variants; never processed cutouts. */
 export function getCardDisplayProps(productId: string): CardDisplayProps | null {
   const raw = manifest.p[productId];
   if (!raw) return null;
 
-  const displaySrc = catalogOriginalUrl(raw);
+  const displaySrc = catalogDisplayUrl(raw);
   const fallbacks = (raw.fb ?? []).filter(
     (url) =>
       url &&

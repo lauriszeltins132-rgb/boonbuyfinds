@@ -38,6 +38,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local QA artifacts
-/.playwright-browsers/
-/audit-screenshots/
+# First-party product image CDN variants are committed for reliable deploys
+# (regenerated/extended at build via generate-product-cdn-images.mjs).
+

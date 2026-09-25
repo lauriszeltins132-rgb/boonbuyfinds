@@ -212,6 +212,15 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/cdn/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
         source: "/processed/:path*",
         headers: [
           {

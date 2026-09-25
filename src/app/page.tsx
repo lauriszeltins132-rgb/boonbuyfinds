@@ -26,16 +26,11 @@ import { buildHomepageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildHomepageMetadata();
 
-/** Refresh discovery rails hourly so rotation and dedupe stay current. */
+/** ISR — no searchParams on this route (filters live on /browse). */
 export const revalidate = 3600;
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+export default async function HomePage() {
   const categories = getCategories();
-  // Lightweight preview rails only — full catalog is paginated below.
   const rails = getHomepageSurfaceRails(6);
 
   return (
@@ -49,16 +44,15 @@ export default async function HomePage({
         })}
       />
 
-      {/* 1. Hero / search */}
       <DiscoveryHero />
 
-      {/* 2–3. Lightweight discovery rails */}
       <ServerDiscoveryRail
         title="Trending Finds"
         subtitle="Most viewed in the last 24 hours"
         href="/trending"
         products={rails.popularToday}
         showTrendingScore
+        preloadImages
       />
 
       <LazyMount minHeight={320} rootMargin="240px 0px">
@@ -70,11 +64,9 @@ export default async function HomePage({
         />
       </LazyMount>
 
-      {/* 4–5. Compact taxonomy */}
       <HomepageCategories categories={categories} />
       <HomepageBrands />
 
-      {/* 6–7. Budget + high-value collection previews */}
       {rails.bestUnder50.length > 0 ? (
         <LazyMount minHeight={320} rootMargin="280px 0px">
           <ServerDiscoveryRail
@@ -109,17 +101,14 @@ export default async function HomePage({
       ) : null}
 
       <HomepageCollections />
-
-      {/* 8. Coupon CTA */}
       <HomepageCouponCard />
 
-      {/* 9. FULL homepage catalog — paginated, not the whole catalog JSON */}
       <section id="browse" className="scroll-mt-24 px-4 pt-4 sm:px-6">
         <div className="mx-auto max-w-7xl pb-3">
           <h2 className="text-xl font-black sm:text-2xl">All BoonBuy Finds</h2>
           <p className="mt-1 text-sm text-muted">
-            Search, filter, and browse the catalog — 36 products per page with
-            pagination.
+            First {36} finds below. Search and filters open the full browse
+            catalog without slowing this page.
           </p>
         </div>
       </section>
@@ -133,12 +122,11 @@ export default async function HomePage({
           </section>
         }
       >
-        <HomepageCatalogSection searchParams={searchParams} />
+        <HomepageCatalogSection />
       </Suspense>
 
       <RecentlyViewedRail />
 
-      {/* 10–17. SEO / resources lower — full SSR content restored */}
       <HomepageConversion />
       <HomepagePopularQuestions />
       <HomepageInternalLinks />
