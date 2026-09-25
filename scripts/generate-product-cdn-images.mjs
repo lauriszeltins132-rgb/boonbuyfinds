@@ -10,6 +10,7 @@
  *   node scripts/generate-product-cdn-images.mjs --max=200 --concurrency=6
  *   node scripts/generate-product-cdn-images.mjs --priority-only
  */
+import { spawnSync } from "child_process";
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
@@ -21,6 +22,7 @@ const root = path.join(__dirname, "..");
 const dataDir = path.join(root, "src/data");
 const outDir = path.join(root, "public/cdn/products");
 const manifestPath = path.join(dataDir, "product-image-cdn.json");
+const warmPath = path.join(dataDir, "cdn-warm-urls.json");
 
 const WIDTHS = [
   { key: "thumb", width: 400 },
@@ -50,6 +52,19 @@ function loadJson(file, fallback) {
     return JSON.parse(fs.readFileSync(file, "utf8"));
   } catch {
     return fallback;
+  }
+}
+
+function refreshWarmUrls() {
+  const result = spawnSync(
+    "npx",
+    ["tsx", path.join(__dirname, "list-homepage-cdn-warm.mts")],
+    { cwd: root, encoding: "utf8", env: process.env }
+  );
+  if (result.stdout) process.stdout.write(result.stdout);
+  if (result.status !== 0 && result.stderr) {
+    process.stderr.write(result.stderr);
+    console.warn("warm-url listing failed; continuing with existing file if any");
   }
 }
 
@@ -113,15 +128,41 @@ async function writeVariants(url, sourceBuf) {
   return entry;
 }
 
-function priorityUrls(products, popularIds) {
-  const popular = new Set(popularIds);
-  const ranked = [...products].sort((a, b) => {
-    const ap = popular.has(a.id) ? 0 : 1;
-    const bp = popular.has(b.id) ? 0 : 1;
+function warmProductIds(products, popularIds, warmIds) {
+  const warm = new Set([
+    ...popularIds.map(String),
+    ...warmIds.map(String),
+  ]);
+  for (const product of products) {
+    const slug = product.category_slug || "";
+    if (
+      slug === "latest-finds" ||
+      slug === "trending-now" ||
+      slug === "best-under-50"
+    ) {
+      warm.add(String(product.id));
+    }
+  }
+  const newest = [...products]
+    .sort((a, b) => Number(b.id) - Number(a.id))
+    .slice(0, 120);
+  for (const product of newest) warm.add(String(product.id));
+  return warm;
+}
+
+function priorityUrls(products, popularIds, warmIds) {
+  const warm = warmProductIds(products, popularIds, warmIds);
+  return [...products].sort((a, b) => {
+    const ap = warm.has(String(a.id)) ? 0 : 1;
+    const bp = warm.has(String(b.id)) ? 0 : 1;
     if (ap !== bp) return ap - bp;
+    const aPop =
+      popularIds.includes(a.id) || popularIds.includes(String(a.id)) ? 0 : 1;
+    const bPop =
+      popularIds.includes(b.id) || popularIds.includes(String(b.id)) ? 0 : 1;
+    if (aPop !== bPop) return aPop - bPop;
     return Number(b.id) - Number(a.id);
   });
-  return ranked;
 }
 
 async function mapPool(items, limit, worker) {
@@ -137,11 +178,45 @@ async function mapPool(items, limit, worker) {
   return results;
 }
 
+async function ensureUrl(url, existing, stats) {
+  const prev = existing.bySourceUrl[url];
+  if (
+    prev?.variants?.card?.src &&
+    fs.existsSync(
+      path.join(root, "public", prev.variants.card.src.replace(/^\//, ""))
+    )
+  ) {
+    stats.skipped += 1;
+    return;
+  }
+
+  try {
+    const buf = await fetchBuffer(url);
+    const entry = await writeVariants(url, buf);
+    existing.bySourceUrl[url] = entry;
+    stats.created += 1;
+    if (stats.created % 25 === 0) {
+      existing.generatedAt = new Date().toISOString();
+      fs.writeFileSync(manifestPath, JSON.stringify(existing));
+      console.log(
+        `… ${stats.created} created, ${stats.skipped} skipped, ${stats.failed} failed`
+      );
+    }
+  } catch (error) {
+    stats.failed += 1;
+    if (stats.failed <= 12) {
+      console.warn(`fail ${url.slice(0, 72)}: ${error.message}`);
+    }
+  }
+}
+
 async function main() {
   fs.mkdirSync(outDir, { recursive: true });
+  refreshWarmUrls();
 
   const products = loadJson(path.join(dataDir, "products.json"), []);
   const popular = loadJson(path.join(dataDir, "popular-rank.json"), { ids: [] });
+  const warmFile = loadJson(warmPath, { urls: [], ids: [] });
   const existing = loadJson(manifestPath, {
     generatedAt: null,
     bySourceUrl: {},
@@ -150,53 +225,37 @@ async function main() {
   const withImages = products.filter(
     (p) => typeof p.image === "string" && /^https?:\/\//i.test(p.image)
   );
-  const ordered = priorityUrls(withImages, popular.ids ?? []);
-  const queue = ordered.slice(0, PRIORITY_ONLY ? Math.min(MAX, 120) : MAX);
+  const ordered = priorityUrls(
+    withImages,
+    popular.ids ?? [],
+    warmFile.ids ?? []
+  );
+  const queue = ordered.slice(0, PRIORITY_ONLY ? Math.min(MAX, 200) : MAX);
 
-  let created = 0;
-  let skipped = 0;
-  let failed = 0;
+  const stats = { created: 0, skipped: 0, failed: 0 };
+
+  // Always process homepage warm URLs first (even if outside MAX slice).
+  const warmUrls = (warmFile.urls ?? []).filter(
+    (url) => typeof url === "string" && /^https?:\/\//i.test(url)
+  );
+  await mapPool(warmUrls, CONCURRENCY, async (url) => {
+    await ensureUrl(url, existing, stats);
+  });
 
   await mapPool(queue, CONCURRENCY, async (product) => {
-    const url = product.image;
-    const prev = existing.bySourceUrl[url];
-    if (
-      prev?.variants?.card?.src &&
-      fs.existsSync(path.join(root, "public", prev.variants.card.src.replace(/^\//, "")))
-    ) {
-      skipped += 1;
-      return;
-    }
-
-    try {
-      const buf = await fetchBuffer(url);
-      const entry = await writeVariants(url, buf);
-      existing.bySourceUrl[url] = entry;
-      created += 1;
-      if (created % 25 === 0) {
-        existing.generatedAt = new Date().toISOString();
-        fs.writeFileSync(manifestPath, JSON.stringify(existing));
-        console.log(`… ${created} created, ${skipped} skipped, ${failed} failed`);
-      }
-    } catch (error) {
-      failed += 1;
-      if (failed <= 12) {
-        console.warn(`fail ${product.id}: ${error.message}`);
-      }
-    }
+    await ensureUrl(product.image, existing, stats);
   });
 
   existing.generatedAt = new Date().toISOString();
   existing.stats = {
-    created,
-    skipped,
-    failed,
+    ...stats,
     queued: queue.length,
+    warmUrls: warmUrls.length,
     totalMapped: Object.keys(existing.bySourceUrl).length,
   };
   fs.writeFileSync(manifestPath, JSON.stringify(existing, null, 0));
   console.log(
-    `CDN images → created=${created} skipped=${skipped} failed=${failed} mapped=${existing.stats.totalMapped}`
+    `CDN images → created=${stats.created} skipped=${stats.skipped} failed=${stats.failed} mapped=${existing.stats.totalMapped} warm=${warmUrls.length}`
   );
 }
 
