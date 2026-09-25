@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Suspense } from "react";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
 import HomepageBrands from "@/components/HomepageBrands";
+import HomepageCatalogSection from "@/components/HomepageCatalogSection";
 import HomepageCategories from "@/components/HomepageCategories";
 import HomepageCollections from "@/components/HomepageCollections";
 import HomepageConversion from "@/components/HomepageConversion";
@@ -11,7 +12,9 @@ import HomepageFaq from "@/components/HomepageFaq";
 import HomepageInternalLinks from "@/components/HomepageInternalLinks";
 import HomepagePopularQuestions from "@/components/HomepagePopularQuestions";
 import HomepageSeoContent from "@/components/HomepageSeoContent";
+import HomepageTelegramCta from "@/components/HomepageTelegramCta";
 import LazyMount from "@/components/LazyMount";
+import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import RecentlyViewedRail from "@/components/RecentlyViewedRail";
 import SchemaScript from "@/components/SchemaScript";
 import ServerDiscoveryRail from "@/components/ServerDiscoveryRail";
@@ -26,9 +29,13 @@ export const metadata: Metadata = buildHomepageMetadata();
 /** Refresh discovery rails hourly so rotation and dedupe stay current. */
 export const revalidate = 3600;
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const categories = getCategories();
-  // 6 per rail / 4 per brand preview — never ship full catalog on homepage.
+  // Lightweight preview rails only — full catalog is paginated below.
   const rails = getHomepageSurfaceRails(6);
 
   return (
@@ -42,10 +49,10 @@ export default async function HomePage() {
         })}
       />
 
-      {/* 1. Hero + search + primary CTAs */}
+      {/* 1. Hero / search */}
       <DiscoveryHero />
 
-      {/* 2–3. Product discovery (small rails only) */}
+      {/* 2–3. Lightweight discovery rails */}
       <ServerDiscoveryRail
         title="Trending Finds"
         subtitle="Most viewed in the last 24 hours"
@@ -67,7 +74,7 @@ export default async function HomePage() {
       <HomepageCategories categories={categories} />
       <HomepageBrands />
 
-      {/* 6. Budget + 1–2 brand collection previews */}
+      {/* 6–7. Budget + high-value collection previews */}
       {rails.bestUnder50.length > 0 ? (
         <LazyMount minHeight={320} rootMargin="280px 0px">
           <ServerDiscoveryRail
@@ -103,34 +110,41 @@ export default async function HomePage() {
 
       <HomepageCollections />
 
-      {/* 7. Coupon CTA */}
+      {/* 8. Coupon CTA */}
       <HomepageCouponCard />
 
-      <section className="px-4 pb-2 pt-1 sm:px-6">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-panel/60 px-4 py-3">
-          <div>
-            <h2 className="text-sm font-black sm:text-base">Browse all finds</h2>
-            <p className="text-xs text-muted">
-              Search and filter the full catalog on the Finds page — not loaded here.
-            </p>
-          </div>
-          <Link
-            href="/finds"
-            className="inline-flex rounded-full bg-accent px-4 py-2 text-sm font-bold text-white hover:opacity-90"
-          >
-            Open catalog →
-          </Link>
+      {/* 9. FULL homepage catalog — paginated, not the whole catalog JSON */}
+      <section id="browse" className="scroll-mt-24 px-4 pt-4 sm:px-6">
+        <div className="mx-auto max-w-7xl pb-3">
+          <h2 className="text-xl font-black sm:text-2xl">All BoonBuy Finds</h2>
+          <p className="mt-1 text-sm text-muted">
+            Search, filter, and browse the catalog — 36 products per page with
+            pagination.
+          </p>
         </div>
       </section>
 
+      <Suspense
+        fallback={
+          <section className="px-4 pb-10 sm:px-6">
+            <div className="panel-shell mx-auto max-w-7xl rounded-[32px] border border-border-strong bg-panel p-5 sm:p-7">
+              <ProductGridSkeleton count={12} />
+            </div>
+          </section>
+        }
+      >
+        <HomepageCatalogSection searchParams={searchParams} />
+      </Suspense>
+
       <RecentlyViewedRail />
 
-      {/* SEO / guides lower — still SSR */}
+      {/* 10–17. SEO / resources lower — full SSR content restored */}
       <HomepageConversion />
       <HomepagePopularQuestions />
       <HomepageInternalLinks />
       <HomepageSeoContent />
       <HomepageFaq />
+      <HomepageTelegramCta />
 
       <section className="px-4 pb-8 sm:px-6">
         <div className="mx-auto max-w-7xl text-center">

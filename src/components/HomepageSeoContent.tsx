@@ -20,11 +20,12 @@ const PARAGRAPHS = [
 ] as const;
 
 /**
- * Long-form SEO explanation — server-rendered inside <details> so crawlers
- * still see full text while mobile users are not pushed past products.
+ * Full SEO explanatory content restored from pre-slim.
+ * First paragraphs stay visible; longer guide remains in SSR <details>.
  */
 export default function HomepageSeoContent() {
-  const preview = PARAGRAPHS.slice(0, 2).join(" ");
+  const lead = PARAGRAPHS.slice(0, 4);
+  const rest = PARAGRAPHS.slice(4);
 
   return (
     <section className="px-4 py-6 sm:px-6">
@@ -54,66 +55,83 @@ export default function HomepageSeoContent() {
           </ul>
         </div>
 
-        <details className="group rounded-2xl border border-border bg-surface/25 p-5 sm:p-6">
-          <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-            <h2 className="text-lg font-black sm:text-xl">
-              The Largest BoonBuy Finds Database
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted group-open:hidden">
-              {preview}
-            </p>
-            <span className="mt-3 inline-block text-sm font-bold text-accent group-open:hidden">
-              Read the full guide
-            </span>
-          </summary>
-
-          <div className="mt-5 space-y-4 border-t border-border pt-5">
-            {PARAGRAPHS.map((paragraph) => (
-              <p key={paragraph.slice(0, 48)} className="text-sm leading-relaxed text-muted">
+        <div className="rounded-2xl border border-border bg-surface/25 p-5 sm:p-6">
+          <h2 className="text-lg font-black sm:text-xl">
+            The Largest BoonBuy Finds Database
+          </h2>
+          <div className="mt-4 space-y-4">
+            {lead.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 48)}
+                className="text-sm leading-relaxed text-muted"
+              >
                 {paragraph}
               </p>
             ))}
-
-            <div className="flex flex-wrap gap-2 pt-2">
-              <Link
-                href="/boonbuy"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                What is BoonBuy?
-              </Link>
-              <Link
-                href="/boonbuy-coupons"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Coupons
-              </Link>
-              <Link
-                href="/boonbuy-spreadsheet"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Spreadsheet
-              </Link>
-              <Link
-                href="/best-boonbuy-finds"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Best finds
-              </Link>
-              <Link
-                href="/guides"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Guides
-              </Link>
-              <Link
-                href="/boonbuy-telegram"
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-              >
-                Telegram
-              </Link>
-            </div>
           </div>
-        </details>
+
+          <details className="group mt-4 border-t border-border pt-4">
+            <summary className="cursor-pointer list-none text-sm font-bold text-accent [&::-webkit-details-marker]:hidden">
+              <span className="group-open:hidden">Read the full guide</span>
+              <span className="hidden group-open:inline">Hide extra detail</span>
+            </summary>
+            <div className="mt-4 space-y-4">
+              {rest.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 48)}
+                  className="text-sm leading-relaxed text-muted"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </details>
+
+          <div className="mt-5 flex flex-wrap gap-2 pt-2">
+            <Link
+              href="/boonbuy"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              What is BoonBuy?
+            </Link>
+            <Link
+              href="/boonbuy-coupons"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Coupons
+            </Link>
+            <Link
+              href="/boonbuy-spreadsheet"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Spreadsheet
+            </Link>
+            <Link
+              href="/boonbuy-qc"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              QC
+            </Link>
+            <Link
+              href="/best-boonbuy-finds"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Best finds
+            </Link>
+            <Link
+              href="/guides"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Guides
+            </Link>
+            <Link
+              href="/boonbuy-telegram"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Telegram
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
