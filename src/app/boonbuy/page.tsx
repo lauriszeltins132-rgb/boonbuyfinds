@@ -1,10 +1,7 @@
-import type { Metadata } from "next";
-import { StaticPageView, getStaticPageMetadata } from "@/lib/create-static-page";
+import { createAuthorityHubPage } from "@/lib/create-authority-hub-page";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return getStaticPageMetadata("boonbuy")!;
-}
+export const revalidate = 3600;
 
-export default function BoonBuyHubPage() {
-  return <StaticPageView slug="boonbuy" />;
-}
+const { generateMetadata, Page } = createAuthorityHubPage("boonbuy");
+export { generateMetadata };
+export default Page;
