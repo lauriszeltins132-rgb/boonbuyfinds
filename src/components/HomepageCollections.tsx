@@ -1,13 +1,20 @@
 import Link from "next/link";
 import { SHARE_COLLECTIONS } from "@/lib/share-collections";
 
-/** High-value collection chips only — product previews live in rails above. */
+/** Compact chips — restores pre-slim collection link depth without giant cards. */
 const FEATURED_COLLECTION_SLUGS = [
+  "best-nike-finds",
+  "best-jordan-finds",
+  "best-moncler-finds",
+  "best-stussy-finds",
   "best-sneakers",
+  "best-jackets",
   "best-hoodies",
+  "best-bags",
   "best-qc-approved-finds",
-  "best-under-50",
   "trending-this-week",
+  "most-saved-finds",
+  "best-under-50",
 ];
 
 export default function HomepageCollections() {

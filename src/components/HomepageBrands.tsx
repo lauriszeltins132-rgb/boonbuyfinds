@@ -4,11 +4,13 @@ import { getAllProducts } from "@/lib/products";
 
 const PRIORITY_NAMES = [
   "Nike",
+  "Jordan",
   "Moncler",
   "Stussy",
   "Gucci",
   "Dior",
   "Ralph Lauren",
+  "Louis Vuitton",
 ];
 
 type HomepageBrandsProps = {
