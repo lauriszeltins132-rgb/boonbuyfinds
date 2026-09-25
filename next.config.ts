@@ -175,6 +175,17 @@ const nextConfig: NextConfig = {
       { source: "/how-to-find-products-on-boonbuy", destination: "/boonbuy-finds", permanent: true },
       { source: "/how-to-find-cheaper-products", destination: "/ai", permanent: true },
       { source: "/how-to-compare-boonbuy-products", destination: "/ai", permanent: true },
+      // Thin BoonBuy coupon variants → primary coupon hub (keep shipping-coupon separate).
+      { source: "/boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-coupon-code", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-coupons-2026", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-discount", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-discount-code", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-deals", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-promo", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-promo-code", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/best-boonbuy-coupon", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/best-boonbuy-coupons", destination: "/boonbuy-coupons", permanent: true },
     ];
   },
   images: {

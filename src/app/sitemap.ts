@@ -58,16 +58,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes: MetadataRoute.Sitemap = [
     entry("/", "daily", 1, synced),
+    entry("/boonbuy", "weekly", 0.99, synced),
     entry("/finds", "daily", 0.98, synced),
     entry("/boonbuy-finds", "daily", 0.97, synced),
     entry("/latest-finds", "daily", 0.95, synced),
     entry("/rep-finds", "daily", 0.94, synced),
     entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
     entry("/boonbuy-coupons", "weekly", 0.95, synced),
+    entry("/boonbuy-shipping-coupon", "weekly", 0.94, synced),
     entry("/boonbuy-qc", "weekly", 0.93, synced),
-    entry("/boonbuy-telegram", "weekly", 0.92, synced),
+    entry("/boonbuy-shipping", "weekly", 0.92, synced),
+    entry("/boonbuy-review", "weekly", 0.92, synced),
+    entry("/is-boonbuy-legit", "weekly", 0.91, synced),
+    entry("/boonbuy-telegram", "weekly", 0.9, synced),
     entry("/boonbuy-questions", "weekly", 0.94, synced),
-    entry("/ai", "weekly", 0.9, synced),
+    entry("/boonbuy-warehouse", "weekly", 0.88, synced),
+    entry("/boonbuy-returns", "weekly", 0.86, synced),
+    entry("/boonbuy-payment", "weekly", 0.86, synced),
+    entry("/ai", "weekly", 0.55, synced),
     entry("/trending", "daily", 0.9, synced),
     entry("/deals", "daily", 0.9, synced),
     entry("/recently-added", "daily", 0.92, synced),
@@ -169,7 +177,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/boonbuy-vs-other-agents",
   ]);
 
+  // Already listed above at authority priority — avoid duplicate sitemap URLs.
+  const AUTHORITY_STATIC_SKIP = new Set([
+    "/boonbuy",
+    "/boonbuy-shipping",
+    "/boonbuy-review",
+    "/is-boonbuy-legit",
+    "/boonbuy-warehouse",
+    "/boonbuy-returns",
+    "/boonbuy-payment",
+  ]);
+
   for (const page of Object.values(STATIC_PAGES)) {
+    if (AUTHORITY_STATIC_SKIP.has(page.path)) continue;
     routes.push(
       entry(page.path, "monthly", highPriorityGuides.has(page.path) ? 0.85 : 0.75, synced)
     );

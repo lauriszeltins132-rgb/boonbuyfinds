@@ -1,4 +1,7 @@
-import { PUBLIC_CATALOG_COUNT } from "./catalog-count-public";
+import {
+  PUBLIC_CATALOG_COUNT,
+  PUBLIC_QC_COUNT,
+} from "./catalog-count-public";
 import { getHomepageMetadataCopy } from "./metadata-copy";
 import {
   BOONBUY_SHIPPING_DISCOUNT_LABEL,
@@ -8,7 +11,7 @@ import {
 
 export const SITE_NAME = "BoonBuy Finds";
 
-export { PUBLIC_CATALOG_COUNT };
+export { PUBLIC_CATALOG_COUNT, PUBLIC_QC_COUNT };
 
 const homepageMeta = getHomepageMetadataCopy();
 
@@ -20,10 +23,9 @@ export const SITE_OG_TITLE = HOMEPAGE_TITLE;
 
 export const SITE_OG_DESCRIPTION = SITE_DESCRIPTION;
 
-export const HERO_HEADLINE =
-  "BoonBuy Finds – 10,000+ QC Photos, Spreadsheet Finds & Best Reps 2026";
+export const HERO_HEADLINE = "BoonBuy Finds";
 
-export const HERO_SUBHEADLINE = `Search QC photos, spreadsheet-style fashion and sneaker finds from Weidian and Taobao — open verified links through BoonBuy with a ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% shipping coupon.`;
+export const HERO_SUBHEADLINE = `Search BoonBuy product finds, QC references, spreadsheet listings, coupons and buying guides — open verified checkout links with up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping.`;
 
 export const HERO_TAGLINE = HERO_SUBHEADLINE;
 
@@ -104,7 +106,7 @@ export const BOONBUY_STICKY_BENEFITS = [
 ] as const;
 
 export const BOONBUY_OFFER_HEADLINE = `Get ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`;
-export const BOONBUY_OFFER_DESCRIPTION = `New BoonBuy users can claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with our invite link — one of the highest shipping discounts BoonBuy pays for new accounts.`;
+export const BOONBUY_OFFER_DESCRIPTION = `New BoonBuy users can claim up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with our invite link when the offer is available.`;
 
 export const CONTACT_EMAIL = "hello@boonbuyfinds.net";
 

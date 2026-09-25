@@ -1,13 +1,31 @@
 import productsData from "@/data/products.json";
-import { PUBLIC_CATALOG_COUNT } from "./catalog-count-public";
+import {
+  ACTUAL_CATALOG_COUNT,
+  ACTUAL_QC_COUNT,
+  PUBLIC_CATALOG_COUNT,
+  PUBLIC_QC_COUNT,
+} from "./catalog-count-public";
 
-export { PUBLIC_CATALOG_COUNT };
+export {
+  ACTUAL_CATALOG_COUNT,
+  ACTUAL_QC_COUNT,
+  PUBLIC_CATALOG_COUNT,
+  PUBLIC_QC_COUNT,
+};
 
 /** Actual indexed product count from dataset (internal stats) */
 export function getActualCatalogCount(): number {
-  return (productsData as unknown[]).length;
+  return ACTUAL_CATALOG_COUNT || (productsData as unknown[]).length;
+}
+
+export function getActualQcCount(): number {
+  return ACTUAL_QC_COUNT;
 }
 
 export function formatCatalogCountForSeo(): string {
   return PUBLIC_CATALOG_COUNT;
+}
+
+export function formatQcCountForSeo(): string {
+  return PUBLIC_QC_COUNT;
 }

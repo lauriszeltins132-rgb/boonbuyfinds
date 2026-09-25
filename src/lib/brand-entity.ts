@@ -1,35 +1,23 @@
 import { SOCIAL_LINKS, TELEGRAM_CHANNEL_NAME } from "./constants";
 import { SITE_ALT_URL, SITE_URL } from "./site";
 
-/** Entity names and common search variants — used in schema, not as visible keyword blocks. */
+/** Entity names for schema — keep website identity tight; misspellings stay secondary. */
 export const SITE_ALTERNATE_NAMES = [
-  "BoonBuy Finds",
-  "BoonBuy",
-  "boonbuy",
+  "BoonBuyFinds",
+  "boonbuyfinds.net",
   "boonbuyfinds",
   "boonbuy finds",
-  "BoonBuy Spreadsheet",
-  "boonbuy spreadsheet",
-  "boonbuy finds spreadsheet",
-  "boonbuy coupons",
-  "boonbuy coupon",
-  "RN Finds",
-  "RN Finds Telegram",
-  "boonbuyfids",
-  "boonbuy find",
-  "boonbuyfind",
-  "boonbuy qc finds",
 ] as const;
 
 export const SITE_ENTITY_DESCRIPTION =
-  "BoonBuy Finds (boonbuyfinds.net) is the searchable catalog for BoonBuy finds, QC photos, spreadsheet finds, BoonBuy coupons, and verified BoonBuy shopping links.";
+  "BoonBuy Finds (boonbuyfinds.net) is the searchable catalog for BoonBuy product finds, QC photo references, spreadsheet-style listings, coupons, and verified BoonBuy checkout links.";
 
 
 export const HERO_ENTITY_LINE =
-  "Verified listings from Weidian and Taobao — searchable like a boonbuy spreadsheet catalog, with boonbuy QC finds updated daily.";
+  "Verified listings from Weidian and Taobao — searchable like a BoonBuy spreadsheet catalog, with QC finds updated regularly.";
 
 /** One muted homepage line — natural phrasing for common misspellings, not a keyword list. */
-export const HOMEPAGE_AKA_LINE = `Also known as ${TELEGRAM_CHANNEL_NAME} on Telegram and often searched as boonbuy, boonbuy finds, boonbuyfinds, or boonbuy spreadsheet.`;
+export const HOMEPAGE_AKA_LINE = `Also known as ${TELEGRAM_CHANNEL_NAME} on Telegram and often searched as boonbuyfinds or boonbuy spreadsheet.`;
 
 export const HOMEPAGE_ENTITY_FAQS = [
   {
@@ -44,7 +32,7 @@ export const HOMEPAGE_ENTITY_FAQS = [
   {
     question: "Is BoonBuy safe to use?",
     answer:
-      "BoonBuy is an established shopping agent used by thousands of buyers for Weidian and Taobao orders. BoonBuy Finds only links to marketplace listings through verified agent URLs — we do not sell products directly. Always review QC photos, compare batches, and use common sense before shipping a haul.",
+      "BoonBuy is a widely used shopping agent for Weidian and Taobao orders. BoonBuy Finds only links to marketplace listings through verified agent URLs — we do not sell products directly. Always review QC photos, compare batches, and use common sense before shipping a haul.",
   },
   {
     question: "How do I order from BoonBuy?",
@@ -69,7 +57,7 @@ export const HOMEPAGE_ENTITY_FAQS = [
   {
     question: "How often are new finds added?",
     answer:
-      "The catalog syncs daily with new spreadsheet finds, QC links, and price updates. Fresh drops appear in Latest Finds and Trending sections on the homepage — check back often or join Telegram for alerts.",
+      "The catalog syncs regularly with new spreadsheet finds, QC links, and price updates. Fresh drops appear in Latest Finds and Trending sections on the homepage — check back often or join Telegram for alerts.",
   },
   {
     question: "What are the best BoonBuy finds right now?",
@@ -79,7 +67,7 @@ export const HOMEPAGE_ENTITY_FAQS = [
   {
     question: "Where do I find BoonBuy Telegram, coupons, and spreadsheet pages?",
     answer:
-      "Use the homepage CTAs or these hub pages: /telegram-boonbuy, /boonbuy-telegram, /boonbuy-coupons, /boonbuy-shipping-coupon, /best-boonbuy-spreadsheet, and /boonbuy-spreadsheet. Claim up to 45% off shipping, then shop verified finds.",
+      "Use the homepage CTAs or these hub pages: /boonbuy-telegram, /boonbuy-coupons, /boonbuy-shipping-coupon, and /boonbuy-spreadsheet. Claim the current shipping discount when available, then shop verified finds.",
   },
 ] as const;
 
@@ -100,11 +88,9 @@ export function getOrganizationKnowsAbout(): string[] {
     "BoonBuy Finds",
     "boonbuyfinds",
     "BoonBuy product discovery",
-    "boonbuy spreadsheet finds",
-    "boonbuy QC finds",
-    "boonbuy coupons",
-    "boonbuy coupon",
-    "boonbuy shipping coupon",
+    "BoonBuy spreadsheet",
+    "BoonBuy QC",
+    "BoonBuy coupons",
     "shopping agents",
     "QC photos",
     "Weidian finds",

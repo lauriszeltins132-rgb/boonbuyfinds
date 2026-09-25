@@ -46,7 +46,7 @@ const EXTRA_BOONBUY_VARIANTS: CouponPageVariant[] = [
     slug: "boonbuy-coupon",
     titleSuffix: `BoonBuy Coupon 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`,
     metaDescription: `Claim the BoonBuy coupon for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping in 2026. Verified invite link, promo code savings, and haul discounts.`,
-    intro: `Looking for a BoonBuy coupon? Register with our invite link to unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping — one of the highest new-user shipping discounts BoonBuy offers.`,
+    intro: `Looking for a BoonBuy coupon? Register with our invite link to unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping — a strong new-user shipping discount when available.`,
     keywordLine:
       "Searching for a BoonBuy coupon, BoonBuy coupon code, or BoonBuy shipping coupon? Claim the verified offer below.",
   },

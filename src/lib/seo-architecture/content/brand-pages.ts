@@ -368,7 +368,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     intro:
       "BoonBuy is a Chinese shopping agent — not a retailer. This review covers how it handles purchases, warehouse QC, international shipping, and how BoonBuy Finds fits in as a discovery layer. Independent opinion for overseas streetwear and sneaker buyers.",
     directAnswer:
-      "BoonBuy is a top-tier Chinese shopping agent in 2026 for paste-link ordering, warehouse QC, and parcel building — especially when paired with BoonBuy Finds for discovery. Budget 15–25% above listing prices for realistic all-in costs.",
+      "BoonBuy is a Chinese shopping agent for paste-link ordering, warehouse QC, and parcel building — especially when paired with BoonBuy Finds for discovery. Budget 15–25% above listing prices for realistic all-in costs.",
     keyFacts: [
       "Strong paste-link ordering across Taobao, Weidian, and 1688.",
       "Pairs with BoonBuy Finds for searchable catalog and coupon pages.",
@@ -412,7 +412,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       {
         heading: "Verdict",
         paragraphs: [
-          "BoonBuy is a top-tier agent choice in 2026 when combined with disciplined QC and smart parcel building. Use BoonBuy Finds to shorten discovery; use BoonBuy to execute. Compare one quoted parcel against any alternative agent before you commit long term.",
+          "BoonBuy is a solid agent choice when combined with disciplined QC and smart parcel building. Use BoonBuy Finds to shorten discovery; use BoonBuy to execute. Compare one quoted parcel against any alternative agent before you commit long term.",
         ],
       },
     ],

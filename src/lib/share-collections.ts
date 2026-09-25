@@ -214,7 +214,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
   "boonbuy-spreadsheet-alternative": wrap("boonbuy-spreadsheet-alternative", {
     title: "Best BoonBuy Spreadsheet Alternative",
     metaDescription:
-      "BoonBuy Finds is a searchable alternative to raw BoonBuy spreadsheets — browse 10,000+ finds with photos, filters, and QC links.",
+      "BoonBuy Finds is a searchable alternative to raw BoonBuy spreadsheets — browse indexed finds with photos, filters, and QC links.",
     badge: "Collection",
     h1: "BoonBuy spreadsheet alternative",
     intro:
