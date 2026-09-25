@@ -1,9 +1,14 @@
 {
-  "generatedAt": "2026-09-25T08:13:17.024Z",
+  "generatedAt": "2026-09-25T08:41:49.148Z",
   "minIndexableBrandCount": 3,
   "reserved": [
     "coupon",
     "coupons",
+    "coupon-code",
+    "promo",
+    "promo-code",
+    "discount",
+    "discount-code",
     "finds",
     "spreadsheet",
     "qc",
@@ -66,6 +71,11 @@
   "marketing": {
     "coupon": "/boonbuy-coupons",
     "coupons": "/boonbuy-coupons",
+    "coupon-code": "/boonbuy-coupons",
+    "promo": "/boonbuy-coupons",
+    "promo-code": "/boonbuy-coupons",
+    "discount": "/boonbuy-coupons",
+    "discount-code": "/boonbuy-coupons",
     "finds": "/boonbuy-finds",
     "spreadsheet": "/boonbuy-spreadsheet",
     "qc": "/boonbuy-qc",

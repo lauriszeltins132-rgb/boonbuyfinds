@@ -241,9 +241,9 @@ const BOONBUY_COUPON_SEO_OVERRIDES: Record<
   Partial<AgentCouponLandingConfig>
 > = {
   "boonbuy-coupons": {
-    title: `BoonBuy Coupons | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping Coupon`,
-    metaDescription: `Claim BoonBuy coupons for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. Verified BoonBuy Finds coupon pages with invite signup links for 2026.`,
-    h1: "BoonBuy Coupons",
+    title: `Best BoonBuy Coupons & Shipping Discounts 2026 | BoonBuy Finds`,
+    metaDescription: `Claim verified BoonBuy coupons and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with invite signup. Current offer, how to claim, FAQ, and shipping discount guidance on BoonBuy Finds.`,
+    h1: "Best BoonBuy Coupons & Shipping Discounts",
     intro: `Get BoonBuy coupons that matter — up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when you register with our invite. Then browse spreadsheet finds, QC photos, and verified checkout links on BoonBuy Finds.`,
     ctaLabel: BOONBUY_SHIPPING_COUPON_CTA,
     offerHeadline: BOONBUY_OFFER_HEADLINE,
@@ -251,10 +251,12 @@ const BOONBUY_COUPON_SEO_OVERRIDES: Record<
     keywords: [
       "boonbuy coupons",
       "boonbuy coupon",
+      "boonbuy coupon code",
       "boonbuy shipping coupon",
+      "boonbuy promo code",
+      "boonbuy referral code",
+      "best boonbuy coupon",
       "boonbuy coupons 2026",
-      "best boonbuy coupons",
-      `${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping boonbuy`,
     ],
   },
   "best-boonbuy-coupons": {
