@@ -46,7 +46,11 @@ const nextConfig: NextConfig = {
       { source: "/shipping", destination: "/boonbuy-shipping" },
       { source: "/review", destination: "/boonbuy-review" },
       { source: "/legit", destination: "/is-boonbuy-legit" },
-      // Prefer BoonBuy Telegram authority hub over the generic /telegram agent hub.
+    ];
+
+    // Vanity-only: boonbuys.com/telegram → BoonBuy Telegram hub.
+    // Keep primary /telegram as the multi-agent RN Finds community page.
+    const vanityOnlyMarketingPaths: Array<{ source: string; destination: string }> = [
       { source: "/telegram", destination: "/boonbuy-telegram" },
     ];
 
@@ -98,6 +102,7 @@ const nextConfig: NextConfig = {
     const hostRemaps = marketingHosts.flatMap((host) =>
       [
         ...shortMarketingPaths,
+        ...vanityOnlyMarketingPaths,
         ...categoryShortcuts,
         ...collectionShortcuts,
         ...brandShortcuts,
