@@ -7,6 +7,7 @@ import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import SeoArticleReadingMeta from "@/components/SeoArticleReadingMeta";
 import TableOfContents from "@/components/TableOfContents";
+import TelegramJoinCta from "@/components/TelegramJoinCta";
 import { getSeoArchitectureContentDates } from "@/lib/seo-architecture/dates";
 import { getSeoArchitectureInternalLinks } from "@/lib/seo-architecture/internal-links";
 import { getSeoArchitecturePage } from "@/lib/seo-architecture/registry";
@@ -172,6 +173,7 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
   const spreadsheetHref = page.spreadsheetHref ?? "/boonbuy-spreadsheet";
   const directAnswer = page.directAnswer ?? page.intro;
   const keyFacts = page.keyFacts ?? [];
+  const isBoonBuyTelegramHub = page.slug === "boonbuy-telegram";
   const summary =
     page.directAnswer && page.directAnswer.length >= 40
       ? page.directAnswer
@@ -225,6 +227,13 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
               .
             </p>
           </aside>
+
+          {isBoonBuyTelegramHub ? (
+            <TelegramJoinCta
+              variant="hero"
+              location="boonbuy_telegram_hero"
+            />
+          ) : null}
 
           <SeoArticleReadingMeta
             publishedIso={dates.publishedIso}
@@ -280,48 +289,58 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
             {page.sections.map((section) => {
               const Heading = section.level === 3 ? "h3" : "h2";
               const sectionId = slugifyHeading(section.heading);
+              const showMidTelegramCta =
+                isBoonBuyTelegramHub && section.heading === "What we post";
 
               return (
-                <section key={section.heading} id={sectionId}>
-                  <Heading
-                    className={
-                      section.level === 3
-                        ? "text-lg font-bold text-foreground"
-                        : "text-xl font-black text-foreground"
-                    }
-                  >
-                    {section.heading}
-                  </Heading>
-                  <div className="mt-3 space-y-3 text-base leading-relaxed text-muted">
-                    {section.paragraphs.map((paragraph) => (
-                      <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-                    ))}
-                  </div>
-                  {section.links && section.links.length > 0 ? (
-                    <ul className="mt-4 flex flex-wrap gap-2">
-                      {section.links.map((link) => (
-                        <li key={link.href}>
-                          {link.href.startsWith("http") ? (
-                            <a
-                              href={link.href}
-                              rel="noopener noreferrer"
-                              className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent hover:text-accent"
-                            >
-                              {link.label}
-                            </a>
-                          ) : (
-                            <Link
-                              href={link.href}
-                              className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent hover:text-accent"
-                            >
-                              {link.label}
-                            </Link>
-                          )}
-                        </li>
+                <div key={section.heading}>
+                  <section id={sectionId}>
+                    <Heading
+                      className={
+                        section.level === 3
+                          ? "text-lg font-bold text-foreground"
+                          : "text-xl font-black text-foreground"
+                      }
+                    >
+                      {section.heading}
+                    </Heading>
+                    <div className="mt-3 space-y-3 text-base leading-relaxed text-muted">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                       ))}
-                    </ul>
+                    </div>
+                    {section.links && section.links.length > 0 ? (
+                      <ul className="mt-4 flex flex-wrap gap-2">
+                        {section.links.map((link) => (
+                          <li key={link.href}>
+                            {link.href.startsWith("http") ? (
+                              <a
+                                href={link.href}
+                                rel="noopener noreferrer"
+                                className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent hover:text-accent"
+                              >
+                                {link.label}
+                              </a>
+                            ) : (
+                              <Link
+                                href={link.href}
+                                className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold text-foreground hover:border-accent hover:text-accent"
+                              >
+                                {link.label}
+                              </Link>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </section>
+                  {showMidTelegramCta ? (
+                    <TelegramJoinCta
+                      variant="compact"
+                      location="boonbuy_telegram_mid"
+                    />
                   ) : null}
-                </section>
+                </div>
               );
             })}
           </div>
@@ -376,6 +395,13 @@ export default function SeoArticleLayout({ page }: SeoArticleLayoutProps) {
               ))}
             </dl>
           </section>
+
+          {isBoonBuyTelegramHub ? (
+            <TelegramJoinCta
+              variant="final"
+              location="boonbuy_telegram_final"
+            />
+          ) : null}
 
           <InternalLinkHub page={page} />
 

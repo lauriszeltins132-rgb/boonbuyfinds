@@ -1,5 +1,5 @@
 import { BOONBUY_COUPON_URL, BOONBUY_INVITE_CODE } from "@/lib/boonbuy-affiliate";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { TELEGRAM_HANDLE } from "@/lib/constants";
 import { buildGuideFaqs } from "@/lib/seo-architecture/content-builders";
 import type { SeoArchitecturePage } from "@/lib/seo-architecture/types";
 
@@ -97,8 +97,8 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     ]),
     relatedLinks: [
       { href: "/", label: "Homepage" },
-      { href: "/spreadsheet", label: "Spreadsheet hub" },
-      { href: "/telegram-boonbuy", label: "Telegram" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
+      { href: "/boonbuy-telegram", label: "Telegram" },
     ],
     relatedArticleSlugs: BRAND_RELATED,
     spreadsheetHref: "/boonbuy-spreadsheet",
@@ -115,6 +115,13 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     h1: "BoonBuy Telegram",
     intro:
       "Telegram is the fastest pipe for BoonBuy spreadsheet alerts — new rows, price dips, and QC reference posts land here before they trend on-site. Follow the BoonBuy Finds channel if you want push notifications for daily drops.",
+    directAnswer: `Join Telegram ${TELEGRAM_HANDLE} for daily BoonBuy finds, QC alerts, price drops, and spreadsheet updates from BoonBuy Finds. Use the Join Telegram button on this page — avoid impersonator channels.`,
+    keyFacts: [
+      `Official channel handle: ${TELEGRAM_HANDLE}.`,
+      "Posts cover daily finds, QC references, coupon reminders, and spreadsheet alerts.",
+      "Pair Telegram for speed with this site for search, filters, and verified checkout links.",
+      "Turn on notifications for limited drops; mute anytime — the catalog stays here.",
+    ],
     keywords: ["boonbuy telegram", "boonbuy finds telegram", "spreadsheet telegram"],
     sections: [
       {
@@ -135,24 +142,24 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         heading: "Telegram + spreadsheet + site",
         paragraphs: [
           "Think of three layers: Telegram for alerts, the website for search and filters, BoonBuy for checkout. Power users bounce between all three in one haul cycle.",
-          "Pinned messages usually include the coupon URL and spreadsheet hub. Check pins after joining so you do not ask for links already answered.",
+          "Pinned messages usually include the coupon path and spreadsheet hub. Check pins after joining so you do not ask for links already answered.",
         ],
         links: [
           { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-          { href: "/spreadsheet", label: "Spreadsheet hub" },
+          { href: "/boonbuy-coupons", label: "Coupons" },
         ],
       },
       {
         heading: "Join the channel",
         paragraphs: [
-          `Subscribe at ${SOCIAL_LINKS.telegram}. Turn on notifications if you chase limited batches. Mute if you only want weekly browsing — the catalog will still be here.`,
+          `Subscribe with the Join Telegram button — official handle ${TELEGRAM_HANDLE}. Turn on notifications if you chase limited batches. Mute if you only want weekly browsing — the catalog will still be here.`,
         ],
       },
     ],
     faqs: buildGuideFaqs("BoonBuy Telegram", [
       {
         question: "What is the Telegram handle?",
-        answer: "The BoonBuy Finds channel is linked from our site header and coupon pages — use the official link to avoid impersonators.",
+        answer: `The official BoonBuy Finds channel is ${TELEGRAM_HANDLE}. Use the Join Telegram button on this page (and site footer/header CTAs) to avoid impersonators.`,
       },
       {
         question: "Can I submit finds?",
@@ -160,11 +167,12 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
       },
     ]),
     relatedLinks: [
-      { href: SOCIAL_LINKS.telegram, label: "Join Telegram" },
-      { href: "/telegram-boonbuy", label: "Telegram hub page" },
-      { href: "/boonbuy-telegram", label: "Telegram" },
+      { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+      { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
+      { href: "/boonbuy-finds", label: "BoonBuy Finds" },
+      { href: "/telegram", label: "Telegram community hub" },
     ],
-    relatedArticleSlugs: ["boonbuy-telegram", "boonbuy-spreadsheet", "trending-finds"],
+    relatedArticleSlugs: ["boonbuy-spreadsheet", "trending-finds"],
   }),
 
   "boonbuy-discount-code": page({
