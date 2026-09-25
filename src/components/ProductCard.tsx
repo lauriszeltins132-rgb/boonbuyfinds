@@ -102,6 +102,7 @@ export default function ProductCard({
         >
           <ProductCardImage
             src={product.image}
+            preferredSrc={display?.displaySrc}
             fallbacks={display?.fallbacks}
             fillClass={display?.fillClass}
             alt={imageAlt}

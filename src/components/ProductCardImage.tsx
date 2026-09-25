@@ -43,10 +43,10 @@ export default function ProductCardImage({
   const validation = useMemo(() => validateImageUrl(src), [src]);
 
   const candidates = useMemo(() => {
-    // Catalog original (`src`) wins; preferredSrc is only an alternate original.
+    // CDN card variant first, then catalog original, then other fallbacks.
     const ordered = [
-      isLocalAsset(src) ? src : validation.normalized || src,
       preferredSrc,
+      isLocalAsset(src) ? src : validation.normalized || src,
       ...fallbacks,
     ].filter((url): url is string => typeof url === "string" && url.length > 0);
 
@@ -116,6 +116,10 @@ export default function ProductCardImage({
     .filter(Boolean)
     .join(" ");
 
+  // Pre-encoded first-party WebP — skip redundant /_next/image work.
+  const isFirstPartyCdn =
+    displaySrc.startsWith("/cdn/") && displaySrc.endsWith(".webp");
+
   return (
     <div
       className={`product-float-stage product-float-stage--card ${className}`}
@@ -130,11 +134,12 @@ export default function ProductCardImage({
           alt={alt}
           title={title ?? alt}
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 280px, 260px"
           quality={85}
           priority={priority}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
+          unoptimized={isFirstPartyCdn}
           className={assetClass}
           onLoad={() => setLoaded(true)}
           onError={advanceOrFail}

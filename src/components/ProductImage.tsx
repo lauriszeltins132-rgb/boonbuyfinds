@@ -20,17 +20,17 @@ const IMAGE_LAYOUT: Record<
   card: {
     width: 800,
     height: 800,
-    sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw",
+    sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 280px, 260px",
   },
   featured: {
     width: 1200,
     height: 1200,
-    sizes: "(max-width: 1024px) 92vw, 48vw",
+    sizes: "(max-width: 1024px) 92vw, 540px",
   },
   hero: {
     width: 1400,
     height: 1400,
-    sizes: "(max-width: 1024px) 100vw, 50vw",
+    sizes: "(max-width: 1024px) 100vw, 560px",
   },
 };
 
@@ -65,9 +65,11 @@ function buildCandidateList(
     ? getProductImagePlan(validation.normalized)
     : null;
 
+  // Prefer first-party CDN / preferred first — never start with a huge remote original
+  // when a card/detail WebP variant is already available.
   const ordered: (string | undefined)[] = [
-    validation.valid ? validation.normalized : isLocalAsset(src) ? src : undefined,
     preferredSrc,
+    validation.valid ? validation.normalized : isLocalAsset(src) ? src : undefined,
     plan?.src,
     plan?.originalSrc,
     ...extraFallbacks,
@@ -194,7 +196,10 @@ export default function ProductImage({
         priority={loadEager}
         loading={loadEager ? "eager" : "lazy"}
         decoding="async"
-        unoptimized={displaySrc.startsWith("/api/")}
+        unoptimized={
+          displaySrc.startsWith("/api/") ||
+          (displaySrc.startsWith("/cdn/") && displaySrc.endsWith(".webp"))
+        }
         className={assetClass}
         onLoad={handleLoad}
         onError={advanceOrFail}

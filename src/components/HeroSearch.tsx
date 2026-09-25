@@ -116,12 +116,10 @@ export default function HeroSearch({ searchIndex }: HeroSearchProps) {
   function pushCatalogSearch(term: string) {
     const trimmed = term.trim();
     if (!trimmed) {
-      router.push("/", { scroll: false });
-      scrollToCatalogResults();
+      router.push("/browse", { scroll: false });
       return;
     }
-    router.push(`/?q=${encodeURIComponent(trimmed)}`, { scroll: false });
-    scrollToCatalogResults();
+    router.push(`/browse?q=${encodeURIComponent(trimmed)}`, { scroll: false });
   }
 
   function handleSubmit(event: FormEvent) {

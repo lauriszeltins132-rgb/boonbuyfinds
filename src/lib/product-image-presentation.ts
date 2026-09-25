@@ -3,6 +3,7 @@ import {
   getImageFillClass,
   getImageQualityScore,
 } from "./image-quality";
+import { getDetailCdnSrc, getCardCdnSrc } from "./product-image-cdn";
 import { getProductImagePlan } from "./processed-images";
 import type { Product } from "./types";
 
@@ -20,15 +21,17 @@ export type ResolvedProductImage = {
 };
 
 /**
- * Faithful catalog rendering — always the original product image.
- * No cutouts, no CSS enhancement, no knockout.
- *
- * Source priority (catalog fields only — never invent imagery):
- * 1. Valid primary `product.image`
- * 2. Placeholder (null) when dead/missing — QC links are Telegram threads, not images
+ * Source priority (never invent imagery, never mutate pixels):
+ * 1. First-party /cdn card|detail WebP when available
+ * 2. Valid primary product.image
+ * 3. null → placeholder
  */
 export function resolveBestProductImageSrc(product: Product): string | null {
   if (!product.image) return null;
+  const cdnDetail = getDetailCdnSrc(product.image);
+  if (cdnDetail) return cdnDetail;
+  const cdnCard = getCardCdnSrc(product.image);
+  if (cdnCard) return cdnCard;
   if (isDeadImageUrl(product.image)) return null;
   return product.image;
 }
@@ -36,13 +39,20 @@ export function resolveBestProductImageSrc(product: Product): string | null {
 export function resolveProductDisplayImage(
   product: Product
 ): ResolvedProductImage | null {
-  const sourceUrl = resolveBestProductImageSrc(product);
-  if (!sourceUrl) return null;
+  if (!product.image) return null;
+
+  const sourceUrl = product.image;
+  const displaySrc = resolveBestProductImageSrc(product);
+  if (!displaySrc) return null;
 
   const plan = getProductImagePlan(sourceUrl);
+  const fallbacks = [
+    displaySrc !== sourceUrl ? sourceUrl : null,
+    ...plan.fallbacks,
+  ].filter((url): url is string => Boolean(url) && url !== displaySrc);
 
   return {
-    displaySrc: plan.src,
+    displaySrc,
     sourceUrl,
     score: getImageQualityScore(sourceUrl),
     fillClass: getImageFillClass(sourceUrl),
@@ -51,7 +61,7 @@ export function resolveProductDisplayImage(
     enhance: false,
     darkBoost: false,
     isProcessed: false,
-    fallbacks: plan.fallbacks,
+    fallbacks,
   };
 }
 

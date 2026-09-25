@@ -32,6 +32,9 @@ const catalogProducts = normalizedProducts.filter((product) => {
   return passesCardDisplayGate(product);
 });
 
+/** Sorted once at module load — getAllProducts() is called heavily on homepage rails. */
+const catalogProductsSorted = sortWithImagesFirst(catalogProducts);
+
 export function sortWithImagesFirst(items: Product[]): Product[] {
   return [...items].sort((a, b) => {
     const visual = compareProductVisualQuality(a, b);
@@ -43,7 +46,7 @@ export function sortWithImagesFirst(items: Product[]): Product[] {
 }
 
 export function getAllProducts(): Product[] {
-  return sortWithImagesFirst(catalogProducts);
+  return catalogProductsSorted;
 }
 
 export function getProductById(id: string): Product | undefined {
