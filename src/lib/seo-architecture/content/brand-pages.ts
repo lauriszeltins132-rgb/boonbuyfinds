@@ -231,7 +231,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
     ]),
     relatedLinks: [
       { href: "/boonbuy-coupons", label: "Coupon hub" },
-      { href: "/boonbuy-promo", label: "Promo page" },
+      { href: "/boonbuy-coupons", label: "Promo codes" },
       { href: BOONBUY_COUPON_URL, label: "Register with invite" },
     ],
     relatedArticleSlugs: ["boonbuy-shipping", "boonbuy-coupons", "how-to-save-on-shipping"],
@@ -273,7 +273,7 @@ export const BRAND_ARCHITECTURE_PAGES: Record<string, SeoArchitecturePage> = {
         ],
         links: [
           { href: "/boonbuy-coupons", label: "Coupons" },
-          { href: "/boonbuy-discount-code", label: "Discount code" },
+          { href: "/boonbuy-coupons", label: "Discount code" },
         ],
       },
       {

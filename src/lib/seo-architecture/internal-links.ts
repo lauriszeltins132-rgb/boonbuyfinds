@@ -35,9 +35,9 @@ const CORE_HUB: HubBlock[] = [
     links: [
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
       { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
-      { href: "/boonbuy-referral-code", label: "Referral code" },
+      { href: "/boonbuy-coupons", label: "Referral / invite code" },
       { href: "/boonbuy-shipping", label: "BoonBuy shipping" },
-      { href: "/boonbuy-discount-code", label: "Discount code" },
+      { href: "/boonbuy-coupons", label: "Discount code" },
     ],
   },
   {

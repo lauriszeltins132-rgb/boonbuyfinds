@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BoonBuyCouponsLanding from "@/components/BoonBuyCouponsLanding";
 import {
+  BOONBUY_COUPON_INTENT_CLUSTER,
   BOONBUY_COUPONS_META,
   BOONBUY_COUPONS_PATH,
 } from "@/lib/boonbuy-coupons-hub";
@@ -18,20 +19,7 @@ export const metadata: Metadata = {
   description: BOONBUY_COUPONS_META.description,
   alternates: { canonical },
   robots: { index: true, follow: true },
-  keywords: [
-    "boonbuy coupon",
-    "boonbuy coupons",
-    "boonbuy coupon code",
-    "boonbuy promo code",
-    "boonbuy discount code",
-    "boonbuy shipping coupon",
-    "boonbuy shipping discount",
-    "best boonbuy coupon",
-    "working boonbuy coupon",
-    "boonbuy referral code",
-    "boonbuy invite code",
-    "boonbuy coupon 2026",
-  ],
+  keywords: [...BOONBUY_COUPON_INTENT_CLUSTER],
   openGraph: {
     title: BOONBUY_COUPONS_META.title,
     description: BOONBUY_COUPONS_META.description,

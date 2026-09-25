@@ -89,6 +89,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const SITEMAP_REDIRECT_SKIP = new Set([
     "/spreadsheet",
     "/boonbuy-discount-code",
+    "/boonbuy-referral-code",
+    "/boonbuy-invite",
+    "/boonbuy-invite-code",
+    "/boonbuy-voucher",
     "/guides/what-is-boonbuy",
     "/guides/boonbuy-spreadsheet",
     "/guides/boonbuy-spreadsheet-guide",

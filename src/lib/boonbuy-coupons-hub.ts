@@ -11,6 +11,31 @@ import { getDatasetSyncedIso } from "@/lib/catalog-meta";
 
 export const BOONBUY_COUPONS_PATH = "/boonbuy-coupons";
 
+/** Full search-intent cluster owned by this canonical hub (no thin per-phrase pages). */
+export const BOONBUY_COUPON_INTENT_CLUSTER = [
+  "boonbuy coupon",
+  "boonbuy coupons",
+  "best boonbuy coupon",
+  "best boonbuy coupons",
+  "boonbuy coupon 2026",
+  "boonbuy coupons 2026",
+  "best boonbuy coupon 2026",
+  "best boonbuy coupons 2026",
+  "boonbuy coupon code",
+  "boonbuy coupon codes",
+  "boonbuy promo code",
+  "boonbuy promo codes",
+  "boonbuy discount code",
+  "boonbuy discount codes",
+  "boonbuy shipping coupon",
+  "boonbuy shipping discount",
+  "boonbuy referral code",
+  "boonbuy invite code",
+  "working boonbuy coupon",
+  "latest boonbuy coupon",
+  "current boonbuy coupon",
+] as const;
+
 export function getBoonBuyCouponsLastVerifiedIso(): string {
   return getDatasetSyncedIso();
 }
@@ -20,10 +45,10 @@ export function getBoonBuyCouponsLastVerifiedLabel(): string {
 }
 
 export const BOONBUY_COUPONS_META = {
-  title: `Best BoonBuy Coupons & Shipping Discounts 2026 | BoonBuy Finds`,
-  description: `Claim verified BoonBuy coupons and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping with invite ${BOONBUY_INVITE_CODE}. Current offer, how to claim, FAQ, and shipping discount guidance — updated regularly on BoonBuy Finds.`,
-  h1: "Best BoonBuy Coupons & Shipping Discounts",
-  intro: `Looking for a working BoonBuy coupon? The verified offer on BoonBuy Finds is a new-user invite that can unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when the promotion is available — then shop QC finds with verified checkout links.`,
+  title: `Best BoonBuy Coupons, Promo Codes & Shipping Discounts 2026 | BoonBuy Finds`,
+  description: `Current BoonBuy coupon hub for 2026 — coupon codes, promo codes, discount codes, invite/referral code ${BOONBUY_INVITE_CODE}, and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. Working offer, how to claim, FAQ, and latest savings guidance on BoonBuy Finds.`,
+  h1: "Best BoonBuy Coupons, Codes & Shipping Discounts 2026",
+  intro: `Looking for a working BoonBuy coupon, the latest BoonBuy coupon code, a BoonBuy promo code, discount code, invite code, or referral code? This is the canonical BoonBuy coupons hub for 2026. The verified offer on BoonBuy Finds is a new-user invite (${BOONBUY_INVITE_CODE}) that can unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when the promotion is available — then shop QC finds with verified checkout links.`,
 } as const;
 
 export const BOONBUY_COUPONS_OFFER = {
@@ -49,19 +74,25 @@ export function getBoonBuyCouponOfferRows(): CouponOfferRow[] {
   const updated = getBoonBuyCouponsLastVerifiedLabel();
   return [
     {
-      offer: "BoonBuy invite / registration offer",
+      offer: "Best / current BoonBuy coupon (2026)",
       benefit: `Up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping for eligible new accounts`,
       status: "Active",
       notes: `Invite ${BOONBUY_INVITE_CODE} · Updated ${updated}`,
     },
     {
-      offer: "BoonBuy shipping discount",
+      offer: "BoonBuy coupon code / promo code / discount code",
+      benefit: "Same verified signup path — codes attach at registration, not as product markdowns",
+      status: "Active",
+      notes: `Prefer full invite URL · Updated ${updated}`,
+    },
+    {
+      offer: "BoonBuy shipping coupon / shipping discount",
       benefit: "Freight savings when the invite promotion attaches to your account",
       status: "Active",
       notes: `Confirm on BoonBuy before you pay · Updated ${updated}`,
     },
     {
-      offer: "BoonBuy Finds referral / invite code",
+      offer: "BoonBuy referral / invite code",
       benefit: "Attaches the verified signup path used across BoonBuy Finds",
       status: "Active",
       notes: `Code ${BOONBUY_INVITE_CODE}`,
@@ -78,15 +109,15 @@ export function getBoonBuyCouponOfferRows(): CouponOfferRow[] {
 export const BOONBUY_COUPON_CLAIM_STEPS = [
   {
     name: "Open the verified BoonBuy coupon link",
-    text: "Use the claim button on this page (or the BoonBuy Finds invite URL). Prefer the full signup link over random codes from old screenshots.",
+    text: "Use the claim button on this page (or the BoonBuy Finds invite URL). Prefer the full signup link over random codes from old screenshots or social posts.",
   },
   {
     name: "Create your BoonBuy account",
     text: "Register a new BoonBuy account through the invite URL so the referral attaches at signup.",
   },
   {
-    name: "Confirm the invite benefit is attached",
-    text: `If BoonBuy asks for an invite or referral code, use ${BOONBUY_INVITE_CODE}. Check account promotions or shipping terms after registration.`,
+    name: "Confirm the invite / referral code is attached",
+    text: `If BoonBuy asks for an invite or referral code, use ${BOONBUY_INVITE_CODE}. Screenshot promo terms after registration — support is easier when you can prove which offer you claimed. Check account promotions or shipping terms after signup.`,
   },
   {
     name: "Browse finds on BoonBuy Finds",
@@ -145,29 +176,41 @@ export const BOONBUY_COUPONS_FAQS: { question: string; answer: string }[] = [
   },
   {
     question: "What is the best BoonBuy coupon right now?",
-    answer: `The best current offer we promote is the new-user shipping discount: up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when you register through the BoonBuy Finds invite and the promotion is available.`,
+    answer: `The best current BoonBuy coupon we promote for 2026 is the new-user shipping discount: up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when you register through the BoonBuy Finds invite (${BOONBUY_INVITE_CODE}) and the promotion is available.`,
+  },
+  {
+    question: "What are the best BoonBuy coupons 2026?",
+    answer: `For 2026, the best BoonBuy coupons on BoonBuy Finds still center on shipping — not invented product markdown lists. Claim the verified invite for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping, then confirm live freight terms on BoonBuy.`,
+  },
+  {
+    question: "What is the latest / current / working BoonBuy coupon?",
+    answer: `The latest working offer we verify is the invite shipping path on this page (code ${BOONBUY_INVITE_CODE}). “Latest,” “current,” and “working” all mean the same live signup claim — check the Last verified date above and BoonBuy’s live terms before a haul.`,
   },
   {
     question: "Is there a working BoonBuy coupon code?",
     answer: `Use invite code ${BOONBUY_INVITE_CODE} with the verified signup link on this page. Prefer the full invite URL — pasted codes alone can fail if the signup path is wrong.`,
   },
   {
-    question: "How do BoonBuy coupon codes work?",
+    question: "How do BoonBuy coupon codes and promo codes work?",
     answer:
-      "Most savings attach at registration via invite/referral, then show up when you pay shipping for a consolidated parcel. Confirm the live quote on BoonBuy before funding freight.",
+      "Most savings attach at registration via invite/referral, then show up when you pay shipping for a consolidated parcel. BoonBuy coupon codes, promo codes, and discount codes usually describe that same path — not a SKU coupon typed on every product. Confirm the live quote on BoonBuy before funding freight.",
+  },
+  {
+    question: "What is a BoonBuy discount code?",
+    answer: `A BoonBuy discount code search almost always means the same invite/shipping offer as a coupon or promo code. On BoonBuy Finds, use invite ${BOONBUY_INVITE_CODE} via the claim button — we do not invent separate storewide product discount codes.`,
   },
   {
     question: "How do I claim the BoonBuy shipping discount?",
     answer: `Click the claim button, create a new BoonBuy account through the invite, then check shipping promotions when you submit a parcel. See also /boonbuy-shipping-coupon for shipping-focused guidance.`,
   },
   {
-    question: "Is there a BoonBuy referral code?",
-    answer: `Yes. The invite/referral code published with BoonBuy Finds is ${BOONBUY_INVITE_CODE}. Use it at signup through our verified registration link.`,
+    question: "Is there a BoonBuy referral code or invite code?",
+    answer: `Yes. The invite/referral code published with BoonBuy Finds is ${BOONBUY_INVITE_CODE}. Use it at signup through our verified registration link. Referral code, invite code, and coupon code queries all resolve to this hub.`,
   },
   {
     question: "What is the difference between a BoonBuy coupon and invite code?",
     answer:
-      "People search both phrases for the same intent. The invite/referral code attaches benefits at registration; “coupon” usually means that shipping discount path — not a separate storewide SKU markdown code.",
+      "People search both phrases for the same intent. The invite/referral code attaches benefits at registration; “coupon,” “promo,” and “discount” usually mean that shipping discount path — not a separate storewide SKU markdown code.",
   },
   {
     question: "Does the BoonBuy coupon expire?",

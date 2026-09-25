@@ -94,7 +94,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         links: [
           { href: "/boonbuy-shipping-coupon", label: "BoonBuy shipping coupon" },
           { href: "/boonbuy-coupons", label: "All BoonBuy coupons" },
-          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+          { href: "/boonbuy-coupons", label: "Best BoonBuy coupons" },
         ],
       },
       {
@@ -204,7 +204,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         links: [
           { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet hub" },
           { href: "/boonbuy-shipping-coupon", label: "40% shipping coupon" },
-          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+          { href: "/boonbuy-coupons", label: "Best BoonBuy coupons" },
         ],
       },
       {
@@ -215,7 +215,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         links: [
           { href: "/most-popular-finds-now", label: "Popular today" },
           { href: "/best-boonbuy-finds", label: "Best BoonBuy finds" },
-          { href: "/boonbuy-coupon", label: "BoonBuy coupon" },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupon" },
         ],
       },
     ],
@@ -234,7 +234,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
     relatedLinks: [
       { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+      { href: "/boonbuy-coupons", label: "Best BoonBuy coupons" },
       { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
       ...RESOURCE_LINKS,
     ],
@@ -470,7 +470,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         ],
         links: [
           { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+          { href: "/boonbuy-coupons", label: "Best BoonBuy coupons" },
           { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
           { href: "/telegram-boonbuy", label: "BoonBuy Telegram" },
         ],
@@ -501,7 +501,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       {
         question: "Where do I claim BoonBuy coupons?",
         answer:
-          "Start at /boonbuy-coupons or /best-boonbuy-coupons for the current shipping discount, then browse finds on the homepage.",
+          "Start at /boonbuy-coupons for the current shipping discount, then browse finds on the homepage.",
       },
     ],
     relatedLinks: [

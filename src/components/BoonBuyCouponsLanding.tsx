@@ -170,16 +170,34 @@ export default function BoonBuyCouponsLanding() {
           <ProseSection id="what-are-boonbuy-coupons" title="What are BoonBuy coupons?">
             <p>
               BoonBuy is a shopping agent for Weidian and Taobao orders. When people
-              search for BoonBuy coupons, coupon codes, promo codes, or discount codes,
-              they usually want a verified way to pay less on{" "}
+              search for BoonBuy coupons, BoonBuy coupon codes, promo codes, or discount
+              codes, they usually want a verified way to pay less on{" "}
               <strong className="font-semibold text-foreground">shipping</strong> — not a
               fake product markdown list.
             </p>
             <p>
               BoonBuy Finds (boonbuyfinds.net) is the catalog and guide layer: searchable
-              finds, QC references, and verified BoonBuy checkout links. The coupon hub
-              publishes the invite we use across the site so new users can claim the
-              current shipping promotion when it is available.
+              finds, QC references, and verified BoonBuy checkout links. This page is the
+              single canonical hub for the whole BoonBuy coupon search cluster in 2026 —
+              including best coupons, coupon codes, promo codes, discount codes, invite
+              codes, referral codes, and the current working shipping offer.
+            </p>
+          </ProseSection>
+
+          <ProseSection
+            id="best-boonbuy-coupons-2026"
+            title="Best BoonBuy coupons 2026"
+          >
+            <p>
+              The best BoonBuy coupon and best BoonBuy coupons searches for 2026 still
+              resolve to one practical offer on BoonBuy Finds: the new-user shipping
+              discount (up to {BOONBUY_COUPONS_OFFER.discountPercent}% off shipping) via
+              invite code {BOONBUY_COUPONS_OFFER.inviteCode}.
+            </p>
+            <p>
+              We do not publish thin “best coupon” doorways. If you landed here from best
+              BoonBuy coupon, best BoonBuy coupons, BoonBuy coupons 2026, or best BoonBuy
+              coupons 2026, this is the page that owns that intent.
             </p>
           </ProseSection>
 
@@ -197,23 +215,41 @@ export default function BoonBuyCouponsLanding() {
             </p>
           </ProseSection>
 
-          <ProseSection id="boonbuy-shipping-discounts" title="BoonBuy shipping discounts">
+          <ProseSection
+            id="promo-discount-codes"
+            title="BoonBuy promo codes &amp; discount codes"
+          >
+            <p>
+              BoonBuy promo code, promo codes, discount code, and discount codes usually
+              mean the same thing as a BoonBuy coupon code: the verified registration path
+              that can unlock shipping savings. There is no separate secret vault of product
+              SKU codes on BoonBuy Finds.
+            </p>
+            <p>
+              Use invite {BOONBUY_COUPONS_OFFER.inviteCode} with the claim button below.
+              Prefer the full signup URL so the referral attaches correctly — typed codes
+              from old screenshots often fail.
+            </p>
+          </ProseSection>
+
+          <ProseSection id="boonbuy-shipping-discounts" title="BoonBuy shipping coupon &amp; shipping discount">
             <p>
               Shipping is often the largest cost after products. The current verified
               headline is up to {BOONBUY_COUPONS_OFFER.discountPercent}% off shipping for
-              eligible new accounts via the BoonBuy Finds invite.
+              eligible new accounts via the BoonBuy Finds invite — that is the BoonBuy
+              shipping coupon / shipping discount people search for.
             </p>
             <p>
               That discount is not a guarantee of {BOONBUY_COUPONS_OFFER.discountPercent}%
-              off every box. Use the broad coupon hub here for registration offers, and the
-              shipping-specific pages when you are comparing freight:
+              off every box. Use this hub for registration offers across the coupon cluster,
+              and the shipping-specific page when you are comparing freight in depth:
             </p>
             <ul className="list-disc space-y-1 pl-5">
               <li>
                 <Link href="/boonbuy-shipping-coupon" className="font-semibold text-accent hover:underline">
                   BoonBuy shipping coupon
                 </Link>{" "}
-                — shipping-focused claim guidance
+                — shipping-focused claim guidance (kept separate on purpose)
               </li>
               <li>
                 <Link href="/boonbuy-shipping" className="font-semibold text-accent hover:underline">
@@ -224,10 +260,10 @@ export default function BoonBuyCouponsLanding() {
             </ul>
           </ProseSection>
 
-          {/* Current working coupon */}
+          {/* Current / latest / working coupon */}
           <section id="current-working-coupon" className="mt-12 scroll-mt-24">
             <h2 className="text-xl font-black tracking-tight sm:text-2xl">
-              Current working BoonBuy coupon
+              Latest, current &amp; working BoonBuy coupon
             </h2>
             <div className="mt-5 rounded-2xl border border-border bg-surface/30 p-5 sm:p-6">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
@@ -351,12 +387,16 @@ export default function BoonBuyCouponsLanding() {
 
           <ProseSection
             id="coupon-vs-invite"
-            title="BoonBuy coupon vs referral / invite code"
+            title="BoonBuy referral code &amp; invite code"
           >
             <p>
               Searchers mix these phrases: BoonBuy coupon code, promo code, discount code,
               referral code, and invite code. On BoonBuy Finds they point at the same
-              verified registration path.
+              verified registration path — invite{" "}
+              <strong className="font-mono text-foreground">
+                {BOONBUY_COUPONS_OFFER.inviteCode}
+              </strong>
+              .
             </p>
             <ul className="list-disc space-y-2 pl-5">
               <li>
@@ -370,8 +410,9 @@ export default function BoonBuyCouponsLanding() {
               </li>
             </ul>
             <p>
-              We do not create separate indexable pages for every phrasing. This hub is the
-              canonical answer; thin aliases redirect here.
+              We do not keep separate indexable pages for invite, referral, voucher, or
+              promo phrasings. This hub is the canonical answer; thin aliases permanently
+              redirect here.
             </p>
           </ProseSection>
 
