@@ -1,7 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { resolveCleanCatalogPath } from "@/lib/seo-filter-routes";
 
-const FILTER_KEYS = ["q", "brand", "min", "max", "sort", "qc", "page", "saved"] as const;
+const FILTER_KEYS = [
+  "q",
+  "brand",
+  "category",
+  "min",
+  "max",
+  "sort",
+  "qc",
+  "page",
+  "saved",
+] as const;
 
 function hasCatalogFilters(searchParams: URLSearchParams): boolean {
   return FILTER_KEYS.some((key) => {

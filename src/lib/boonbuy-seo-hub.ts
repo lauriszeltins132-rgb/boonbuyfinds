@@ -41,7 +41,7 @@ export const BOONBUY_SEO_HUB = {
     label: "BoonBuy Finds",
   },
   browseFinds: {
-    href: "/finds",
+    href: "/boonbuy-finds",
     label: "Browse Finds",
   },
   latestFinds: {

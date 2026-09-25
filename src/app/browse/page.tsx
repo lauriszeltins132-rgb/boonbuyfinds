@@ -8,8 +8,7 @@ import { getCardDisplayMap } from "@/lib/card-props";
 import { filterProducts } from "@/lib/filters";
 import { getAllProducts, getCategories } from "@/lib/products";
 import {
-  hasExtraCatalogFilters,
-  resolveBrandDestination,
+  resolveCleanCatalogPath,
 } from "@/lib/seo-filter-routes";
 import { SITE_URL } from "@/lib/site";
 
@@ -30,11 +29,10 @@ export async function generateMetadata({
   searchParams,
 }: BrowsePageProps): Promise<Metadata> {
   const params = await searchParams;
-  const search = firstParam(params.q);
-  const brand = firstParam(params.brand);
   const asRecord = {
-    q: search || undefined,
-    brand: brand || undefined,
+    q: firstParam(params.q) || undefined,
+    brand: firstParam(params.brand) || undefined,
+    category: firstParam(params.category) || undefined,
     min: firstParam(params.min) || undefined,
     max: firstParam(params.max) || undefined,
     sort: firstParam(params.sort) || undefined,
@@ -43,11 +41,8 @@ export async function generateMetadata({
     saved: firstParam(params.saved) || undefined,
   };
 
-  const cleanBrand = !hasExtraCatalogFilters(asRecord)
-    ? resolveBrandDestination(brand || null, search || null)
-    : null;
-
-  const canonicalPath = cleanBrand ?? "/finds";
+  const cleanPath = resolveCleanCatalogPath(asRecord);
+  const canonicalPath = cleanPath ?? "/boonbuy-finds";
 
   return {
     title: { absolute: "Browse BoonBuy Finds" },

@@ -59,8 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [
     entry("/", "daily", 1, synced),
     entry("/boonbuy", "weekly", 0.99, synced),
-    entry("/finds", "daily", 0.98, synced),
-    entry("/boonbuy-finds", "daily", 0.97, synced),
+    entry("/boonbuy-finds", "daily", 0.98, synced),
     entry("/latest-finds", "daily", 0.95, synced),
     entry("/rep-finds", "daily", 0.94, synced),
     entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
@@ -159,8 +158,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const slug of FINDS_HUB_SLUGS) {
     const page = FINDS_HUB_PAGES[slug];
     // Authority finds hubs already listed with tiered priority above.
+    // /finds permanently redirects to /boonbuy-finds — do not sitemap it.
     if (
       page.path === "/finds" ||
+      page.path === "/boonbuy-finds" ||
       page.path === "/latest-finds" ||
       page.path === "/rep-finds"
     ) {

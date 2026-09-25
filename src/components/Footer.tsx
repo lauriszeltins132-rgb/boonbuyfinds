@@ -16,7 +16,7 @@ import siteNavigation from "@/data/site-navigation.json";
 const GUIDE_LINKS = [
   { href: "/guides", label: "All guides" },
   { href: "/boonbuy-questions", label: "BoonBuy questions" },
-  { href: "/finds", label: "Browse finds" },
+  { href: "/boonbuy-finds", label: "Browse finds" },
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
@@ -26,7 +26,7 @@ const GUIDE_LINKS = [
 ];
 
 const COLLECTION_LINKS = [
-  { href: "/finds", label: "Browse finds" },
+  { href: "/boonbuy-finds", label: "Browse finds" },
   { href: "/latest-finds", label: "Latest finds" },
   { href: "/rep-finds", label: "Rep finds" },
   { href: "/sneaker-finds", label: "Sneaker finds" },

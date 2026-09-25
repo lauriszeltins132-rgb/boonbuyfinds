@@ -42,7 +42,7 @@ function byCategory(...slugs: string[]) {
 }
 
 const AUTHORITY = [
-  { href: "/finds", label: "Browse finds" },
+  { href: "/boonbuy-finds", label: "Browse finds" },
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
@@ -53,7 +53,7 @@ const AUTHORITY = [
 ] as const;
 
 const HUB_MESH = [
-  { href: "/finds", label: "Browse finds" },
+  { href: "/boonbuy-finds", label: "Browse finds" },
   { href: "/sneaker-finds", label: "Sneaker finds" },
   { href: "/clothing-finds", label: "Clothing finds" },
   { href: "/streetwear-finds", label: "Streetwear finds" },

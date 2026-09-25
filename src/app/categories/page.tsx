@@ -61,7 +61,7 @@ export default function CategoriesPage() {
           className="mt-8 flex flex-wrap gap-2"
         >
           {[
-            { href: "/finds", label: "Browse finds" },
+            { href: "/boonbuy-finds", label: "Browse finds" },
             { href: "/boonbuy-finds", label: "BoonBuy finds" },
             { href: "/brands", label: "Brands" },
             { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
