@@ -222,6 +222,50 @@ function pickBestUnder20(
   );
 }
 
+/** Weekly — priced under $50 with weekly rotation. */
+function pickBestUnder50(
+  limit: number,
+  used: Set<string>,
+  usedListingKeys: Set<string>,
+  week: number
+): Product[] {
+  return pickFeaturedProducts(
+    fashionPool(getDealProducts(50)),
+    limit,
+    used,
+    week,
+    "budget-under-50",
+    pickFeaturedOptions(usedListingKeys)
+  );
+}
+
+function pickBrandCollectionPreview(
+  brandName: string,
+  limit: number,
+  used: Set<string>,
+  usedListingKeys: Set<string>,
+  week: number
+): Product[] {
+  const pool = fashionPool(
+    getAllProducts().filter(
+      (product) =>
+        extractBrand(product.product_name)?.toLowerCase() ===
+        brandName.toLowerCase()
+    )
+  );
+  return pickFeaturedProducts(
+    pool,
+    limit,
+    used,
+    week,
+    `brand-preview-${brandName.toLowerCase()}`,
+    {
+      ...pickFeaturedOptions(usedListingKeys),
+      preferEditorial: true,
+    }
+  );
+}
+
 function pickRecentlyAdded(
   limit: number,
   used: Set<string>,
@@ -515,51 +559,64 @@ export function getHomepageRails(limit = 12): HomepageRails {
   };
 }
 
-export type HomepageSurfaceRails = Pick<
-  HomepageRails,
-  | "popularToday"
-  | "latestFinds"
-  | "editorsPicks"
-  | "bestUnder20"
-  | "popularWeek"
-  | "dayIndex"
-  | "weekIndex"
-  | "monthIndex"
->;
+export type HomepageSurfaceRails = {
+  popularToday: Product[];
+  latestFinds: Product[];
+  bestUnder50: Product[];
+  nikeFinds: Product[];
+  monclerFinds: Product[];
+  dayIndex: number;
+  weekIndex: number;
+  monthIndex: number;
+};
 
 /**
- * Homepage-only rails — skips unused discovery pools to cut TTFB work.
- * Full `getHomepageRails` remains for other surfaces that need every rail.
+ * Homepage-only rails — small previews only (no full catalog / unused pools).
+ * Caps keep First Paint image count low on mobile.
  */
-export function getHomepageSurfaceRails(limit = 12): HomepageSurfaceRails {
+export function getHomepageSurfaceRails(limit = 6): HomepageSurfaceRails {
   const day = getUtcDayIndex();
   const week = getUtcWeekIndex();
   const month = getUtcMonthIndex();
   const used = new Set<string>();
   const usedListingKeys = new Set<string>();
+  const railLimit = Math.min(Math.max(limit, 4), 8);
+  const previewLimit = Math.min(railLimit, 4);
 
   const popularToday = registerRailProducts(
-    pickPopularToday(limit, used, usedListingKeys, day),
+    pickPopularToday(railLimit, used, usedListingKeys, day),
     used,
     usedListingKeys
   );
   const latestFinds = registerRailProducts(
-    pickLatestFinds(limit, used, usedListingKeys),
+    pickLatestFinds(railLimit, used, usedListingKeys),
     used,
     usedListingKeys
   );
-  const editorsPicks = registerRailProducts(
-    pickEditorsPicks(limit, used, usedListingKeys, month),
+  const bestUnder50 = registerRailProducts(
+    pickBestUnder50(railLimit, used, usedListingKeys, week),
     used,
     usedListingKeys
   );
-  const bestUnder20 = registerRailProducts(
-    pickBestUnder20(limit, used, usedListingKeys, week),
+  const nikeFinds = registerRailProducts(
+    pickBrandCollectionPreview(
+      "Nike",
+      previewLimit,
+      used,
+      usedListingKeys,
+      week
+    ),
     used,
     usedListingKeys
   );
-  const popularWeek = registerRailProducts(
-    pickPopularWeek(limit, used, usedListingKeys, week),
+  const monclerFinds = registerRailProducts(
+    pickBrandCollectionPreview(
+      "Moncler",
+      previewLimit,
+      used,
+      usedListingKeys,
+      week
+    ),
     used,
     usedListingKeys
   );
@@ -567,9 +624,9 @@ export function getHomepageSurfaceRails(limit = 12): HomepageSurfaceRails {
   return {
     popularToday,
     latestFinds,
-    editorsPicks,
-    bestUnder20,
-    popularWeek,
+    bestUnder50,
+    nikeFinds,
+    monclerFinds,
     dayIndex: day,
     weekIndex: week,
     monthIndex: month,

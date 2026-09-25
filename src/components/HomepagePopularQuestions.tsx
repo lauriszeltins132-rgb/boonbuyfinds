@@ -4,13 +4,13 @@ import { POPULAR_BOONBUY_QUESTIONS } from "@/lib/boonbuy-questions";
 /** Compact homepage Q&A rail — server-rendered, no client JS. */
 export default function HomepagePopularQuestions() {
   return (
-    <section className="px-4 py-8 sm:px-6">
+    <section className="px-4 py-5 sm:px-6">
       <div className="mx-auto max-w-7xl rounded-2xl border border-border/80 bg-surface/20 p-5 sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="text-lg font-black sm:text-xl">Popular BoonBuy Questions</h2>
             <p className="mt-1 text-sm text-muted">
-              Direct answers for the searches people ask most — full hub linked below.
+              Direct answers for common searches — full hub linked below.
             </p>
           </div>
           <Link

@@ -1,58 +1,48 @@
 import Link from "next/link";
 import { SHARE_COLLECTIONS } from "@/lib/share-collections";
 
+/** High-value collection chips only — product previews live in rails above. */
 const FEATURED_COLLECTION_SLUGS = [
-  "best-nike-finds",
-  "best-jordan-finds",
-  "best-moncler-finds",
-  "best-stussy-finds",
   "best-sneakers",
-  "best-jackets",
   "best-hoodies",
-  "best-bags",
   "best-qc-approved-finds",
-  "trending-this-week",
-  "most-saved-finds",
   "best-under-50",
+  "trending-this-week",
 ];
 
 export default function HomepageCollections() {
-  const collections = FEATURED_COLLECTION_SLUGS.map((slug) => SHARE_COLLECTIONS[slug]).filter(
-    Boolean
-  );
+  const collections = FEATURED_COLLECTION_SLUGS.map(
+    (slug) => SHARE_COLLECTIONS[slug]
+  ).filter(Boolean);
 
   return (
-    <section className="px-4 py-6 sm:px-6">
-      <div className="mx-auto max-w-7xl rounded-2xl border border-border bg-surface/30 p-5 sm:p-6">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
-              Collections
-            </p>
-            <h2 className="mt-2 text-xl font-black sm:text-2xl">Curated find collections</h2>
-            <p className="mt-1 text-sm text-muted">
-              Brand picks, QC finds, budget hauls, and trending lists.
-            </p>
-          </div>
-          <Link
-            href="/collections"
-            className="text-sm font-bold text-accent hover:underline"
-          >
-            All collections →
-          </Link>
-        </div>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {collections.map((item) => (
-            <li key={item.slug}>
+    <section className="px-4 py-4 sm:px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h2 className="text-sm font-black text-foreground sm:text-base">
+            Useful collections
+          </h2>
+          <ul className="flex flex-wrap items-center gap-1.5">
+            {collections.map((item) => (
+              <li key={item.slug}>
+                <Link
+                  href={item.path}
+                  className="inline-flex rounded-full border border-border bg-surface/40 px-3 py-1 text-xs font-bold text-foreground/85 hover:border-accent/40 hover:text-accent"
+                >
+                  {item.h1.replace(/\s+BoonBuy finds$/i, "").trim() || item.h1}
+                </Link>
+              </li>
+            ))}
+            <li>
               <Link
-                href={item.path}
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-bold text-foreground/85 hover:border-accent/40 hover:text-accent"
+                href="/collections"
+                className="inline-flex rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-bold text-accent hover:bg-accent/15"
               >
-                {item.h1}
+                View all
               </Link>
             </li>
-          ))}
-        </ul>
+          </ul>
+        </div>
       </div>
     </section>
   );
