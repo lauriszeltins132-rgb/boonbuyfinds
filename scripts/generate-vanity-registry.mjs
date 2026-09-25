@@ -132,6 +132,11 @@ const KNOWN_BRANDS = [
 const RESERVED = [
   "coupon",
   "coupons",
+  "coupon-code",
+  "promo",
+  "promo-code",
+  "discount",
+  "discount-code",
   "finds",
   "spreadsheet",
   "qc",
@@ -195,6 +200,11 @@ const RESERVED = [
 const MARKETING = {
   coupon: "/boonbuy-coupons",
   coupons: "/boonbuy-coupons",
+  "coupon-code": "/boonbuy-coupons",
+  promo: "/boonbuy-coupons",
+  "promo-code": "/boonbuy-coupons",
+  discount: "/boonbuy-coupons",
+  "discount-code": "/boonbuy-coupons",
   finds: "/boonbuy-finds",
   spreadsheet: "/boonbuy-spreadsheet",
   qc: "/boonbuy-qc",
