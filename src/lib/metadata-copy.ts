@@ -105,7 +105,7 @@ export function getSpreadsheetMetadataCopy() {
       `BoonBuy Spreadsheet | ${META_SCALE} QC Photos & Agent Links`
     ),
     description: truncateMetaDescription(
-      `Searchable BoonBuy spreadsheet with ${META_SCALE} curated finds, QC photos, 45% shipping coupons, ${META_VALUE_STACK}. ${META_AGENTS}.`
+      `Searchable BoonBuy spreadsheet with ${META_SCALE} curated finds, QC photos, 40% shipping coupons, ${META_VALUE_STACK}. ${META_AGENTS}.`
     ),
   };
 }
