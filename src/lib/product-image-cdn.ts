@@ -1,5 +1,3 @@
-import "server-only";
-
 import cdnManifest from "@/data/product-image-cdn.json";
 
 type CdnVariant = {
