@@ -43,11 +43,11 @@ export function truncateMetaTitle(text: string, max = TITLE_MAX): string {
 export function getHomepageMetadataCopy() {
   return {
     title: truncateMetaTitle(
-      `BoonBuy Finds: Spreadsheet, Products & QC Photos 2026`,
+      `BoonBuy Finds | Products, QC Photos, Spreadsheet & Coupons`,
       72
     ),
     description: truncateMetaDescription(
-      `BoonBuy Finds is a product discovery catalog for BoonBuy — spreadsheet finds, QC photos, coupons, categories, brands, and verified checkout links. Updated daily.`
+      `BoonBuy Finds (${META_SCALE} indexed finds) — search BoonBuy products, QC photo references, spreadsheet listings, coupons, and buying guides. Updated regularly.`
     ),
   };
 }

@@ -1,4 +1,5 @@
-import { CONTACT_EMAIL, SITE_NAME, SOCIAL_LINKS } from "./constants";
+import { PUBLIC_CATALOG_COUNT } from "./catalog-count-public";
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "./constants";
 import { SITE_URL } from "./site";
 
 export const CONTENT_TEAM_NAME = "BoonBuy Finds Team";
@@ -14,7 +15,7 @@ export const WEBSITE_SCHEMA_ID = `${SITE_URL}/#website`;
 
 export const TRUST_FOOTER_SIGNALS = [
   "Updated regularly",
-  "3,000+ product listings",
+  `${PUBLIC_CATALOG_COUNT} indexed finds`,
   "Guides and buying resources",
   "Community support via Telegram",
 ] as const;

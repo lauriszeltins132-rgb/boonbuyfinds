@@ -1,10 +1,10 @@
-import { PUBLIC_CATALOG_COUNT } from "@/lib/catalog-count-public";
+import { PUBLIC_CATALOG_COUNT, PUBLIC_QC_COUNT } from "@/lib/catalog-count-public";
 import siteNavigation from "@/data/site-navigation.json";
 
 const SIGNALS = [
-  { key: "finds", label: "QC-curated finds" },
+  { key: "finds", label: "indexed finds" },
   { key: "qc", label: "with QC references" },
-  { key: "updates", label: "Daily catalog sync" },
+  { key: "updates", label: "Regular catalog sync" },
   { key: "community", label: "Active Telegram community" },
   { key: "boonbuy", label: "Verified BoonBuy links" },
 ] as const;
@@ -15,11 +15,13 @@ type TrustStripProps = {
 
 export default function TrustStrip({ compact = false }: TrustStripProps) {
   const withQc = siteNavigation.catalogStats?.withQc ?? 0;
+  const qcLabel =
+    withQc > 0 ? withQc.toLocaleString("en-US") : PUBLIC_QC_COUNT;
 
   const values: Record<string, string> = {
     finds: PUBLIC_CATALOG_COUNT,
-    qc: `${withQc.toLocaleString()}+`,
-    updates: "Daily",
+    qc: qcLabel,
+    updates: "Regular",
     community: "Active",
     boonbuy: "Verified",
   };

@@ -656,18 +656,18 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
 
   boonbuy: {
     path: "/boonbuy",
-    title: "BoonBuy | Shopping Agent, Finds, Coupons & Spreadsheet 2026",
+    title: "BoonBuy | Shopping Agent, Finds, Coupons & Spreadsheet",
     metaDescription:
-      "BoonBuy shopping agent explained — plus BoonBuy Finds for QC photos, spreadsheet finds, BoonBuy coupons, Telegram. Start at boonbuyfinds.net.",
+      "What BoonBuy is, how ordering works, and how BoonBuy Finds helps with QC photos, coupons, spreadsheet finds, shipping, and verified checkout.",
     badge: "BoonBuy agent",
     h1: "BoonBuy — shopping agent & finds hub",
     intro:
-      "BoonBuy (boonbuy.com) is a China shopping agent for Weidian, Taobao, and 1688. BoonBuy Finds (boonbuyfinds.net) is the independent catalog people search for as boonbuy finds, boonbuyfinds, and boonbuy spreadsheet — with coupons, QC photos, and verified checkout links.",
+      "BoonBuy (boonbuy.com) is a China shopping agent for Weidian, Taobao, and 1688. BoonBuy Finds (boonbuyfinds.net) is the independent catalog for BoonBuy finds, coupons, QC photos, and verified checkout links.",
     sections: [
       {
         heading: "What is BoonBuy?",
         paragraphs: [
-          "BoonBuy helps international buyers purchase from Weidian, Taobao, and 1688 with warehouse QC, consolidated shipping, and agent checkout links.",
+          "BoonBuy is a shopping agent: you paste marketplace links, pay for items into a warehouse, review QC photos, then consolidate and ship internationally.",
           "Use boonbuy.com to register and ship. Use boonbuyfinds.net to browse curated finds, claim coupons, and open verified product links before you buy.",
         ],
         links: [
@@ -675,41 +675,55 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
             href: BOONBUY_SIGNUP_URL,
             label: "Register on BoonBuy",
           },
-          { href: "/boonbuy-coupons", label: "Claim BoonBuy coupons" },
-          { href: "/best-boonbuy-coupons", label: "Best BoonBuy coupons" },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+          { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
           { href: "/boonbuy-finds", label: "Browse BoonBuy finds" },
         ],
       },
       {
-        heading: "BoonBuy Finds — your discovery layer",
+        heading: "Ordering, warehouse & QC",
         paragraphs: [
-          "Search thousands of QC-approved fashion and sneaker finds. Every product opens a verified BoonBuy link with QC references and trusted checkout.",
-          "Looking for boonbuyfinds or boonbuy finds? That is this site — start on the homepage catalog or the dedicated boonbuyfinds hub.",
+          "After you order, items arrive at the BoonBuy warehouse for QC photos. Approve, exchange, or return before you build a parcel and ship.",
         ],
         links: [
-          { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
-          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-          { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
+          { href: "/boonbuy-warehouse", label: "BoonBuy warehouse" },
+          { href: "/boonbuy-qc", label: "BoonBuy QC" },
+          { href: "/boonbuy-payment", label: "BoonBuy payment" },
+          { href: "/boonbuy-returns", label: "BoonBuy returns" },
         ],
       },
       {
-        heading: "Coupons, invite & spreadsheet",
+        heading: "Shipping & coupons",
         paragraphs: [
-          "New BoonBuy accounts can unlock up to 45% off shipping through our invite coupon pages. Pair that with the BoonBuy spreadsheet alternative for searchable product rows instead of a giant Google Sheet.",
+          "Shipping cost depends on weight, volume, and line. New accounts can unlock a shipping discount through our invite coupon pages when the offer is available.",
         ],
         links: [
-          { href: "/boonbuy-coupon", label: "BoonBuy coupon" },
-          { href: "/boonbuy-invite-code", label: "BoonBuy invite code" },
-          { href: "/boonbuy-promo-code", label: "BoonBuy promo code" },
+          { href: "/boonbuy-shipping", label: "BoonBuy shipping" },
+          { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
+          { href: "/boonbuy-shipping-coupon", label: "Shipping coupon" },
           { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+        ],
+      },
+      {
+        heading: "BoonBuy Finds — discovery layer",
+        paragraphs: [
+          "BoonBuy Finds turns spreadsheet-style catalogs into searchable pages with brands, categories, QC references, and verified BoonBuy buy links.",
+        ],
+        links: [
+          { href: "/", label: "BoonBuy Finds homepage" },
+          { href: "/boonbuy-finds", label: "BoonBuy finds hub" },
+          { href: "/boonbuy-review", label: "BoonBuy review" },
+          { href: "/is-boonbuy-legit", label: "Is BoonBuy legit?" },
         ],
       },
     ],
     relatedLinks: [
       { href: "/", label: "Homepage" },
-      { href: "/boonbuyfinds", label: "Boonbuyfinds" },
       { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
-      { href: "/boonbuy-finds", label: "BoonBuy finds catalog" },
+      { href: "/boonbuy-spreadsheet", label: "BoonBuy spreadsheet" },
+      { href: "/boonbuy-qc", label: "BoonBuy QC" },
+      { href: "/boonbuy-shipping", label: "BoonBuy shipping" },
+      { href: "/guides/beginner-guide-to-boonbuy", label: "Beginner guide" },
       { href: "https://boonbuy.com", label: "Official BoonBuy site" },
     ],
   },

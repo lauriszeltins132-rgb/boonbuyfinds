@@ -4,7 +4,11 @@ import HeroLandingCtas from "@/components/HeroLandingCtas";
 import HeroSearch from "@/components/HeroSearch";
 import LiveSiteSignals from "@/components/LiveSiteSignals";
 import TrustStrip from "@/components/TrustStrip";
-import { PUBLIC_CATALOG_COUNT, SITE_NAME } from "@/lib/constants";
+import { SITE_NAME } from "@/lib/constants";
+import {
+  PUBLIC_CATALOG_COUNT,
+  PUBLIC_QC_COUNT,
+} from "@/lib/catalog-count-public";
 import {
   HERO_LANDING_SUBTITLE,
   HERO_LANDING_TITLE,
@@ -46,8 +50,8 @@ export default function DiscoveryHero() {
         </p>
 
         <p className="mx-auto mt-1.5 text-xs text-muted/80 sm:text-sm">
-          {PUBLIC_CATALOG_COUNT.toLocaleString()}+ finds · QC references · search
-          &amp; filter
+          {PUBLIC_CATALOG_COUNT} indexed finds · {PUBLIC_QC_COUNT} QC references ·
+          search &amp; filter
         </p>
 
         <HeroLandingCtas />

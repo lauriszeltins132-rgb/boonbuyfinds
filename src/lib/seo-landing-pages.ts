@@ -88,7 +88,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       {
         heading: "Claim 45% off BoonBuy shipping before you haul",
         paragraphs: [
-          "Shipping is usually the biggest cost after products. New BoonBuy accounts can unlock up to 45% off shipping with our invite coupon — one of the highest paid invite rewards BoonBuy offers. Register once, then open finds from this spreadsheet catalog with verified checkout links.",
+          "Shipping is usually the biggest cost after products. New BoonBuy accounts can unlock up to 45% off shipping with our invite coupon — a strong new-user shipping discount when available. Register once, then open finds from this spreadsheet catalog with verified checkout links.",
           "Pair the coupon with QC photos and filters on BoonBuy Finds so you only ship items you have already checked.",
         ],
         links: [
@@ -424,7 +424,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       {
         question: "How many products are listed?",
         answer:
-          "The public catalog highlights 10,000+ curated finds with daily updates across sneakers, clothing, and accessories.",
+          "The public catalog highlights thousands of curated finds with regular updates across sneakers, clothing, and accessories.",
       },
     ],
     relatedLinks: [

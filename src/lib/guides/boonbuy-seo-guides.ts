@@ -64,7 +64,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
   "boonbuy-finds": buildGuide("boonbuy-finds", "beginner", {
     title: "BoonBuy Finds – Curated Catalog for QC-Approved Products",
     metaDescription:
-      "What BoonBuy Finds is, how to search 10,000+ curated finds, and how to open verified BoonBuy links for sneakers, jackets, bags, and streetwear.",
+      "What BoonBuy Finds is, how to search the indexed curated finds, and how to open verified BoonBuy links for sneakers, jackets, bags, and streetwear.",
     badge: "BoonBuy guide",
     h1: "BoonBuy finds",
     intro:
@@ -101,7 +101,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
       {
         question: "How many finds are in the catalog?",
         answer:
-          "The public catalog highlights 10,000+ curated finds across sneakers, clothing, bags, and accessories with daily updates.",
+          "The public catalog highlights thousands of curated finds across sneakers, clothing, bags, and accessories with regular updates.",
       },
     ],
     relatedLinks: [
