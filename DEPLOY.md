@@ -48,7 +48,7 @@ Add DNS records from the Vercel dashboard at your registrar.
 
 ## Before launch
 
-- [x] `BOONBUY_SIGNUP_URL` / invite code — `src/lib/boonbuy-affiliate.ts` (`BOONFINDS`)
+- [x] `BOONBUY_SIGNUP_URL` / invite code — `src/lib/boonbuy-affiliate.ts` (`JOINUP`)
 - [x] `SOCIAL_LINKS` — Telegram `@RNFinds`, Instagram, TikTok in `src/lib/constants.ts`
 - [ ] `public/logo.svg` — BoonBuy branding
 

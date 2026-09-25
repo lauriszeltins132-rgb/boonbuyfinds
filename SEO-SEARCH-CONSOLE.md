@@ -45,21 +45,21 @@ Then second wave:
 | Priority | URL | Target queries | Title (live) | Notes |
 |---:|---|---|---|---|
 | P0 | `/` | boonbuy finds, boonbuy spreadsheet finds, boonbuy qc | BoonBuy Finds 2026 \| 10,000+ QC Photos… | Brand home |
-| P0 | `/boonbuy-coupons` | boonbuy coupons, boonbuy coupon, 45% shipping | BoonBuy Coupons \| 45% Off Shipping Coupon | Main coupon hub |
-| P0 | `/boonbuy-shipping-coupon` | boonbuy shipping coupon, boonbuy shipping discount | BoonBuy Shipping Coupon \| 45% Off Freight | Money page |
-| P0 | `/best-boonbuy-coupons` | best boonbuy coupons | Best BoonBuy Coupons \| 45% Shipping Discount Codes | “Best” SERP |
+| P0 | `/boonbuy-coupons` | boonbuy coupons, boonbuy coupon, 40% shipping | BoonBuy Coupons \| 40% Off Shipping Coupon | Main coupon hub |
+| P0 | `/boonbuy-shipping-coupon` | boonbuy shipping coupon, boonbuy shipping discount | BoonBuy Shipping Coupon \| 40% Off Freight | Money page |
+| P0 | `/best-boonbuy-coupons` | best boonbuy coupons | Best BoonBuy Coupons \| 40% Shipping Discount Codes | “Best” SERP |
 | P0 | `/boonbuy-spreadsheet` | boonbuy spreadsheet | BoonBuy Spreadsheet 2026 \| Searchable Finds Catalog | Core intent |
 | P0 | `/best-boonbuy-spreadsheet` | best boonbuy spreadsheet | Best BoonBuy Spreadsheet 2026 \| … | “Best” SERP |
 | P1 | `/telegram-boonbuy` | boonbuy telegram | BoonBuy Telegram \| Join BoonBuy Finds Channel 2026 | Community |
 | P1 | `/boonbuy-finds` | boonbuy finds, boonbuy finds 2026 | BoonBuy Finds 2026 \| QC Catalog & Verified Links | Strengthened title |
 | P1 | `/boonbuy-qc` | boonbuy qc, boonbuy qc photos | BoonBuy QC Photos 2026 \| How to Check Before Shipping | Strengthened title |
-| P2 | `/boonbuy-coupon` | boonbuy coupon (singular) | BoonBuy Coupon 2026 \| 45% Off Shipping | Singular variant |
-| P2 | `/best-boonbuy-coupon` | best boonbuy coupon | Best BoonBuy Coupon 2026 \| 45% Shipping Off | Singular variant |
-| P2 | `/boonbuy-coupons-2026` | boonbuy coupons 2026 | BoonBuy Coupons 2026 \| Claim 45% Shipping Discount | Year variant |
+| P2 | `/boonbuy-coupon` | boonbuy coupon (singular) | BoonBuy Coupon 2026 \| 40% Off Shipping | Singular variant |
+| P2 | `/best-boonbuy-coupon` | best boonbuy coupon | Best BoonBuy Coupon 2026 \| 40% Shipping Off | Singular variant |
+| P2 | `/boonbuy-coupons-2026` | boonbuy coupons 2026 | BoonBuy Coupons 2026 \| Claim 40% Shipping Discount | Year variant |
 | P2 | `/boonbuy-guide` | boonbuy guide, how to use boonbuy | BoonBuy Guide 2026 \| Spreadsheet, QC & How to Buy | Strengthened title |
 
 Invite / CTA link to promote on all coupon pages:  
-`https://boonbuy.com/register?inviteCode=32IJIHM6P` (45% shipping)
+`https://boonbuy.com/register?inviteCode=JOINUP` (40% shipping)
 
 ---
 

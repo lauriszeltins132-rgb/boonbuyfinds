@@ -1,6 +1,6 @@
 /** Single source of truth for BoonBuy referral / coupon signup links. */
 
-export const BOONBUY_INVITE_CODE = "32IJIHM6P";
+export const BOONBUY_INVITE_CODE = "JOINUP";
 
 export const BOONBUY_SIGNUP_URL = `https://boonbuy.com/register?inviteCode=${BOONBUY_INVITE_CODE}`;
 
@@ -8,7 +8,7 @@ export const BOONBUY_SIGNUP_URL = `https://boonbuy.com/register?inviteCode=${BOO
 export const BOONBUY_COUPON_URL = BOONBUY_SIGNUP_URL;
 
 /** New-user shipping discount promoted across BoonBuy Finds. */
-export const BOONBUY_SHIPPING_DISCOUNT_PERCENT = 45;
+export const BOONBUY_SHIPPING_DISCOUNT_PERCENT = 40;
 
 export const BOONBUY_SHIPPING_DISCOUNT_LABEL = `${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`;
 

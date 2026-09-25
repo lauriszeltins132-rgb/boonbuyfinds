@@ -335,14 +335,14 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
       "To buy through BoonBuy: claim a coupon if eligible, open a find on BoonBuy Finds, follow the verified BoonBuy link, confirm size and price, pay, review warehouse QC photos, then ship. Exact screens can change on BoonBuy — use the live dashboard for payment and freight quotes.",
     sections: [
       {
-        heading: "1. Claim your 45% shipping coupon",
+        heading: "1. Claim your 40% shipping coupon",
         paragraphs: [
           "Create a BoonBuy account using a referral link if you want shipping discounts for new users. Registration is free and takes a few minutes.",
         ],
         links: [
           {
             href: BOONBUY_SIGNUP_URL,
-            label: "Claim 45% Coupon",
+            label: "Claim 40% Coupon",
           },
           { href: "/boonbuy-coupons", label: "BoonBuy coupons guide" },
           { href: "/deals", label: "Deals under $30" },
@@ -564,7 +564,7 @@ export const STATIC_PAGES: Record<string, StaticPage> = {
         links: [
           {
             href: BOONBUY_SIGNUP_URL,
-            label: "Claim 45% Coupon",
+            label: "Claim 40% Coupon",
           },
           { href: "/boonbuy-coupons", label: "BoonBuy coupons" },
           { href: "/deals", label: "Deals under $30" },
