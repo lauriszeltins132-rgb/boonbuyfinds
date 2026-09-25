@@ -3,12 +3,7 @@ import { getBrandsFromProducts } from "./brands";
 import { resolveCanonicalBrandSlug } from "./brand-normalization";
 import { getAllProducts, getCategories } from "./products";
 import type { CategoryInfo } from "./types";
-import {
-  isBrandIndexable,
-  isCategoryIndexable,
-  MIN_INDEXABLE_BRAND_COUNT,
-  MIN_INDEXABLE_CATEGORY_COUNT,
-} from "./brand-indexability";
+import { isBrandIndexable, isCategoryIndexable } from "./brand-indexability";
 
 export {
   isBrandIndexable,
