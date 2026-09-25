@@ -92,19 +92,19 @@ export const FINDS_HUB_PAGES: Record<string, FindsHubConfig> = {
       "coats-and-jackets",
       "accessories",
     ],
-    relatedHubHrefs: [...HUB_MESH.filter((l) => l.href !== "/finds")],
+    relatedHubHrefs: [...HUB_MESH.filter((l) => l.href !== "/boonbuy-finds")],
     relatedGuideHrefs: [
       { href: "/boonbuy-finds", label: "What is BoonBuy Finds?" },
       { href: "/how-to-use-boonbuy", label: "How to use BoonBuy" },
       { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
       { href: "/boonbuy-qc", label: "QC photos" },
     ],
-    authorityLinks: [...AUTHORITY.filter((l) => l.href !== "/finds")],
+    authorityLinks: [...AUTHORITY.filter((l) => l.href !== "/boonbuy-finds")],
     faqs: [
       {
-        question: "Is /finds the same as /boonbuy-finds?",
+        question: "Where should I browse finds?",
         answer:
-          "No. /finds is the browse/discovery hub. /boonbuy-finds is the branded BoonBuy finds catalog page for people searching “BoonBuy finds” specifically.",
+          "/boonbuy-finds is the canonical finds hub. Short /finds URLs permanently redirect here so Google consolidates onto one page.",
       },
       {
         question: "Can I check out here?",
