@@ -1,5 +1,6 @@
 import type { BrandInfo } from "./brands";
 import { extractBrand, getBrandsFromProducts } from "./brands";
+import { getIndexableBrands } from "./brand-indexability";
 import { getAllProducts } from "./products";
 import { SITE_URL } from "./site";
 
@@ -212,7 +213,7 @@ export const BRANDS_HUB_SEO_SECTIONS = [
 ] as const;
 
 export function getBrandsHubStats() {
-  const brands = getBrandsFromProducts(getAllProducts());
+  const brands = getIndexableBrands(getBrandsFromProducts(getAllProducts()));
   return {
     totalBrands: brands.length,
     totalProducts: getAllProducts().length,

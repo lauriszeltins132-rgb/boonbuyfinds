@@ -1,4 +1,26 @@
 import type { NextConfig } from "next";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+
+type VanityRegistry = {
+  marketing?: Record<string, string>;
+  categories?: Record<string, string>;
+  collections?: Record<string, string>;
+  brands?: Record<string, string>;
+  brandAliases?: Record<string, string>;
+  reserved?: string[];
+};
+
+function loadVanityRegistry(): VanityRegistry {
+  try {
+    return require("./src/data/vanity-registry.json") as VanityRegistry;
+  } catch {
+    return {};
+  }
+}
+
+const vanity = loadVanityRegistry();
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -21,8 +43,58 @@ const nextConfig: NextConfig = {
       { source: "/legit", destination: "/is-boonbuy-legit" },
     ];
 
+    const categoryShortcuts: Array<{ source: string; destination: string }> = Object.entries(
+      vanity.categories ?? {
+        sneakers: "/categories/shoes",
+        hoodies: "/categories/hoodies",
+        jackets: "/categories/jackets",
+        bags: "/categories/bags",
+        accessories: "/categories/accessories",
+        jerseys: "/best-jerseys",
+      }
+    ).map(([slug, destination]) => ({ source: `/${slug}`, destination }));
+
+    const collectionShortcuts: Array<{ source: string; destination: string }> = Object.entries(
+      vanity.collections ?? {
+        trending: "/trending",
+        latest: "/latest-finds",
+        under50: "/best-under-50",
+        "nike-finds": "/collections/best-nike-finds",
+        "moncler-finds": "/collections/best-moncler-finds",
+      }
+    ).map(([slug, destination]) => ({ source: `/${slug}`, destination }));
+
+    // Dynamic brand short aliases from catalog registry (indexable only).
+    const brandShortcuts: Array<{ source: string; destination: string }> = [];
+    const brandSeen = new Set<string>();
+    for (const [alias, canonical] of Object.entries(vanity.brandAliases ?? {})) {
+      if (brandSeen.has(alias)) continue;
+      brandSeen.add(alias);
+      brandShortcuts.push({ source: `/${alias}`, destination: `/brands/${canonical}` });
+    }
+    for (const slug of Object.keys(vanity.brands ?? {})) {
+      if (brandSeen.has(slug)) continue;
+      brandSeen.add(slug);
+      brandShortcuts.push({ source: `/${slug}`, destination: `/brands/${slug}` });
+    }
+
+    // Brand slug aliases under /brands/{alias}
+    const brandPathAliases: Array<{ source: string; destination: string }> = Object.entries(
+      vanity.brandAliases ?? {}
+    )
+      .filter(([alias, canonical]) => alias !== canonical)
+      .map(([alias, canonical]) => ({
+        source: `/brands/${alias}`,
+        destination: `/brands/${canonical}`,
+      }));
+
     const hostRemaps = marketingHosts.flatMap((host) =>
-      shortMarketingPaths.map(({ source, destination }) => ({
+      [
+        ...shortMarketingPaths,
+        ...categoryShortcuts,
+        ...collectionShortcuts,
+        ...brandShortcuts,
+      ].map(({ source, destination }) => ({
         source,
         has: [{ type: "host" as const, value: host }],
         destination: `https://boonbuyfinds.net${destination}`,
@@ -53,12 +125,20 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Same short aliases on the primary domain (human-readable, no query params)
-      ...shortMarketingPaths.map(({ source, destination }) => ({
-        source,
-        destination,
-        permanent: true,
-      })),
+      // Same short aliases on the primary domain (skip identity paths like /trending → /trending)
+      ...[
+        ...shortMarketingPaths,
+        ...categoryShortcuts,
+        ...collectionShortcuts,
+        ...brandShortcuts,
+        ...brandPathAliases,
+      ]
+        .filter(({ source, destination }) => source !== destination)
+        .map(({ source, destination }) => ({
+          source,
+          destination,
+          permanent: true,
+        })),
 
       {
         source: "/guides/why-use-an-agent",
@@ -176,7 +256,7 @@ const nextConfig: NextConfig = {
       { source: "/payment", destination: "/boonbuy-payment", permanent: true },
       { source: "/best-tech", destination: "/best-boonbuy-tech", permanent: true },
       { source: "/boonbuy-tech", destination: "/best-boonbuy-tech", permanent: true },
-      { source: "/jerseys", destination: "/best-jerseys", permanent: true },
+      // /jerseys handled by categoryShortcuts → /best-jerseys
       { source: "/best-boonbuy-jerseys", destination: "/best-jerseys", permanent: true },
       { source: "/best-boonbuy-shoes", destination: "/best-shoes", permanent: true },
       { source: "/best-boonbuy-watches", destination: "/best-watches", permanent: true },
@@ -184,7 +264,7 @@ const nextConfig: NextConfig = {
       { source: "/boonbuy-referral", destination: "/boonbuy-referral-code", permanent: true },
       // Consolidate parallel freshness / engagement URLs onto canonical hubs.
       { source: "/new-finds", destination: "/latest-finds", permanent: true },
-      { source: "/latest", destination: "/latest-finds", permanent: true },
+      // /latest handled by collectionShortcuts → /latest-finds
       { source: "/most-saved", destination: "/most-saved-finds", permanent: true },
       { source: "/most-viewed", destination: "/most-viewed-finds", permanent: true },
       { source: "/summer", destination: "/summer-finds", permanent: true },
@@ -195,8 +275,7 @@ const nextConfig: NextConfig = {
       { source: "/best-hoodie-finds", destination: "/hoodie-finds", permanent: true },
       { source: "/best-jacket-finds", destination: "/jacket-finds", permanent: true },
       { source: "/best-bag-finds", destination: "/bag-finds", permanent: true },
-      { source: "/nike-finds", destination: "/brands/nike", permanent: true },
-      { source: "/jordan-finds", destination: "/brands/jordan", permanent: true },
+      // nike-finds / jordan-finds handled by collectionShortcuts → /collections/best-*-finds
       // Q&A intent aliases — consolidate onto strong canons.
       { source: "/is-boonbuy-trustworthy", destination: "/is-boonbuy-legit", permanent: true },
       { source: "/boonbuy-alternatives", destination: "/best-shopping-agent", permanent: true },

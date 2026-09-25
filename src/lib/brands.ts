@@ -1,4 +1,9 @@
 import type { Product } from "./types";
+import {
+  normalizeBrandDisplayName,
+  resolveCanonicalBrandSlug,
+  slugifyBrandName,
+} from "./brand-normalization";
 import { getDisplayBrand } from "./product-validation";
 
 const KNOWN_BRANDS = [
@@ -93,13 +98,18 @@ export type BrandInfo = {
 };
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  return slugifyBrandName(name);
 }
+
+/** Longest-first so "Amiri" wins over "Ami", "Off-White" over shorter tokens, etc. */
+const KNOWN_BRANDS_BY_LENGTH = [...KNOWN_BRANDS].sort((a, b) => b.length - a.length);
 
 export function extractBrand(productName: string): string | null {
   const upper = productName.toUpperCase();
-  for (const brand of KNOWN_BRANDS) {
-    if (upper.includes(brand.toUpperCase())) return brand;
+  for (const brand of KNOWN_BRANDS_BY_LENGTH) {
+    if (upper.includes(brand.toUpperCase())) {
+      return normalizeBrandDisplayName(brand);
+    }
   }
   return null;
 }
@@ -110,17 +120,17 @@ export function extractAllBrands(text: string): string[] {
   const found: string[] = [];
   const used = new Set<string>();
 
-  const sorted = [...KNOWN_BRANDS].sort((a, b) => b.length - a.length);
-  for (const brand of sorted) {
+  for (const brand of KNOWN_BRANDS_BY_LENGTH) {
     if (!upper.includes(brand.toUpperCase())) continue;
-    const key = brand.toLowerCase();
+    const canonical = normalizeBrandDisplayName(brand);
+    const key = canonical.toLowerCase();
     if (used.has(key)) continue;
     const overlaps = found.some(
       (existing) =>
         existing.toLowerCase().includes(key) || key.includes(existing.toLowerCase())
     );
     if (overlaps && found.length > 0) continue;
-    found.push(brand);
+    found.push(canonical);
     used.add(key);
   }
 
@@ -133,24 +143,43 @@ export function getBrandsFromProducts(products: Product[]): BrandInfo[] {
   for (const product of products) {
     const brand = getDisplayBrand(product);
     if (!brand) continue;
-    counts.set(brand, (counts.get(brand) || 0) + 1);
+    const canonical = normalizeBrandDisplayName(brand);
+    counts.set(canonical, (counts.get(canonical) || 0) + 1);
   }
 
-  return [...counts.entries()]
-    .map(([name, count]) => ({ name, slug: slugify(name), count }))
-    .sort((a, b) => b.count - a.count);
+  // Merge display aliases that share a canonical slug (e.g. Off White / Off-White).
+  const summed = new Map<string, BrandInfo>();
+  for (const [name, count] of counts.entries()) {
+    const slug = resolveCanonicalBrandSlug(slugify(name));
+    const existing = summed.get(slug);
+    if (!existing) {
+      summed.set(slug, { name, slug, count });
+    } else {
+      summed.set(slug, {
+        name: name.length >= existing.name.length ? name : existing.name,
+        slug,
+        count: existing.count + count,
+      });
+    }
+  }
+
+  return [...summed.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
 export function productMatchesBrand(product: Product, brandSlug: string): boolean {
   const brand = getDisplayBrand(product);
-  return brand ? slugify(brand) === brandSlug : false;
+  if (!brand) return false;
+  const canonical = normalizeBrandDisplayName(brand);
+  const slug = resolveCanonicalBrandSlug(slugify(canonical));
+  return slug === resolveCanonicalBrandSlug(brandSlug);
 }
 
 export function getBrandBySlug(
   products: Product[],
   brandSlug: string
 ): BrandInfo | undefined {
-  return getBrandsFromProducts(products).find((brand) => brand.slug === brandSlug);
+  const canonical = resolveCanonicalBrandSlug(brandSlug);
+  return getBrandsFromProducts(products).find((brand) => brand.slug === canonical);
 }
 
 export function getProductsByBrandSlug(

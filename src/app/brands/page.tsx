@@ -5,14 +5,13 @@ import RelatedPages from "@/components/RelatedPages";
 import SchemaScript from "@/components/SchemaScript";
 import { BrandGroupGrid } from "@/components/brand/BrandGroupGrid";
 import BrandsHubSeo from "@/components/brand/BrandsHubSeo";
-import { getBrandsFromProducts } from "@/lib/brands";
+import { getIndexableBrands } from "@/lib/brand-indexability";
 import {
   BRANDS_HUB_FAQS,
   getBrandsHubGroups,
   getBrandsHubItemList,
   getBrandsHubStats,
 } from "@/lib/brands-hub";
-import { getAllProducts } from "@/lib/products";
 import {
   buildBreadcrumbSchema,
   buildCollectionPageSchema,
@@ -31,7 +30,8 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function BrandsPage() {
-  const brands = getBrandsFromProducts(getAllProducts());
+  const brands = getIndexableBrands();
+  const alphabetical = [...brands].sort((a, b) => a.name.localeCompare(b.name));
   const groups = getBrandsHubGroups(brands);
   const stats = getBrandsHubStats();
   const pagePath = "/brands";
@@ -85,7 +85,7 @@ export default function BrandsPage() {
             by label — same indexed finds, organized for brand-specific browsing.
           </p>
           <p className="mt-3 text-sm text-muted">
-            {stats.totalBrands.toLocaleString()} brands ·{" "}
+            {stats.totalBrands.toLocaleString()} indexable brands ·{" "}
             {stats.totalProducts.toLocaleString()} finds indexed · Updated daily
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -108,6 +108,12 @@ export default function BrandsPage() {
               Browse finds
             </Link>
             <Link
+              href="/categories"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+            >
+              Categories
+            </Link>
+            <Link
               href="/boonbuy-spreadsheet"
               className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
             >
@@ -118,12 +124,6 @@ export default function BrandsPage() {
               className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
             >
               QC photos
-            </Link>
-            <Link
-              href="/collections/best-qc-approved-finds"
-              className="rounded-full border border-border px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
-            >
-              QC-approved finds
             </Link>
             <Link
               href="/guides/beginner-guide-to-boonbuy"
@@ -148,10 +148,10 @@ export default function BrandsPage() {
         <div className="mx-auto max-w-7xl">
           <h2 className="text-xl font-black sm:text-2xl">All brands A–Z</h2>
           <p className="mt-2 text-sm text-muted">
-            Complete directory — {brands.length.toLocaleString()} indexed brand pages
+            Complete directory — {alphabetical.length.toLocaleString()} indexed brand pages
           </p>
           <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {brands.map((brand) => (
+            {alphabetical.map((brand) => (
               <li key={brand.slug}>
                 <Link
                   href={`/brands/${brand.slug}`}

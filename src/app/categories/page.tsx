@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import CategoryBrandGrid from "@/components/CategoryBrandGrid";
 import SchemaScript from "@/components/SchemaScript";
 import { getCategoriesHubMetadataCopy } from "@/lib/metadata-copy";
-import { getCategories } from "@/lib/products";
+import { getIndexableCategories } from "@/lib/seo-directories";
 import {
   buildBreadcrumbSchema,
   buildCollectionPageSchema,
@@ -21,7 +22,7 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function CategoriesPage() {
-  const categories = getCategories();
+  const categories = getIndexableCategories();
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Categories" },
@@ -50,6 +51,7 @@ export default function CategoriesPage() {
           }),
         ]}
       />
+      <Breadcrumbs items={breadcrumbs} currentPath={path} />
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <CategoryBrandGrid
           title="Categories"
@@ -62,11 +64,11 @@ export default function CategoriesPage() {
         >
           {[
             { href: "/boonbuy-finds", label: "Browse finds" },
-            { href: "/boonbuy-finds", label: "BoonBuy finds" },
             { href: "/brands", label: "Brands" },
             { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
             { href: "/boonbuy-qc", label: "QC photos" },
             { href: "/latest-finds", label: "Latest finds" },
+            { href: "/trending", label: "Trending" },
           ].map((link) => (
             <Link
               key={link.href}
