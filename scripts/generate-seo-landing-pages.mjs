@@ -7,10 +7,27 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const appDir = path.join(root, "src/app");
 
-const SLUGS = [
+/**
+ * Do NOT include authority-hub canons here.
+ * `npm run build` regenerates these page.tsx files with createSeoLandingPage,
+ * which previously clobbered /boonbuy-spreadsheet, /boonbuy-finds, and /boonbuy-qc
+ * back to the old SeoLanding stack after PR #53.
+ */
+const AUTHORITY_HUB_SLUGS = new Set([
+  "boonbuy",
   "boonbuy-spreadsheet",
-  "boonbuy-qc",
   "boonbuy-finds",
+  "boonbuy-qc",
+  "boonbuy-shipping",
+  "boonbuy-review",
+  "is-boonbuy-legit",
+  "boonbuy-telegram",
+  "boonbuy-warehouse",
+  "boonbuy-coupons",
+  "boonbuy-shipping-coupon",
+]);
+
+const SLUGS = [
   "boonbuy-sneakers",
   "boonbuy-jackets",
   "boonbuy-weidian",
@@ -41,6 +58,10 @@ export default Page;
 `;
 
 for (const slug of SLUGS) {
+  if (AUTHORITY_HUB_SLUGS.has(slug)) {
+    console.error(`Refusing to overwrite authority hub page: ${slug}`);
+    process.exit(1);
+  }
   const dir = path.join(appDir, slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "page.tsx"), pageTemplate(slug));

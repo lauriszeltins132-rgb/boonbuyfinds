@@ -1,6 +1,7 @@
-import { createSeoLandingPage } from "@/lib/seo-landing-page";
+import { createAuthorityHubPage } from "@/lib/create-authority-hub-page";
 
-const { generateMetadata, Page } = createSeoLandingPage("boonbuy-spreadsheet");
+export const revalidate = 300;
 
+const { generateMetadata, Page } = createAuthorityHubPage("boonbuy-spreadsheet");
 export { generateMetadata };
 export default Page;
