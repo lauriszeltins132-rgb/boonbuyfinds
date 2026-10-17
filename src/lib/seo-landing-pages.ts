@@ -269,7 +269,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
           "Warehouse QC is taken after you pay. BoonBuy staff photograph your exact product at the warehouse. That is the check that matters before international shipping.",
         ],
         links: [
-          { href: "/guides/boonbuy-qc-photos", label: "Detailed QC guide" },
+          { href: "/boonbuy-qc", label: "Detailed QC guide" },
           { href: "/best-qc-approved-finds", label: "QC-approved list" },
         ],
       },
@@ -432,7 +432,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
       { href: "/boonbuy-finds", label: "Browse finds" },
       { href: "/latest-finds", label: "Latest finds" },
       { href: "/rep-finds", label: "Rep finds" },
-      { href: "/boonbuyfinds", label: "Boonbuyfinds hub" },
+      { href: "/boonbuy-finds", label: "BoonBuy Finds hub" },
       { href: "/boonbuy-products", label: "All products" },
       ...RESOURCE_LINKS,
     ],

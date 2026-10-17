@@ -21,7 +21,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
           "BoonBuy Finds imports and normalizes catalog data so you can filter by brand, category, or keyword instead of scrolling thousands of rows.",
         ],
         links: [
-          { href: "/guides/boonbuy-finds", label: "BoonBuy finds guide" },
+          { href: "/boonbuy-finds", label: "BoonBuy finds hub" },
           { href: "/collections/best-qc-approved-finds", label: "QC-approved finds" },
         ],
       },
@@ -55,7 +55,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
       },
     ],
     relatedLinks: [
-      { href: "/guides/boonbuy-finds", label: "BoonBuy finds" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/collections/best-budget-finds", label: "Budget finds" },
       ...CORE_LINKS,
     ],
@@ -88,7 +88,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
           "Pick a product, register on BoonBuy if you have not already, open the buy link, request QC at the warehouse, and add items to your haul before shipping.",
         ],
         links: [
-          { href: "/guides/boonbuy-qc-photos", label: "BoonBuy QC photos" },
+          { href: "/boonbuy-qc", label: "BoonBuy QC photos" },
           { href: "/how-to-buy", label: "How to buy" },
         ],
       },
@@ -140,7 +140,7 @@ export const BOONBUY_SEO_GUIDES: Record<string, GuidePage> = {
       },
     ],
     relatedLinks: [
-      { href: "/guides/boonbuy-finds", label: "BoonBuy finds" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds" },
       { href: "/best-qc-approved-finds", label: "Best QC finds" },
       ...CORE_LINKS,
     ],

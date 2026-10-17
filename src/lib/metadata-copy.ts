@@ -179,6 +179,22 @@ export function buildProductMetaTitle(productName: string): string {
   );
 }
 
+/** Avoid "Nike Nike Dunk" when the display name already starts with the brand. */
+export function joinBrandAndProductName(
+  name: string,
+  brand: string | null | undefined
+): string {
+  const trimmedName = name.trim();
+  const trimmedBrand = brand?.trim() ?? "";
+  if (!trimmedBrand) return trimmedName;
+  const nameLower = trimmedName.toLowerCase();
+  const brandLower = trimmedBrand.toLowerCase();
+  if (nameLower === brandLower || nameLower.startsWith(`${brandLower} `)) {
+    return trimmedName;
+  }
+  return `${trimmedBrand} ${trimmedName}`;
+}
+
 export function buildProductMetaDescription(options: {
   name: string;
   brand: string | null;
@@ -186,7 +202,7 @@ export function buildProductMetaDescription(options: {
   hasQc: boolean;
 }): string {
   const { name, brand, price, hasQc } = options;
-  const lead = brand ? `${brand} ${name}` : name;
+  const lead = joinBrandAndProductName(name, brand);
   const priceBit = price ? ` from ${price}` : "";
   const qcBit = hasQc ? "QC photos, " : "";
 
@@ -202,7 +218,11 @@ export function buildProductMetaTitleDetailed(options: {
   category: string;
 }): string {
   const { name, brand, category } = options;
-  const lead = brand ? `${brand} ${name}` : name;
-  const cat = category ? ` ${category}` : "";
+  const lead = joinBrandAndProductName(name, brand);
+  // Skip category when it already appears in the lead (e.g. "Nike Shoes" + category Shoes).
+  const cat =
+    category && !lead.toLowerCase().includes(category.trim().toLowerCase())
+      ? ` ${category.trim()}`
+      : "";
   return truncateMetaTitle(`${lead}${cat} Find — QC Photos & BoonBuy Link`, 70);
 }

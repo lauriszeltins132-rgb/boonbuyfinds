@@ -61,7 +61,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     relatedLinks: [
       { href: "/top-nike-finds", label: "Top Nike list" },
       { href: "/brands/nike", label: "All Nike" },
-      { href: "/guides/boonbuy-finds", label: "BoonBuy finds guide" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds hub" },
     ],
     clusterLinks: [
       { href: "/collections/best-sneakers", label: "Best sneakers" },
@@ -132,7 +132,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     getProducts: TOP_LISTS["best-qc-approved-finds"].getProducts,
     relatedLinks: [
       { href: "/best-qc-approved-finds", label: "QC list page" },
-      { href: "/guides/boonbuy-qc-photos", label: "QC guide" },
+      { href: "/boonbuy-qc", label: "QC guide" },
     ],
     clusterLinks: [
       { href: "/collections/best-nike-finds", label: "Nike finds" },
@@ -205,7 +205,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     relatedLinks: [
       { href: "/top-boonbuy-finds-this-month", label: "This month" },
       { href: "/most-popular-finds-now", label: "Popular today" },
-      { href: "/guides/boonbuy-finds", label: "BoonBuy finds guide" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds hub" },
     ],
     clusterLinks: [
       { href: "/collections/best-qc-approved-finds", label: "QC finds" },
@@ -222,7 +222,7 @@ export const SHARE_COLLECTIONS: Record<string, SeoListConfig> = {
     getProducts: () => getEditorsPicks(72),
     relatedLinks: [
       { href: "/guides/boonbuy-spreadsheet", label: "Spreadsheet guide" },
-      { href: "/guides/boonbuy-finds", label: "BoonBuy finds guide" },
+      { href: "/boonbuy-finds", label: "BoonBuy finds hub" },
     ],
     clusterLinks: [
       { href: "/collections/best-boonbuy-finds-2026", label: "Best finds 2026" },
