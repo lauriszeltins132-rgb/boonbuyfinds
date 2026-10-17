@@ -88,6 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Paths that permanently redirect elsewhere — never emit in the sitemap.
   const SITEMAP_REDIRECT_SKIP = new Set([
     "/spreadsheet",
+    "/spreadsheet-2026",
     "/boonbuy-discount-code",
     "/boonbuy-referral-code",
     "/boonbuy-invite",
@@ -99,9 +100,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/is-boonbuy-safe",
     "/what-is-boonbuy",
     "/boonbuy-reviews",
+    "/boonbuyfinds",
     "/guides/what-is-boonbuy",
     "/guides/boonbuy-spreadsheet",
     "/guides/boonbuy-spreadsheet-guide",
+    "/guides/boonbuy-finds",
+    "/guides/boonbuy-qc-photos",
     "/guides/how-to-buy-from-taobao",
     "/guides/how-to-buy-from-weidian",
   ]);

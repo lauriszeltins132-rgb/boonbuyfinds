@@ -1,6 +1,7 @@
 import {
   buildProductMetaDescription,
   buildProductMetaTitleDetailed,
+  joinBrandAndProductName,
 } from "./metadata-copy";
 import type { Product } from "./types";
 import { formatPrice } from "./currency";
@@ -109,10 +110,11 @@ export function getProductSeoTitle(product: Product): string {
 export function getProductImageAlt(product: Product): string {
   const brand = getDisplayBrand(product);
   const name = getDisplayProductName(product);
-  if (brand) {
-    return `${brand} ${name} — ${product.category} find on BoonBuy Finds`;
+  const lead = joinBrandAndProductName(name, brand);
+  if (product.category) {
+    return `${lead} — ${product.category} find on BoonBuy Finds`;
   }
-  return `${name} — BoonBuy Finds`;
+  return `${lead} — BoonBuy Finds`;
 }
 
 export function getProductSeoDescription(product: Product): string {

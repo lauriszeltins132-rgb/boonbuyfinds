@@ -10,6 +10,12 @@ import {
   getAuthorityLastUpdatedLabel,
   getAuthorityPreviewProducts,
 } from "@/lib/boonbuy-authority-stats";
+import { getBrandsFromProducts } from "@/lib/brands";
+import { getAllProducts } from "@/lib/products";
+import {
+  getIndexableBrands,
+  getIndexableCategories,
+} from "@/lib/seo-directories";
 import {
   buildArticleSchema,
   buildBreadcrumbSchema,
@@ -83,6 +89,14 @@ export default function BoonBuyAuthorityHub({
         config.productPreview.kind,
         config.productPreview.limit ?? 8
       )
+    : [];
+  const showDiscoveryRails =
+    config.heroStatsKind === "finds" || config.heroStatsKind === "spreadsheet";
+  const discoveryBrands = showDiscoveryRails
+    ? getIndexableBrands(getBrandsFromProducts(getAllProducts())).slice(0, 6)
+    : [];
+  const discoveryCategories = showDiscoveryRails
+    ? getIndexableCategories().slice(0, 4)
     : [];
 
   const breadcrumbItems = [
@@ -179,6 +193,49 @@ export default function BoonBuyAuthorityHub({
             <p className="mt-3 text-xs text-muted">Last updated {lastUpdated}</p>
           </section>
 
+          {/* Discovery hubs: products immediately after hero, before prose. */}
+          {config.productPreview && previewProducts.length > 0 ? (
+            <section className="mt-8 scroll-mt-24">
+              <h2 className="text-xl font-black tracking-tight sm:text-2xl">
+                {config.productPreview.title}
+              </h2>
+              <p className="mt-2 text-sm text-muted">
+                Live catalog preview — open browse for search, filters, and the full index.
+              </p>
+              {showDiscoveryRails ? (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {discoveryBrands.map((brand) => (
+                    <Link
+                      key={brand.slug}
+                      href={`/brands/${brand.slug}`}
+                      className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+                    >
+                      {brand.name}
+                    </Link>
+                  ))}
+                  {discoveryCategories.map((category) => (
+                    <Link
+                      key={category.slug}
+                      href={`/categories/${category.slug}`}
+                      className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold hover:border-accent/40 hover:text-accent"
+                    >
+                      {category.name}
+                    </Link>
+                  ))}
+                  <Link
+                    href="/browse"
+                    className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-bold text-accent"
+                  >
+                    Search catalog →
+                  </Link>
+                </div>
+              ) : null}
+              <div className="mt-5">
+                <ServerProductGrid products={previewProducts} />
+              </div>
+            </section>
+          ) : null}
+
           <aside className="mt-6 rounded-2xl border border-border bg-surface/35 p-5">
             <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
               Quick answer
@@ -197,20 +254,6 @@ export default function BoonBuyAuthorityHub({
 
           {config.telegramCta ? (
             <TelegramJoinCta variant="hero" location={`${config.slug}_hero`} />
-          ) : null}
-
-          {config.productPreview && previewProducts.length > 0 ? (
-            <section className="mt-12 scroll-mt-24">
-              <h2 className="text-xl font-black tracking-tight sm:text-2xl">
-                {config.productPreview.title}
-              </h2>
-              <p className="mt-2 text-sm text-muted">
-                Lightweight preview only — open browse for the full catalog.
-              </p>
-              <div className="mt-5">
-                <ServerProductGrid products={previewProducts} />
-              </div>
-            </section>
           ) : null}
 
           {config.sections.map((section) => (

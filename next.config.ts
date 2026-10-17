@@ -319,10 +319,16 @@ const nextConfig: NextConfig = {
       // Authority-hub cluster consolidation (one canon per intent).
       { source: "/best-boonbuy-spreadsheet", destination: "/boonbuy-spreadsheet", permanent: true },
       { source: "/boonbuy-spreadsheet-2026", destination: "/boonbuy-spreadsheet", permanent: true },
+      { source: "/spreadsheet-2026", destination: "/boonbuy-spreadsheet", permanent: true },
       { source: "/best-boonbuy-finds", destination: "/boonbuy-finds", permanent: true },
       { source: "/is-boonbuy-safe", destination: "/is-boonbuy-legit", permanent: true },
       { source: "/what-is-boonbuy", destination: "/boonbuy", permanent: true },
       { source: "/boonbuy-reviews", destination: "/boonbuy-review", permanent: true },
+
+      // Indexable near-duplicates that cannibalize primary hubs (keep content equity via 301).
+      { source: "/boonbuyfinds", destination: "/boonbuy-finds", permanent: true },
+      { source: "/guides/boonbuy-finds", destination: "/boonbuy-finds", permanent: true },
+      { source: "/guides/boonbuy-qc-photos", destination: "/boonbuy-qc", permanent: true },
     ];
   },
   images: {
