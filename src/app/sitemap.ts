@@ -53,11 +53,14 @@ function entry(
   const url = pathOrUrl.startsWith("http") ? pathOrUrl : `${SITE_URL}${pathOrUrl}`;
   const revised = getSeoContentRevisionDate(path);
   const catalogSynced = getDatasetSyncedAt();
-  // Prefer the newer of content-revision vs catalog sync for authority pages;
-  // never stamp "today" on every build.
-  const resolved =
-    lastModified ??
-    (revised && revised > catalogSynced ? revised : revised ?? catalogSynced);
+  // Take the newest of: explicit lastModified, content revision, catalog sync.
+  // Content revisions must win even when callers pass catalog `synced`, otherwise
+  // authority-page lastmod never moves after SEO copy/schema/CTA changes.
+  // Never stamp "today" on every build.
+  const candidates = [lastModified, revised, catalogSynced].filter(
+    (d): d is Date => d instanceof Date && !Number.isNaN(d.getTime())
+  );
+  const resolved = candidates.reduce((newest, d) => (d > newest ? d : newest));
   return { url, lastModified: resolved, changeFrequency, priority };
 }
 

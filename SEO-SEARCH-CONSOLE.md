@@ -17,26 +17,24 @@ Goal: win **BoonBuy + intent** queries first (coupon, spreadsheet, finds, QC, Te
 
 ### Request indexing (URL Inspection → Request indexing)
 
+**Only canonical URLs** — do not request indexing for 301 aliases.
+
 Do these first (highest ROI):
 
 1. `https://boonbuyfinds.net/`
 2. `https://boonbuyfinds.net/boonbuy-coupons`
 3. `https://boonbuyfinds.net/boonbuy-shipping-coupon`
-4. `https://boonbuyfinds.net/best-boonbuy-coupons`
-5. `https://boonbuyfinds.net/boonbuy-spreadsheet`
-6. `https://boonbuyfinds.net/best-boonbuy-spreadsheet`
-7. `https://boonbuyfinds.net/telegram-boonbuy`
-9. `https://boonbuyfinds.net/boonbuy-finds`
-10. `https://boonbuyfinds.net/boonbuy-qc`
+4. `https://boonbuyfinds.net/boonbuy-spreadsheet`
+5. `https://boonbuyfinds.net/boonbuy-finds`
+6. `https://boonbuyfinds.net/boonbuy-qc`
+7. `https://boonbuyfinds.net/boonbuy-telegram`
+8. `https://boonbuyfinds.net/boonbuy-shipping`
+9. `https://boonbuyfinds.net/brands/nike`
+10. `https://boonbuyfinds.net/brands/burberry`
+11. `https://boonbuyfinds.net/brands/prada`
+12. `https://boonbuyfinds.net/brands/moncler`
 
-Then second wave:
-
-11. `https://boonbuyfinds.net/boonbuy-coupon`
-12. `https://boonbuyfinds.net/best-boonbuy-coupon`
-13. `https://boonbuyfinds.net/boonbuy-coupons-2026`
-14. `https://boonbuyfinds.net/boonbuy-guide`
-15. `https://boonbuyfinds.net/boonbuy-discount`
-16. `https://boonbuyfinds.net/boonbuy-promo`
+Aliases (`/best-boonbuy-coupons`, `/boonbuy-coupon`, `/best-boonbuy-spreadsheet`, `/telegram-boonbuy`, etc.) **301 → canons** — let Google drop them via correct redirect/canonical behavior; do not request indexing.
 
 ---
 
