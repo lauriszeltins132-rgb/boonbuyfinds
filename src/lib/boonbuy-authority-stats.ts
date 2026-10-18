@@ -10,6 +10,12 @@ import {
   getDatasetSyncedIso,
 } from "@/lib/catalog-meta";
 import { formatContentDate } from "@/lib/content-dates";
+import {
+  getBrandQcTableRows,
+  getCatalogOverviewStats,
+  getCategoryStatsTableRows,
+  getSpreadsheetPreviewRails,
+} from "@/lib/catalog-live-stats";
 import { getIndexableBrands, getIndexableCategories } from "@/lib/seo-directories";
 import { getBrandsFromProducts } from "@/lib/brands";
 import {
@@ -18,6 +24,7 @@ import {
   getQcProducts,
   getTrendingProducts,
 } from "@/lib/products";
+import { getMostSavedPicks } from "@/lib/discovery";
 import type { Product } from "@/lib/types";
 
 export type AuthorityStat = {
@@ -38,6 +45,7 @@ export function getAuthorityCatalogStats(): {
   findCountLabel: string;
   qcCount: number;
   qcCountLabel: string;
+  qcPercent: number;
   brandCount: number;
   brandCountLabel: string;
   categoryCount: number;
@@ -46,14 +54,18 @@ export function getAuthorityCatalogStats(): {
   topCategoryNames: string[];
   lastUpdatedLabel: string;
   syncTimestamp: string;
+  categoryTableRows: string[][];
+  brandQcTableRows: string[][];
 } {
   const brands = getIndexableBrands(getBrandsFromProducts(getAllProducts()));
   const categories = getIndexableCategories();
+  const overview = getCatalogOverviewStats();
   return {
     findCount: ACTUAL_CATALOG_COUNT,
     findCountLabel: PUBLIC_CATALOG_COUNT,
     qcCount: ACTUAL_QC_COUNT,
     qcCountLabel: PUBLIC_QC_COUNT,
+    qcPercent: overview.qcPercent,
     brandCount: brands.length,
     brandCountLabel: formatCountLabel(brands.length),
     categoryCount: categories.length,
@@ -62,6 +74,8 @@ export function getAuthorityCatalogStats(): {
     topCategoryNames: categories.slice(0, 8).map((c) => c.name),
     lastUpdatedLabel: getAuthorityLastUpdatedLabel(),
     syncTimestamp: getAuthoritySyncTimestamp(),
+    categoryTableRows: getCategoryStatsTableRows(8),
+    brandQcTableRows: getBrandQcTableRows(8),
   };
 }
 
@@ -72,6 +86,7 @@ export function getAuthorityHeroStats(
   if (kind === "qc") {
     return [
       { label: "QC references", value: stats.qcCountLabel },
+      { label: "QC coverage", value: `${stats.qcPercent}%` },
       { label: "Indexed finds", value: stats.findCountLabel },
       { label: "Updated", value: stats.lastUpdatedLabel },
     ];
@@ -80,7 +95,8 @@ export function getAuthorityHeroStats(
     return [
       { label: "Active finds", value: stats.findCountLabel },
       { label: "QC references", value: stats.qcCountLabel },
-      { label: "Indexable brands", value: stats.brandCountLabel },
+      { label: "Brands", value: stats.brandCountLabel },
+      { label: "Categories", value: stats.categoryCountLabel },
       { label: "Last sync", value: stats.lastUpdatedLabel },
     ];
   }
@@ -90,10 +106,13 @@ export function getAuthorityHeroStats(
   ];
 }
 
+export type PreviewKind = "latest" | "qc" | "trending" | "popular";
+
 export function getAuthorityPreviewProducts(
-  kind: "latest" | "qc" | "trending" = "latest",
+  kind: PreviewKind = "latest",
   limit = 8
 ): Product[] {
+  if (kind === "popular") return getMostSavedPicks(limit);
   const pool =
     kind === "qc"
       ? getQcProducts()
@@ -101,4 +120,8 @@ export function getAuthorityPreviewProducts(
         ? getTrendingProducts()
         : getLatestProducts();
   return pool.slice(0, limit);
+}
+
+export function getAuthorityMultiPreviewRails(limit = 6) {
+  return getSpreadsheetPreviewRails(limit);
 }

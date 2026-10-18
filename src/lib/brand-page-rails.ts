@@ -28,6 +28,9 @@ export type BrandPageRails = {
     recentlyAddedCount: number;
     bestQcCount: number;
     budgetCount: number;
+    qcCount: number;
+    qcPercent: number;
+    medianPrice: number | null;
   };
 };
 
@@ -108,6 +111,20 @@ export function getBrandPageRails(
     });
   }
 
+  const qcCount = products.filter((p) => Boolean(p.qc_link)).length;
+  const priced = products
+    .map((p) => p.price)
+    .filter((price): price is number => hasExactPrice(price))
+    .sort((a, b) => a - b);
+  const medianPrice =
+    priced.length === 0
+      ? null
+      : priced.length % 2 === 0
+        ? (priced[priced.length / 2 - 1] + priced[priced.length / 2]) / 2
+        : priced[Math.floor(priced.length / 2)];
+  const qcPercent =
+    products.length > 0 ? Math.round((qcCount / products.length) * 100) : 0;
+
   return {
     topProducts,
     trendingProducts,
@@ -124,6 +141,9 @@ export function getBrandPageRails(
       recentlyAddedCount: recentlyAdded.length,
       bestQcCount: bestQcProducts.length,
       budgetCount: bestUnder50.length,
+      qcCount,
+      qcPercent,
+      medianPrice,
     },
   };
 }

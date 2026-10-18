@@ -84,20 +84,29 @@ export default function BoonBuyAuthorityHub({
   const lastUpdated = getAuthorityLastUpdatedLabel();
   const heroStats =
     config.heroStats ?? getAuthorityHeroStats(config.heroStatsKind ?? "default");
-  const previewProducts = config.productPreview
-    ? getAuthorityPreviewProducts(
-        config.productPreview.kind,
-        config.productPreview.limit ?? 8
-      )
-    : [];
+  const previewRails = [
+    ...(config.productPreview ? [config.productPreview] : []),
+    ...(config.productPreviews ?? []),
+  ];
+  const resolvedPreviewRails = previewRails.map((rail) => ({
+    ...rail,
+    products: getAuthorityPreviewProducts(rail.kind, rail.limit ?? 6),
+  }));
+  const previewProducts = resolvedPreviewRails.flatMap((rail) => rail.products);
   const showDiscoveryRails =
-    config.heroStatsKind === "finds" || config.heroStatsKind === "spreadsheet";
+    config.heroStatsKind === "finds" ||
+    config.heroStatsKind === "spreadsheet" ||
+    config.heroStatsKind === "qc";
   const discoveryBrands = showDiscoveryRails
-    ? getIndexableBrands(getBrandsFromProducts(getAllProducts())).slice(0, 6)
+    ? getIndexableBrands(getBrandsFromProducts(getAllProducts())).slice(0, 8)
     : [];
   const discoveryCategories = showDiscoveryRails
-    ? getIndexableCategories().slice(0, 4)
+    ? getIndexableCategories().slice(0, 6)
     : [];
+  const liveTables = [
+    ...(config.table ? [config.table] : []),
+    ...(config.dataTables ?? []),
+  ];
 
   const breadcrumbItems = [
     { label: "Home", href: "/" },
@@ -168,7 +177,13 @@ export default function BoonBuyAuthorityHub({
             <p className="mt-4 text-base leading-relaxed text-muted">{config.intro}</p>
 
             {heroStats.length > 0 ? (
-              <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <dl
+                className={`mt-6 grid gap-3 ${
+                  heroStats.length >= 5
+                    ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+                    : "grid-cols-2 sm:grid-cols-4"
+                }`}
+              >
                 {heroStats.map((stat) => (
                   <div
                     key={stat.label}
@@ -197,17 +212,28 @@ export default function BoonBuyAuthorityHub({
             <p className="mt-3 text-xs text-muted">Last updated {lastUpdated}</p>
           </section>
 
-          {/* Discovery hubs: products immediately after hero, before prose. */}
-          {config.productPreview && previewProducts.length > 0 ? (
+          {/* Telegram pattern: quick answer + primary proof immediately after hero. */}
+          <aside className="mt-6 rounded-2xl border border-border bg-surface/35 p-5">
+            <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
+              Quick answer
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-foreground">
+              {config.directAnswer}
+            </p>
+            {config.keyFacts && config.keyFacts.length > 0 ? (
+              <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
+                {config.keyFacts.map((fact) => (
+                  <li key={fact}>{fact}</li>
+                ))}
+              </ul>
+            ) : null}
+          </aside>
+
+          {/* Live catalog proof before long-form SEO prose. */}
+          {resolvedPreviewRails.some((rail) => rail.products.length > 0) ? (
             <section className="mt-8 scroll-mt-24">
-              <h2 className="text-xl font-black tracking-tight sm:text-2xl">
-                {config.productPreview.title}
-              </h2>
-              <p className="mt-2 text-sm text-muted">
-                Live catalog preview — open browse for search, filters, and the full index.
-              </p>
               {showDiscoveryRails ? (
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mb-6 flex flex-wrap gap-2">
                   {discoveryBrands.map((brand) => (
                     <Link
                       key={brand.slug}
@@ -234,27 +260,59 @@ export default function BoonBuyAuthorityHub({
                   </Link>
                 </div>
               ) : null}
-              <div className="mt-5">
-                <ServerProductGrid products={previewProducts} />
-              </div>
+              {resolvedPreviewRails.map((rail) =>
+                rail.products.length > 0 ? (
+                  <div key={rail.title} className="mt-8 first:mt-0">
+                    <h2 className="text-xl font-black tracking-tight sm:text-2xl">
+                      {rail.title}
+                    </h2>
+                    <p className="mt-2 text-sm text-muted">
+                      Live catalog preview — open browse for search, filters, and the
+                      full index.
+                    </p>
+                    <div className="mt-5">
+                      <ServerProductGrid products={rail.products} />
+                    </div>
+                  </div>
+                ) : null
+              )}
             </section>
           ) : null}
 
-          <aside className="mt-6 rounded-2xl border border-border bg-surface/35 p-5">
-            <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-accent">
-              Quick answer
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-foreground">
-              {config.directAnswer}
-            </p>
-            {config.keyFacts && config.keyFacts.length > 0 ? (
-              <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
-                {config.keyFacts.map((fact) => (
-                  <li key={fact}>{fact}</li>
-                ))}
-              </ul>
-            ) : null}
-          </aside>
+          {liveTables.map((table) => (
+            <section key={table.title} className="mt-10 scroll-mt-24">
+              <h2 className="text-xl font-black tracking-tight sm:text-2xl">
+                {table.title}
+              </h2>
+              <div className="mt-5 -mx-1 overflow-x-auto sm:mx-0">
+                <table className="w-full min-w-[20rem] border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-surface/40">
+                      {table.headers.map((h) => (
+                        <th
+                          key={h}
+                          className="px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] text-muted"
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {table.rows.map((row) => (
+                      <tr key={row.join("|")} className="border-b border-border/60">
+                        {row.map((cell, i) => (
+                          <td key={`${row[0]}-${i}`} className="px-3 py-3 text-muted">
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          ))}
 
           {config.telegramCta ? (
             <TelegramJoinCta variant="hero" location={`${config.slug}_hero`} />
@@ -320,41 +378,6 @@ export default function BoonBuyAuthorityHub({
                   </li>
                 ))}
               </ol>
-            </section>
-          ) : null}
-
-          {config.table ? (
-            <section className="mt-12 scroll-mt-24">
-              <h2 className="text-xl font-black tracking-tight sm:text-2xl">
-                {config.table.title}
-              </h2>
-              <div className="mt-5 -mx-1 overflow-x-auto sm:mx-0">
-                <table className="w-full min-w-[20rem] border-collapse text-left text-sm">
-                  <thead>
-                    <tr className="border-b border-border bg-surface/40">
-                      {config.table.headers.map((h) => (
-                        <th
-                          key={h}
-                          className="px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] text-muted"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {config.table.rows.map((row) => (
-                      <tr key={row.join("|")} className="border-b border-border/60">
-                        {row.map((cell) => (
-                          <td key={cell} className="px-3 py-3 text-muted">
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
             </section>
           ) : null}
 

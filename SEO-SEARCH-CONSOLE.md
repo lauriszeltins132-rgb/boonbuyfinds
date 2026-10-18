@@ -42,17 +42,33 @@ Aliases (`/best-boonbuy-coupons`, `/boonbuy-coupon`, `/best-boonbuy-spreadsheet`
 
 | Priority | URL | Target queries | Title (live) | Notes |
 |---:|---|---|---|---|
-| P0 | `/` | boonbuy finds, boonbuy spreadsheet finds, boonbuy qc | BoonBuy Finds \| Products, QC Photos, Spreadsheet & Coupons | Brand home (live catalog count in description) |
-| P0 | `/boonbuy-coupons` | boonbuy coupons, boonbuy coupon, 40% shipping | Best BoonBuy Coupons 2026 \| 40% Shipping Discount | Main coupon hub |
-| P0 | `/boonbuy-shipping-coupon` | boonbuy shipping coupon, boonbuy shipping discount | BoonBuy Shipping Coupon \| 40% Off Freight | Money page |
-| P0 | `/boonbuy-spreadsheet` | boonbuy spreadsheet | BoonBuy Spreadsheet 2026 \| Updated Finds & QC Photos | Core intent |
-| P1 | `/boonbuy-telegram` | boonbuy telegram | BoonBuy Telegram \| Join BoonBuy Finds Channel 2026 | Community |
-| P1 | `/boonbuy-finds` | boonbuy finds, boonbuy finds 2026 | BoonBuy Finds 2026 \| Products, QC Photos & Links | Discovery hub |
-| P1 | `/boonbuy-qc` | boonbuy qc, boonbuy qc photos | BoonBuy QC Photos 2026 \| Find & Check QC Images | QC hub |
-| — | `/best-boonbuy-coupons`, `/boonbuy-coupon`, `/best-boonbuy-spreadsheet`, etc. | aliases | **301 → canons** | Do not index aliases |
+| P0 | `/` | boonbuy finds, boonbuy spreadsheet finds, boonbuy qc | BoonBuy Finds \| Products, QC Photos, Spreadsheet & Coupons | Brand home |
+| P0 | `/boonbuy-coupons` | coupon / invite / referral / invitation | Best BoonBuy Coupons 2026 \| 40% Shipping + Invite Code | JOINUP above fold |
+| P0 | `/boonbuy-spreadsheet` | boonbuy spreadsheet (+ 2026 / best / updated) | BoonBuy Spreadsheet 2026 \| Updated Finds & QC Photos | Live category stats + product rails |
+| P0 | `/boonbuy-finds` | boonbuy finds | BoonBuy Finds 2026 \| Product Links & QC Photos | Catalog-first |
+| P1 | `/boonbuy-qc` | boonbuy qc / qc photos | BoonBuy QC Photos \| QC Finder & Product Checks | Brand QC table |
+| P1 | `/boonbuy-shipping` | shipping / shipping cost | BoonBuy Shipping Guide 2026 \| Cost, Lines & Coupons | Guide |
+| P1 | `/boonbuy-telegram` | boonbuy telegram | BoonBuy Telegram \| Join BoonBuy Finds Channel 2026 | Pattern to copy |
+| P2 | `/boonbuy-stats` | linkable data asset | BoonBuy Finds Stats \| Live Catalog Counts & QC Coverage | Citeable stats |
+| — | aliases | thin variants | **301 → canons** | Do not index |
 
-Invite / CTA link to promote on all coupon pages:  
-`https://boonbuy.com/register?inviteCode=JOINUP` (40% shipping)
+Invite / CTA: `https://boonbuy.com/register?inviteCode=JOINUP` (40% shipping)
+
+### Share / deep-link URLs (external)
+
+| Share as | Lands on |
+|---|---|
+| `https://boonbuys.com/spreadsheet` | `/boonbuy-spreadsheet` |
+| `https://boonbuys.com/coupon` | `/boonbuy-coupons` |
+| `https://boonbuys.com/invite` | `/boonbuy-coupons` |
+| `https://boonbuys.com/qc` | `/boonbuy-qc` |
+| `https://boonbuys.com/finds` | `/boonbuy-finds` |
+
+### External authority (manual — do not fake)
+
+Priority backlink targets: `/boonbuy-spreadsheet`, `/boonbuy-coupons`, `/boonbuy-finds`, `/boonbuy-qc`.
+
+Ask BoonBuy partnership contact whether a public partner/resource/community page can link to `https://boonbuyfinds.net` (or spreadsheet/coupons hubs). Do **not** claim “official” unless authorized.
 
 ---
 
