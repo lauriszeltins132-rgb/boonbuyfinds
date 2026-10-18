@@ -22,6 +22,9 @@ export type AnalyticsStore = {
   qcClicks: number;
   discordClicks: number;
   telegramClicks: number;
+  couponClaimClicks: number;
+  spreadsheetBrowseClicks: number;
+  searchUsed: number;
   products: Record<string, ProductClicks>;
   brands: Record<string, number>;
   signupPlacements: Record<string, PlacementStats>;
@@ -53,6 +56,9 @@ function emptyStore(): AnalyticsStore {
     qcClicks: 0,
     discordClicks: 0,
     telegramClicks: 0,
+    couponClaimClicks: 0,
+    spreadsheetBrowseClicks: 0,
+    searchUsed: 0,
     products: {},
     brands: {},
     signupPlacements: {},
@@ -106,9 +112,25 @@ function writeFileStore(store: AnalyticsStore) {
   }
 }
 
+function normalizeStore(store: AnalyticsStore): AnalyticsStore {
+  const base = emptyStore();
+  return {
+    ...base,
+    ...store,
+    products: store.products ?? {},
+    brands: store.brands ?? {},
+    signupPlacements: store.signupPlacements ?? {},
+    couponClaimClicks: store.couponClaimClicks ?? 0,
+    spreadsheetBrowseClicks: store.spreadsheetBrowseClicks ?? 0,
+    searchUsed: store.searchUsed ?? 0,
+  };
+}
+
 export function getStore(): AnalyticsStore {
   if (!globalThis.__boonbuyAnalyticsStore) {
-    globalThis.__boonbuyAnalyticsStore = readFileStore() ?? emptyStore();
+    globalThis.__boonbuyAnalyticsStore = normalizeStore(
+      readFileStore() ?? emptyStore()
+    );
   }
   return globalThis.__boonbuyAnalyticsStore;
 }
@@ -188,7 +210,30 @@ export function recordEvent(body: EventBody) {
       store.discordClicks += 1;
       break;
     case "telegram_click":
+    case "telegram_join_click":
       store.telegramClicks += 1;
+      break;
+    case "coupon_claim_click":
+      // register_click already bumped registerClicks; this isolates coupon CTA success.
+      store.couponClaimClicks += 1;
+      break;
+    case "boonbuy_signup_click":
+      // Counted via register_click; keep as analytics-only alias.
+      break;
+    case "product_buy_click":
+      // Counted via buy_click.
+      break;
+    case "qc_open":
+      // Counted via qc_click.
+      break;
+    case "spreadsheet_browse_click":
+      store.spreadsheetBrowseClicks += 1;
+      break;
+    case "search_used":
+      store.searchUsed += 1;
+      break;
+    case "brand_open":
+      bumpBrand(store, body.brand);
       break;
     case "popup_impression":
       bumpPlacement(store, body.location, "impressions");
@@ -302,6 +347,9 @@ export function getAnalyticsSummary() {
       qcClicks: store.qcClicks,
       discordClicks: store.discordClicks,
       telegramClicks: store.telegramClicks,
+      couponClaimClicks: store.couponClaimClicks,
+      spreadsheetBrowseClicks: store.spreadsheetBrowseClicks,
+      searchUsed: store.searchUsed,
     },
     topProducts,
     topBrands,

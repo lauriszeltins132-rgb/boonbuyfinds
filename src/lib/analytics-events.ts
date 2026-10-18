@@ -20,7 +20,16 @@ export type ConversionEvent =
   | "brand_click"
   | "collection_click"
   | "popup_impression"
-  | "popup_close";
+  | "popup_close"
+  /** Semantic funnel events (SEARCH → LANDING → ACTION). */
+  | "coupon_claim_click"
+  | "boonbuy_signup_click"
+  | "product_buy_click"
+  | "telegram_join_click"
+  | "spreadsheet_browse_click"
+  | "search_used"
+  | "brand_open"
+  | "qc_open";
 
 export type ConversionPayload = {
   location?: string;
@@ -69,17 +78,28 @@ export function trackProductContext(
   product: Product,
   location: string
 ) {
-  trackConversion(event, {
+  const payload = {
     location,
     productId: product.id,
     productName: product.product_name,
     brand: extractBrand(product.product_name) ?? undefined,
     category: product.category,
-  });
+  };
+  trackConversion(event, payload);
+  if (event === "buy_click") {
+    trackConversion("product_buy_click", payload);
+  } else {
+    trackConversion("qc_open", payload);
+  }
 }
 
 export function trackRegisterClick(location: string) {
   trackConversion("register_click", { location });
+  // Semantic aliases for organic funnel reporting (Vercel Analytics + store).
+  if (location.includes("coupon")) {
+    trackConversion("coupon_claim_click", { location });
+  }
+  trackConversion("boonbuy_signup_click", { location });
 }
 
 export function trackRegisterImpression(location: string) {
@@ -91,6 +111,7 @@ export function trackRegisterImpression(location: string) {
 
 export function trackSearchSubmit(query: string, location: string) {
   trackConversion("search_submit", { location, query });
+  trackConversion("search_used", { location, query });
 }
 
 export function trackSearchChipClick(query: string, location: string) {
@@ -107,6 +128,7 @@ export function trackCategoryClick(href: string, location: string) {
 
 export function trackBrandClick(href: string, location: string) {
   trackConversion("brand_click", { location, href });
+  trackConversion("brand_open", { location, href });
 }
 
 export function trackCollectionClick(href: string, location: string) {
@@ -134,6 +156,11 @@ export function getMobilePopupCtaVariant(): "a" | "b" {
 
 export function trackTelegramClick(location: string) {
   trackConversion("telegram_click", { location });
+  trackConversion("telegram_join_click", { location });
+}
+
+export function trackSpreadsheetBrowseClick(location: string, href = "/browse") {
+  trackConversion("spreadsheet_browse_click", { location, href });
 }
 
 export function trackBrokenImage(imageUrl: string, location: string) {

@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaScript from "@/components/SchemaScript";
 import ServerProductGrid from "@/components/ServerProductGrid";
 import TelegramJoinCta from "@/components/TelegramJoinCta";
+import TrackedHubCta from "@/components/TrackedHubCta";
 import type { AuthorityHubConfig } from "@/lib/boonbuy-authority-hub-types";
 import {
   getAuthorityHeroStats,
@@ -52,27 +53,26 @@ function HubLink({
   label,
   external,
   primary,
+  location,
 }: {
   href: string;
   label: string;
   external?: boolean;
   primary?: boolean;
+  location: string;
 }) {
   const className = primary
     ? "inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-black text-white transition hover:bg-accent-hover"
     : "inline-flex items-center justify-center rounded-full border border-border-strong px-5 py-2.5 text-sm font-bold text-foreground hover:border-accent/40 hover:text-accent";
 
-  if (external || href.startsWith("http")) {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
-        {label}
-      </a>
-    );
-  }
   return (
-    <Link href={href} className={className}>
-      {label}
-    </Link>
+    <TrackedHubCta
+      href={href}
+      label={label}
+      className={className}
+      location={location}
+      external={external}
+    />
   );
 }
 
@@ -187,7 +187,11 @@ export default function BoonBuyAuthorityHub({
 
             <div className="mt-6 flex flex-wrap gap-3">
               {config.primaryCtas.map((cta) => (
-                <HubLink key={`${cta.href}-${cta.label}`} {...cta} />
+                <HubLink
+                  key={`${cta.href}-${cta.label}`}
+                  {...cta}
+                  location={`${config.slug}_hero_cta`}
+                />
               ))}
             </div>
             <p className="mt-3 text-xs text-muted">Last updated {lastUpdated}</p>

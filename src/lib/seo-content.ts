@@ -429,25 +429,61 @@ export function getCategorySeo(slug: string, name: string, count: number): Landi
   };
 }
 
-export function getBrandSeo(slug: string, name: string, count: number): LandingCopy {
-  const copy = BRAND_COPY[slug];
+export type BrandSeoStats = {
+  qcCount?: number;
+  topCategories?: string[];
+  priceMin?: number | null;
+  priceMax?: number | null;
+};
+
+/** Data-backed intro so high-traffic brands are not interchangeable templates. */
+export function buildDataBackedBrandIntro(
+  slug: string,
+  name: string,
+  count: number,
+  stats: BrandSeoStats = {}
+): string {
+  const specific = BRAND_COPY[slug]?.intro;
+  const parts: string[] = [
+    `${count.toLocaleString()} indexed ${name} finds`,
+  ];
+  if (stats.qcCount && stats.qcCount > 0) {
+    parts.push(`${stats.qcCount.toLocaleString()} with QC references`);
+  }
+  if (stats.topCategories && stats.topCategories.length > 0) {
+    parts.push(`strongest lanes: ${stats.topCategories.slice(0, 3).join(", ")}`);
+  }
+  if (
+    typeof stats.priceMin === "number" &&
+    typeof stats.priceMax === "number" &&
+    stats.priceMax > stats.priceMin
+  ) {
+    parts.push(
+      `catalog prices roughly $${Math.round(stats.priceMin)}–$${Math.round(stats.priceMax)} (confirm live on BoonBuy)`
+    );
+  }
+  const liveLine = `Live catalog: ${parts.join(" · ")}.`;
+  if (specific) {
+    return `${specific} ${liveLine}`;
+  }
+  return `${name} finds on BoonBuy Finds — searchable photos, QC references where available, and verified checkout links. ${liveLine}`;
+}
+
+export function getBrandSeo(
+  slug: string,
+  name: string,
+  count: number,
+  stats: BrandSeoStats = {}
+): LandingCopy {
   const categoryLine =
     BRAND_CATEGORY_LINES[slug] ?? "sneakers, hoodies, jackets and accessories";
   const title = buildBrandMetaTitle(name, slug);
   const description = buildBrandMetaDescription(name, count, categoryLine);
 
-  if (copy) {
-    return {
-      title,
-      description,
-      intro: copy.intro,
-    };
-  }
-
   return {
     title,
     description,
-    intro: `A focused view of ${name} products from the BoonBuy Finds catalog. Save favorites, compare prices, and buy through verified BoonBuy links.`,
+    intro: buildDataBackedBrandIntro(slug, name, count, stats),
   };
 }
 

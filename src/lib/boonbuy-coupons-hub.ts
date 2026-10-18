@@ -45,10 +45,10 @@ export function getBoonBuyCouponsLastVerifiedLabel(): string {
 }
 
 export const BOONBUY_COUPONS_META = {
-  title: `Best BoonBuy Coupons, Promo Codes & Shipping Discounts 2026 | BoonBuy Finds`,
-  description: `Current BoonBuy coupon hub for 2026 — coupon codes, promo codes, discount codes, invite/referral code ${BOONBUY_INVITE_CODE}, and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. Working offer, how to claim, FAQ, and latest savings guidance on BoonBuy Finds.`,
-  h1: "Best BoonBuy Coupons, Codes & Shipping Discounts 2026",
-  intro: `Looking for a working BoonBuy coupon, the latest BoonBuy coupon code, a BoonBuy promo code, discount code, invite code, or referral code? This is the canonical BoonBuy coupons hub for 2026. The verified offer on BoonBuy Finds is a new-user invite (${BOONBUY_INVITE_CODE}) that can unlock up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping when the promotion is available — then shop QC finds with verified checkout links.`,
+  title: `Best BoonBuy Coupons 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Discount`,
+  description: `Working BoonBuy coupons for 2026 — invite code ${BOONBUY_INVITE_CODE}, promo/discount/referral codes, and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. How to claim, eligibility, and live savings guidance on BoonBuy Finds.`,
+  h1: `Best BoonBuy Coupons 2026 — Up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`,
+  intro: `Looking for a working BoonBuy coupon, coupon code, promo code, discount code, invite code, or referral code? This is the canonical BoonBuy coupons hub. The verified offer is invite ${BOONBUY_INVITE_CODE} — up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping for eligible new accounts when the promotion is active.`,
 } as const;
 
 export const BOONBUY_COUPONS_OFFER = {
