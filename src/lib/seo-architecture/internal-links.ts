@@ -82,7 +82,7 @@ const SPREADSHEET_HUB: HubBlock = {
     { href: "/china-spreadsheet", label: "China spreadsheet" },
     { href: "/designer-spreadsheet", label: "Designer spreadsheet" },
     { href: "/shoe-spreadsheet", label: "Shoe spreadsheet" },
-    { href: "/best-boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
+    { href: "/boonbuy-spreadsheet", label: "Best BoonBuy spreadsheet" },
   ],
 };
 

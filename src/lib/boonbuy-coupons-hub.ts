@@ -7,7 +7,6 @@ import {
   BOONBUY_SHIPPING_DISCOUNT_PERCENT,
 } from "@/lib/constants";
 import { formatContentDate } from "@/lib/content-dates";
-import { getDatasetSyncedIso } from "@/lib/catalog-meta";
 
 export const BOONBUY_COUPONS_PATH = "/boonbuy-coupons";
 
@@ -31,13 +30,20 @@ export const BOONBUY_COUPON_INTENT_CLUSTER = [
   "boonbuy shipping discount",
   "boonbuy referral code",
   "boonbuy invite code",
+  "boonbuy invitation code",
   "working boonbuy coupon",
   "latest boonbuy coupon",
   "current boonbuy coupon",
 ] as const;
 
+/**
+ * Manual offer verification timestamp — bump when JOINUP / shipping % is re-checked.
+ * Do not reuse catalog sync; coupon truth and catalog sync are different signals.
+ */
+export const BOONBUY_COUPON_VERIFIED_AT = "2026-10-18T18:00:00.000Z";
+
 export function getBoonBuyCouponsLastVerifiedIso(): string {
-  return getDatasetSyncedIso();
+  return BOONBUY_COUPON_VERIFIED_AT;
 }
 
 export function getBoonBuyCouponsLastVerifiedLabel(): string {
@@ -45,10 +51,10 @@ export function getBoonBuyCouponsLastVerifiedLabel(): string {
 }
 
 export const BOONBUY_COUPONS_META = {
-  title: `Best BoonBuy Coupons 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping Discount`,
-  description: `Working BoonBuy coupons for 2026 — invite code ${BOONBUY_INVITE_CODE}, promo/discount/referral codes, and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. How to claim, eligibility, and live savings guidance on BoonBuy Finds.`,
-  h1: `Best BoonBuy Coupons 2026 — Up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Off Shipping`,
-  intro: `Looking for a working BoonBuy coupon, coupon code, promo code, discount code, invite code, or referral code? This is the canonical BoonBuy coupons hub. The verified offer is invite ${BOONBUY_INVITE_CODE} — up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping for eligible new accounts when the promotion is active.`,
+  title: `Best BoonBuy Coupons 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping + Invite Code`,
+  description: `Working BoonBuy coupons for 2026 — invite/referral/invitation code ${BOONBUY_INVITE_CODE}, promo/discount codes, and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. How to claim, eligibility, and live savings guidance on BoonBuy Finds.`,
+  h1: `Best BoonBuy Coupons & Invite Code 2026`,
+  intro: `Current verified offer: invite code ${BOONBUY_INVITE_CODE} for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping on eligible new BoonBuy accounts. This hub also covers coupon codes, promo codes, discount codes, referral codes, and invitation codes.`,
 } as const;
 
 export const BOONBUY_COUPONS_OFFER = {

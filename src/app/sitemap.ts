@@ -80,6 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/boonbuy-coupons", "weekly", 0.95, synced),
     entry("/boonbuy-shipping-coupon", "weekly", 0.94, synced),
     entry("/boonbuy-qc", "weekly", 0.93, synced),
+    entry("/boonbuy-stats", "weekly", 0.88, synced),
     entry("/boonbuy-shipping", "weekly", 0.92, synced),
     entry("/boonbuy-review", "weekly", 0.92, synced),
     entry("/is-boonbuy-legit", "weekly", 0.91, synced),

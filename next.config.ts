@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
       { source: "/promo-code", destination: "/boonbuy-coupons" },
       { source: "/discount", destination: "/boonbuy-coupons" },
       { source: "/discount-code", destination: "/boonbuy-coupons" },
+      { source: "/invite", destination: "/boonbuy-coupons" },
+      { source: "/invite-code", destination: "/boonbuy-coupons" },
+      { source: "/invitation", destination: "/boonbuy-coupons" },
+      { source: "/invitation-code", destination: "/boonbuy-coupons" },
+      { source: "/referral", destination: "/boonbuy-coupons" },
+      { source: "/referral-code", destination: "/boonbuy-coupons" },
       { source: "/finds", destination: "/boonbuy-finds" },
       { source: "/spreadsheet", destination: "/boonbuy-spreadsheet" },
       { source: "/qc", destination: "/boonbuy-qc" },
@@ -50,8 +56,10 @@ const nextConfig: NextConfig = {
 
     // Vanity-only: boonbuys.com/telegram → BoonBuy Telegram hub.
     // Keep primary /telegram as the multi-agent RN Finds community page.
+    // Keep primary /stats as the internal conversion dashboard (noindex).
     const vanityOnlyMarketingPaths: Array<{ source: string; destination: string }> = [
       { source: "/telegram", destination: "/boonbuy-telegram" },
+      { source: "/stats", destination: "/boonbuy-stats" },
     ];
 
     const categoryShortcuts: Array<{ source: string; destination: string }> = Object.entries(
@@ -313,6 +321,8 @@ const nextConfig: NextConfig = {
       { source: "/best-boonbuy-coupon-2026", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-invite", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-invite-code", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-invitation", destination: "/boonbuy-coupons", permanent: true },
+      { source: "/boonbuy-invitation-code", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-voucher", destination: "/boonbuy-coupons", permanent: true },
       { source: "/boonbuy-referral-code", destination: "/boonbuy-coupons", permanent: true },
 

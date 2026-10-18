@@ -48,6 +48,8 @@ const AGENT_FINDS_LINKS = [
   { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
   { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
+  { href: "/boonbuy-qc", label: "BoonBuy QC" },
+  { href: "/boonbuy-stats", label: "BoonBuy Stats" },
   { href: "/how-to-buy", label: "How to buy on BoonBuy" },
 ];
 

@@ -105,7 +105,7 @@ export default function BoonBuyCouponsLanding() {
 
       <article className="px-4 pb-12 pt-4 sm:px-6 sm:pb-16">
         <div className="mx-auto max-w-2xl">
-          {/* Hero */}
+          {/* Hero — Telegram pattern: exact intent + offer + CTA before prose */}
           <section className="overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 via-secondary-soft to-panel-hover p-6 text-center sm:p-10">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
               Verified BoonBuy offer
@@ -113,42 +113,30 @@ export default function BoonBuyCouponsLanding() {
             <h1 className="mt-3 text-3xl font-black tracking-tight text-foreground sm:text-4xl">
               {BOONBUY_COUPONS_META.h1}
             </h1>
-            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
+
+            <div className="mx-auto mt-6 max-w-md rounded-2xl border border-accent/30 bg-background/70 px-5 py-5 backdrop-blur-sm">
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">
+                Invite / referral / invitation code
+              </p>
+              <p className="mt-2 font-mono text-4xl font-black tracking-wide text-accent sm:text-5xl">
+                {BOONBUY_COUPONS_OFFER.inviteCode}
+              </p>
+              <p className="mt-3 text-lg font-black text-foreground">
+                Up to {BOONBUY_COUPONS_OFFER.discountPercent}% Off Shipping
+              </p>
+              <p className="mt-2 text-xs text-muted">
+                Last verified {lastVerified} · New accounts via verified invite
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <ClaimButton location="boonbuy_coupons_hero">
+                Claim BoonBuy Offer
+              </ClaimButton>
+            </div>
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted">
               {BOONBUY_COUPONS_META.intro}
             </p>
-
-            <div className="mx-auto mt-6 max-w-md rounded-2xl border border-accent/25 bg-background/60 p-4 text-left backdrop-blur-sm">
-              <p className="text-lg font-black text-accent">
-                {BOONBUY_COUPONS_OFFER.headline}
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-muted">
-                {BOONBUY_COUPONS_OFFER.description}
-              </p>
-              <dl className="mt-4 grid gap-2 text-xs text-muted sm:text-sm">
-                <div className="flex justify-between gap-3">
-                  <dt className="font-semibold text-foreground/80">Type</dt>
-                  <dd className="text-right">{BOONBUY_COUPONS_OFFER.typeLabel}</dd>
-                </div>
-                <div className="flex justify-between gap-3">
-                  <dt className="font-semibold text-foreground/80">Invite code</dt>
-                  <dd className="font-mono text-right text-foreground">
-                    {BOONBUY_COUPONS_OFFER.inviteCode}
-                  </dd>
-                </div>
-                <div className="flex justify-between gap-3">
-                  <dt className="font-semibold text-foreground/80">Eligibility</dt>
-                  <dd className="text-right">New accounts via invite</dd>
-                </div>
-                <div className="flex justify-between gap-3">
-                  <dt className="font-semibold text-foreground/80">Last verified</dt>
-                  <dd className="text-right">{lastVerified}</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="mt-8">
-              <ClaimButton location="boonbuy_coupons_hero" />
-            </div>
             <p className="mx-auto mt-3 max-w-md text-xs text-muted">
               Free to register · Confirm live terms on BoonBuy · No invented expiry dates
             </p>
@@ -198,6 +186,83 @@ export default function BoonBuyCouponsLanding() {
               We do not publish thin “best coupon” doorways. If you landed here from best
               BoonBuy coupon, best BoonBuy coupons, BoonBuy coupons 2026, or best BoonBuy
               coupons 2026, this is the page that owns that intent.
+            </p>
+          </ProseSection>
+
+          <ProseSection
+            id="boonbuy-invite-code"
+            title="What is the BoonBuy invite code?"
+          >
+            <p>
+              The BoonBuy invite code (also searched as invitation code or referral code)
+              is the registration code that attaches the verified signup offer. On BoonBuy
+              Finds, that code is{" "}
+              <strong className="font-mono font-semibold text-foreground">
+                {BOONBUY_COUPONS_OFFER.inviteCode}
+              </strong>
+              .
+            </p>
+            <p>
+              Prefer the full registration link from the claim button. If BoonBuy shows an
+              invite/referral field during signup, enter{" "}
+              <span className="font-mono font-semibold text-foreground">
+                {BOONBUY_COUPONS_OFFER.inviteCode}
+              </span>{" "}
+              manually.
+            </p>
+          </ProseSection>
+
+          <ProseSection
+            id="how-to-use-invite-code"
+            title="How to use the BoonBuy invite code"
+          >
+            <ol className="list-decimal space-y-2 pl-5">
+              <li>Open the claim button on this page (verified invite URL).</li>
+              <li>Create a new BoonBuy account through that link.</li>
+              <li>
+                If prompted for an invite/referral code, enter{" "}
+                <span className="font-mono font-semibold text-foreground">
+                  {BOONBUY_COUPONS_OFFER.inviteCode}
+                </span>
+                .
+              </li>
+              <li>
+                Confirm shipping promotions later on the freight quote — not as a product
+                price slash on every listing.
+              </li>
+            </ol>
+          </ProseSection>
+
+          <ProseSection
+            id="invite-vs-coupon"
+            title="BoonBuy invite code vs coupon"
+          >
+            <p>
+              People search coupon, promo code, discount code, invite code, invitation
+              code, and referral code for the same practical outcome: a verified signup
+              path that can unlock shipping savings. This page consolidates that intent —
+              there is no separate thin invite-code doorway.
+            </p>
+          </ProseSection>
+
+          <ProseSection
+            id="does-invite-expire"
+            title="Does the invite code expire?"
+          >
+            <p>
+              Promotions can change. We do not invent a fixed expiry date. Check the Last
+              verified date above and BoonBuy’s live signup terms before you haul.
+            </p>
+          </ProseSection>
+
+          <ProseSection
+            id="existing-users-invite"
+            title="Can existing users use the invite code?"
+          >
+            <p>
+              The shipping invite is aimed at new accounts that register through the
+              referral link. Existing accounts may not receive the same new-user shipping
+              percentage — confirm inside your BoonBuy dashboard.
             </p>
           </ProseSection>
 

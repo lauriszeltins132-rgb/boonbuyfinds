@@ -32,8 +32,8 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       breadcrumbLabel: "BoonBuy Spreadsheet",
       title: `BoonBuy Spreadsheet 2026 | Updated Finds & QC Photos`,
       metaDescription: `Updated BoonBuy spreadsheet alternative — ${stats.findCountLabel} searchable finds, ${stats.qcCountLabel} QC references, brands, categories, and verified BoonBuy checkout links. Last sync ${stats.lastUpdatedLabel}.`,
-      h1: "BoonBuy Spreadsheet – Updated Finds & QC Photos",
-      intro: `Looking for a BoonBuy spreadsheet, the best BoonBuy spreadsheet 2026, or updated BoonBuy spreadsheet links? BoonBuy Finds is the searchable catalog alternative: photos, QC references, filters, and verified checkout links — without scrolling a 5,000-row Google Sheet on your phone.`,
+      h1: "BoonBuy Spreadsheet 2026",
+      intro: `Updated BoonBuy finds, QC references, and verified product links — a live searchable catalog (${stats.findCountLabel} finds, ${stats.qcCountLabel} QC) instead of a static Google Sheet.`,
       keywords: [
         "boonbuy spreadsheet",
         "boonbuy spreadsheet 2026",
@@ -66,9 +66,10 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       ],
       heroStatsKind: "spreadsheet",
       primaryCtas: [
-        { href: "/browse", label: "Browse spreadsheet finds", primary: true },
+        { href: "/browse", label: "Browse BoonBuy Spreadsheet", primary: true },
+        { href: "/browse", label: "Search spreadsheet" },
         { href: "/latest-finds", label: "Latest additions" },
-        { href: "/boonbuy-qc", label: "QC guide" },
+        { href: "/boonbuy-qc", label: "QC finds" },
       ],
       sections: [
         {
@@ -194,17 +195,24 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
           text: "Checkout on BoonBuy with the catalog link — confirm live price and size before paying.",
         },
       ],
-      table: {
-        title: "Spreadsheet intent → where to go",
-        headers: ["You searched", "Use this"],
-        rows: [
-          ["boonbuy spreadsheet / 2026", "This page + /browse"],
-          ["best boonbuy spreadsheet", "This page (canonical)"],
-          ["spreadsheet QC", "/boonbuy-qc + QC filters"],
-          ["shoes / clothing spreadsheet", "/categories + this catalog"],
-          ["shipping savings", "/boonbuy-coupons"],
-        ],
-      },
+      dataTables: [
+        {
+          title: "Live spreadsheet category stats",
+          headers: ["Category", "Products", "With QC", "Median price"],
+          rows: stats.categoryTableRows,
+        },
+        {
+          title: "Spreadsheet intent → where to go",
+          headers: ["You searched", "Use this"],
+          rows: [
+            ["boonbuy spreadsheet / 2026", "This page + /browse"],
+            ["best boonbuy spreadsheet", "This page (canonical)"],
+            ["spreadsheet QC", "/boonbuy-qc + QC filters"],
+            ["shoes / clothing spreadsheet", "/categories + this catalog"],
+            ["shipping savings", "/boonbuy-coupons"],
+          ],
+        },
+      ],
       faqs: [
         {
           question: "Is BoonBuy Finds the same as a BoonBuy spreadsheet?",
@@ -232,7 +240,12 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "/boonbuy-telegram",
         "/boonbuy"
       ),
-      productPreview: { title: "Latest spreadsheet finds", kind: "latest", limit: 8 },
+      productPreview: { title: "Latest spreadsheet finds", kind: "latest", limit: 6 },
+      productPreviews: [
+        { title: "Trending spreadsheet finds", kind: "trending", limit: 6 },
+        { title: "QC spreadsheet finds", kind: "qc", limit: 6 },
+        { title: "Popular spreadsheet finds", kind: "popular", limit: 6 },
+      ],
       schema: "collection",
     },
 
@@ -241,10 +254,10 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       path: "/boonbuy-qc",
       badge: "BoonBuy QC",
       breadcrumbLabel: "BoonBuy QC",
-      title: "BoonBuy QC Photos 2026 | Find & Check QC Images",
-      metaDescription: `BoonBuy QC hub — what QC photos are, warehouse vs reference QC, what to inspect for shoes/clothing/bags, and ${stats.qcCountLabel} QC-linked finds on BoonBuy Finds.`,
-      h1: "BoonBuy QC Photos – Find & Check QC Images",
-      intro: `Searching BoonBuy QC, QC photos, quality check, or warehouse QC? This hub explains how QC works with BoonBuy and how to find QC references on BoonBuy Finds before you pay international shipping.`,
+      title: "BoonBuy QC Photos | QC Finder & Product Checks",
+      metaDescription: `BoonBuy QC hub — ${stats.qcCountLabel} QC-linked finds (${stats.qcPercent}% coverage), brand QC coverage, newest QC finds, and how warehouse QC works before shipping.`,
+      h1: "BoonBuy QC Photos",
+      intro: `Find QC-linked BoonBuy products fast — ${stats.qcCountLabel} catalog listings with QC references (${stats.qcPercent}% of indexed finds), then still request warehouse QC on BoonBuy for your exact order.`,
       keywords: [
         "boonbuy qc",
         "boonbuy qc photos",
@@ -264,7 +277,7 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       directAnswer:
         "BoonBuy QC means checking warehouse photos of your exact item before international shipping. BoonBuy Finds also shows reference QC from other buyers so you can shortlist earlier — then still request warehouse QC on BoonBuy for your order.",
       keyFacts: [
-        `${stats.qcCountLabel} catalog finds currently include QC reference links`,
+        `${stats.qcCountLabel} catalog finds currently include QC reference links (${stats.qcPercent}% coverage)`,
         "Reference QC ≠ photos of your specific order",
         "Warehouse QC is requested after purchase in your BoonBuy account",
         "Approve or reject before the parcel leaves the warehouse",
@@ -272,8 +285,16 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       heroStatsKind: "qc",
       primaryCtas: [
         { href: "/top-qc-finds", label: "Browse QC finds", primary: true },
+        { href: "/browse?qc=1", label: "Search QC finds" },
         { href: "/boonbuy-warehouse", label: "Warehouse guide" },
         { href: "/boonbuy-spreadsheet", label: "Spreadsheet hub" },
+      ],
+      dataTables: [
+        {
+          title: "Top brands with QC coverage",
+          headers: ["Brand", "Products", "With QC", "QC %"],
+          rows: stats.brandQcTableRows,
+        },
       ],
       sections: [
         {
@@ -386,7 +407,11 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "/boonbuy-coupons",
         "/boonbuy"
       ),
-      productPreview: { title: "Browse QC finds", kind: "qc", limit: 8 },
+      productPreview: { title: "Newest QC finds", kind: "qc", limit: 6 },
+      productPreviews: [
+        { title: "Popular QC finds", kind: "popular", limit: 6 },
+        { title: "Trending finds with QC context", kind: "trending", limit: 6 },
+      ],
       schema: "collection",
     },
 
@@ -395,12 +420,12 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       path: "/boonbuy-shipping",
       badge: "BoonBuy shipping",
       breadcrumbLabel: "BoonBuy Shipping",
-      title: "BoonBuy Shipping 2026 | Cost, Lines & How It Works | BoonBuy Finds",
+      title: "BoonBuy Shipping Guide 2026 | Cost, Lines & Coupons",
       metaDescription:
-        "How BoonBuy shipping works — warehouse to parcel, what affects cost, volumetric weight, lines, coupons, and how to reduce freight without invented ETAs or fees.",
-      h1: "BoonBuy Shipping – How Freight Works",
+        "BoonBuy shipping guide — warehouse to parcel, what affects cost, volumetric weight, lines, coupons (JOINUP / up to 40% off shipping when available), without invented ETAs or fees.",
+      h1: "BoonBuy Shipping Guide 2026",
       intro:
-        "Searching BoonBuy shipping, shipping cost, shipping time, or shipping lines? This guide covers the real process after QC — without inventing fees or delivery dates.",
+        "BoonBuy shipping cost and lines explained — how freight works after warehouse QC, what changes the quote, and where the shipping coupon fits. No invented fees or delivery dates.",
       keywords: [
         "boonbuy shipping",
         "boonbuy shipping cost",
@@ -537,10 +562,10 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       path: "/boonbuy-finds",
       badge: "BoonBuy Finds",
       breadcrumbLabel: "BoonBuy Finds",
-      title: `BoonBuy Finds 2026 | Products, QC Photos & Links`,
-      metaDescription: `Browse BoonBuy finds — ${stats.findCountLabel} indexed products with QC references, brands, categories, trending/latest rails, and verified BoonBuy checkout links.`,
-      h1: "BoonBuy Finds – Products, QC Photos & Links",
-      intro: `BoonBuy finds, best BoonBuy finds, clothing finds, shoe finds, and 2026 product discovery all start here: a searchable catalog with live counts, not a long SEO article hiding the products.`,
+      title: `BoonBuy Finds 2026 | Product Links & QC Photos`,
+      metaDescription: `Browse BoonBuy finds — ${stats.findCountLabel} indexed products, ${stats.qcCountLabel} QC references, brands, categories, trending/latest rails, and verified BoonBuy checkout links. Updated ${stats.lastUpdatedLabel}.`,
+      h1: "BoonBuy Finds 2026",
+      intro: `Live BoonBuy product discovery — ${stats.findCountLabel} indexed finds, ${stats.qcCountLabel} QC references, updated ${stats.lastUpdatedLabel}. Search first; the guide content is below.`,
       keywords: [
         "boonbuy finds",
         "best boonbuy finds",
@@ -648,7 +673,19 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "/boonbuy-shipping",
         "/boonbuy"
       ),
-      productPreview: { title: "Trending finds preview", kind: "trending", limit: 8 },
+      productPreview: { title: "Trending finds", kind: "trending", limit: 6 },
+      productPreviews: [
+        { title: "Latest finds", kind: "latest", limit: 6 },
+        { title: "QC finds", kind: "qc", limit: 6 },
+        { title: "Popular finds", kind: "popular", limit: 6 },
+      ],
+      dataTables: [
+        {
+          title: "Catalog by category",
+          headers: ["Category", "Products", "With QC", "Median price"],
+          rows: stats.categoryTableRows,
+        },
+      ],
       schema: "collection",
     },
 
