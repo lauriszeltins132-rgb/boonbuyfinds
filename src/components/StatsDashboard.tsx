@@ -12,6 +12,9 @@ type Summary = {
     qcClicks: number;
     discordClicks: number;
     telegramClicks: number;
+    couponClaimClicks?: number;
+    spreadsheetBrowseClicks?: number;
+    searchUsed?: number;
   };
   topProducts: { id: string; name: string; brand: string; clicks: number }[];
   topBrands: { name: string; clicks: number }[];

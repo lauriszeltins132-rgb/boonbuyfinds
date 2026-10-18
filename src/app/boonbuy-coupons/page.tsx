@@ -12,6 +12,9 @@ import {
 } from "@/lib/constants";
 import { SITE_URL } from "@/lib/site";
 
+/** Keep coupon SERP HTML current after offer/copy changes. */
+export const revalidate = 300;
+
 const canonical = `${SITE_URL}${BOONBUY_COUPONS_PATH}`;
 
 export const metadata: Metadata = {

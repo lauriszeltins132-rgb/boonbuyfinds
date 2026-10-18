@@ -86,15 +86,30 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
   }
 
   const products = getProductsByBrandSlug(allProducts, canonicalSlug);
-  const copy = getBrandSeo(canonicalSlug, brand.name, brand.count);
   const collectionHref = getBrandCollectionHref(canonicalSlug);
   const pagePath = `/brands/${canonicalSlug}`;
   const rails = getBrandPageRails(canonicalSlug, brand.name, products);
+  const qcCount = products.filter((product) => Boolean(product.qc_link)).length;
+  const priced = products
+    .map((product) => product.price)
+    .filter((price): price is number => typeof price === "number" && price > 0);
+  const copy = getBrandSeo(canonicalSlug, brand.name, brand.count, {
+    qcCount,
+    topCategories: rails.relatedCategories.slice(0, 3).map((c) => c.name),
+    priceMin: priced.length ? Math.min(...priced) : null,
+    priceMax: priced.length ? Math.max(...priced) : null,
+  });
   const allBrands = getBrandsFromProducts(allProducts);
   const relatedBrands = getRelatedIndexableBrands(allBrands, canonicalSlug, 12);
   const categoryLinks = getCategories()
     .filter((category) => category.group === "category")
     .slice(0, 6);
+  const authorityLinks = [
+    { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+    { href: "/boonbuy-qc", label: "QC photos" },
+    { href: "/boonbuy-coupons", label: "Coupons" },
+    { href: "/boonbuy-finds", label: "All finds" },
+  ];
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -177,6 +192,18 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
               ))}
             </p>
           ) : null}
+          <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
+            <span className="font-semibold text-foreground">BoonBuy hubs:</span>
+            {authorityLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-accent hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </p>
         </div>
       </section>
 

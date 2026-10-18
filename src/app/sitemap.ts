@@ -35,6 +35,7 @@ import {
   SEO_ARCHITECTURE_SLUGS,
 } from "@/lib/seo-architecture/registry";
 import { getDatasetSyncedAt } from "@/lib/catalog-meta";
+import { getSeoContentRevisionDate } from "@/lib/seo-content-revisions";
 import { SITE_URL } from "@/lib/site";
 
 /** Keep sitemap fresh as catalog quality gates change. */
@@ -44,10 +45,23 @@ function entry(
   pathOrUrl: string,
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
   priority: number,
-  lastModified: Date = getDatasetSyncedAt()
+  lastModified?: Date
 ): MetadataRoute.Sitemap[number] {
+  const path = pathOrUrl.startsWith("http")
+    ? new URL(pathOrUrl).pathname
+    : pathOrUrl;
   const url = pathOrUrl.startsWith("http") ? pathOrUrl : `${SITE_URL}${pathOrUrl}`;
-  return { url, lastModified, changeFrequency, priority };
+  const revised = getSeoContentRevisionDate(path);
+  const catalogSynced = getDatasetSyncedAt();
+  // Take the newest of: explicit lastModified, content revision, catalog sync.
+  // Content revisions must win even when callers pass catalog `synced`, otherwise
+  // authority-page lastmod never moves after SEO copy/schema/CTA changes.
+  // Never stamp "today" on every build.
+  const candidates = [lastModified, revised, catalogSynced].filter(
+    (d): d is Date => d instanceof Date && !Number.isNaN(d.getTime())
+  );
+  const resolved = candidates.reduce((newest, d) => (d > newest ? d : newest));
+  return { url, lastModified: resolved, changeFrequency, priority };
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
