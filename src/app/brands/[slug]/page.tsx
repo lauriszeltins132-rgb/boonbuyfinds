@@ -101,15 +101,6 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
   });
   const allBrands = getBrandsFromProducts(allProducts);
   const relatedBrands = getRelatedIndexableBrands(allBrands, canonicalSlug, 12);
-  const categoryLinks = getCategories()
-    .filter((category) => category.group === "category")
-    .slice(0, 6);
-  const authorityLinks = [
-    { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-    { href: "/boonbuy-qc", label: "QC photos" },
-    { href: "/boonbuy-coupons", label: "Coupons" },
-    { href: "/boonbuy-finds", label: "All finds" },
-  ];
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -148,14 +139,17 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
             Brand finds
           </p>
           <h1 className="mt-3 text-3xl font-black sm:text-4xl">{copy.title}</h1>
-          <p className="mt-3 max-w-2xl text-sm text-muted">
-            {copy.intro}
-          </p>
           <p className="mt-2 text-sm text-muted">
-            {brand.count.toLocaleString()} {brand.name} finds indexed
+            {brand.count.toLocaleString()} {brand.name} finds
+            {rails.stats.qcCount > 0
+              ? ` · ${rails.stats.qcCount.toLocaleString()} with QC`
+              : ""}
+            {rails.stats.medianPrice != null
+              ? ` · median ~$${Math.round(rails.stats.medianPrice)}`
+              : ""}
           </p>
           {collectionHref ? (
-            <p className="mt-3">
+            <p className="mt-2">
               <Link
                 href={collectionHref}
                 className="text-sm font-bold text-accent hover:underline"
@@ -164,46 +158,6 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
               </Link>
             </p>
           ) : null}
-          {categoryLinks.length > 0 ? (
-            <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-              <span className="font-semibold text-foreground">Categories:</span>
-              {categoryLinks.map((category) => (
-                <Link
-                  key={category.slug}
-                  href={category.href}
-                  className="hover:text-accent hover:underline"
-                >
-                  {category.name}
-                </Link>
-              ))}
-            </p>
-          ) : null}
-          {relatedBrands.length > 0 ? (
-            <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-              <span className="font-semibold text-foreground">Related brands:</span>
-              {relatedBrands.slice(0, 8).map((related) => (
-                <Link
-                  key={related.slug}
-                  href={`/brands/${related.slug}`}
-                  className="hover:text-accent hover:underline"
-                >
-                  {related.name}
-                </Link>
-              ))}
-            </p>
-          ) : null}
-          <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-            <span className="font-semibold text-foreground">BoonBuy hubs:</span>
-            {authorityLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-accent hover:underline"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </p>
         </div>
       </section>
 

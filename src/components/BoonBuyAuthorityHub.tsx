@@ -201,11 +201,15 @@ export default function BoonBuyAuthorityHub({
             ) : null}
 
             <div className="mt-6 flex flex-wrap gap-3">
-              {config.primaryCtas.map((cta) => (
+              {config.primaryCtas.map((cta, index) => (
                 <HubLink
                   key={`${cta.href}-${cta.label}`}
                   {...cta}
-                  location={`${config.slug}_hero_cta`}
+                  location={
+                    cta.primary || index === 0
+                      ? `${config.slug}_hero_primary`
+                      : `${config.slug}_hero_secondary_${index}`
+                  }
                 />
               ))}
             </div>

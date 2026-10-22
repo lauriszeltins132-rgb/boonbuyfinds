@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CopyInviteCodeButton from "@/components/CopyInviteCodeButton";
 import RegisterLink from "@/components/RegisterLink";
 import SchemaScript from "@/components/SchemaScript";
 import {
@@ -7,6 +8,7 @@ import {
   buildBreadcrumbSchema,
 } from "@/lib/schema";
 import type { AgentCouponLandingConfig } from "@/lib/agent-coupon-landing-pages";
+import { BOONBUY_INVITE_CODE } from "@/lib/constants";
 
 type AgentCouponLandingLayoutProps = {
   config: AgentCouponLandingConfig;
@@ -19,6 +21,7 @@ export default function AgentCouponLandingLayout({
     { label: "Home", href: "/" },
     { label: config.h1 },
   ];
+  const showInviteBlock = config.agent.useRegisterLink;
 
   return (
     <>
@@ -47,23 +50,44 @@ export default function AgentCouponLandingLayout({
             <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
               {config.h1}
             </h1>
-            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
-              {config.intro}
-            </p>
-            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted/80">
-              {config.keywordLine}
-            </p>
-            <p className="mx-auto mt-4 max-w-md text-sm font-bold text-accent">
-              {config.offerHeadline}
-            </p>
-            <p className="mx-auto mt-1 max-w-md text-xs leading-relaxed text-muted">
-              {config.offerDescription}
-            </p>
-            <div className="mt-8">
+            {showInviteBlock ? (
+              <div className="mx-auto mt-5 max-w-md rounded-2xl border border-accent/30 bg-background/70 px-5 py-4 backdrop-blur-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">
+                  Invite code
+                </p>
+                <p className="mt-2 font-mono text-4xl font-black tracking-wide text-accent">
+                  {BOONBUY_INVITE_CODE}
+                </p>
+                <p className="mt-2 text-sm font-black text-foreground">
+                  {config.offerHeadline}
+                </p>
+                <p className="mt-1 text-xs text-muted">
+                  Verified BoonBuy invite link · Confirm live terms on BoonBuy
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
+                  {config.intro}
+                </p>
+                <p className="mx-auto mt-4 max-w-md text-sm font-bold text-accent">
+                  {config.offerHeadline}
+                </p>
+                <p className="mx-auto mt-1 max-w-md text-xs leading-relaxed text-muted">
+                  {config.offerDescription}
+                </p>
+              </>
+            )}
+            <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+              {showInviteBlock ? (
+                <CopyInviteCodeButton
+                  location={`agent_coupon_${config.slug}_copy`}
+                />
+              ) : null}
               {config.agent.useRegisterLink ? (
                 <RegisterLink
                   location={`agent_coupon_${config.slug}`}
-                  className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-black text-white transition-transform hover:scale-[1.02] hover:bg-accent-hover"
+                  className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-black text-white transition-transform hover:scale-[1.02] hover:bg-accent-hover"
                 >
                   {config.ctaLabel}
                 </RegisterLink>
@@ -72,7 +96,7 @@ export default function AgentCouponLandingLayout({
                   href={config.couponUrl}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
-                  className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-black text-white transition-transform hover:scale-[1.02] hover:bg-accent-hover"
+                  className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-black text-white transition-transform hover:scale-[1.02] hover:bg-accent-hover"
                 >
                   {config.ctaLabel}
                 </a>

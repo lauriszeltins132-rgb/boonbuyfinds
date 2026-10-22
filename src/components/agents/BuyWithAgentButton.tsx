@@ -24,7 +24,8 @@ export default function BuyWithAgentButton({
   appearance = "primary",
 }: BuyWithAgentButtonProps) {
   const buyUrl = buildAgentProductUrl(product, DEFAULT_AGENT_ID);
-  const label = compact ? "Buy" : "Buy on BoonBuy";
+  /** Primary outbound action — one clear label, not competing CTAs. */
+  const label = compact ? "View on BoonBuy" : "View on BoonBuy";
 
   const baseClass = compact
     ? "rounded-full bg-accent px-3 py-1.5 text-[11px] font-black text-white"
@@ -55,5 +56,5 @@ export default function BuyWithAgentButton({
 }
 
 export function getBuyButtonLabel(): string {
-  return "Buy on BoonBuy";
+  return "View on BoonBuy";
 }
