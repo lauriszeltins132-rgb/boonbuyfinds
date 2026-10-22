@@ -65,11 +65,15 @@ export default function AgentCouponLandingLayout({
                   Verified BoonBuy invite link · Confirm live terms on BoonBuy
                 </p>
               </div>
-            ) : (
+            ) : null}
+            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
+              {config.intro}
+            </p>
+            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted/80">
+              {config.keywordLine}
+            </p>
+            {showInviteBlock ? null : (
               <>
-                <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
-                  {config.intro}
-                </p>
                 <p className="mx-auto mt-4 max-w-md text-sm font-bold text-accent">
                   {config.offerHeadline}
                 </p>

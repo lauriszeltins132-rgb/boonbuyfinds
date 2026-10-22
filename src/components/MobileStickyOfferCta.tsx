@@ -25,25 +25,32 @@ export default function MobileStickyOfferCta() {
   const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
-    if (!pathname || !HIGH_INTENT_PATHS.has(pathname)) {
+    const root = document.documentElement;
+    const active = Boolean(pathname && HIGH_INTENT_PATHS.has(pathname));
+    if (!active || !pathname) {
       setVisible(false);
+      root.classList.remove("has-mobile-sticky-offer");
       return;
     }
     const key = `sticky-offer-dismissed:${pathname}`;
-    setDismissed(Boolean(readSessionStorage(key)));
+    const isDismissed = Boolean(readSessionStorage(key));
+    setDismissed(isDismissed);
     setVisible(true);
+    root.classList.toggle("has-mobile-sticky-offer", !isDismissed);
+    return () => root.classList.remove("has-mobile-sticky-offer");
   }, [pathname]);
 
   if (!visible || dismissed || !pathname) return null;
 
   function dismiss() {
     writeSessionStorage(`sticky-offer-dismissed:${pathname}`, "1");
+    document.documentElement.classList.remove("has-mobile-sticky-offer");
     setDismissed(true);
   }
 
   return (
     <div
-      className="fixed inset-x-0 z-[75] border-t border-border bg-panel/95 px-3 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] backdrop-blur-md md:hidden"
+      className="fixed inset-x-0 z-[75] border-t border-border bg-panel/95 px-3 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] backdrop-blur-md sm:hidden"
       style={{
         /* Sit above the mobile dock so nav stays tappable */
         bottom: "calc(2.65rem + env(safe-area-inset-bottom, 0px))",
@@ -58,7 +65,8 @@ export default function MobileStickyOfferCta() {
         </div>
         <RegisterLink
           location={`${pathname.replace(/\//g, "_").replace(/^_/, "")}_sticky`}
-          className="shrink-0 rounded-full bg-accent px-4 py-2.5 text-xs font-black text-white"
+          className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-accent px-4 text-xs font-black text-white"
+          style={{ touchAction: "manipulation" }}
         >
           Claim Offer
         </RegisterLink>
@@ -66,7 +74,8 @@ export default function MobileStickyOfferCta() {
           type="button"
           onClick={dismiss}
           aria-label="Dismiss offer bar"
-          className="shrink-0 rounded-full px-2 py-2 text-sm text-muted hover:text-foreground"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-base text-muted hover:text-foreground"
+          style={{ touchAction: "manipulation" }}
         >
           ×
         </button>

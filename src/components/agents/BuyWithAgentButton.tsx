@@ -24,11 +24,10 @@ export default function BuyWithAgentButton({
   appearance = "primary",
 }: BuyWithAgentButtonProps) {
   const buyUrl = buildAgentProductUrl(product, DEFAULT_AGENT_ID);
-  /** Primary outbound action — one clear label, not competing CTAs. */
-  const label = compact ? "View on BoonBuy" : "View on BoonBuy";
+  const label = "View on BoonBuy";
 
   const baseClass = compact
-    ? "rounded-full bg-accent px-3 py-1.5 text-[11px] font-black text-white"
+    ? "min-w-0 max-w-full whitespace-normal rounded-full bg-accent px-3 py-2 text-center text-[11px] font-black leading-tight text-white"
     : appearance === "secondary"
       ? "inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-bold text-foreground hover:border-accent/40"
       : "inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-black text-white hover:bg-accent-hover";

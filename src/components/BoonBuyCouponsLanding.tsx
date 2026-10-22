@@ -17,7 +17,6 @@ import {
   getBoonBuyCouponsLastVerifiedLabel,
 } from "@/lib/boonbuy-coupons-hub";
 import { SOCIAL_LINKS, TELEGRAM_CHANNEL_NAME } from "@/lib/constants";
-import { getCouponCtaLabel } from "@/lib/cta-variants";
 import {
   buildAgentCouponWebPageSchema,
   buildBreadcrumbSchema,
@@ -42,7 +41,7 @@ function ClaimButton({
         "inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-black text-white transition hover:scale-[1.02] hover:bg-accent-hover"
       }
     >
-      {children ?? getCouponCtaLabel()}
+      {children ?? BOONBUY_COUPONS_OFFER.ctaLabel}
     </RegisterLink>
   );
 }
@@ -134,11 +133,14 @@ export default function BoonBuyCouponsLanding() {
             <div className="mt-5 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <CopyInviteCodeButton location="boonbuy_coupons_hero_copy" />
               <ClaimButton location="boonbuy_coupons_hero">
-                {getCouponCtaLabel()}
+                {BOONBUY_COUPONS_OFFER.ctaLabel}
               </ClaimButton>
             </div>
             <p className="mx-auto mt-3 max-w-md text-xs text-muted">
               Free to register · Confirm live terms on BoonBuy · No invented expiry dates
+            </p>
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted">
+              {BOONBUY_COUPONS_META.intro}
             </p>
           </section>
 
@@ -428,7 +430,7 @@ export default function BoonBuyCouponsLanding() {
             <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
               <CopyInviteCodeButton location="boonbuy_coupons_howto_copy" />
               <ClaimButton location="boonbuy_coupons_howto">
-                {getCouponCtaLabel()}
+                {BOONBUY_COUPONS_OFFER.ctaLabel}
               </ClaimButton>
             </div>
           </section>
@@ -645,7 +647,7 @@ export default function BoonBuyCouponsLanding() {
             <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
               <CopyInviteCodeButton location="boonbuy_coupons_final_copy" />
               <ClaimButton location="boonbuy_coupons_final">
-                {getCouponCtaLabel()}
+                {BOONBUY_COUPONS_OFFER.ctaLabel}
               </ClaimButton>
             </div>
           </section>

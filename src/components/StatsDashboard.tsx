@@ -82,6 +82,7 @@ export default function StatsDashboard() {
     { label: "Product outbound", value: summary.totals.productOutboundClicks ?? 0 },
     { label: "Spreadsheet browse", value: summary.totals.spreadsheetBrowseClicks ?? 0 },
     { label: "Search used", value: summary.totals.searchUsed ?? 0 },
+    { label: "Brand product clicks", value: summary.totals.brandProductClicks ?? 0 },
     { label: "Buy clicks", value: summary.totals.buyClicks },
     { label: "QC clicks", value: summary.totals.qcClicks },
     { label: "Telegram clicks", value: summary.totals.telegramClicks },

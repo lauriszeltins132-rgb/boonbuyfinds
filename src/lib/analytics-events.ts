@@ -65,17 +65,21 @@ function cleanPayload(payload: ConversionPayload) {
 function sendToApi(event: ConversionEvent, payload: ConversionPayload) {
   if (typeof window === "undefined") return;
 
-  const body = JSON.stringify({ event, ...cleanPayload(payload), ts: Date.now() });
-  const blob = new Blob([body], { type: "application/json" });
+  try {
+    const body = JSON.stringify({ event, ...cleanPayload(payload), ts: Date.now() });
+    const blob = new Blob([body], { type: "application/json" });
 
-  if (navigator.sendBeacon?.("/api/analytics/event", blob)) return;
+    if (navigator.sendBeacon?.("/api/analytics/event", blob)) return;
 
-  fetch("/api/analytics/event", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body,
-    keepalive: true,
-  }).catch(() => {});
+    fetch("/api/analytics/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    // Analytics must not interrupt the click that triggered it.
+  }
 }
 
 export function trackConversion(
@@ -86,7 +90,11 @@ export function trackConversion(
     page: payload.page ?? getPagePath(),
     ...payload,
   });
-  track(event, data);
+  try {
+    track(event, data);
+  } catch {
+    // Vercel Analytics failures must not block outbound navigation.
+  }
   sendToApi(event, data);
 }
 

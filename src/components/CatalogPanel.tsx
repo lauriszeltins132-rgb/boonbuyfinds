@@ -7,6 +7,7 @@ import type { BrandInfo } from "@/lib/brands";
 import type { CardDisplayMap } from "@/lib/card-display";
 import type { CategoryInfo, Product } from "@/lib/types";
 import { filterProducts } from "@/lib/filters";
+import { trackSearchSubmit } from "@/lib/analytics-events";
 import { POPULAR_SEARCHES } from "@/lib/constants";
 import { useWishlist } from "@/context/WishlistContext";
 import ControlButton from "@/components/ui/ControlButton";
@@ -207,7 +208,9 @@ export default function CatalogPanel({
 
   function handleSearch(event: FormEvent) {
     event.preventDefault();
-    navigate(buildUrl(basePath, params, { q: query.trim() }));
+    const trimmed = query.trim();
+    if (trimmed) trackSearchSubmit(trimmed, "catalog_search");
+    navigate(buildUrl(basePath, params, { q: trimmed }));
   }
 
   function applyPrice() {

@@ -16,11 +16,8 @@ export default function CopyInviteCodeButton({
   const [copied, setCopied] = useState(false);
 
   async function onCopy() {
-    try {
-      await navigator.clipboard.writeText(BOONBUY_INVITE_CODE);
-    } catch {
-      // Clipboard may be blocked; still acknowledge the attempt for UX.
-    }
+    const ok = await copyInviteCode(BOONBUY_INVITE_CODE);
+    if (!ok) return;
     trackCouponCodeCopy(location);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);
@@ -40,4 +37,31 @@ export default function CopyInviteCodeButton({
       {copied ? "Copied ✓" : `Copy ${BOONBUY_INVITE_CODE}`}
     </button>
   );
+}
+
+async function copyInviteCode(value: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    }
+  } catch {
+    // Fall through to the legacy copy path.
+  }
+
+  try {
+    const input = document.createElement("textarea");
+    input.value = value;
+    input.setAttribute("readonly", "");
+    input.style.position = "fixed";
+    input.style.top = "0";
+    input.style.left = "-9999px";
+    document.body.appendChild(input);
+    input.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(input);
+    return ok;
+  } catch {
+    return false;
+  }
 }

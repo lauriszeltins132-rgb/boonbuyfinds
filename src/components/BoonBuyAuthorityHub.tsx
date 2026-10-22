@@ -62,8 +62,8 @@ function HubLink({
   location: string;
 }) {
   const className = primary
-    ? "inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-black text-white transition hover:bg-accent-hover"
-    : "inline-flex items-center justify-center rounded-full border border-border-strong px-5 py-2.5 text-sm font-bold text-foreground hover:border-accent/40 hover:text-accent";
+    ? "inline-flex w-full min-w-0 max-w-full items-center justify-center whitespace-normal rounded-full bg-accent px-6 py-3.5 text-center text-sm font-black text-white transition hover:bg-accent-hover sm:w-auto"
+    : "inline-flex min-w-0 max-w-full items-center justify-center whitespace-normal rounded-full border border-border-strong px-5 py-3 text-center text-sm font-bold text-foreground hover:border-accent/40 hover:text-accent";
 
   return (
     <TrackedHubCta

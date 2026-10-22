@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ControlButton from "@/components/ui/ControlButton";
 import TextInput from "@/components/ui/TextInput";
+import { trackSearchSubmit } from "@/lib/analytics-events";
 import { POPULAR_SEARCHES } from "@/lib/constants";
 import { getClientSearchIndex } from "@/lib/search-suggestions-client";
 import { scrollToCatalogResults } from "@/lib/scroll-to-catalog";
@@ -61,6 +62,10 @@ export default function GlobalSearch({
     event.preventDefault();
     const trimmed = query.trim();
     if (!trimmed) return;
+    trackSearchSubmit(
+      trimmed,
+      variant === "dock" ? "mobile_dock_search" : "header_search"
+    );
     router.push(`/?q=${encodeURIComponent(trimmed)}`, { scroll: false });
     scrollToCatalogResults();
     setOpen(false);
