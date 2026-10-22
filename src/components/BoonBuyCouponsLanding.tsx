@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CopyInviteCodeButton from "@/components/CopyInviteCodeButton";
 import RegisterLink from "@/components/RegisterLink";
 import SchemaScript from "@/components/SchemaScript";
 import GuestVsMemberTable from "@/components/conversion/GuestVsMemberTable";
@@ -114,9 +115,9 @@ export default function BoonBuyCouponsLanding() {
               {BOONBUY_COUPONS_META.h1}
             </h1>
 
-            <div className="mx-auto mt-6 max-w-md rounded-2xl border border-accent/30 bg-background/70 px-5 py-5 backdrop-blur-sm">
+            <div className="mx-auto mt-5 max-w-md rounded-2xl border border-accent/30 bg-background/70 px-5 py-5 backdrop-blur-sm">
               <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">
-                Invite / referral / invitation code
+                Invite code
               </p>
               <p className="mt-2 font-mono text-4xl font-black tracking-wide text-accent sm:text-5xl">
                 {BOONBUY_COUPONS_OFFER.inviteCode}
@@ -125,20 +126,21 @@ export default function BoonBuyCouponsLanding() {
                 Up to {BOONBUY_COUPONS_OFFER.discountPercent}% Off Shipping
               </p>
               <p className="mt-2 text-xs text-muted">
-                Last verified {lastVerified} · New accounts via verified invite
+                Last verified {lastVerified} · Verified BoonBuy invite link
               </p>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-5 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+              <CopyInviteCodeButton location="boonbuy_coupons_hero_copy" />
               <ClaimButton location="boonbuy_coupons_hero">
-                Claim BoonBuy Offer
+                {BOONBUY_COUPONS_OFFER.ctaLabel}
               </ClaimButton>
             </div>
-            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted">
-              {BOONBUY_COUPONS_META.intro}
-            </p>
             <p className="mx-auto mt-3 max-w-md text-xs text-muted">
               Free to register · Confirm live terms on BoonBuy · No invented expiry dates
+            </p>
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted">
+              {BOONBUY_COUPONS_META.intro}
             </p>
           </section>
 
@@ -359,9 +361,6 @@ export default function BoonBuyCouponsLanding() {
                   {lastVerified}
                 </li>
               </ul>
-              <div className="mt-6">
-                <ClaimButton location="boonbuy_coupons_current_offer" />
-              </div>
             </div>
           </section>
 
@@ -428,8 +427,11 @@ export default function BoonBuyCouponsLanding() {
                 </li>
               ))}
             </ol>
-            <div className="mt-6">
-              <ClaimButton location="boonbuy_coupons_howto" />
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+              <CopyInviteCodeButton location="boonbuy_coupons_howto_copy" />
+              <ClaimButton location="boonbuy_coupons_howto">
+                {BOONBUY_COUPONS_OFFER.ctaLabel}
+              </ClaimButton>
             </div>
           </section>
 
@@ -518,9 +520,6 @@ export default function BoonBuyCouponsLanding() {
               destination, and BoonBuy’s live quote. Claim the invite first, then compare
               lines before you pay.
             </p>
-            <div className="mt-5">
-              <ClaimButton location="boonbuy_coupons_savings" />
-            </div>
           </ProseSection>
 
           <ProseSection id="why-boonbuyfinds" title="Why use BoonBuy Finds for coupons?">
@@ -531,26 +530,6 @@ export default function BoonBuyCouponsLanding() {
               with the same workflow.
             </p>
           </ProseSection>
-
-          {/* Mid CTA */}
-          <section className="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center">
-            <p className="text-lg font-black text-foreground">
-              Ready to claim the BoonBuy coupon?
-            </p>
-            <p className="mx-auto mt-2 max-w-md text-sm text-muted">
-              Register with the verified invite, then browse finds with QC and checkout
-              links.
-            </p>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-              <ClaimButton location="boonbuy_coupons_mid_cta" />
-              <Link
-                href="/boonbuy-finds"
-                className="inline-flex items-center justify-center rounded-full border border-border-strong px-6 py-3.5 text-sm font-bold text-foreground hover:border-accent/40 hover:text-accent"
-              >
-                Browse BoonBuy Finds
-              </Link>
-            </div>
-          </section>
 
           <ProseSection id="after-you-claim" title="After you claim — browse BoonBuy Finds">
             <p>
@@ -626,9 +605,6 @@ export default function BoonBuyCouponsLanding() {
             <div className="mt-6">
               <GuestVsMemberTable compact />
             </div>
-            <div className="mt-6">
-              <ClaimButton location="boonbuy_coupons_account" />
-            </div>
           </section>
 
           {/* Telegram */}
@@ -668,8 +644,11 @@ export default function BoonBuyCouponsLanding() {
               Last verified {lastVerified}. Confirm live terms on BoonBuy before you rely
               on any percentage.
             </p>
-            <div className="mt-6">
-              <ClaimButton location="boonbuy_coupons_final" />
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+              <CopyInviteCodeButton location="boonbuy_coupons_final_copy" />
+              <ClaimButton location="boonbuy_coupons_final">
+                {BOONBUY_COUPONS_OFFER.ctaLabel}
+              </ClaimButton>
             </div>
           </section>
         </div>

@@ -7,6 +7,7 @@ import DeferredClientChrome from "@/components/DeferredClientChrome";
 import DeferredAnalytics from "@/components/DeferredAnalytics";
 import DeferredSpeedInsights from "@/components/DeferredSpeedInsights";
 import MobileDock from "@/components/MobileDock";
+import MobileStickyOfferCta from "@/components/MobileStickyOfferCta";
 import PreferencesBar from "@/components/PreferencesBar";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import AnalyticsBoot from "@/components/AnalyticsBoot";
@@ -130,6 +131,7 @@ export default function RootLayout({
                   <FooterSignupStrip />
                   <Footer />
                   <DeferredClientChrome />
+                  <MobileStickyOfferCta />
                   <MobileDock />
                   <DeferredAnalytics />
                   <DeferredSpeedInsights />

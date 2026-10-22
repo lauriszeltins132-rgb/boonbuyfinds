@@ -143,6 +143,7 @@ export default function HeroSearch({ searchIndex }: HeroSearchProps) {
 
   function searchBrand(brand: string) {
     trackSearchChipClick(brand, "hero_search");
+    trackSearchSubmit(brand, "hero_search_chip");
     pushCatalogSearch(brand);
   }
 

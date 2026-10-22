@@ -177,20 +177,7 @@ export default function ProductDetailView({
             />
           </div>
 
-          <p className="mt-5 text-sm leading-relaxed text-muted">{description}</p>
-
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {highlights.map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs font-semibold text-muted"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {product.affiliate_link && (
               <BuyWithAgentButton
                 product={product}
@@ -207,6 +194,24 @@ export default function ProductDetailView({
               />
             ) : null}
           </div>
+          {product.affiliate_link ? (
+            <p className="mt-2 text-xs text-muted">
+              Verified BoonBuy link · Confirm live price before checkout
+            </p>
+          ) : null}
+
+          <p className="mt-5 text-sm leading-relaxed text-muted">{description}</p>
+
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {highlights.map((item) => (
+              <li
+                key={item}
+                className="rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs font-semibold text-muted"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
 
           <ProductAiActions
             productName={facts.displayName}

@@ -12,7 +12,6 @@ import BrandMark from "./BrandMark";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { trackProductContext, trackSaveClick } from "@/lib/analytics-events";
-import BoonBuyMicroCta from "./BoonBuyMicroCta";
 import ProductBadges from "./ProductBadges";
 import ProductCardImage from "./ProductCardImage";
 import BuyWithAgentButton from "./agents/BuyWithAgentButton";
@@ -219,9 +218,6 @@ export default function ProductCard({
           </button>
         </div>
 
-        {product.affiliate_link && !compact ? (
-          <BoonBuyMicroCta location="product_card_boonbuy" />
-        ) : null}
       </div>
     </article>
   );

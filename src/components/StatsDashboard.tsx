@@ -13,8 +13,12 @@ type Summary = {
     discordClicks: number;
     telegramClicks: number;
     couponClaimClicks?: number;
+    couponCodeCopies?: number;
     spreadsheetBrowseClicks?: number;
     searchUsed?: number;
+    productOutboundClicks?: number;
+    brandProductClicks?: number;
+    qcProductClicks?: number;
   };
   topProducts: { id: string; name: string; brand: string; clicks: number }[];
   topBrands: { name: string; clicks: number }[];
@@ -73,6 +77,12 @@ export default function StatsDashboard() {
     { label: "Register CTR", value: `${summary.registerCtr}%` },
     { label: "Buy CTR", value: `${summary.buyCtr}%` },
     { label: "Register clicks", value: summary.totals.registerClicks },
+    { label: "Coupon claims", value: summary.totals.couponClaimClicks ?? 0 },
+    { label: "Code copies", value: summary.totals.couponCodeCopies ?? 0 },
+    { label: "Product outbound", value: summary.totals.productOutboundClicks ?? 0 },
+    { label: "Spreadsheet browse", value: summary.totals.spreadsheetBrowseClicks ?? 0 },
+    { label: "Search used", value: summary.totals.searchUsed ?? 0 },
+    { label: "Brand product clicks", value: summary.totals.brandProductClicks ?? 0 },
     { label: "Buy clicks", value: summary.totals.buyClicks },
     { label: "QC clicks", value: summary.totals.qcClicks },
     { label: "Telegram clicks", value: summary.totals.telegramClicks },

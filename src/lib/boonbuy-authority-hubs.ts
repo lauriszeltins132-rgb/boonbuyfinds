@@ -67,9 +67,7 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       heroStatsKind: "spreadsheet",
       primaryCtas: [
         { href: "/browse", label: "Browse BoonBuy Spreadsheet", primary: true },
-        { href: "/browse", label: "Search spreadsheet" },
-        { href: "/latest-finds", label: "Latest additions" },
-        { href: "/boonbuy-qc", label: "QC finds" },
+        { href: "/browse", label: "Search BoonBuy Finds" },
       ],
       sections: [
         {
