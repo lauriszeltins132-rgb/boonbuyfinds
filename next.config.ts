@@ -35,6 +35,7 @@ const nextConfig: NextConfig = {
     const shortMarketingPaths: Array<{ source: string; destination: string }> = [
       { source: "/coupon", destination: "/boonbuy-coupons" },
       { source: "/coupons", destination: "/boonbuy-coupons" },
+      { source: "/best-coupons", destination: "/boonbuy-coupons" },
       { source: "/coupon-code", destination: "/boonbuy-coupons" },
       { source: "/promo", destination: "/boonbuy-coupons" },
       { source: "/promo-code", destination: "/boonbuy-coupons" },
