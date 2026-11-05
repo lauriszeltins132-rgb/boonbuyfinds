@@ -11,6 +11,7 @@ import {
 } from "@/lib/catalog-meta";
 import { formatContentDate } from "@/lib/content-dates";
 import {
+  getBrandCatalogTableRows,
   getBrandQcTableRows,
   getCatalogOverviewStats,
   getCategoryStatsTableRows,
@@ -20,6 +21,7 @@ import { getIndexableBrands, getIndexableCategories } from "@/lib/seo-directorie
 import { getBrandsFromProducts } from "@/lib/brands";
 import {
   getAllProducts,
+  getDealProducts,
   getLatestProducts,
   getQcProducts,
   getTrendingProducts,
@@ -40,6 +42,27 @@ export function getAuthoritySyncTimestamp(): string {
   return formatSyncedTimestamp();
 }
 
+function emptyAuthorityCatalogStats(): ReturnType<typeof getAuthorityCatalogStats> {
+  return {
+    findCount: 0,
+    findCountLabel: "0",
+    qcCount: 0,
+    qcCountLabel: "0",
+    qcPercent: 0,
+    brandCount: 0,
+    brandCountLabel: "0",
+    categoryCount: 0,
+    categoryCountLabel: "0",
+    topBrandNames: [],
+    topCategoryNames: [],
+    lastUpdatedLabel: "unavailable",
+    syncTimestamp: "unavailable",
+    categoryTableRows: [],
+    brandQcTableRows: [],
+    brandTableRows: [],
+  };
+}
+
 export function getAuthorityCatalogStats(): {
   findCount: number;
   findCountLabel: string;
@@ -56,7 +79,9 @@ export function getAuthorityCatalogStats(): {
   syncTimestamp: string;
   categoryTableRows: string[][];
   brandQcTableRows: string[][];
+  brandTableRows: string[][];
 } {
+  try {
   const brands = getIndexableBrands(getBrandsFromProducts(getAllProducts()));
   const categories = getIndexableCategories();
   const overview = getCatalogOverviewStats();
@@ -76,7 +101,11 @@ export function getAuthorityCatalogStats(): {
     syncTimestamp: getAuthoritySyncTimestamp(),
     categoryTableRows: getCategoryStatsTableRows(8),
     brandQcTableRows: getBrandQcTableRows(8),
+    brandTableRows: getBrandCatalogTableRows(8),
   };
+  } catch {
+    return emptyAuthorityCatalogStats();
+  }
 }
 
 export function getAuthorityHeroStats(
@@ -106,20 +135,25 @@ export function getAuthorityHeroStats(
   ];
 }
 
-export type PreviewKind = "latest" | "qc" | "trending" | "popular";
+export type PreviewKind = "latest" | "qc" | "trending" | "popular" | "budget";
 
 export function getAuthorityPreviewProducts(
   kind: PreviewKind = "latest",
   limit = 8
 ): Product[] {
-  if (kind === "popular") return getMostSavedPicks(limit);
-  const pool =
-    kind === "qc"
-      ? getQcProducts()
-      : kind === "trending"
-        ? getTrendingProducts()
-        : getLatestProducts();
-  return pool.slice(0, limit);
+  try {
+    if (kind === "popular") return getMostSavedPicks(limit);
+    if (kind === "budget") return getDealProducts(50).slice(0, limit);
+    const pool =
+      kind === "qc"
+        ? getQcProducts()
+        : kind === "trending"
+          ? getTrendingProducts()
+          : getLatestProducts();
+    return pool.slice(0, limit);
+  } catch {
+    return [];
+  }
 }
 
 export function getAuthorityMultiPreviewRails(limit = 6) {

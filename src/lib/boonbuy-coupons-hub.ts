@@ -51,10 +51,10 @@ export function getBoonBuyCouponsLastVerifiedLabel(): string {
 }
 
 export const BOONBUY_COUPONS_META = {
-  title: `Best BoonBuy Coupons 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping + Invite Code`,
-  description: `Working BoonBuy coupons for 2026 — invite/referral/invitation code ${BOONBUY_INVITE_CODE}, promo/discount codes, and up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping. How to claim, eligibility, and live savings guidance on BoonBuy Finds.`,
-  h1: `Best BoonBuy Coupons & Invite Code 2026`,
-  intro: `Current verified offer: invite code ${BOONBUY_INVITE_CODE} for up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping on eligible new BoonBuy accounts. This hub also covers coupon codes, promo codes, discount codes, referral codes, and invitation codes.`,
+  title: `Best BoonBuy Coupons 2026 | ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% Shipping + ${BOONBUY_INVITE_CODE}`,
+  description: `Current BoonBuy coupons for 2026: up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping for eligible new accounts, how shipping coupons apply, and why a coupon may not work. Invite code ${BOONBUY_INVITE_CODE} is explained on the invite-code page.`,
+  h1: `Best BoonBuy Coupons 2026`,
+  intro: `The current BoonBuy coupon on BoonBuy Finds is up to ${BOONBUY_SHIPPING_DISCOUNT_PERCENT}% off shipping for eligible new accounts. The signup code is ${BOONBUY_INVITE_CODE}. Shipping coupons are chosen when you pay freight, not as a markdown on every product.`,
 } as const;
 
 export const BOONBUY_COUPONS_OFFER = {

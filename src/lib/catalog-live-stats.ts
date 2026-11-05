@@ -31,7 +31,9 @@ export type CategoryLiveStat = {
   href: string;
   productCount: number;
   qcCount: number;
+  qcPercent: number;
   medianPrice: number | null;
+  latestName: string;
 };
 
 export type BrandLiveStat = {
@@ -42,6 +44,7 @@ export type BrandLiveStat = {
   qcCount: number;
   qcPercent: number;
   medianPrice: number | null;
+  latestName: string;
 };
 
 function median(values: number[]): number | null {
@@ -60,10 +63,24 @@ function pricesOf(products: Product[]): number[] {
     .filter((price): price is number => hasExactPrice(price));
 }
 
+function shortName(name: string): string {
+  const clean = name.replace(/\s+/g, " ").trim();
+  if (clean.length <= 42) return clean;
+  return `${clean.slice(0, 41).trimEnd()}…`;
+}
+
+function latestNameIn(pool: Product[], latest: Product[]): string {
+  const ids = new Set(pool.map((product) => product.id));
+  const hit = latest.find((product) => ids.has(product.id));
+  return hit ? shortName(hit.product_name) : "—";
+}
+
 /** Indexable category lanes with count / QC / median price from the live catalog. */
 export function getCategoryLiveStats(limit = 12): CategoryLiveStat[] {
+  try {
   const products = getAllProducts();
   const categories = getIndexableCategories();
+  const latest = getLatestProducts();
   const bySlug = new Map<string, Product[]>();
   for (const product of products) {
     if (product.group !== "category") continue;
@@ -76,18 +93,24 @@ export function getCategoryLiveStats(limit = 12): CategoryLiveStat[] {
     .map((category) => {
       const pool = bySlug.get(category.slug) ?? [];
       const qcCount = pool.filter((p) => Boolean(p.qc_link)).length;
+      const productCount = pool.length || category.count;
       return {
         name: category.name,
         slug: category.slug,
         href: category.href,
-        productCount: pool.length || category.count,
+        productCount,
         qcCount,
+        qcPercent: productCount > 0 ? Math.round((qcCount / productCount) * 100) : 0,
         medianPrice: median(pricesOf(pool)),
+        latestName: latestNameIn(pool, latest),
       };
     })
     .filter((row) => row.productCount > 0)
     .sort((a, b) => b.productCount - a.productCount)
     .slice(0, limit);
+  } catch {
+    return [];
+  }
 }
 
 /** Top brands with QC coverage — unique data for /boonbuy-qc and /boonbuy-stats. */
@@ -103,6 +126,7 @@ export function getBrandQcLiveStats(limit = 12): BrandLiveStat[] {
     byBrand.set(name, list);
   }
 
+  const latest = getLatestProducts();
   return brands
     .map((brand) => {
       const pool = byBrand.get(brand.name) ?? [];
@@ -118,6 +142,7 @@ export function getBrandQcLiveStats(limit = 12): BrandLiveStat[] {
         qcCount,
         qcPercent,
         medianPrice: median(pricesOf(pool)),
+        latestName: latestNameIn(pool, latest),
       };
     })
     .filter((row) => row.productCount > 0)
@@ -131,6 +156,7 @@ export function formatMedianPrice(value: number | null): string {
 }
 
 export function getCatalogOverviewStats() {
+  try {
   const products = getAllProducts();
   const brands = getIndexableBrands(getBrandsFromProducts(products));
   const categories = getIndexableCategories();
@@ -173,6 +199,29 @@ export function getCatalogOverviewStats() {
       count: c.count,
     })),
   };
+  } catch {
+    return {
+      findCount: 0,
+      findCountLabel: "0",
+      qcCount: 0,
+      qcCountLabel: "0",
+      qcPercent: 0,
+      brandCount: 0,
+      brandCountLabel: "0",
+      categoryCount: 0,
+      categoryCountLabel: "0",
+      medianPrice: null,
+      medianPriceLabel: "—",
+      latestCount: 0,
+      trendingCount: 0,
+      qcPreviewCount: 0,
+      lastUpdatedLabel: "unavailable",
+      syncTimestamp: "unavailable",
+      syncedIso: "",
+      topBrands: [],
+      topCategories: [],
+    };
+  }
 }
 
 export function getSpreadsheetPreviewRails(limit = 6) {
@@ -190,8 +239,25 @@ export function getCategoryStatsTableRows(limit = 8): string[][] {
     row.name,
     formatCountLabel(row.productCount),
     formatCountLabel(row.qcCount),
+    `${row.qcPercent}%`,
     formatMedianPrice(row.medianPrice),
+    row.latestName,
   ]);
+}
+
+export function getBrandCatalogTableRows(limit = 8): string[][] {
+  return getBrandQcLiveStats(limit)
+    .slice()
+    .sort((a, b) => b.productCount - a.productCount)
+    .slice(0, limit)
+    .map((row) => [
+      row.name,
+      formatCountLabel(row.productCount),
+      formatCountLabel(row.qcCount),
+      `${row.qcPercent}%`,
+      formatMedianPrice(row.medianPrice),
+      row.latestName,
+    ]);
 }
 
 export function getBrandQcTableRows(limit = 8): string[][] {
@@ -200,5 +266,7 @@ export function getBrandQcTableRows(limit = 8): string[][] {
     formatCountLabel(row.productCount),
     formatCountLabel(row.qcCount),
     `${row.qcPercent}%`,
+    formatMedianPrice(row.medianPrice),
+    row.latestName,
   ]);
 }

@@ -9,6 +9,7 @@ const AUTHORITY_GRAPH = [
   { href: "/boonbuy-qc", label: "QC" },
   { href: "/boonbuy-shipping", label: "Shipping" },
   { href: "/boonbuy-coupons", label: "Coupons" },
+  { href: "/boonbuy-invite-code", label: "Invite code" },
   { href: "/boonbuy-warehouse", label: "Warehouse" },
   { href: "/boonbuy-review", label: "Review" },
   { href: "/is-boonbuy-legit", label: "Is BoonBuy legit?" },
@@ -33,7 +34,7 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       title: `BoonBuy Spreadsheet 2026 | Updated Finds & QC Photos`,
       metaDescription: `Updated BoonBuy spreadsheet alternative — ${stats.findCountLabel} searchable finds, ${stats.qcCountLabel} QC references, brands, categories, and verified BoonBuy checkout links. Last sync ${stats.lastUpdatedLabel}.`,
       h1: "BoonBuy Spreadsheet 2026",
-      intro: `Updated BoonBuy finds, QC references, and verified product links — a live searchable catalog (${stats.findCountLabel} finds, ${stats.qcCountLabel} QC) instead of a static Google Sheet.`,
+      intro: "Search updated BoonBuy finds with product links, prices, brands and QC references.",
       keywords: [
         "boonbuy spreadsheet",
         "boonbuy spreadsheet 2026",
@@ -65,11 +66,32 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "Discovery here · checkout, warehouse QC, and shipping on BoonBuy",
       ],
       heroStatsKind: "spreadsheet",
+      catalogSearch: true,
       primaryCtas: [
         { href: "/browse", label: "Browse BoonBuy Spreadsheet", primary: true },
-        { href: "/browse", label: "Search BoonBuy Finds" },
+        { href: "/latest-finds", label: "Latest Finds" },
       ],
       sections: [
+        {
+          id: "what-makes-it-good",
+          title: "What makes a BoonBuy spreadsheet good?",
+          paragraphs: [
+            "A useful BoonBuy spreadsheet is the one you can actually search on a phone: live product links, current prices, QC when it exists, brand and category filters, and a timestamp that matches the file you are looking at. A frozen Google Sheet with a bigger headline number is not automatically better.",
+            `BoonBuy Finds currently provides ${stats.findCountLabel} active finds, ${stats.qcCountLabel} QC references, brand and category filters, price filters on /browse, mobile pages, and direct BoonBuy product links. Last sync: ${stats.syncTimestamp}. We do not claim a larger catalog than the dataset contains.`,
+          ],
+          bullets: [
+            "Active product links, not a downloaded file",
+            "Search plus brand, category, and price filters",
+            "QC references where the catalog has them",
+            "Current prices from the synced catalog",
+            "Visible sync timestamp",
+          ],
+          links: [
+            { href: "/browse", label: "Search the catalog" },
+            { href: "/boonbuy-qc", label: "QC hub" },
+            { href: "/boonbuy-stats", label: "Live stats" },
+          ],
+        },
         {
           id: "what-is",
           title: "What is the BoonBuy spreadsheet?",
@@ -196,8 +218,13 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       dataTables: [
         {
           title: "Live spreadsheet category stats",
-          headers: ["Category", "Products", "With QC", "Median price"],
+          headers: ["Category", "Products", "QC", "QC %", "Median", "Latest"],
           rows: stats.categoryTableRows,
+        },
+        {
+          title: "Top brands in the spreadsheet",
+          headers: ["Brand", "Products", "QC", "QC %", "Median", "Latest"],
+          rows: stats.brandTableRows,
         },
         {
           title: "Spreadsheet intent → where to go",
@@ -234,15 +261,16 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "/boonbuy-finds",
         "/boonbuy-qc",
         "/boonbuy-coupons",
+        "/boonbuy-invite-code",
         "/boonbuy-shipping",
-        "/boonbuy-telegram",
-        "/boonbuy"
+        "/boonbuy-telegram"
       ),
       productPreview: { title: "Latest spreadsheet finds", kind: "latest", limit: 6 },
       productPreviews: [
         { title: "Trending spreadsheet finds", kind: "trending", limit: 6 },
         { title: "QC spreadsheet finds", kind: "qc", limit: 6 },
-        { title: "Popular spreadsheet finds", kind: "popular", limit: 6 },
+        { title: "Most saved", kind: "popular", limit: 6 },
+        { title: "Under $50", kind: "budget", limit: 6 },
       ],
       schema: "collection",
     },
@@ -252,9 +280,9 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       path: "/boonbuy-qc",
       badge: "BoonBuy QC",
       breadcrumbLabel: "BoonBuy QC",
-      title: "BoonBuy QC Photos | QC Finder & Product Checks",
+      title: "BoonBuy QC Photos 2026 | Find QC Before You Buy",
       metaDescription: `BoonBuy QC hub — ${stats.qcCountLabel} QC-linked finds (${stats.qcPercent}% coverage), brand QC coverage, newest QC finds, and how warehouse QC works before shipping.`,
-      h1: "BoonBuy QC Photos",
+      h1: "BoonBuy QC Photos 2026",
       intro: `Find QC-linked BoonBuy products fast — ${stats.qcCountLabel} catalog listings with QC references (${stats.qcPercent}% of indexed finds), then still request warehouse QC on BoonBuy for your exact order.`,
       keywords: [
         "boonbuy qc",
@@ -289,9 +317,14 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       ],
       dataTables: [
         {
-          title: "Top brands with QC coverage",
-          headers: ["Brand", "Products", "With QC", "QC %"],
+          title: "Top brands by QC",
+          headers: ["Brand", "Products", "QC", "QC %", "Median", "Latest"],
           rows: stats.brandQcTableRows,
+        },
+        {
+          title: "Top categories by QC",
+          headers: ["Category", "Products", "QC", "QC %", "Median", "Latest"],
+          rows: stats.categoryTableRows,
         },
       ],
       sections: [
@@ -370,6 +403,14 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
           title: "What QC photos cannot tell you",
           paragraphs: [
             "Photos cannot fully prove materials longevity, exact retail hand-feel, or future seller restock consistency. QC reduces risk; it does not eliminate it.",
+          ],
+        },
+        {
+          id: "when-to-reject",
+          title: "When should I reject?",
+          paragraphs: [
+            "Reject when the photos show a wrong item, the wrong color, a different size, obvious damage, or a logo/shape that does not match the listing. Ask for a missing angle before you approve shoes, bags, or printed clothing.",
+            "Do not reject only because a photo cannot prove how the fabric will feel. Reference QC on this site is not a photo of your parcel — warehouse QC on BoonBuy is the set that decides the order.",
           ],
         },
         {
@@ -560,7 +601,7 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       path: "/boonbuy-finds",
       badge: "BoonBuy Finds",
       breadcrumbLabel: "BoonBuy Finds",
-      title: `BoonBuy Finds 2026 | Product Links & QC Photos`,
+      title: `BoonBuy Finds 2026 | Products, Links & QC Photos`,
       metaDescription: `Browse BoonBuy finds — ${stats.findCountLabel} indexed products, ${stats.qcCountLabel} QC references, brands, categories, trending/latest rails, and verified BoonBuy checkout links. Updated ${stats.lastUpdatedLabel}.`,
       h1: "BoonBuy Finds 2026",
       intro: `Live BoonBuy product discovery — ${stats.findCountLabel} indexed finds, ${stats.qcCountLabel} QC references, updated ${stats.lastUpdatedLabel}. Search first; the guide content is below.`,
@@ -589,12 +630,15 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "Pairs with spreadsheet, QC, coupons, and Telegram hubs",
       ],
       heroStatsKind: "finds",
+      catalogSearch: true,
       primaryCtas: [
         { href: "/browse", label: "Search finds", primary: true },
         { href: "/trending", label: "Trending" },
         { href: "/latest-finds", label: "New finds" },
         { href: "/brands", label: "Brands" },
         { href: "/categories", label: "Categories" },
+        { href: "/top-qc-finds", label: "QC finds" },
+        { href: "/best-under-50", label: "Budget finds" },
       ],
       sections: [
         {
@@ -667,7 +711,7 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
         "/boonbuy-spreadsheet",
         "/boonbuy-qc",
         "/boonbuy-coupons",
-        "/boonbuy-telegram",
+        "/boonbuy-invite-code",
         "/boonbuy-shipping",
         "/boonbuy"
       ),
@@ -680,7 +724,7 @@ function buildHubs(): Record<string, AuthorityHubConfig> {
       dataTables: [
         {
           title: "Catalog by category",
-          headers: ["Category", "Products", "With QC", "Median price"],
+          headers: ["Category", "Products", "QC", "QC %", "Median", "Latest"],
           rows: stats.categoryTableRows,
         },
       ],

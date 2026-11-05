@@ -16,9 +16,10 @@ const navLinks = [
   { href: "/latest-finds", label: "New Finds" },
   { href: "/brands", label: "Brands" },
   { href: "/categories", label: "Categories" },
-  { href: "/boonbuy-coupons", label: "Coupons" },
   { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
-  { href: "/guides", label: "Guides" },
+  { href: "/boonbuy-coupons", label: "Coupons" },
+  { href: "/boonbuy-invite-code", label: "Invite" },
+  { href: "/boonbuy-qc", label: "QC" },
   { href: "/wishlist", label: "Saved" },
 ];
 

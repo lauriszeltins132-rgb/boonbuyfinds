@@ -27,7 +27,7 @@ import {
 import { isBrandIndexable } from "@/lib/brand-indexability";
 import { resolveCanonicalBrandSlug } from "@/lib/brand-normalization";
 import { getRelatedIndexableBrands } from "@/lib/seo-directories";
-import { getAllProducts, getCategories } from "@/lib/products";
+import { getAllProducts, getCategories, getLatestProducts } from "@/lib/products";
 import { getBrandPageRails } from "@/lib/brand-page-rails";
 import { getBrandSeo } from "@/lib/seo-content";
 import { getBrandCollectionHref } from "@/lib/brand-collections";
@@ -89,6 +89,8 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
   const collectionHref = getBrandCollectionHref(canonicalSlug);
   const pagePath = `/brands/${canonicalSlug}`;
   const rails = getBrandPageRails(canonicalSlug, brand.name, products);
+  const brandIds = new Set(products.map((product) => product.id));
+  const latestFind = getLatestProducts().find((product) => brandIds.has(product.id));
   const qcCount = products.filter((product) => Boolean(product.qc_link)).length;
   const priced = products
     .map((product) => product.price)
@@ -142,11 +144,18 @@ export default async function BrandLandingPage({ params }: BrandPageProps) {
           <p className="mt-2 text-sm text-muted">
             {brand.count.toLocaleString()} {brand.name} finds
             {rails.stats.qcCount > 0
-              ? ` · ${rails.stats.qcCount.toLocaleString()} with QC`
+              ? ` · ${rails.stats.qcCount.toLocaleString()} with QC (${Math.round((rails.stats.qcCount / Math.max(brand.count, 1)) * 100)}%)`
               : ""}
             {rails.stats.medianPrice != null
               ? ` · median ~$${Math.round(rails.stats.medianPrice)}`
               : ""}
+            {latestFind ? ` · latest find: ${latestFind.product_name}` : ""}
+          </p>
+          <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm font-bold">
+            <Link href="/boonbuy-spreadsheet" className="text-accent hover:underline">Spreadsheet</Link>
+            <Link href="/boonbuy-coupons" className="text-accent hover:underline">Coupons</Link>
+            <Link href="/boonbuy-invite-code" className="text-accent hover:underline">Invite code</Link>
+            <Link href="/boonbuy-qc" className="text-accent hover:underline">QC</Link>
           </p>
           {collectionHref ? (
             <p className="mt-2">

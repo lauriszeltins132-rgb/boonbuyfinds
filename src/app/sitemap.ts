@@ -34,6 +34,7 @@ import {
   SEO_ARCHITECTURE_PAGES,
   SEO_ARCHITECTURE_SLUGS,
 } from "@/lib/seo-architecture/registry";
+import { getBoonBuyCouponsLastVerifiedIso } from "@/lib/boonbuy-coupons-hub";
 import { getDatasetSyncedAt } from "@/lib/catalog-meta";
 import { getSeoContentRevisionDate } from "@/lib/seo-content-revisions";
 import { SITE_URL } from "@/lib/site";
@@ -57,7 +58,12 @@ function entry(
   // Content revisions must win even when callers pass catalog `synced`, otherwise
   // authority-page lastmod never moves after SEO copy/schema/CTA changes.
   // Never stamp "today" on every build.
-  const candidates = [lastModified, revised, catalogSynced].filter(
+  const offerPage =
+    path === "/boonbuy-coupons" ||
+    path === "/boonbuy-invite-code" ||
+    path === "/boonbuy-shipping-coupon";
+  // Offer pages use the manual verification date, not the catalog sync stamp.
+  const candidates = [lastModified, revised, offerPage ? undefined : catalogSynced].filter(
     (d): d is Date => d instanceof Date && !Number.isNaN(d.getTime())
   );
   const resolved = candidates.reduce((newest, d) => (d > newest ? d : newest));
@@ -77,8 +83,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/latest-finds", "daily", 0.95, synced),
     entry("/rep-finds", "daily", 0.94, synced),
     entry("/boonbuy-spreadsheet", "weekly", 0.96, synced),
-    entry("/boonbuy-coupons", "weekly", 0.95, synced),
-    entry("/boonbuy-shipping-coupon", "weekly", 0.94, synced),
+    entry("/boonbuy-coupons", "weekly", 0.95, new Date(getBoonBuyCouponsLastVerifiedIso())),
+    entry("/boonbuy-invite-code", "weekly", 0.94, new Date(getBoonBuyCouponsLastVerifiedIso())),
+    entry("/boonbuy-shipping-coupon", "weekly", 0.94, new Date(getBoonBuyCouponsLastVerifiedIso())),
     entry("/boonbuy-qc", "weekly", 0.93, synced),
     entry("/boonbuy-stats", "weekly", 0.88, synced),
     entry("/boonbuy-shipping", "weekly", 0.92, synced),
@@ -107,7 +114,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/boonbuy-discount-code",
     "/boonbuy-referral-code",
     "/boonbuy-invite",
-    "/boonbuy-invite-code",
     "/boonbuy-voucher",
     "/best-boonbuy-spreadsheet",
     "/boonbuy-spreadsheet-2026",

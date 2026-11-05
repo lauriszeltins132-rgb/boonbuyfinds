@@ -8,10 +8,12 @@ const SECTIONS = [
   {
     title: "Start here",
     links: [
+      { href: "/boonbuy-finds", label: "Finds" },
+      { href: "/boonbuy-spreadsheet", label: "Spreadsheet" },
+      { href: "/boonbuy-coupons", label: "Coupons" },
+      { href: "/boonbuy-invite-code", label: "Invite code" },
+      { href: "/boonbuy-qc", label: "QC" },
       { href: "/boonbuy", label: "BoonBuy" },
-      { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
-      { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
-      { href: "/boonbuy-qc", label: "BoonBuy QC" },
       { href: "/boonbuy-shipping", label: "Shipping" },
       { href: "/boonbuy-warehouse", label: "Warehouse" },
       { href: "/trending", label: "Trending" },
