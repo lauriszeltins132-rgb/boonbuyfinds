@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import DataFreshness from "@/components/DataFreshness";
 import DiscoveryHero from "@/components/DiscoveryHero";
@@ -45,6 +46,27 @@ export default async function HomePage() {
       />
 
       <DiscoveryHero />
+
+      <nav aria-label="BoonBuy resources" className="px-4 pb-2 sm:px-6">
+        <ul className="mx-auto flex max-w-7xl flex-wrap gap-2">
+          {[
+            ["/boonbuy-finds", "Finds"],
+            ["/boonbuy-spreadsheet", "Spreadsheet"],
+            ["/boonbuy-coupons", "Coupons"],
+            ["/boonbuy-invite-code", "Invite code"],
+            ["/boonbuy-qc", "QC"],
+          ].map(([href, label]) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="inline-flex min-h-11 items-center rounded-full border border-border bg-surface px-3 text-sm font-bold text-foreground hover:border-accent/40 hover:text-accent"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <ServerDiscoveryRail
         title="Trending Finds"

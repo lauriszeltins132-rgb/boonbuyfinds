@@ -50,15 +50,17 @@ export type AuthorityHubConfig = {
   relatedResources: AuthorityLink[];
   productPreview?: {
     title: string;
-    kind: "latest" | "qc" | "trending" | "popular";
+    kind: "latest" | "qc" | "trending" | "popular" | "budget";
     limit?: number;
   };
   /** Extra live product rails (spreadsheet / finds / QC data product proof). */
   productPreviews?: {
     title: string;
-    kind: "latest" | "qc" | "trending" | "popular";
+    kind: "latest" | "qc" | "trending" | "popular" | "budget";
     limit?: number;
   }[];
+  /** Server-rendered catalog search that posts to /browse. */
+  catalogSearch?: boolean;
   /** Extra live data tables (category counts, brand QC coverage, etc.). */
   dataTables?: AuthorityTable[];
   /** Show Telegram join CTAs (hero after quick answer + final). */

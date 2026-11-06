@@ -47,6 +47,7 @@ const AGENT_FINDS_LINKS = [
   { href: "/boonbuy-finds", label: "BoonBuy finds" },
   { href: "/boonbuy-telegram", label: "BoonBuy Telegram" },
   { href: "/boonbuy-coupons", label: "BoonBuy Coupons" },
+  { href: "/boonbuy-invite-code", label: "BoonBuy Invite Code" },
   { href: "/boonbuy-spreadsheet", label: "BoonBuy Spreadsheet" },
   { href: "/boonbuy-qc", label: "BoonBuy QC" },
   { href: "/boonbuy-stats", label: "BoonBuy Stats" },

@@ -166,11 +166,14 @@ export default function BoonBuyCouponsLanding() {
               fake product markdown list.
             </p>
             <p>
-              BoonBuy Finds (boonbuyfinds.net) is the catalog and guide layer: searchable
-              finds, QC references, and verified BoonBuy checkout links. This page is the
-              single canonical hub for the whole BoonBuy coupon search cluster in 2026 —
-              including best coupons, coupon codes, promo codes, discount codes, invite
-              codes, referral codes, and the current working shipping offer.
+              BoonBuy Finds (boonbuyfinds.net) is the catalog and guide layer. This page
+              is the coupon hub: current shipping offers, coupon codes, promo codes, and
+              discount codes. Registration codes — invite, invitation, referral, and signup
+              — live on the{" "}
+              <Link href="/boonbuy-invite-code" className="font-semibold text-accent hover:underline">
+                BoonBuy invite code
+              </Link>{" "}
+              page.
             </p>
           </ProseSection>
 
@@ -193,24 +196,21 @@ export default function BoonBuyCouponsLanding() {
 
           <ProseSection
             id="boonbuy-invite-code"
-            title="What is the BoonBuy invite code?"
+            title="Coupon vs invite code"
           >
             <p>
-              The BoonBuy invite code (also searched as invitation code or referral code)
-              is the registration code that attaches the verified signup offer. On BoonBuy
-              Finds, that code is{" "}
+              A coupon is the shipping discount you apply when BoonBuy quotes freight. The
+              invite code is only the registration code. BoonBuy Finds publishes{" "}
               <strong className="font-mono font-semibold text-foreground">
                 {BOONBUY_COUPONS_OFFER.inviteCode}
-              </strong>
-              .
+              </strong>{" "}
+              on the invite-code page so coupon searches and registration searches do not
+              compete for the same result.
             </p>
             <p>
-              Prefer the full registration link from the claim button. If BoonBuy shows an
-              invite/referral field during signup, enter{" "}
-              <span className="font-mono font-semibold text-foreground">
-                {BOONBUY_COUPONS_OFFER.inviteCode}
-              </span>{" "}
-              manually.
+              <Link href="/boonbuy-invite-code" className="font-semibold text-accent hover:underline">
+                BoonBuy invite code, referral code, and signup code
+              </Link>
             </p>
           </ProseSection>
 
@@ -240,10 +240,9 @@ export default function BoonBuyCouponsLanding() {
             title="BoonBuy invite code vs coupon"
           >
             <p>
-              People search coupon, promo code, discount code, invite code, invitation
-              code, and referral code for the same practical outcome: a verified signup
-              path that can unlock shipping savings. This page consolidates that intent —
-              there is no separate thin invite-code doorway.
+              Use this page for the shipping discount: what the offer is, where it appears,
+              and why it might not apply. Use the invite-code page when you need the
+              registration field, a referral code, or a signup code.
             </p>
           </ProseSection>
 

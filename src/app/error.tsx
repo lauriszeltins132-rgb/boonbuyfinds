@@ -19,11 +19,18 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         Something went wrong
       </p>
       <h1 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
-        This page hit a temporary error
+        Browse BoonBuy finds
       </h1>
       <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
-        You can try again, or go back to the homepage and keep browsing finds.
+        The catalog is still available. Open a hub below, or return to the homepage.
       </p>
+      <ul className="mt-6 flex flex-wrap justify-center gap-2 text-sm">
+        <li><Link href="/boonbuy-spreadsheet" className="font-bold text-accent hover:underline">Spreadsheet</Link></li>
+        <li><Link href="/boonbuy-coupons" className="font-bold text-accent hover:underline">Coupons</Link></li>
+        <li><Link href="/boonbuy-invite-code" className="font-bold text-accent hover:underline">Invite code</Link></li>
+        <li><Link href="/boonbuy-finds" className="font-bold text-accent hover:underline">Finds</Link></li>
+        <li><Link href="/boonbuy-qc" className="font-bold text-accent hover:underline">QC</Link></li>
+      </ul>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <button
           type="button"

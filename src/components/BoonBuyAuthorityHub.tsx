@@ -106,7 +106,7 @@ export default function BoonBuyAuthorityHub({
   const liveTables = [
     ...(config.table ? [config.table] : []),
     ...(config.dataTables ?? []),
-  ];
+  ].filter((table) => table.rows.length > 0);
 
   const breadcrumbItems = [
     { label: "Home", href: "/" },
@@ -166,7 +166,15 @@ export default function BoonBuyAuthorityHub({
       <Breadcrumbs items={breadcrumbItems} currentPath={config.path} />
 
       <article className="px-4 pb-12 pt-4 sm:px-6 sm:pb-16">
-        <div className="mx-auto max-w-2xl">
+        <div
+          className={`mx-auto ${
+            config.heroStatsKind === "spreadsheet" ||
+            config.heroStatsKind === "finds" ||
+            config.heroStatsKind === "qc"
+              ? "max-w-6xl"
+              : "max-w-2xl"
+          }`}
+        >
           <section className="overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 via-secondary-soft to-panel-hover p-6 sm:p-10">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
               {config.badge}
@@ -174,7 +182,7 @@ export default function BoonBuyAuthorityHub({
             <h1 className="mt-3 text-3xl font-black tracking-tight text-foreground sm:text-4xl">
               {config.h1}
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-muted">{config.intro}</p>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">{config.intro}</p>
 
             {heroStats.length > 0 ? (
               <dl
@@ -198,6 +206,27 @@ export default function BoonBuyAuthorityHub({
                   </div>
                 ))}
               </dl>
+            ) : null}
+
+            {config.catalogSearch ? (
+              <form action="/browse" method="get" className="mx-auto mt-5 flex max-w-xl flex-col gap-2 sm:flex-row">
+                <label className="sr-only" htmlFor={`${config.slug}-search`}>
+                  Search the catalog
+                </label>
+                <input
+                  id={`${config.slug}-search`}
+                  name="q"
+                  type="search"
+                  placeholder="Search Nike, Moncler, Jordan, bags..."
+                  className="min-h-11 w-full rounded-full border border-border-strong bg-background px-4 text-sm text-foreground"
+                />
+                <button
+                  type="submit"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 text-sm font-black text-white hover:bg-accent-hover"
+                >
+                  Search
+                </button>
+              </form>
             ) : null}
 
             <div className="mt-6 flex flex-wrap gap-3">
