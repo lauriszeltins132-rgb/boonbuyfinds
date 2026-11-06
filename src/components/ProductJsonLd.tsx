@@ -52,7 +52,6 @@ export default function ProductJsonLd({ product, slug }: ProductJsonLdProps) {
           "@type": "Offer",
           price: product.price,
           priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
           url: product.affiliate_link || url,
         }
       : undefined,
