@@ -1,0 +1,33 @@
+name: Daily catalog snapshot
+
+on:
+  schedule:
+    # 05:00 UTC. Writes one file for that UTC day and does not rewrite it.
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx tsx scripts/write-catalog-snapshot.ts
+      - name: Commit the new day
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/catalog-history
+          if git diff --cached --quiet; then
+            echo "Snapshot for this UTC day already exists."
+          else
+            git commit -m "Record daily catalog snapshot"
+            git push
+          fi
