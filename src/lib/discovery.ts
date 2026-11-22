@@ -12,13 +12,16 @@ import {
   getTrendingProducts,
   products,
 } from "./products";
+import { productBelongsToCategory } from "./product-membership";
 import { getUtcDayIndex as readUtcDayIndex, getUtcWeekIndex } from "./rotation-seeds";
 import type { Product } from "./types";
 
 function qualityScore(product: Product, trendingIndex = 999): number {
   let score = getProductQualityScore(product);
-  if (product.category_slug === "trending-now") score += 30 - Math.min(trendingIndex, 29);
-  if (product.category_slug === "latest-finds") score += 15;
+  if (productBelongsToCategory(product, "trending-now")) {
+    score += 30 - Math.min(trendingIndex, 29);
+  }
+  if (productBelongsToCategory(product, "latest-finds")) score += 15;
   if (hasExactPrice(product.price) && product.price! <= 30) score += 10;
   if (hasExactPrice(product.price) && product.price! <= 50) score += 5;
   return score;
@@ -179,7 +182,7 @@ export function getPopularInCategory(product: Product, limit = 6): Product[] {
 
   return getAllProducts()
     .filter((item) => !blocked.has(item.id))
-    .filter((item) => item.category_slug === product.category_slug)
+    .filter((item) => productBelongsToCategory(item, product.category_slug))
     .filter(isBrowsableRelated)
     .sort((a, b) => relatedScore(product, b, null) - relatedScore(product, a, null))
     .slice(0, limit);

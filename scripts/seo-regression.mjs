@@ -4,7 +4,7 @@
  * noindex, or a redirect/query URL enters the sitemap.
  */
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const PORT = process.env.SEO_TEST_PORT || "3456";
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -155,6 +155,16 @@ async function checkSitemap() {
   }
   const queryUrl = locs.find((loc) => loc.includes("?"));
   if (queryUrl) fail(`sitemap includes query URL ${queryUrl}`);
+
+  const redirectFile = JSON.parse(readFileSync("src/data/listing-redirects.json", "utf8"));
+  const redirects = redirectFile.redirects ?? [];
+  if (redirects.length === 0) fail("listing redirect map is empty");
+  for (const redirect of redirects) {
+    if (paths.has(redirect.from)) {
+      fail(`sitemap includes duplicate product ${redirect.from}`);
+    }
+  }
+  return redirects;
 }
 
 async function checkProductAvailability() {
@@ -262,8 +272,28 @@ async function main() {
     await checkRedirect("/coupon", "/boonbuy-coupons", { host: "boonbuys.com" });
     await checkRedirect("/coupons", "/boonbuy-coupons", { host: "boonbuys.com" });
 
-    await checkSitemap();
+    const redirects = await checkSitemap();
     await checkProductAvailability();
+    if (redirects?.length) {
+      const samples = [
+        redirects[0],
+        redirects[Math.floor(redirects.length / 2)],
+        redirects[redirects.length - 1],
+      ];
+      for (const redirect of samples) {
+        await checkRedirect(redirect.from, redirect.to);
+        const canonicalPage = await fetchManual(redirect.to);
+        if (canonicalPage.status !== 200) {
+          fail(`${redirect.to} status ${canonicalPage.status}, expected 200`);
+          continue;
+        }
+        const html = await canonicalPage.text();
+        const canonical = html.match(/rel="canonical" href="([^"]+)"/i)?.[1] ?? "";
+        if (canonicalPath(canonical) !== redirect.to) {
+          fail(`${redirect.to} canonical ${canonical || "missing"}`);
+        }
+      }
+    }
   } finally {
     stop();
   }

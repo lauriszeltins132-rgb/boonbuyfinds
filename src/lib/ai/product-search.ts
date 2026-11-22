@@ -7,6 +7,7 @@ import { aiConfig } from "@/lib/ai/config";
 import { buildSearchableText, toPublicProduct } from "@/lib/ai/normalize";
 import type { PublicProduct, SearchIntent } from "@/lib/ai/schemas";
 import { COLOR_ALIASES, expandSynonyms } from "@/lib/ai/synonyms";
+import { productBelongsToCategory } from "@/lib/product-membership";
 import { getProductBySlug } from "@/lib/slugs";
 import { getTrendingProducts } from "@/lib/products";
 
@@ -443,7 +444,9 @@ export function buildHaulFromCatalog(input: {
 
 export function getCatalogCategoryStats() {
   return getCategories().map((c) => {
-    const products = getAllProducts().filter((p) => p.category_slug === c.slug);
+    const products = getAllProducts().filter((p) =>
+      productBelongsToCategory(p, c.slug)
+    );
     const prices = products
       .map((p) => p.price)
       .filter((p): p is number => p != null);
@@ -489,7 +492,7 @@ export function getTrendingPublicProducts(category?: string, limit = 8) {
     products = [...getAllProducts()];
   }
   if (category) {
-    products = products.filter((p) => p.category_slug === category);
+    products = products.filter((p) => productBelongsToCategory(p, category));
   }
   return products.slice(0, limit).map((p) =>
     toPublicProduct(p, "Trending in catalog engagement signals")

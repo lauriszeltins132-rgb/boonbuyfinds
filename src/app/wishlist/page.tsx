@@ -9,6 +9,7 @@ import RegisterLink from "@/components/RegisterLink";
 import { useWishlist } from "@/context/WishlistContext";
 import { WISHLIST_UNLOCK_THRESHOLD } from "@/lib/conversion";
 import { REGISTER_MODAL_CTA_LABEL } from "@/lib/constants";
+import { productMatchesAnyId } from "@/lib/product-membership";
 import type { Product } from "@/lib/types";
 
 export default function WishlistPage() {
@@ -25,7 +26,7 @@ export default function WishlistPage() {
     void import("@/lib/products").then(({ getAllProducts }) => {
       if (cancelled) return;
       setSavedProducts(
-        getAllProducts().filter((product) => wishlist.includes(product.id))
+        getAllProducts().filter((product) => productMatchesAnyId(product, wishlist))
       );
     });
 

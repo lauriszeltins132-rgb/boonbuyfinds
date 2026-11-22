@@ -68,8 +68,16 @@ function main() {
     });
   }
 
+  const redirectPath = path.join(root, "src/data/listing-redirects.json");
+  const duplicateIds = new Set();
+  if (fs.existsSync(redirectPath)) {
+    const redirectFile = JSON.parse(fs.readFileSync(redirectPath, "utf8"));
+    for (const redirect of redirectFile.redirects ?? []) duplicateIds.add(String(redirect.fromId));
+  }
+
   const brandCounts = new Map();
   for (const p of products) {
+    if (duplicateIds.has(String(p.id))) continue;
     const brand = extractBrand(p.product_name);
     if (!brand) continue;
     brandCounts.set(brand, (brandCounts.get(brand) ?? 0) + 1);
@@ -97,6 +105,7 @@ function main() {
         const tail = sub.query.toLowerCase().replace(brand.name.toLowerCase(), "").trim();
         const pattern = tail ? new RegExp(tail.split(/\s+/).filter(Boolean).join("|"), "i") : null;
         const count = products.filter((p) => {
+          if (duplicateIds.has(String(p.id))) return false;
           const b = extractBrand(p.product_name);
           if (b?.toLowerCase() !== brand.name.toLowerCase()) return false;
           return pattern ? pattern.test(p.product_name) : true;
@@ -123,7 +132,9 @@ function main() {
     });
   }
 
-  const trending = products.filter((p) => p.category_slug === "trending-now").slice(0, 20);
+  const trending = products
+    .filter((p) => p.category_slug === "trending-now" && !duplicateIds.has(String(p.id)))
+    .slice(0, 20);
   for (const product of trending) {
     items.push({
       label: product.product_name.slice(0, 48),

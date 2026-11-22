@@ -14,6 +14,7 @@ import {
   getDatasetSyncedIso,
 } from "@/lib/catalog-meta";
 import { formatContentDate } from "@/lib/content-dates";
+import { categoryGroupSlugs } from "@/lib/product-membership";
 import { hasExactPrice } from "@/lib/pricing";
 import {
   getAllProducts,
@@ -83,10 +84,11 @@ export function getCategoryLiveStats(limit = 12): CategoryLiveStat[] {
   const latest = getLatestProducts();
   const bySlug = new Map<string, Product[]>();
   for (const product of products) {
-    if (product.group !== "category") continue;
-    const list = bySlug.get(product.category_slug) ?? [];
-    list.push(product);
-    bySlug.set(product.category_slug, list);
+    for (const slug of categoryGroupSlugs(product)) {
+      const list = bySlug.get(slug) ?? [];
+      list.push(product);
+      bySlug.set(slug, list);
+    }
   }
 
   return categories

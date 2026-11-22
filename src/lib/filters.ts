@@ -3,6 +3,10 @@ import type { Product } from "./types";
 import { productMatchesBrand } from "./brands";
 import { getDisplayBrand } from "./product-validation";
 import { getProductSource } from "./affiliate-source";
+import {
+  productBelongsToCategory,
+  productMatchesAnyId,
+} from "./product-membership";
 
 export { getProductSource } from "./affiliate-source";
 
@@ -71,7 +75,7 @@ export function filterProducts(
   let result = products.filter((product) => {
     if (search && !matchesSearch(product, search)) return false;
 
-    if (filters.category && product.category_slug !== filters.category) {
+    if (filters.category && !productBelongsToCategory(product, filters.category)) {
       return false;
     }
 
@@ -81,7 +85,11 @@ export function filterProducts(
 
     if (filters.qcOnly && !product.qc_link) return false;
 
-    if (filters.savedOnly && filters.savedIds && !filters.savedIds.has(product.id)) {
+    if (
+      filters.savedOnly &&
+      filters.savedIds &&
+      !productMatchesAnyId(product, filters.savedIds)
+    ) {
       return false;
     }
 

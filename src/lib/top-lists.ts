@@ -2,6 +2,7 @@ import { extractBrand } from "./brands";
 import { getMonthlyHighlights, getPopularToday } from "./popular-picks";
 import { filterFeaturedEligible, sortByVisualQuality } from "./product-media";
 import { hasExactPrice } from "./pricing";
+import { productBelongsToCategory } from "./product-membership";
 import { getAllProducts } from "./products";
 import type { Product } from "./types";
 
@@ -79,7 +80,7 @@ export const TOP_LISTS: Record<string, SeoListConfig> = {
           priced(
             getAllProducts().filter(
               (p) =>
-                p.category_slug === "shoes" ||
+                productBelongsToCategory(p, "shoes") ||
                 /sneaker|dunk|jordan|yeezy|trainer|runner/i.test(p.product_name)
             )
           )
@@ -374,7 +375,7 @@ export const TOP_LISTS: Record<string, SeoListConfig> = {
           priced(
             getAllProducts().filter(
               (p) =>
-                p.category_slug === "shoes" &&
+                productBelongsToCategory(p, "shoes") &&
                 p.price !== null &&
                 p.price <= 50
             )

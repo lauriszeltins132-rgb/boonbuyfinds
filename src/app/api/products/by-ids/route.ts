@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCardDisplayMap } from "@/lib/card-props";
-import { getAllProducts } from "@/lib/products";
+import { getProductById } from "@/lib/products";
 
 export const runtime = "nodejs";
 
@@ -31,8 +31,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ products: [], cardDisplays: {} });
   }
 
-  const wanted = new Set(ids);
-  const products = getAllProducts().filter((product) => wanted.has(product.id));
+  const seen = new Set<string>();
+  const products = ids.flatMap((id) => {
+    const product = getProductById(id);
+    if (!product || seen.has(product.id)) return [];
+    seen.add(product.id);
+    return [product];
+  });
   const cardDisplays = getCardDisplayMap(products.map((product) => product.id));
 
   return NextResponse.json(

@@ -1,6 +1,7 @@
 import { getBrandsFromProducts } from "./brands";
 import { getEditorsPicks, getMostSavedPicks } from "./discovery";
 import { filterFeaturedEligible } from "./product-media";
+import { productBelongsToCategory } from "./product-membership";
 import { hasExactPrice } from "./pricing";
 import {
   getAllProducts,
@@ -519,7 +520,7 @@ export function getFindsHubBrands(config: FindsHubConfig) {
 export function getFindsHubCategories(config: FindsHubConfig) {
   const products = getAllProducts();
   return config.relatedCategorySlugs.map((slug) => {
-    const count = products.filter((p) => p.category_slug === slug).length;
+    const count = products.filter((p) => productBelongsToCategory(p, slug)).length;
     const name =
       slug === "shoes"
         ? "Shoes"
