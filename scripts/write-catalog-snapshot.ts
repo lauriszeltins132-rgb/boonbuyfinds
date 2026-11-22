@@ -29,6 +29,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const historyDir = path.join(root, "data", "catalog-history");
 const dayDir = path.join(historyDir, "days");
 const presencePath = path.join(historyDir, "presence.json");
+const verificationPath = path.join(root, "data", "catalog-verification", "listings.json");
 
 function cleanUrl(value: string): string {
   const trimmed = value.trim();
@@ -50,11 +51,25 @@ function readPresence(): PresenceFile {
   return parsed;
 }
 
+function verificationByListing(): Map<string, string> {
+  if (!existsSync(verificationPath)) return new Map();
+  const parsed = JSON.parse(readFileSync(verificationPath, "utf8")) as {
+    listings?: Record<string, { verification_state?: string }>;
+  };
+  const entries = Object.entries(parsed.listings ?? {});
+  return new Map(entries.flatMap(([listingId, record]) => {
+    const state = record.verification_state?.trim();
+    return state ? [[listingId, state] as const] : [];
+  }));
+}
+
 function toInput(): SnapshotProductInput[] {
+  const verification = verificationByListing();
   return getAllProducts().map((product) => {
     const boonbuyUrl = product.affiliate_link?.trim() ?? "";
+    const listingId = product.listingId ?? `row:${product.id}`;
     return {
-      listingId: product.listingId ?? `row:${product.id}`,
+      listingId,
       price: product.price,
       imageUrl: product.image ?? "",
       qcLinked: Boolean(product.qc_link?.trim()),
@@ -62,6 +77,7 @@ function toInput(): SnapshotProductInput[] {
       category: product.category_slug,
       sourceUrl: cleanUrl(boonbuyUrl),
       boonbuyUrl,
+      verification: verification.get(listingId),
     };
   });
 }
@@ -86,8 +102,8 @@ function main() {
   }
 
   mkdirSync(dayDir, { recursive: true });
-  writeFileSync(dayPath, `${JSON.stringify(result.day)}\n`);
-  writeFileSync(presencePath, `${JSON.stringify(result.presence)}\n`);
+  writeFileSync(dayPath, `${JSON.stringify(result.day, null, 2)}\n`);
+  writeFileSync(presencePath, `${JSON.stringify(result.presence, null, 2)}\n`);
   console.log(
     `catalog snapshot ${date}: ${result.day.aggregates.totalProducts} products, ` +
       `${result.day.added.length} added, ${result.day.removed.length} removed, ` +
