@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ProductDetailView from "@/components/ProductDetailView";
 import ServerProductGrid from "@/components/ServerProductGrid";
@@ -21,7 +21,7 @@ import {
   getProductEngagementStats,
   isProductTrending,
 } from "@/lib/analytics-store";
-import { getAllProductSlugs, getProductBySlug, getProductSlug, slugify } from "@/lib/slugs";
+import { getAllProductSlugs, getProductSlug, resolveFindSlug, slugify } from "@/lib/slugs";
 import { getLatestProducts, getTrendingProducts } from "@/lib/products";
 import { buildPageMetadata } from "@/lib/seo";
 import FloatingBackButton from "@/components/FloatingBackButton";
@@ -74,8 +74,10 @@ export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) return {};
+  const resolved = resolveFindSlug(slug);
+  if (resolved.type === "missing") return {};
+  if (resolved.type === "redirect") permanentRedirect(resolved.path);
+  const product = resolved.product;
 
   return buildPageMetadata({
     title: getProductSeoTitle(product),
@@ -87,16 +89,16 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const resolved = resolveFindSlug(slug);
 
-  if (!product) {
+  if (resolved.type === "missing") {
     notFound();
   }
-
-  const canonicalSlug = getProductSlug(product);
-  if (slug !== canonicalSlug) {
-    redirect(`/find/${canonicalSlug}`);
+  if (resolved.type === "redirect") {
+    permanentRedirect(resolved.path);
   }
+
+  const product = resolved.product;
 
   const brand = getDisplayBrand(product);
   const similar = getSimilarFinds(product, 8);

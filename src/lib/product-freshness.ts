@@ -1,3 +1,4 @@
+import { productBelongsToCategory } from "./product-membership";
 import { getRecencyPool } from "./recency";
 import type { Product } from "./types";
 
@@ -17,7 +18,7 @@ function getRecencyRank(productId: string): number | null {
  * Conservative freshness labels — no fabricated dates without real timestamps.
  */
 export function getProductFreshnessLabel(product: Product): string | null {
-  if (product.category_slug === "latest-finds") {
+  if (productBelongsToCategory(product, "latest-finds")) {
     return "Added recently";
   }
 

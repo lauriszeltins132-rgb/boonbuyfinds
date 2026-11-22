@@ -25,9 +25,10 @@ export function rehydratePublicProducts(
     if (!id || typeof id !== "string" || seen.has(id)) continue;
 
     const catalog = getProductById(id);
-    if (!catalog) continue;
+    if (!catalog || seen.has(catalog.id)) continue;
 
     seen.add(id);
+    seen.add(catalog.id);
     const reason =
       "matchReason" in candidate && typeof candidate.matchReason === "string"
         ? candidate.matchReason.slice(0, 240)

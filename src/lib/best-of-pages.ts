@@ -4,6 +4,7 @@ import { getEngagementPicks } from "./engagement-picks";
 import { getMonthlyHighlights } from "./popular-picks";
 import { filterFeaturedEligible } from "./product-media";
 import { hasExactPrice } from "./pricing";
+import { productBelongsToCategory } from "./product-membership";
 import { getAllProducts, getDealProducts, getTrendingProducts } from "./products";
 import type { Product } from "./types";
 
@@ -321,7 +322,7 @@ export const BEST_OF_PAGES: Record<string, BestOfPageConfig> = {
         priced(
           getAllProducts().filter(
             (p) =>
-              p.category_slug === "accessories" &&
+              productBelongsToCategory(p, "accessories") &&
               /bag|tote|crossbody|backpack|keepall|speedy|neverfull/i.test(
                 p.product_name
               )
@@ -648,7 +649,7 @@ export function getBestOfBrands(config: BestOfPageConfig) {
 export function getBestOfCategories(config: BestOfPageConfig) {
   const products = getAllProducts();
   return config.relatedCategorySlugs.map((slug) => {
-    const count = products.filter((p) => p.category_slug === slug).length;
+    const count = products.filter((p) => productBelongsToCategory(p, slug)).length;
     const name =
       slug === "shoes"
         ? "Shoes"

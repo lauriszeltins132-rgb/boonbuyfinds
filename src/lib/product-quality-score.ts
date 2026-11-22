@@ -12,6 +12,7 @@ import {
   HOMEPAGE_MIN_SCORE,
 } from "./image-quality";
 import { hasExactPrice } from "./pricing";
+import { productBelongsToCategory } from "./product-membership";
 import { resolveProductDisplayImage } from "./product-image-presentation";
 import { validateProduct } from "./product-validation";
 import { isUsableImageUrl } from "./image-url";
@@ -144,15 +145,15 @@ function computeRecencyScore(product: Product): number {
   if (!Number.isFinite(id)) return 30;
 
   const idNorm = Math.min(100, Math.round((id / 3200) * 100));
-  if (product.category_slug === "latest-finds") return Math.max(idNorm, 75);
-  if (product.category_slug === "trending-now") return Math.max(idNorm, 65);
+  if (productBelongsToCategory(product, "latest-finds")) return Math.max(idNorm, 75);
+  if (productBelongsToCategory(product, "trending-now")) return Math.max(idNorm, 65);
   return idNorm;
 }
 
 function computePopularityScore(product: Product, analyticsRank = 99): number {
   let score = getPremiumBrandBoost(product.product_name) * 0.25;
   score += validateProduct(product).confidence * 20;
-  if (product.category_slug === "trending-now") score += 10;
+  if (productBelongsToCategory(product, "trending-now")) score += 10;
   if (analyticsRank >= 0 && analyticsRank < 15) {
     score += Math.max(0, 18 - analyticsRank);
   }

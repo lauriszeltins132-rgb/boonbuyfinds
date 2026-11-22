@@ -3,6 +3,7 @@ import { getEditorsPicks } from "./discovery";
 import { getSpreadsheetMetadataCopy } from "./metadata-copy";
 import { filterFeaturedEligible } from "./product-media";
 import { hasExactPrice } from "./pricing";
+import { productBelongsToCategory } from "./product-membership";
 import { getAllProducts, getTrendingProducts } from "./products";
 import { TOP_LISTS } from "./top-lists";
 import type { Product } from "./types";
@@ -1069,7 +1070,7 @@ export const SEO_LANDING_PAGES: Record<string, SeoLandingConfig> = {
         priced(
           getAllProducts().filter(
             (p) =>
-              p.category_slug === "hoodies-and-pants" &&
+              productBelongsToCategory(p, "hoodies-and-pants") &&
               /hoodie|sweatshirt|crewneck/i.test(p.product_name)
           )
         )

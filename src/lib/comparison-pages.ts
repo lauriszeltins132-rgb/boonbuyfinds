@@ -1,7 +1,7 @@
 import { extractBrand, getBrandsFromProducts } from "./brands";
 import { filterFeaturedEligible } from "./product-media";
 import { hasExactPrice } from "./pricing";
-import { getAllProducts, getTrendingProducts } from "./products";
+import { getAllProducts, getLatestProducts, getTrendingProducts } from "./products";
 import type { Product } from "./types";
 import type { SeoListConfig } from "./top-lists";
 
@@ -105,9 +105,7 @@ export const COMPARISON_PAGES: Record<string, ComparisonConfig> = {
       },
       {
         label: "Latest finds",
-        products: filterFeaturedEligible(
-          priced(getAllProducts().filter((p) => p.category_slug === "latest-finds"))
-        ).slice(0, 24),
+        products: filterFeaturedEligible(priced(getLatestProducts())).slice(0, 24),
       },
     ],
     relatedLinks: [

@@ -9,6 +9,8 @@ import {
 import { auditCatalogPrices, hasExactPrice } from "./pricing";
 import { isDeadImageUrl } from "./dead-images";
 import { validateImageUrl } from "./image-url";
+import { buildListingCatalog, type ListingCatalog } from "./listing-canonical";
+import { productBelongsToCategory } from "./product-membership";
 
 function normalizeProduct(product: Product): Product {
   const validation = validateImageUrl(product.image);
@@ -26,11 +28,22 @@ const normalizedProducts = filterBrowsableProducts(
   (productsData as Product[]).map(normalizeProduct)
 );
 
-/** Catalog listings — excludes poor-quality or missing images. */
-const catalogProducts = normalizedProducts.filter((product) => {
+function canServeProduct(product: Product): boolean {
   if (!product.image) return false;
   return passesCardDisplayGate(product);
-});
+}
+
+/**
+ * One public product per listing id. Source rows stay in products.json.
+ * Duplicate row ids resolve to the canonical product.
+ */
+const listingCatalog: ListingCatalog = buildListingCatalog(
+  normalizedProducts,
+  canServeProduct
+);
+
+/** Catalog listings — one canonical product per listing, image gate unchanged. */
+const catalogProducts = listingCatalog.canonicalProducts;
 
 /** Sorted once at module load — getAllProducts() is called heavily on homepage rails. */
 const catalogProductsSorted = sortWithImagesFirst(catalogProducts);
@@ -50,18 +63,34 @@ export function getAllProducts(): Product[] {
 }
 
 export function getProductById(id: string): Product | undefined {
-  return normalizedProducts.find((product) => product.id === id);
+  return listingCatalog.publicByAliasId.get(id);
+}
+
+export function getSourceProductById(id: string): Product | undefined {
+  return listingCatalog.sourceById.get(id);
+}
+
+export function getAllSourceProducts(): Product[] {
+  return normalizedProducts;
+}
+
+export function getListingCatalog(): ListingCatalog {
+  return listingCatalog;
 }
 
 export function getTrendingProducts(): Product[] {
   return sortWithImagesFirst(
-    catalogProducts.filter((product) => product.category_slug === "trending-now")
+    catalogProducts.filter((product) =>
+      productBelongsToCategory(product, "trending-now")
+    )
   );
 }
 
 export function getLatestProducts(): Product[] {
   return sortWithImagesFirst(
-    catalogProducts.filter((product) => product.category_slug === "latest-finds")
+    catalogProducts.filter((product) =>
+      productBelongsToCategory(product, "latest-finds")
+    )
   );
 }
 
@@ -82,7 +111,7 @@ export function getQcProducts(): Product[] {
 
 export function getProductsByCategorySlug(slug: string): Product[] {
   return sortWithImagesFirst(
-    catalogProducts.filter((product) => product.category_slug === slug)
+    catalogProducts.filter((product) => productBelongsToCategory(product, slug))
   );
 }
 
@@ -113,21 +142,38 @@ export function getCategories(): CategoryInfo[] {
   const map = new Map<string, CategoryInfo>();
 
   for (const product of catalogProducts) {
-    const existing = map.get(product.category_slug);
-    if (existing) {
-      existing.count += 1;
-    } else {
-      map.set(product.category_slug, {
+    const memberships = [
+      {
         name: product.category,
         slug: product.category_slug,
+        group: product.group,
+      },
+      ...(product.listingRelations ?? []).map((relation) => ({
+        name: relation.category,
+        slug: relation.category_slug,
+        group: relation.group,
+      })),
+    ];
+    const seen = new Set<string>();
+    for (const membership of memberships) {
+      if (seen.has(membership.slug)) continue;
+      seen.add(membership.slug);
+      const existing = map.get(membership.slug);
+      if (existing) {
+        existing.count += 1;
+        continue;
+      }
+      map.set(membership.slug, {
+        name: membership.name,
+        slug: membership.slug,
         count: 1,
         href:
-          product.group === "featured"
-            ? product.category_slug === "trending-now"
+          membership.group === "featured"
+            ? membership.slug === "trending-now"
               ? "/trending"
               : "/latest-finds"
-            : `/categories/${product.category_slug}`,
-        group: product.group,
+            : `/categories/${membership.slug}`,
+        group: membership.group,
       });
     }
   }

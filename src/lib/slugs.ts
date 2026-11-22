@@ -1,6 +1,16 @@
 import type { Product } from "./types";
 import { getEffectiveProductTitle } from "./product-title-quality";
-import { products } from "./products";
+import {
+  getAllSourceProducts,
+  getProductById,
+  getSourceProductById,
+  products,
+} from "./products";
+
+export type FindSlugResolution =
+  | { type: "missing" }
+  | { type: "redirect"; path: string; product: Product }
+  | { type: "ok"; product: Product };
 
 export function slugify(text: string): string {
   return text
@@ -18,14 +28,41 @@ export function getProductHref(product: Product): string {
   return `/find/${getProductSlug(product)}`;
 }
 
-export function getProductBySlug(slug: string): Product | undefined {
+let sourceSlugIndex: Map<string, Product> | null = null;
+
+function sourceProductBySlug(slug: string): Product | undefined {
+  if (!sourceSlugIndex) {
+    sourceSlugIndex = new Map();
+    for (const product of getAllSourceProducts()) {
+      sourceSlugIndex.set(getProductSlug(product), product);
+    }
+  }
+  return sourceSlugIndex.get(slug);
+}
+
+/**
+ * Public product for a /find/ slug. Duplicate row slugs resolve to the
+ * canonical product and are flagged for a permanent redirect.
+ */
+export function resolveFindSlug(slug: string): FindSlugResolution {
   const id = slug.split("-").pop();
-  if (!id) return undefined;
+  const source = (id ? getSourceProductById(id) : undefined) ?? sourceProductBySlug(slug);
+  if (!source) return { type: "missing" };
 
-  const byId = products.find((product) => product.id === id);
-  if (byId) return byId;
+  const product = getProductById(source.id);
+  if (!product) return { type: "missing" };
 
-  return products.find((product) => getProductSlug(product) === slug);
+  const canonicalSlug = getProductSlug(product);
+  if (slug !== canonicalSlug) {
+    return { type: "redirect", path: `/find/${canonicalSlug}`, product };
+  }
+  return { type: "ok", product };
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+  const resolved = resolveFindSlug(slug);
+  if (resolved.type === "missing") return undefined;
+  return resolved.product;
 }
 
 export function getAllProductSlugs(): string[] {

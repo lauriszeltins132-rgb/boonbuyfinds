@@ -3,6 +3,7 @@ import { hasExactPrice } from "./pricing";
 import { getProductQualityBreakdown } from "./product-quality-score";
 import { getRecencyPool } from "./recency";
 import { BADGE_LABELS, badgeClassName } from "./product-badge-ui";
+import { productBelongsToCategory, productMatchesAnyId } from "./product-membership";
 import type { Product, ProductBadgeKind } from "./types";
 
 export type ProductBadge = {
@@ -88,13 +89,13 @@ export function getProductBadges(
     badges.push({ kind: "trending", label: BADGE_LABELS.trending, priority: 2 });
   }
 
-  if (getPopularIds().has(product.id)) {
+  if (productMatchesAnyId(product, getPopularIds())) {
     badges.push({ kind: "popular", label: BADGE_LABELS.popular, priority: 3 });
   }
 
   if (
-    product.category_slug === "latest-finds" ||
-    getRecentIds().has(product.id)
+    productBelongsToCategory(product, "latest-finds") ||
+    productMatchesAnyId(product, getRecentIds())
   ) {
     badges.push({ kind: "new", label: BADGE_LABELS.new, priority: 4 });
   }
