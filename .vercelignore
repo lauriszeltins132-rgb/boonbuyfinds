@@ -1,0 +1,3 @@
+# History is written by scheduled jobs and is not read while rendering pages.
+data/catalog-history
+data/catalog-verification

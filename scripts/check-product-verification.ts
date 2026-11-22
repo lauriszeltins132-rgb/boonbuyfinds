@@ -60,7 +60,7 @@ function readStore(): VerificationStore {
 function writeStore(store: VerificationStore) {
   mkdirSync(path.dirname(storePath), { recursive: true });
   const listings = Object.fromEntries(Object.entries(store.listings).sort(([a], [b]) => a.localeCompare(b)));
-  writeFileSync(storePath, `${JSON.stringify({ listings })}\n`);
+  writeFileSync(storePath, `${JSON.stringify({ listings }, null, 2)}\n`);
 }
 
 function imageEvidence(image: string): ImageEvidence {

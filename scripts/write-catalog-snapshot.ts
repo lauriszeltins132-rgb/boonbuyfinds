@@ -102,8 +102,8 @@ function main() {
   }
 
   mkdirSync(dayDir, { recursive: true });
-  writeFileSync(dayPath, `${JSON.stringify(result.day)}\n`);
-  writeFileSync(presencePath, `${JSON.stringify(result.presence)}\n`);
+  writeFileSync(dayPath, `${JSON.stringify(result.day, null, 2)}\n`);
+  writeFileSync(presencePath, `${JSON.stringify(result.presence, null, 2)}\n`);
   console.log(
     `catalog snapshot ${date}: ${result.day.aggregates.totalProducts} products, ` +
       `${result.day.added.length} added, ${result.day.removed.length} removed, ` +
